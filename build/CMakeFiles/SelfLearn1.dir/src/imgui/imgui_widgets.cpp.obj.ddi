@@ -1,0 +1,11 @@
+{
+"rules": [
+{
+"primary-output": "CMakeFiles\\SelfLearn1.dir\\src\\imgui\\imgui_widgets.cpp.obj",
+"requires": [
+]
+}
+],
+"version": 0,
+"revision": 0
+}

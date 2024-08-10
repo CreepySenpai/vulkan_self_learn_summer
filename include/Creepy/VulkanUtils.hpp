@@ -1,0 +1,125 @@
+#pragma once
+
+#include <print>
+#include <filesystem>
+#include <fstream>
+#include <vulkan/vulkan.hpp>
+
+namespace Creepy{
+
+    static VKAPI_CALL VkBool32 debugMessageCallback(VkDebugUtilsMessageSeverityFlagBitsEXT messageSeverity,
+        VkDebugUtilsMessageTypeFlagsEXT messageType,
+        const VkDebugUtilsMessengerCallbackDataEXT* pCallbackData,
+        void* pUserData){
+        
+        if(messageSeverity & VK_DEBUG_UTILS_MESSAGE_SEVERITY_ERROR_BIT_EXT) {
+            std::println("Error: {}", pCallbackData->pMessage);
+        }
+        if(messageSeverity & VK_DEBUG_UTILS_MESSAGE_SEVERITY_WARNING_BIT_EXT){
+            std::println("Waring: {}", pCallbackData->pMessage);
+        }
+        if(messageSeverity & VK_DEBUG_UTILS_MESSAGE_SEVERITY_INFO_BIT_EXT){
+            std::println("Info: {}", pCallbackData->pMessage);
+        }
+        if(messageSeverity & VK_DEBUG_UTILS_MESSAGE_SEVERITY_VERBOSE_BIT_EXT){
+            std::println("Something: {}", pCallbackData->pMessage);
+        }
+
+        return VK_FALSE;
+    }
+
+    static VKAPI_CALL void deviceMemoryReportCallback(const VkDeviceMemoryReportCallbackDataEXT* callbackData, void* userData){
+        if(callbackData->type == VK_DEVICE_MEMORY_REPORT_EVENT_TYPE_ALLOCATION_FAILED_EXT){
+            std::println("Alloc Failed");
+        }
+    }
+
+    static uint32_t findQueueFamilyIndex(const vk::PhysicalDevice physicalDev, vk::QueueFlags queueType){
+        auto queues = physicalDev.getQueueFamilyProperties();
+
+        for(uint32_t queueIndex{}; auto queue : queues){
+            if(queue.queueFlags & queueType){
+                return queueIndex;
+            }
+            ++queueIndex;
+        }
+
+        return 0;
+    }
+
+    static uint32_t findPresentQueueFamilyIndex(const vk::PhysicalDevice physicalDev, const vk::SurfaceKHR surface){
+        auto queues = physicalDev.getQueueFamilyProperties();
+
+        for(uint32_t queueIndex{}; auto queue : queues){
+            // Check Queue Support Present
+            if(physicalDev.getSurfaceSupportKHR(queueIndex, surface).value){
+                return queueIndex;
+            }
+            ++queueIndex;
+        }
+
+        return 0;
+    }
+
+    static std::vector<char> readShaderSPIRVFile(const std::filesystem::path& filePath) {
+        if(!std::filesystem::exists(filePath)){
+            std::println("File Not Exists: {}", filePath.string());
+            return {};
+        }
+
+        std::ifstream fileIn{filePath, std::ios::binary};
+        
+        // Create Iter from begin -> end file
+        return {std::istreambuf_iterator<char>{fileIn}, std::istreambuf_iterator<char>{}};
+    }
+
+    // static std::vector<uint32_t> readShaderSPIRVFile(const std::filesystem::path& filePath){
+    //     if(!std::filesystem::exists(filePath)){
+    //         std::println("File Not Exists: {}", filePath.string());
+    //         return {};
+    //     }
+
+    //     std::ifstream fileIn{filePath, std::ios::binary | std::ios::ate};
+
+    //     const auto fileSize = fileIn.tellg();
+
+    //     std::vector<uint32_t> spirvData(fileSize / sizeof(uint32_t));
+
+    //     fileIn.seekg(0);
+
+    //     fileIn.read(reinterpret_cast<char*>(spirvData.data()), fileSize);
+
+    //     fileIn.close();
+
+    //     return spirvData;
+    // }
+
+
+    static void imageLayoutTransition(const vk::CommandBuffer commandBuffer, vk::Image image, vk::ImageAspectFlags imageAspect, vk::ImageLayout currentLayout, vk::ImageLayout newLayout, vk::AccessFlags2 srcAccess, vk::AccessFlags2 dstAccess, vk::PipelineStageFlags2 srcStage, vk::PipelineStageFlags2 dstStage){
+        
+        vk::ImageMemoryBarrier2 imageBarrier{};
+        imageBarrier.image = image;
+        imageBarrier.oldLayout = currentLayout;
+        imageBarrier.newLayout = newLayout;
+        imageBarrier.srcAccessMask = srcAccess;
+        imageBarrier.srcStageMask = srcStage;
+        imageBarrier.dstAccessMask = dstAccess;
+        imageBarrier.dstStageMask = dstStage;
+        
+        imageBarrier.srcQueueFamilyIndex = vk::QueueFamilyIgnored;
+        imageBarrier.dstQueueFamilyIndex = vk::QueueFamilyIgnored;
+
+        imageBarrier.subresourceRange.aspectMask = imageAspect;
+        imageBarrier.subresourceRange.baseMipLevel = 0;
+        imageBarrier.subresourceRange.baseArrayLayer = 0;
+        imageBarrier.subresourceRange.levelCount = vk::RemainingMipLevels;
+        imageBarrier.subresourceRange.layerCount = vk::RemainingArrayLayers;
+
+        vk::DependencyInfo depenInfo{};
+        depenInfo.dependencyFlags = vk::DependencyFlags{};
+        depenInfo.imageMemoryBarrierCount = 1;
+        depenInfo.pImageMemoryBarriers = &imageBarrier;
+
+        commandBuffer.pipelineBarrier2(depenInfo);
+    }
+}

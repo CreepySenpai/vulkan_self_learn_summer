@@ -1,0 +1,31 @@
+ninja_dyndep_version = 1.0
+build CMakeFiles/SelfLearn1.dir/main.cpp.obj: dyndep
+
+build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanAllocator.cpp.obj: dyndep
+
+build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanBuffer.cpp.obj: dyndep
+
+build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanDescriptor.cpp.obj: dyndep
+
+build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanEngine.cpp.obj: dyndep
+
+build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanImage.cpp.obj: dyndep
+
+build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanPipeline.cpp.obj: dyndep
+
+build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanShader.cpp.obj: dyndep
+
+build CMakeFiles/SelfLearn1.dir/src/vkmemoryalloc/alloc.cpp.obj: dyndep
+
+build CMakeFiles/SelfLearn1.dir/src/imgui/imgui.cpp.obj: dyndep
+
+build CMakeFiles/SelfLearn1.dir/src/imgui/imgui_draw.cpp.obj: dyndep
+
+build CMakeFiles/SelfLearn1.dir/src/imgui/imgui_impl_glfw.cpp.obj: dyndep
+
+build CMakeFiles/SelfLearn1.dir/src/imgui/imgui_impl_vulkan.cpp.obj: dyndep
+
+build CMakeFiles/SelfLearn1.dir/src/imgui/imgui_tables.cpp.obj: dyndep
+
+build CMakeFiles/SelfLearn1.dir/src/imgui/imgui_widgets.cpp.obj: dyndep
+

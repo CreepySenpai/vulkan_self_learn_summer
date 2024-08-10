@@ -1,0 +1,138 @@
+{
+	"kind" : "toolchains",
+	"toolchains" : 
+	[
+		{
+			"compiler" : 
+			{
+				"id" : "GNU",
+				"implicit" : 
+				{
+					"includeDirectories" : 
+					[
+						"D:/Enviroments/mingw64_msvcrt/lib/gcc/x86_64-w64-mingw32/14.2.0/include",
+						"D:/Enviroments/mingw64_msvcrt/include",
+						"D:/Enviroments/mingw64_msvcrt/lib/gcc/x86_64-w64-mingw32/14.2.0/include-fixed",
+						"D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include"
+					],
+					"linkDirectories" : 
+					[
+						"D:/Enviroments/mingw64_msvcrt/lib/gcc/x86_64-w64-mingw32/14.2.0",
+						"D:/Enviroments/mingw64_msvcrt/lib/gcc",
+						"D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/lib",
+						"D:/Enviroments/mingw64_msvcrt/lib"
+					],
+					"linkFrameworkDirectories" : [],
+					"linkLibraries" : 
+					[
+						"mingw32",
+						"gcc",
+						"mingwex",
+						"kernel32",
+						"pthread",
+						"advapi32",
+						"shell32",
+						"user32",
+						"kernel32",
+						"mingw32",
+						"gcc",
+						"mingwex",
+						"kernel32"
+					]
+				},
+				"path" : "D:/Enviroments/mingw64_msvcrt/bin/gcc.exe",
+				"version" : "14.2.0"
+			},
+			"language" : "C",
+			"sourceFileExtensions" : 
+			[
+				"c",
+				"m"
+			]
+		},
+		{
+			"compiler" : 
+			{
+				"id" : "GNU",
+				"implicit" : 
+				{
+					"includeDirectories" : 
+					[
+						"D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0",
+						"D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/x86_64-w64-mingw32",
+						"D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/backward",
+						"D:/Enviroments/mingw64_msvcrt/lib/gcc/x86_64-w64-mingw32/14.2.0/include",
+						"D:/Enviroments/mingw64_msvcrt/include",
+						"D:/Enviroments/mingw64_msvcrt/lib/gcc/x86_64-w64-mingw32/14.2.0/include-fixed",
+						"D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include"
+					],
+					"linkDirectories" : 
+					[
+						"D:/Enviroments/mingw64_msvcrt/lib/gcc/x86_64-w64-mingw32/14.2.0",
+						"D:/Enviroments/mingw64_msvcrt/lib/gcc",
+						"D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/lib",
+						"D:/Enviroments/mingw64_msvcrt/lib"
+					],
+					"linkFrameworkDirectories" : [],
+					"linkLibraries" : 
+					[
+						"stdc++",
+						"mingw32",
+						"gcc_s",
+						"gcc",
+						"mingwex",
+						"kernel32",
+						"pthread",
+						"advapi32",
+						"shell32",
+						"user32",
+						"kernel32",
+						"mingw32",
+						"gcc_s",
+						"gcc",
+						"mingwex",
+						"kernel32"
+					]
+				},
+				"path" : "D:/Enviroments/mingw64_msvcrt/bin/c++.exe",
+				"version" : "14.2.0"
+			},
+			"language" : "CXX",
+			"sourceFileExtensions" : 
+			[
+				"C",
+				"M",
+				"c++",
+				"cc",
+				"cpp",
+				"cxx",
+				"mm",
+				"mpp",
+				"CPP",
+				"ixx",
+				"cppm",
+				"ccm",
+				"cxxm",
+				"c++m"
+			]
+		},
+		{
+			"compiler" : 
+			{
+				"implicit" : {},
+				"path" : "D:/Enviroments/mingw64_msvcrt/bin/windres.exe"
+			},
+			"language" : "RC",
+			"sourceFileExtensions" : 
+			[
+				"rc",
+				"RC"
+			]
+		}
+	],
+	"version" : 
+	{
+		"major" : 1,
+		"minor" : 0
+	}
+}
