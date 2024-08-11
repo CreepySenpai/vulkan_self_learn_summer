@@ -50,7 +50,7 @@ cmake_ninja_workdir = D$:/Code/VSCode/C++/Vulkan/SelfLearn1/build/
 build cmake_object_order_depends_target_SelfLearn1: phony || .
 
 build CMakeFiles/SelfLearn1.dir/main.cpp.obj.ddi: CXX_SCAN__SelfLearn1_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/main.cpp || cmake_object_order_depends_target_SelfLearn1
-  DEFINES = -DVULKAN_HPP_NO_EXCEPTIONS
+  DEFINES = -DSTB_IMAGE_IMPLEMENTATION -DVULKAN_HPP_NO_EXCEPTIONS
   DEP_FILE = CMakeFiles\SelfLearn1.dir\main.cpp.obj.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles\SelfLearn1.dir\main.cpp.obj.ddi
   FLAGS = -O3 -DNDEBUG -std=gnu++26
@@ -59,7 +59,7 @@ build CMakeFiles/SelfLearn1.dir/main.cpp.obj.ddi: CXX_SCAN__SelfLearn1_Release D
   PREPROCESSED_OUTPUT_FILE = CMakeFiles\SelfLearn1.dir\main.cpp.obj.ddi.i
 
 build CMakeFiles/SelfLearn1.dir/main.cpp.obj: CXX_COMPILER__SelfLearn1_scanned_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/main.cpp | CMakeFiles/SelfLearn1.dir/main.cpp.obj.modmap || cmake_object_order_depends_target_SelfLearn1 CMakeFiles/SelfLearn1.dir/CXX.dd
-  DEFINES = -DVULKAN_HPP_NO_EXCEPTIONS
+  DEFINES = -DSTB_IMAGE_IMPLEMENTATION -DVULKAN_HPP_NO_EXCEPTIONS
   DEP_FILE = CMakeFiles\SelfLearn1.dir\main.cpp.obj.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles\SelfLearn1.dir\main.cpp.obj.modmap
   FLAGS = -O3 -DNDEBUG -std=gnu++26
@@ -69,7 +69,7 @@ build CMakeFiles/SelfLearn1.dir/main.cpp.obj: CXX_COMPILER__SelfLearn1_scanned_R
   dyndep = CMakeFiles/SelfLearn1.dir/CXX.dd
 
 build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanAllocator.cpp.obj.ddi: CXX_SCAN__SelfLearn1_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/Creepy/VulkanAllocator.cpp || cmake_object_order_depends_target_SelfLearn1
-  DEFINES = -DVULKAN_HPP_NO_EXCEPTIONS
+  DEFINES = -DSTB_IMAGE_IMPLEMENTATION -DVULKAN_HPP_NO_EXCEPTIONS
   DEP_FILE = CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanAllocator.cpp.obj.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanAllocator.cpp.obj.ddi
   FLAGS = -O3 -DNDEBUG -std=gnu++26
@@ -78,7 +78,7 @@ build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanAllocator.cpp.obj.ddi: CXX_SCAN
   PREPROCESSED_OUTPUT_FILE = CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanAllocator.cpp.obj.ddi.i
 
 build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanAllocator.cpp.obj: CXX_COMPILER__SelfLearn1_scanned_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/Creepy/VulkanAllocator.cpp | CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanAllocator.cpp.obj.modmap || cmake_object_order_depends_target_SelfLearn1 CMakeFiles/SelfLearn1.dir/CXX.dd
-  DEFINES = -DVULKAN_HPP_NO_EXCEPTIONS
+  DEFINES = -DSTB_IMAGE_IMPLEMENTATION -DVULKAN_HPP_NO_EXCEPTIONS
   DEP_FILE = CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanAllocator.cpp.obj.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanAllocator.cpp.obj.modmap
   FLAGS = -O3 -DNDEBUG -std=gnu++26
@@ -88,7 +88,7 @@ build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanAllocator.cpp.obj: CXX_COMPILER
   dyndep = CMakeFiles/SelfLearn1.dir/CXX.dd
 
 build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanBuffer.cpp.obj.ddi: CXX_SCAN__SelfLearn1_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/Creepy/VulkanBuffer.cpp || cmake_object_order_depends_target_SelfLearn1
-  DEFINES = -DVULKAN_HPP_NO_EXCEPTIONS
+  DEFINES = -DSTB_IMAGE_IMPLEMENTATION -DVULKAN_HPP_NO_EXCEPTIONS
   DEP_FILE = CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanBuffer.cpp.obj.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanBuffer.cpp.obj.ddi
   FLAGS = -O3 -DNDEBUG -std=gnu++26
@@ -97,7 +97,7 @@ build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanBuffer.cpp.obj.ddi: CXX_SCAN__S
   PREPROCESSED_OUTPUT_FILE = CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanBuffer.cpp.obj.ddi.i
 
 build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanBuffer.cpp.obj: CXX_COMPILER__SelfLearn1_scanned_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/Creepy/VulkanBuffer.cpp | CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanBuffer.cpp.obj.modmap || cmake_object_order_depends_target_SelfLearn1 CMakeFiles/SelfLearn1.dir/CXX.dd
-  DEFINES = -DVULKAN_HPP_NO_EXCEPTIONS
+  DEFINES = -DSTB_IMAGE_IMPLEMENTATION -DVULKAN_HPP_NO_EXCEPTIONS
   DEP_FILE = CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanBuffer.cpp.obj.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanBuffer.cpp.obj.modmap
   FLAGS = -O3 -DNDEBUG -std=gnu++26
@@ -107,7 +107,7 @@ build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanBuffer.cpp.obj: CXX_COMPILER__S
   dyndep = CMakeFiles/SelfLearn1.dir/CXX.dd
 
 build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanDescriptor.cpp.obj.ddi: CXX_SCAN__SelfLearn1_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/Creepy/VulkanDescriptor.cpp || cmake_object_order_depends_target_SelfLearn1
-  DEFINES = -DVULKAN_HPP_NO_EXCEPTIONS
+  DEFINES = -DSTB_IMAGE_IMPLEMENTATION -DVULKAN_HPP_NO_EXCEPTIONS
   DEP_FILE = CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanDescriptor.cpp.obj.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanDescriptor.cpp.obj.ddi
   FLAGS = -O3 -DNDEBUG -std=gnu++26
@@ -116,7 +116,7 @@ build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanDescriptor.cpp.obj.ddi: CXX_SCA
   PREPROCESSED_OUTPUT_FILE = CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanDescriptor.cpp.obj.ddi.i
 
 build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanDescriptor.cpp.obj: CXX_COMPILER__SelfLearn1_scanned_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/Creepy/VulkanDescriptor.cpp | CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanDescriptor.cpp.obj.modmap || cmake_object_order_depends_target_SelfLearn1 CMakeFiles/SelfLearn1.dir/CXX.dd
-  DEFINES = -DVULKAN_HPP_NO_EXCEPTIONS
+  DEFINES = -DSTB_IMAGE_IMPLEMENTATION -DVULKAN_HPP_NO_EXCEPTIONS
   DEP_FILE = CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanDescriptor.cpp.obj.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanDescriptor.cpp.obj.modmap
   FLAGS = -O3 -DNDEBUG -std=gnu++26
@@ -126,7 +126,7 @@ build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanDescriptor.cpp.obj: CXX_COMPILE
   dyndep = CMakeFiles/SelfLearn1.dir/CXX.dd
 
 build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanEngine.cpp.obj.ddi: CXX_SCAN__SelfLearn1_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/Creepy/VulkanEngine.cpp || cmake_object_order_depends_target_SelfLearn1
-  DEFINES = -DVULKAN_HPP_NO_EXCEPTIONS
+  DEFINES = -DSTB_IMAGE_IMPLEMENTATION -DVULKAN_HPP_NO_EXCEPTIONS
   DEP_FILE = CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanEngine.cpp.obj.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanEngine.cpp.obj.ddi
   FLAGS = -O3 -DNDEBUG -std=gnu++26
@@ -135,7 +135,7 @@ build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanEngine.cpp.obj.ddi: CXX_SCAN__S
   PREPROCESSED_OUTPUT_FILE = CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanEngine.cpp.obj.ddi.i
 
 build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanEngine.cpp.obj: CXX_COMPILER__SelfLearn1_scanned_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/Creepy/VulkanEngine.cpp | CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanEngine.cpp.obj.modmap || cmake_object_order_depends_target_SelfLearn1 CMakeFiles/SelfLearn1.dir/CXX.dd
-  DEFINES = -DVULKAN_HPP_NO_EXCEPTIONS
+  DEFINES = -DSTB_IMAGE_IMPLEMENTATION -DVULKAN_HPP_NO_EXCEPTIONS
   DEP_FILE = CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanEngine.cpp.obj.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanEngine.cpp.obj.modmap
   FLAGS = -O3 -DNDEBUG -std=gnu++26
@@ -145,7 +145,7 @@ build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanEngine.cpp.obj: CXX_COMPILER__S
   dyndep = CMakeFiles/SelfLearn1.dir/CXX.dd
 
 build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanImage.cpp.obj.ddi: CXX_SCAN__SelfLearn1_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/Creepy/VulkanImage.cpp || cmake_object_order_depends_target_SelfLearn1
-  DEFINES = -DVULKAN_HPP_NO_EXCEPTIONS
+  DEFINES = -DSTB_IMAGE_IMPLEMENTATION -DVULKAN_HPP_NO_EXCEPTIONS
   DEP_FILE = CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanImage.cpp.obj.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanImage.cpp.obj.ddi
   FLAGS = -O3 -DNDEBUG -std=gnu++26
@@ -154,7 +154,7 @@ build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanImage.cpp.obj.ddi: CXX_SCAN__Se
   PREPROCESSED_OUTPUT_FILE = CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanImage.cpp.obj.ddi.i
 
 build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanImage.cpp.obj: CXX_COMPILER__SelfLearn1_scanned_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/Creepy/VulkanImage.cpp | CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanImage.cpp.obj.modmap || cmake_object_order_depends_target_SelfLearn1 CMakeFiles/SelfLearn1.dir/CXX.dd
-  DEFINES = -DVULKAN_HPP_NO_EXCEPTIONS
+  DEFINES = -DSTB_IMAGE_IMPLEMENTATION -DVULKAN_HPP_NO_EXCEPTIONS
   DEP_FILE = CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanImage.cpp.obj.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanImage.cpp.obj.modmap
   FLAGS = -O3 -DNDEBUG -std=gnu++26
@@ -164,7 +164,7 @@ build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanImage.cpp.obj: CXX_COMPILER__Se
   dyndep = CMakeFiles/SelfLearn1.dir/CXX.dd
 
 build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanPipeline.cpp.obj.ddi: CXX_SCAN__SelfLearn1_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/Creepy/VulkanPipeline.cpp || cmake_object_order_depends_target_SelfLearn1
-  DEFINES = -DVULKAN_HPP_NO_EXCEPTIONS
+  DEFINES = -DSTB_IMAGE_IMPLEMENTATION -DVULKAN_HPP_NO_EXCEPTIONS
   DEP_FILE = CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanPipeline.cpp.obj.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanPipeline.cpp.obj.ddi
   FLAGS = -O3 -DNDEBUG -std=gnu++26
@@ -173,7 +173,7 @@ build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanPipeline.cpp.obj.ddi: CXX_SCAN_
   PREPROCESSED_OUTPUT_FILE = CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanPipeline.cpp.obj.ddi.i
 
 build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanPipeline.cpp.obj: CXX_COMPILER__SelfLearn1_scanned_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/Creepy/VulkanPipeline.cpp | CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanPipeline.cpp.obj.modmap || cmake_object_order_depends_target_SelfLearn1 CMakeFiles/SelfLearn1.dir/CXX.dd
-  DEFINES = -DVULKAN_HPP_NO_EXCEPTIONS
+  DEFINES = -DSTB_IMAGE_IMPLEMENTATION -DVULKAN_HPP_NO_EXCEPTIONS
   DEP_FILE = CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanPipeline.cpp.obj.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanPipeline.cpp.obj.modmap
   FLAGS = -O3 -DNDEBUG -std=gnu++26
@@ -183,7 +183,7 @@ build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanPipeline.cpp.obj: CXX_COMPILER_
   dyndep = CMakeFiles/SelfLearn1.dir/CXX.dd
 
 build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanShader.cpp.obj.ddi: CXX_SCAN__SelfLearn1_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/Creepy/VulkanShader.cpp || cmake_object_order_depends_target_SelfLearn1
-  DEFINES = -DVULKAN_HPP_NO_EXCEPTIONS
+  DEFINES = -DSTB_IMAGE_IMPLEMENTATION -DVULKAN_HPP_NO_EXCEPTIONS
   DEP_FILE = CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanShader.cpp.obj.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanShader.cpp.obj.ddi
   FLAGS = -O3 -DNDEBUG -std=gnu++26
@@ -192,7 +192,7 @@ build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanShader.cpp.obj.ddi: CXX_SCAN__S
   PREPROCESSED_OUTPUT_FILE = CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanShader.cpp.obj.ddi.i
 
 build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanShader.cpp.obj: CXX_COMPILER__SelfLearn1_scanned_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/Creepy/VulkanShader.cpp | CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanShader.cpp.obj.modmap || cmake_object_order_depends_target_SelfLearn1 CMakeFiles/SelfLearn1.dir/CXX.dd
-  DEFINES = -DVULKAN_HPP_NO_EXCEPTIONS
+  DEFINES = -DSTB_IMAGE_IMPLEMENTATION -DVULKAN_HPP_NO_EXCEPTIONS
   DEP_FILE = CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanShader.cpp.obj.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanShader.cpp.obj.modmap
   FLAGS = -O3 -DNDEBUG -std=gnu++26
@@ -202,7 +202,7 @@ build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanShader.cpp.obj: CXX_COMPILER__S
   dyndep = CMakeFiles/SelfLearn1.dir/CXX.dd
 
 build CMakeFiles/SelfLearn1.dir/src/vkmemoryalloc/alloc.cpp.obj.ddi: CXX_SCAN__SelfLearn1_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/vkmemoryalloc/alloc.cpp || cmake_object_order_depends_target_SelfLearn1
-  DEFINES = -DVULKAN_HPP_NO_EXCEPTIONS
+  DEFINES = -DSTB_IMAGE_IMPLEMENTATION -DVULKAN_HPP_NO_EXCEPTIONS
   DEP_FILE = CMakeFiles\SelfLearn1.dir\src\vkmemoryalloc\alloc.cpp.obj.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles\SelfLearn1.dir\src\vkmemoryalloc\alloc.cpp.obj.ddi
   FLAGS = -O3 -DNDEBUG -std=gnu++26
@@ -211,7 +211,7 @@ build CMakeFiles/SelfLearn1.dir/src/vkmemoryalloc/alloc.cpp.obj.ddi: CXX_SCAN__S
   PREPROCESSED_OUTPUT_FILE = CMakeFiles\SelfLearn1.dir\src\vkmemoryalloc\alloc.cpp.obj.ddi.i
 
 build CMakeFiles/SelfLearn1.dir/src/vkmemoryalloc/alloc.cpp.obj: CXX_COMPILER__SelfLearn1_scanned_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/vkmemoryalloc/alloc.cpp | CMakeFiles/SelfLearn1.dir/src/vkmemoryalloc/alloc.cpp.obj.modmap || cmake_object_order_depends_target_SelfLearn1 CMakeFiles/SelfLearn1.dir/CXX.dd
-  DEFINES = -DVULKAN_HPP_NO_EXCEPTIONS
+  DEFINES = -DSTB_IMAGE_IMPLEMENTATION -DVULKAN_HPP_NO_EXCEPTIONS
   DEP_FILE = CMakeFiles\SelfLearn1.dir\src\vkmemoryalloc\alloc.cpp.obj.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles\SelfLearn1.dir\src\vkmemoryalloc\alloc.cpp.obj.modmap
   FLAGS = -O3 -DNDEBUG -std=gnu++26
@@ -221,7 +221,7 @@ build CMakeFiles/SelfLearn1.dir/src/vkmemoryalloc/alloc.cpp.obj: CXX_COMPILER__S
   dyndep = CMakeFiles/SelfLearn1.dir/CXX.dd
 
 build CMakeFiles/SelfLearn1.dir/src/imgui/imgui.cpp.obj.ddi: CXX_SCAN__SelfLearn1_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/imgui/imgui.cpp || cmake_object_order_depends_target_SelfLearn1
-  DEFINES = -DVULKAN_HPP_NO_EXCEPTIONS
+  DEFINES = -DSTB_IMAGE_IMPLEMENTATION -DVULKAN_HPP_NO_EXCEPTIONS
   DEP_FILE = CMakeFiles\SelfLearn1.dir\src\imgui\imgui.cpp.obj.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles\SelfLearn1.dir\src\imgui\imgui.cpp.obj.ddi
   FLAGS = -O3 -DNDEBUG -std=gnu++26
@@ -230,7 +230,7 @@ build CMakeFiles/SelfLearn1.dir/src/imgui/imgui.cpp.obj.ddi: CXX_SCAN__SelfLearn
   PREPROCESSED_OUTPUT_FILE = CMakeFiles\SelfLearn1.dir\src\imgui\imgui.cpp.obj.ddi.i
 
 build CMakeFiles/SelfLearn1.dir/src/imgui/imgui.cpp.obj: CXX_COMPILER__SelfLearn1_scanned_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/imgui/imgui.cpp | CMakeFiles/SelfLearn1.dir/src/imgui/imgui.cpp.obj.modmap || cmake_object_order_depends_target_SelfLearn1 CMakeFiles/SelfLearn1.dir/CXX.dd
-  DEFINES = -DVULKAN_HPP_NO_EXCEPTIONS
+  DEFINES = -DSTB_IMAGE_IMPLEMENTATION -DVULKAN_HPP_NO_EXCEPTIONS
   DEP_FILE = CMakeFiles\SelfLearn1.dir\src\imgui\imgui.cpp.obj.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles\SelfLearn1.dir\src\imgui\imgui.cpp.obj.modmap
   FLAGS = -O3 -DNDEBUG -std=gnu++26
@@ -240,7 +240,7 @@ build CMakeFiles/SelfLearn1.dir/src/imgui/imgui.cpp.obj: CXX_COMPILER__SelfLearn
   dyndep = CMakeFiles/SelfLearn1.dir/CXX.dd
 
 build CMakeFiles/SelfLearn1.dir/src/imgui/imgui_draw.cpp.obj.ddi: CXX_SCAN__SelfLearn1_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/imgui/imgui_draw.cpp || cmake_object_order_depends_target_SelfLearn1
-  DEFINES = -DVULKAN_HPP_NO_EXCEPTIONS
+  DEFINES = -DSTB_IMAGE_IMPLEMENTATION -DVULKAN_HPP_NO_EXCEPTIONS
   DEP_FILE = CMakeFiles\SelfLearn1.dir\src\imgui\imgui_draw.cpp.obj.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles\SelfLearn1.dir\src\imgui\imgui_draw.cpp.obj.ddi
   FLAGS = -O3 -DNDEBUG -std=gnu++26
@@ -249,7 +249,7 @@ build CMakeFiles/SelfLearn1.dir/src/imgui/imgui_draw.cpp.obj.ddi: CXX_SCAN__Self
   PREPROCESSED_OUTPUT_FILE = CMakeFiles\SelfLearn1.dir\src\imgui\imgui_draw.cpp.obj.ddi.i
 
 build CMakeFiles/SelfLearn1.dir/src/imgui/imgui_draw.cpp.obj: CXX_COMPILER__SelfLearn1_scanned_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/imgui/imgui_draw.cpp | CMakeFiles/SelfLearn1.dir/src/imgui/imgui_draw.cpp.obj.modmap || cmake_object_order_depends_target_SelfLearn1 CMakeFiles/SelfLearn1.dir/CXX.dd
-  DEFINES = -DVULKAN_HPP_NO_EXCEPTIONS
+  DEFINES = -DSTB_IMAGE_IMPLEMENTATION -DVULKAN_HPP_NO_EXCEPTIONS
   DEP_FILE = CMakeFiles\SelfLearn1.dir\src\imgui\imgui_draw.cpp.obj.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles\SelfLearn1.dir\src\imgui\imgui_draw.cpp.obj.modmap
   FLAGS = -O3 -DNDEBUG -std=gnu++26
@@ -259,7 +259,7 @@ build CMakeFiles/SelfLearn1.dir/src/imgui/imgui_draw.cpp.obj: CXX_COMPILER__Self
   dyndep = CMakeFiles/SelfLearn1.dir/CXX.dd
 
 build CMakeFiles/SelfLearn1.dir/src/imgui/imgui_impl_glfw.cpp.obj.ddi: CXX_SCAN__SelfLearn1_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/imgui/imgui_impl_glfw.cpp || cmake_object_order_depends_target_SelfLearn1
-  DEFINES = -DVULKAN_HPP_NO_EXCEPTIONS
+  DEFINES = -DSTB_IMAGE_IMPLEMENTATION -DVULKAN_HPP_NO_EXCEPTIONS
   DEP_FILE = CMakeFiles\SelfLearn1.dir\src\imgui\imgui_impl_glfw.cpp.obj.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles\SelfLearn1.dir\src\imgui\imgui_impl_glfw.cpp.obj.ddi
   FLAGS = -O3 -DNDEBUG -std=gnu++26
@@ -268,7 +268,7 @@ build CMakeFiles/SelfLearn1.dir/src/imgui/imgui_impl_glfw.cpp.obj.ddi: CXX_SCAN_
   PREPROCESSED_OUTPUT_FILE = CMakeFiles\SelfLearn1.dir\src\imgui\imgui_impl_glfw.cpp.obj.ddi.i
 
 build CMakeFiles/SelfLearn1.dir/src/imgui/imgui_impl_glfw.cpp.obj: CXX_COMPILER__SelfLearn1_scanned_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/imgui/imgui_impl_glfw.cpp | CMakeFiles/SelfLearn1.dir/src/imgui/imgui_impl_glfw.cpp.obj.modmap || cmake_object_order_depends_target_SelfLearn1 CMakeFiles/SelfLearn1.dir/CXX.dd
-  DEFINES = -DVULKAN_HPP_NO_EXCEPTIONS
+  DEFINES = -DSTB_IMAGE_IMPLEMENTATION -DVULKAN_HPP_NO_EXCEPTIONS
   DEP_FILE = CMakeFiles\SelfLearn1.dir\src\imgui\imgui_impl_glfw.cpp.obj.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles\SelfLearn1.dir\src\imgui\imgui_impl_glfw.cpp.obj.modmap
   FLAGS = -O3 -DNDEBUG -std=gnu++26
@@ -278,7 +278,7 @@ build CMakeFiles/SelfLearn1.dir/src/imgui/imgui_impl_glfw.cpp.obj: CXX_COMPILER_
   dyndep = CMakeFiles/SelfLearn1.dir/CXX.dd
 
 build CMakeFiles/SelfLearn1.dir/src/imgui/imgui_impl_vulkan.cpp.obj.ddi: CXX_SCAN__SelfLearn1_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/imgui/imgui_impl_vulkan.cpp || cmake_object_order_depends_target_SelfLearn1
-  DEFINES = -DVULKAN_HPP_NO_EXCEPTIONS
+  DEFINES = -DSTB_IMAGE_IMPLEMENTATION -DVULKAN_HPP_NO_EXCEPTIONS
   DEP_FILE = CMakeFiles\SelfLearn1.dir\src\imgui\imgui_impl_vulkan.cpp.obj.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles\SelfLearn1.dir\src\imgui\imgui_impl_vulkan.cpp.obj.ddi
   FLAGS = -O3 -DNDEBUG -std=gnu++26
@@ -287,7 +287,7 @@ build CMakeFiles/SelfLearn1.dir/src/imgui/imgui_impl_vulkan.cpp.obj.ddi: CXX_SCA
   PREPROCESSED_OUTPUT_FILE = CMakeFiles\SelfLearn1.dir\src\imgui\imgui_impl_vulkan.cpp.obj.ddi.i
 
 build CMakeFiles/SelfLearn1.dir/src/imgui/imgui_impl_vulkan.cpp.obj: CXX_COMPILER__SelfLearn1_scanned_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/imgui/imgui_impl_vulkan.cpp | CMakeFiles/SelfLearn1.dir/src/imgui/imgui_impl_vulkan.cpp.obj.modmap || cmake_object_order_depends_target_SelfLearn1 CMakeFiles/SelfLearn1.dir/CXX.dd
-  DEFINES = -DVULKAN_HPP_NO_EXCEPTIONS
+  DEFINES = -DSTB_IMAGE_IMPLEMENTATION -DVULKAN_HPP_NO_EXCEPTIONS
   DEP_FILE = CMakeFiles\SelfLearn1.dir\src\imgui\imgui_impl_vulkan.cpp.obj.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles\SelfLearn1.dir\src\imgui\imgui_impl_vulkan.cpp.obj.modmap
   FLAGS = -O3 -DNDEBUG -std=gnu++26
@@ -297,7 +297,7 @@ build CMakeFiles/SelfLearn1.dir/src/imgui/imgui_impl_vulkan.cpp.obj: CXX_COMPILE
   dyndep = CMakeFiles/SelfLearn1.dir/CXX.dd
 
 build CMakeFiles/SelfLearn1.dir/src/imgui/imgui_tables.cpp.obj.ddi: CXX_SCAN__SelfLearn1_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/imgui/imgui_tables.cpp || cmake_object_order_depends_target_SelfLearn1
-  DEFINES = -DVULKAN_HPP_NO_EXCEPTIONS
+  DEFINES = -DSTB_IMAGE_IMPLEMENTATION -DVULKAN_HPP_NO_EXCEPTIONS
   DEP_FILE = CMakeFiles\SelfLearn1.dir\src\imgui\imgui_tables.cpp.obj.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles\SelfLearn1.dir\src\imgui\imgui_tables.cpp.obj.ddi
   FLAGS = -O3 -DNDEBUG -std=gnu++26
@@ -306,7 +306,7 @@ build CMakeFiles/SelfLearn1.dir/src/imgui/imgui_tables.cpp.obj.ddi: CXX_SCAN__Se
   PREPROCESSED_OUTPUT_FILE = CMakeFiles\SelfLearn1.dir\src\imgui\imgui_tables.cpp.obj.ddi.i
 
 build CMakeFiles/SelfLearn1.dir/src/imgui/imgui_tables.cpp.obj: CXX_COMPILER__SelfLearn1_scanned_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/imgui/imgui_tables.cpp | CMakeFiles/SelfLearn1.dir/src/imgui/imgui_tables.cpp.obj.modmap || cmake_object_order_depends_target_SelfLearn1 CMakeFiles/SelfLearn1.dir/CXX.dd
-  DEFINES = -DVULKAN_HPP_NO_EXCEPTIONS
+  DEFINES = -DSTB_IMAGE_IMPLEMENTATION -DVULKAN_HPP_NO_EXCEPTIONS
   DEP_FILE = CMakeFiles\SelfLearn1.dir\src\imgui\imgui_tables.cpp.obj.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles\SelfLearn1.dir\src\imgui\imgui_tables.cpp.obj.modmap
   FLAGS = -O3 -DNDEBUG -std=gnu++26
@@ -316,7 +316,7 @@ build CMakeFiles/SelfLearn1.dir/src/imgui/imgui_tables.cpp.obj: CXX_COMPILER__Se
   dyndep = CMakeFiles/SelfLearn1.dir/CXX.dd
 
 build CMakeFiles/SelfLearn1.dir/src/imgui/imgui_widgets.cpp.obj.ddi: CXX_SCAN__SelfLearn1_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/imgui/imgui_widgets.cpp || cmake_object_order_depends_target_SelfLearn1
-  DEFINES = -DVULKAN_HPP_NO_EXCEPTIONS
+  DEFINES = -DSTB_IMAGE_IMPLEMENTATION -DVULKAN_HPP_NO_EXCEPTIONS
   DEP_FILE = CMakeFiles\SelfLearn1.dir\src\imgui\imgui_widgets.cpp.obj.ddi.d
   DYNDEP_INTERMEDIATE_FILE = CMakeFiles\SelfLearn1.dir\src\imgui\imgui_widgets.cpp.obj.ddi
   FLAGS = -O3 -DNDEBUG -std=gnu++26
@@ -325,7 +325,7 @@ build CMakeFiles/SelfLearn1.dir/src/imgui/imgui_widgets.cpp.obj.ddi: CXX_SCAN__S
   PREPROCESSED_OUTPUT_FILE = CMakeFiles\SelfLearn1.dir\src\imgui\imgui_widgets.cpp.obj.ddi.i
 
 build CMakeFiles/SelfLearn1.dir/src/imgui/imgui_widgets.cpp.obj: CXX_COMPILER__SelfLearn1_scanned_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/imgui/imgui_widgets.cpp | CMakeFiles/SelfLearn1.dir/src/imgui/imgui_widgets.cpp.obj.modmap || cmake_object_order_depends_target_SelfLearn1 CMakeFiles/SelfLearn1.dir/CXX.dd
-  DEFINES = -DVULKAN_HPP_NO_EXCEPTIONS
+  DEFINES = -DSTB_IMAGE_IMPLEMENTATION -DVULKAN_HPP_NO_EXCEPTIONS
   DEP_FILE = CMakeFiles\SelfLearn1.dir\src\imgui\imgui_widgets.cpp.obj.d
   DYNDEP_MODULE_MAP_FILE = CMakeFiles\SelfLearn1.dir\src\imgui\imgui_widgets.cpp.obj.modmap
   FLAGS = -O3 -DNDEBUG -std=gnu++26

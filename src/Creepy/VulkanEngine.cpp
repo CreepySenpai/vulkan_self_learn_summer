@@ -9,6 +9,8 @@
 #include <imgui/imgui_impl_glfw.hpp>
 #include <imgui/imgui_impl_vulkan.hpp>
 
+#include <glm/glm.hpp>
+
 namespace Creepy {
 
     VulkanEngine::VulkanEngine() : m_width{600}, m_height{600}{
@@ -23,7 +25,7 @@ namespace Creepy {
         this->createSwapchain();
         this->createCommandBuffer();
         this->createSync();
-        this->createDecriptorPool();
+        this->createDescriptorPool();
 
         this->initImGUI();
 
@@ -436,14 +438,16 @@ namespace Creepy {
     }
 
 
-    void VulkanEngine::createDecriptorPool() {
+    void VulkanEngine::createDescriptorPool() {
         
         constexpr uint32_t maxSets{100u};
 
         constexpr std::array descSizes{
             vk::DescriptorPoolSize{vk::DescriptorType::eUniformBuffer, 100u},
             vk::DescriptorPoolSize{vk::DescriptorType::eSampler, 100u},
-            vk::DescriptorPoolSize{vk::DescriptorType::eStorageBuffer, 100u}
+            vk::DescriptorPoolSize{vk::DescriptorType::eStorageBuffer, 100u},
+            vk::DescriptorPoolSize{vk::DescriptorType::eStorageImage, 100u},
+            vk::DescriptorPoolSize{vk::DescriptorType::eCombinedImageSampler, 100u}
         };
 
         vk::DescriptorPoolCreateInfo descInfo{};
@@ -545,11 +549,24 @@ namespace Creepy {
         constexpr std::array dynamicStates{
             vk::DynamicState::eViewport, vk::DynamicState::eScissor
         };
+
+        constexpr std::array vertexBindings{
+            vk::VertexInputBindingDescription{0, sizeof(glm::vec3), vk::VertexInputRate::eVertex},
+            vk::VertexInputBindingDescription{1, sizeof(glm::vec3), vk::VertexInputRate::eVertex},
+            vk::VertexInputBindingDescription{2, sizeof(glm::vec2), vk::VertexInputRate::eVertex},
+        };
+        
+        //TODO: Maybe change offset
+        constexpr std::array vertexAttributes{
+            vk::VertexInputAttributeDescription{0, vertexBindings.at(0).binding, vk::Format::eR32G32B32Sfloat, 0},
+            vk::VertexInputAttributeDescription{1, vertexBindings.at(1).binding, vk::Format::eR32G32B32Sfloat, sizeof(glm::vec3)},
+            vk::VertexInputAttributeDescription{2, vertexBindings.at(2).binding, vk::Format::eR32G32Sfloat, sizeof(glm::vec3) * 2},
+        };
         
         PipelineState backgroundState{};
         backgroundState.InitPipelineLayout({}, {});
         backgroundState.InitShaderStates({}, {});
-        backgroundState.InitVertexInputState();
+        backgroundState.InitVertexInputState(vertexBindings, vertexAttributes);
         backgroundState.InitInputAssemblyState(vk::PrimitiveTopology::eTriangleList);
         backgroundState.InitViewportState(static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height));
         backgroundState.InitRasterizationState(vk::PolygonMode::eFill, vk::CullModeFlagBits::eNone, vk::FrontFace::eClockwise);

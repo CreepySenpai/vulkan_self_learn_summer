@@ -30,4 +30,6 @@ target_link_libraries(${PROJECT_NAME} PUBLIC glfw3dll assimp.dll ${Vulkan_LIBRAR
 
 add_compile_definitions(VULKAN_HPP_NO_EXCEPTIONS)
 
+add_compile_definitions(STB_IMAGE_IMPLEMENTATION)
+
 add_compile_options(-fdiagnostics-color=always)

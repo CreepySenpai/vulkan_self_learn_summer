@@ -12,6 +12,10 @@ layout(set = 0, binding = 0) uniform TransFormData{
     mat4 projectionMatrix;
 } MVPMatrix;
 
+layout(location = 0) in vec3 inVertex;
+
+layout(location = 0) out vec3 outColor;
 void main(){
-    
+    gl_Position = vec4(inVertex, 1.0);
+    outColor = inVertex;
 }

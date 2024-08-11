@@ -30,7 +30,7 @@ namespace Creepy {
             void createCommandBuffer();
             void createSync();
 
-            void createDecriptorPool();
+            void createDescriptorPool();
 
             void initImGUI();
 

@@ -8,7 +8,7 @@ class PipelineState{
     public:
         void InitPipelineLayout(std::span<const vk::DescriptorSetLayout> descriptorSetLayouts, std::span<const vk::PushConstantRange> pushConstants);
         void InitShaderStates(vk::ShaderModule vertexShader, vk::ShaderModule fragmentShader);
-        void InitVertexInputState();
+        void InitVertexInputState(std::span<const vk::VertexInputBindingDescription> vertexBindings, std::span<const vk::VertexInputAttributeDescription> vertexAttributes);
         void InitInputAssemblyState(vk::PrimitiveTopology topology);
         void InitViewportState(uint32_t width, uint32_t height);
         void InitRasterizationState(vk::PolygonMode polygonMode, vk::CullModeFlags cullMode, vk::FrontFace frontFace);

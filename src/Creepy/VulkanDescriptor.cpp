@@ -6,7 +6,7 @@ void DescriptorSetBuilder::AddBinding(const uint32_t binding, vk::DescriptorType
     m_bindings.emplace_back(binding, type, 1);
 }
         
-void DescriptorSetBuilder::BuildDesciptorLayout(const vk::Device device, vk::ShaderStageFlags shaderStage) {
+void DescriptorSetBuilder::BuildDescriptorLayout(const vk::Device device, vk::ShaderStageFlags shaderStage) {
     for(auto&& binding : m_bindings){
         binding.stageFlags |= shaderStage;
     }

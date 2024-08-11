@@ -28,8 +28,13 @@ void PipelineState::InitShaderStates(vk::ShaderModule vertexShader, vk::ShaderMo
 
 }
 
-void PipelineState::InitVertexInputState(){
+void PipelineState::InitVertexInputState(std::span<const vk::VertexInputBindingDescription> vertexBindings, std::span<const vk::VertexInputAttributeDescription> vertexAttributes){
     m_vertexInputState.flags = vk::PipelineVertexInputStateCreateFlags{};
+    m_vertexInputState.pVertexAttributeDescriptions = nullptr;
+    m_vertexInputState.vertexBindingDescriptionCount = static_cast<uint32_t>(vertexBindings.size());
+    m_vertexInputState.pVertexBindingDescriptions = vertexBindings.data();
+    m_vertexInputState.vertexAttributeDescriptionCount = static_cast<uint32_t>(vertexAttributes.size());
+    m_vertexInputState.pVertexAttributeDescriptions = vertexAttributes.data();
 }
 
 void PipelineState::InitInputAssemblyState(vk::PrimitiveTopology topology) {
