@@ -1,13 +1,23 @@
 CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanBuffer.cpp.obj.ddi: \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/src/Creepy/VulkanBuffer.cpp \
- D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/VulkanBuffer.hpp \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/print \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/requires_hosted.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/cstring \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/version.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/x86_64-w64-mingw32/bits/c++config.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/x86_64-w64-mingw32/bits/os_defines.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/x86_64-w64-mingw32/bits/cpu_defines.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/pstl/pstl_config.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/version.h \
+ D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/string.h \
+ D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/crtdefs.h \
+ D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/corecrt.h \
+ D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/_mingw.h \
+ D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/_mingw_mac.h \
+ D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/_mingw_secapi.h \
+ D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/vadefs.h \
+ D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/sdks/_mingw_ddk.h \
+ D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/sec_api/string_s.h \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/VulkanBuffer.hpp \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/print \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/requires_hosted.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/format \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/array \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/compare \
@@ -43,13 +53,6 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanBuffer.cpp.obj.ddi: \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/x86_64-w64-mingw32/bits/error_constants.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/cerrno \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/errno.h \
- D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/crtdefs.h \
- D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/corecrt.h \
- D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/_mingw.h \
- D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/_mingw_mac.h \
- D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/_mingw_secapi.h \
- D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/vadefs.h \
- D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/sdks/_mingw_ddk.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/limits \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/locale \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/localefwd.h \
@@ -178,8 +181,6 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanBuffer.cpp.obj.ddi: \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/ranges_algo.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/pstl/glue_algorithm_defs.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/pstl/execution_defs.h \
- D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/string.h \
- D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/sec_api/string_s.h \
  D:/Enviroments/vulkan/Include/vulkan/vulkan.h \
  D:/Enviroments/vulkan/Include/vulkan/vk_platform.h \
  D:/Enviroments/vulkan/Include/vulkan/vulkan_core.h \
@@ -209,7 +210,6 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanBuffer.cpp.obj.ddi: \
  D:/Enviroments/vulkan/Include/vulkan/vulkan_to_string.hpp \
  D:/Enviroments/vulkan/Include/vulkan/vulkan_handles.hpp \
  D:/Enviroments/vulkan/Include/vulkan/vulkan_structs.hpp \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/cstring \
  D:/Enviroments/vulkan/Include/vulkan/vulkan_funcs.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/vkmemoryalloc/vk_mem_alloc.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/vkmemoryalloc/vk_mem_alloc.h \

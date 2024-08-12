@@ -9,7 +9,7 @@
 					"jsonFile" : "directory-.-Release-d0094a50bb2071803777.json",
 					"minimumCMakeVersion" : 
 					{
-						"string" : "3.30.0"
+						"string" : "3.30.2"
 					},
 					"projectIndex" : 0,
 					"source" : ".",
@@ -39,7 +39,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "SelfLearn1::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-SelfLearn1-Release-99e0a0695defe8e7a058.json",
+					"jsonFile" : "target-SelfLearn1-Release-0b5f14be55d9300858c7.json",
 					"name" : "SelfLearn1",
 					"projectIndex" : 0
 				}

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.30.0)
+cmake_minimum_required(VERSION 3.30.2)
 
 set(CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_STANDARD 26)
@@ -13,7 +13,6 @@ file(GLOB IMGUI ${CMAKE_SOURCE_DIR}/src/imgui/*.cpp)
 add_executable(SelfLearn1 main.cpp)
 
 target_sources(${PROJECT_NAME} PUBLIC ${CORENAPP} ${VKALLOC} ${IMGUI})
-# target_sources(${PROJECT_NAME} PUBLIC ${CORENAPP} ${VKBOOSTRAP} ${VKALLOC} ${IMGUI})
 
 find_package(Vulkan REQUIRED)
 

@@ -586,7 +586,7 @@ namespace Creepy {
     }
 
     void VulkanEngine::createImageResources() {
-
+        
         m_colorImage = Image{m_logicalDevice, static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height), vk::Format::eR8G8B8A8Unorm, vk::ImageUsageFlagBits::eColorAttachment, vk::ImageAspectFlagBits::eColor};
 
         m_depthImage = Image{m_logicalDevice, static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height), vk::Format::eD24UnormS8Uint, vk::ImageUsageFlagBits::eDepthStencilAttachment, vk::ImageAspectFlagBits::eDepth};
@@ -598,11 +598,18 @@ namespace Creepy {
 
         Buffer<BufferType::DEVICE_LOCAL> myBuffer1{m_logicalDevice, 160, vk::Format::eR32G32B32A32Sfloat, vk::BufferUsageFlagBits::eIndexBuffer};
 
-        myBuffer1.UploadData(nullptr, 0);
+        myBuffer1.UploadData(m_commandBuffer, nullptr, 0);
 
+        
         Buffer<BufferType::HOST_VISIBLE> myBuffer2{m_logicalDevice, 160, vk::Format::eR32G32B32A32Sfloat, vk::BufferUsageFlagBits::eIndexBuffer};
 
-        myBuffer2.UploadData(nullptr, 0);
+        constexpr float myDataTemp[16]{
+            1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 
+            5.0f, 5.0f, 5.0f, 5.0f, 5.0f,
+            5.0f, 5.0f, 5.0f, 5.0f, 5.0f,
+            5.0f
+        };
+        myBuffer2.UploadData(myDataTemp, sizeof(myDataTemp));
 
         Buffer<BufferType::HOST_COHERENT> myBuffer3{m_logicalDevice, 160, vk::Format::eR32G32B32A32Sfloat, vk::BufferUsageFlagBits::eIndexBuffer};
 
