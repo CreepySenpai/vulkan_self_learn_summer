@@ -2,8 +2,6 @@
 
 #include <vulkan/vulkan.hpp>
 
-// class Pipeline;
-
 class PipelineState{
     public:
         void InitPipelineLayout(std::span<const vk::DescriptorSetLayout> descriptorSetLayouts, std::span<const vk::PushConstantRange> pushConstants);
@@ -37,7 +35,7 @@ class Pipeline{
     public:
         void Build(const vk::Device device, const PipelineState& pipelineState);
 
-        void Destroy(const vk::Device device);
+        void Destroy(const vk::Device device) const;
     private:
         vk::Pipeline m_pipeline;
         vk::PipelineLayout m_pipelineLayout;

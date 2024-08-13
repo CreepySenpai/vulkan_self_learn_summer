@@ -61,7 +61,7 @@ namespace Creepy{
         return 0;
     }
 
-    static std::vector<char> readShaderSPIRVFile(const std::filesystem::path& filePath) {
+    static std::vector<char> readShaderSPVFile(const std::filesystem::path& filePath) {
         if(!std::filesystem::exists(filePath)){
             std::println("File Not Exists: {}", filePath.string());
             return {};
@@ -73,25 +73,25 @@ namespace Creepy{
         return {std::istreambuf_iterator<char>{fileIn}, std::istreambuf_iterator<char>{}};
     }
 
-    // static std::vector<uint32_t> readShaderSPIRVFile(const std::filesystem::path& filePath){
+    // static std::vector<uint32_t> readShaderSPVFile(const std::filesystem::path& filePath){
     //     if(!std::filesystem::exists(filePath)){
     //         std::println("File Not Exists: {}", filePath.string());
     //         return {};
     //     }
 
-    //     std::ifstream fileIn{filePath, std::ios::binary | std::ios::ate};
+    //     std::ifstream fileIn{filePath, std::ios::ate | std::ios::binary};
 
     //     const auto fileSize = fileIn.tellg();
 
-    //     std::vector<uint32_t> spirvData(fileSize / sizeof(uint32_t));
+    //     std::vector<uint32_t> spvData(fileSize / sizeof(uint32_t));
 
     //     fileIn.seekg(0);
 
-    //     fileIn.read(reinterpret_cast<char*>(spirvData.data()), fileSize);
+    //     fileIn.read(reinterpret_cast<char*>(spvData.data()), fileSize);
 
     //     fileIn.close();
 
-    //     return spirvData;
+    //     return spvData;
     // }
 
 

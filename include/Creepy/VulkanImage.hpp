@@ -10,7 +10,9 @@ namespace Creepy {
             Image() = default;
             Image(const vk::Device device, uint32_t width, uint32_t height, vk::Format format, vk::ImageUsageFlags imageUsage, vk::ImageAspectFlags aspect);
 
-            void Destroy(const vk::Device device);
+            void Destroy(const vk::Device device) const;
+
+            vk::Format GetImageFormat() const;
         private:
             vk::Image m_image;
             vk::ImageView m_imageView;

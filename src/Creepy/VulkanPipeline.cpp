@@ -23,7 +23,7 @@ void PipelineState::InitShaderStates(vk::ShaderModule vertexShader, vk::ShaderMo
 
     shaderInfo.module = fragmentShader;
     shaderInfo.stage = vk::ShaderStageFlagBits::eFragment;
-
+    
     m_shaderStates.push_back(shaderInfo);
 
 }
@@ -111,11 +111,6 @@ void PipelineState::InitColorBlendState() {
 }
 
 void PipelineState::InitDynamicState(std::span<const vk::DynamicState> dynamicStates) {
-    
-    // constexpr std::array dynamicStates{
-    //     vk::DynamicState::eViewport, vk::DynamicState::eScissor
-    // };
-
     m_dynamicState.flags = vk::PipelineDynamicStateCreateFlags{};
     m_dynamicState.dynamicStateCount = static_cast<uint32_t>(dynamicStates.size());
     m_dynamicState.pDynamicStates = dynamicStates.data();
@@ -162,9 +157,11 @@ void Pipeline::Build(const vk::Device device, const PipelineState& pipelineState
     }
 
     m_pipeline = res.value;
+
+    
 }
 
-void Pipeline::Destroy(const vk::Device device) {
+void Pipeline::Destroy(const vk::Device device) const {
     device.destroyPipelineLayout(m_pipelineLayout);
     device.destroyPipeline(m_pipeline);
 }

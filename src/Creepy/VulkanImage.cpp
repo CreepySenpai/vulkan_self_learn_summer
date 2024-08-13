@@ -65,9 +65,13 @@ namespace Creepy {
         m_imageView = imgViewRes.value;
     }
 
-    void Image::Destroy(const vk::Device device) {
+    void Image::Destroy(const vk::Device device) const {
         device.destroyImageView(m_imageView);
         VulkanAllocator::ImageAllocator.destroyImage(m_image, m_imageLoc);
+    }
+
+    vk::Format Image::GetImageFormat() const {
+        return m_imageFormat;
     }
     
 }

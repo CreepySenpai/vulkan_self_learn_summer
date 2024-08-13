@@ -6,6 +6,7 @@
 #include "VulkanImage.hpp"
 #include "VulkanPipeline.hpp"
 #include "VulkanBuffer.hpp"
+#include "VulkanFrame.hpp"
 
 struct GLFWwindow;
 
@@ -43,7 +44,9 @@ namespace Creepy {
             void createImageResources();
             void createBufferResources();
 
+        private:
             void draw();
+            void drawBackground();
 
         private:
             int m_width{}, m_height{};
@@ -61,9 +64,9 @@ namespace Creepy {
             std::vector<vk::Image> m_swapchainImages;
             vk::Format m_swapchainImageFormat;
             //TODO: List of cmdBuffer
-            vk::CommandBuffer m_commandBuffer;
-            vk::Semaphore m_acquireImageSemaphore, m_renderStartSemaphore;
-            vk::Fence m_renderCompleteFence;
+
+            size_t m_totalFrames{}, m_currentFrame{};
+            std::vector<VulkanFrame> m_renderFrames;
 
             vk::DescriptorPool m_descriptorPool;
             // Resources

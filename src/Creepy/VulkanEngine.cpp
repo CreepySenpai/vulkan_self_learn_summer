@@ -31,9 +31,10 @@ namespace Creepy {
 
         this->createDescriptorSets();
 
-        // this->createPipelines();
-
+        //Note(Creepy): We need resources before create Pipelines
         this->createResources();
+
+        this->createPipelines();
     }
 
     VulkanEngine::~VulkanEngine(){
@@ -42,8 +43,14 @@ namespace Creepy {
 
     void VulkanEngine::Run(){
         while(!glfwWindowShouldClose(m_window)){
+
             glfwGetWindowSize(m_window, &m_width, &m_height);
             glfwPollEvents();
+
+            // Draw Here
+            this->draw();
+
+            m_currentFrame = (m_currentFrame + 1) % m_totalFrames;
         }
     }
 
@@ -246,6 +253,7 @@ namespace Creepy {
         vulkan12Features.bufferDeviceAddress = vk::True;
         auto& vulkan13Features = deviceChain.get<vk::PhysicalDeviceVulkan13Features>();
         vulkan13Features.dynamicRendering = vk::True;
+        vulkan13Features.synchronization2 = vk::True;
 
         auto res = m_physicalDevice.createDevice(deviceInfo);
 
@@ -351,6 +359,7 @@ namespace Creepy {
         info.surface = m_surface;
         info.oldSwapchain = nullptr;
         info.presentMode = choosePresentMode(m_physicalDevice, m_surface);
+        //TODO: Fix me
         info.imageUsage = vk::ImageUsageFlagBits::eColorAttachment;
         info.imageArrayLayers = 1;
         info.imageSharingMode = vk::SharingMode::eExclusive;
@@ -388,6 +397,10 @@ namespace Creepy {
 
         m_swapchainImages = m_logicalDevice.getSwapchainImagesKHR(m_swapChain).value;
 
+        m_totalFrames = m_swapchainImages.size();
+
+        m_renderFrames.resize(m_totalFrames);
+
         std::println("Swapchain Image Info");
         for(int j{}; auto&& i : m_swapchainImages){
             auto memRequire = m_logicalDevice.getImageMemoryRequirements(i);
@@ -398,41 +411,51 @@ namespace Creepy {
     }
 
     void VulkanEngine::createCommandBuffer() {
-        vk::CommandBufferAllocateInfo info{};
-        info.commandBufferCount = 1;
-        info.commandPool = m_cmdPool;
-        info.level = vk::CommandBufferLevel::ePrimary;
 
-        auto res = m_logicalDevice.allocateCommandBuffers(info);
+        for(auto& frame : m_renderFrames){
+            vk::CommandBufferAllocateInfo info{};
+            info.commandBufferCount = 1;
+            info.commandPool = m_cmdPool;
+            info.level = vk::CommandBufferLevel::ePrimary;
 
-        if(res.result != vk::Result::eSuccess){
-            std::println("Failed Create CmdBuffer");
+            auto res = m_logicalDevice.allocateCommandBuffers(info);
+
+            if(res.result != vk::Result::eSuccess){
+                std::println("Failed Create CmdBuffer");
+            }
+
+            frame.m_commandBuffer = res.value.at(0);
         }
 
-        m_commandBuffer = res.value.at(0);
-
         m_clearner.AddJob([this]{
-            m_logicalDevice.freeCommandBuffers(m_cmdPool, m_commandBuffer);
+            for(auto& frame : m_renderFrames){
+                m_logicalDevice.freeCommandBuffers(m_cmdPool, frame.m_commandBuffer);
+            }
         });
     }
 
 
     void VulkanEngine::createSync() {
-        vk::SemaphoreCreateInfo semInfo{};
-        semInfo.flags = vk::SemaphoreCreateFlags{};
-
-        m_acquireImageSemaphore = m_logicalDevice.createSemaphore(semInfo).value;
-        m_renderStartSemaphore = m_logicalDevice.createSemaphore(semInfo).value;
-
-        vk::FenceCreateInfo fenceInfo{};
-        fenceInfo.flags = vk::FenceCreateFlagBits::eSignaled;   // must signal
         
-        m_renderCompleteFence = m_logicalDevice.createFence(fenceInfo).value;
+        for(auto& frame : m_renderFrames){
+            vk::SemaphoreCreateInfo semInfo{};
+            semInfo.flags = vk::SemaphoreCreateFlags{};
+
+            frame.m_imageAvailableSemaphore = m_logicalDevice.createSemaphore(semInfo).value;
+            frame.m_imageRenderedSemaphore = m_logicalDevice.createSemaphore(semInfo).value;
+
+            vk::FenceCreateInfo fenceInfo{};
+            fenceInfo.flags = vk::FenceCreateFlagBits::eSignaled;   // must signal
+            
+            frame.m_renderCompleteFence = m_logicalDevice.createFence(fenceInfo).value;
+        }
 
         m_clearner.AddJob([this]{
-            m_logicalDevice.destroySemaphore(m_acquireImageSemaphore);
-            m_logicalDevice.destroySemaphore(m_renderStartSemaphore);
-            m_logicalDevice.destroyFence(m_renderCompleteFence);
+            for(auto& frame : m_renderFrames){
+                m_logicalDevice.destroySemaphore(frame.m_imageAvailableSemaphore);
+                m_logicalDevice.destroySemaphore(frame.m_imageRenderedSemaphore);
+                m_logicalDevice.destroyFence(frame.m_renderCompleteFence);
+            }
         });
         
     }
@@ -563,13 +586,13 @@ namespace Creepy {
             vk::VertexInputAttributeDescription{2, vertexBindings.at(2).binding, vk::Format::eR32G32Sfloat, sizeof(glm::vec3) * 2},
         };
 
-        Shader vertexShader{m_logicalDevice, readShaderSPIRVFile("./res/shaders/vertexShader.sprv"), vk::ShaderStageFlagBits::eVertex};
+        const Shader vertexShader{m_logicalDevice, readShaderSPVFile("./res/shaders/vertexShader.spv"), vk::ShaderStageFlagBits::eVertex};
         
-        Shader fragmentShader{m_logicalDevice, readShaderSPIRVFile("/res/shaders/fragmentShader.sprv"), vk::ShaderStageFlagBits::eFragment};
+        const Shader fragmentShader{m_logicalDevice, readShaderSPVFile("./res/shaders/fragmentShader.spv"), vk::ShaderStageFlagBits::eFragment};
     
         PipelineState backgroundState{};
         backgroundState.InitPipelineLayout({}, {});
-        backgroundState.InitShaderStates(vertexShader.GetShaderModule(), vertexShader.GetShaderModule());
+        backgroundState.InitShaderStates(vertexShader.GetShaderModule(), fragmentShader.GetShaderModule());
         backgroundState.InitVertexInputState(vertexBindings, vertexAttributes);
         backgroundState.InitInputAssemblyState(vk::PrimitiveTopology::eTriangleList);
         backgroundState.InitViewportState(static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height));
@@ -579,10 +602,15 @@ namespace Creepy {
         backgroundState.InitColorBlendState();
         backgroundState.InitDynamicState(dynamicStates);
 
-        //TODO: use imagess and depth format
-        backgroundState.InitRenderingInfo({}, vk::Format::eD24UnormS8Uint);
+        const std::array colorAttachmentFormats{
+            m_colorImage.GetImageFormat(),
+            //  m_swapchainImageFormat
+        };
 
-        m_backgroundPipeline.Build(m_logicalDevice, {});
+        //TODO: use images and depth format
+        backgroundState.InitRenderingInfo(colorAttachmentFormats, m_depthImage.GetImageFormat());
+
+        m_backgroundPipeline.Build(m_logicalDevice, backgroundState);
 
         m_clearner.AddJob([this]{
             m_backgroundPipeline.Destroy(m_logicalDevice);
@@ -639,13 +667,18 @@ namespace Creepy {
     }
 
     void VulkanEngine::draw() {
-        m_logicalDevice.waitForFences(m_renderCompleteFence, vk::False, std::numeric_limits<uint64_t>::max());
-        m_logicalDevice.resetFences(m_renderCompleteFence);
+        auto&& currentCommandBuffer = m_renderFrames.at(m_currentFrame).m_commandBuffer;
+        auto&& currentFence = m_renderFrames.at(m_currentFrame).m_renderCompleteFence;
+        auto&& currentImageAvailableSemaphore = m_renderFrames.at(m_currentFrame).m_imageAvailableSemaphore;
+        auto&& currentImageRenderedSemaphore = m_renderFrames.at(m_currentFrame).m_imageRenderedSemaphore;
+
+        m_logicalDevice.waitForFences(currentFence, vk::False, std::numeric_limits<uint64_t>::max());
+        m_logicalDevice.resetFences(currentFence);
 
         //TODO: Maybe don't need
-        m_commandBuffer.reset();
+        // m_commandBuffer.reset();
 
-        auto waitRes = m_logicalDevice.acquireNextImageKHR(m_swapChain, std::numeric_limits<uint64_t>::max(), m_acquireImageSemaphore);
+        auto waitRes = m_logicalDevice.acquireNextImageKHR(m_swapChain, std::numeric_limits<uint64_t>::max(), currentImageAvailableSemaphore);
         
         if(waitRes.result != vk::Result::eSuccess){
             //TODO: Need to recreate swapchain
@@ -655,28 +688,55 @@ namespace Creepy {
 
         vk::CommandBufferBeginInfo beginCmdInfo{};
         beginCmdInfo.flags = vk::CommandBufferUsageFlagBits::eOneTimeSubmit;
-        m_commandBuffer.begin(beginCmdInfo);
+        currentCommandBuffer.begin(beginCmdInfo);
 
         // Begin render pass
         vk::RenderingInfo dynamicRenderInfo{};
         dynamicRenderInfo.flags = vk::RenderingFlags{};
         
         
-        m_commandBuffer.beginRendering(dynamicRenderInfo);
 
-        m_commandBuffer.endRendering();
+        // Draw Call Here
 
-        m_commandBuffer.end();
+        //TODO: Change
+        imageLayoutTransition(currentCommandBuffer, m_swapchainImages.at(imageIndex), 
+            vk::ImageAspectFlagBits::eColor, vk::ImageLayout::eUndefined, vk::ImageLayout::eColorAttachmentOptimal, 
+            vk::AccessFlagBits2::eMemoryWrite, vk::AccessFlagBits2::eMemoryRead | vk::AccessFlagBits2::eMemoryRead,
+            vk::PipelineStageFlagBits2::eAllCommands, vk::PipelineStageFlagBits2::eAllCommands);
+
+        vk::ClearColorValue clearValue{1.0f, 0.0f, 0.0f, 1.0f};
+
+        vk::ImageSubresourceRange someTest{};
+        someTest.aspectMask = vk::ImageAspectFlagBits::eColor;
+        someTest.baseArrayLayer = 0;
+        someTest.baseMipLevel = 0;
+        someTest.levelCount = vk::RemainingMipLevels;
+        someTest.layerCount = vk::RemainingArrayLayers;
+        
+        currentCommandBuffer.clearColorImage(m_swapchainImages.at(imageIndex), vk::ImageLayout::eColorAttachmentOptimal, clearValue, someTest);
+
+        // We cannot call image layout transition in here
+        currentCommandBuffer.beginRendering(dynamicRenderInfo);
+
+        currentCommandBuffer.endRendering();
+
+         // End Draw Call
+        imageLayoutTransition(currentCommandBuffer, m_swapchainImages.at(imageIndex), 
+            vk::ImageAspectFlagBits::eColor, vk::ImageLayout::eColorAttachmentOptimal, vk::ImageLayout::ePresentSrcKHR, 
+            vk::AccessFlagBits2::eMemoryRead, vk::AccessFlagBits2::eMemoryRead | vk::AccessFlagBits2::eMemoryWrite,
+            vk::PipelineStageFlagBits2::eAllCommands, vk::PipelineStageFlagBits2::eBottomOfPipe);
+
+        currentCommandBuffer.end();
 
         vk::SubmitInfo submitInfo{};
         submitInfo.commandBufferCount = 1;
-        submitInfo.pCommandBuffers = &m_commandBuffer;
+        submitInfo.pCommandBuffers = &currentCommandBuffer;
         submitInfo.waitSemaphoreCount = 1;
-        submitInfo.pWaitSemaphores = &m_acquireImageSemaphore;
+        submitInfo.pWaitSemaphores = &currentImageAvailableSemaphore;
         submitInfo.signalSemaphoreCount = 1;
-        submitInfo.pSignalSemaphores = &m_renderStartSemaphore;
+        submitInfo.pSignalSemaphores = &currentImageRenderedSemaphore;
         
-        auto submitRes = m_presentQueue.submit(submitInfo, m_renderCompleteFence);
+        auto submitRes = m_presentQueue.submit(submitInfo, currentFence);
 
         if(submitRes != vk::Result::eSuccess){
             //TODO: Recreate swapchain
@@ -687,12 +747,16 @@ namespace Creepy {
         presentInfo.pSwapchains = &m_swapChain;
         presentInfo.pImageIndices = &imageIndex;
         presentInfo.waitSemaphoreCount = 1;
-        presentInfo.pWaitSemaphores = &m_renderStartSemaphore;
+        presentInfo.pWaitSemaphores = &currentImageRenderedSemaphore;
 
         auto presentRes = m_presentQueue.presentKHR(presentInfo);
 
         if(presentRes != vk::Result::eSuccess){
             //TODO: Recreate swapchain
         }
+    }
+
+    void VulkanEngine::drawBackground() {
+        
     }
 }
