@@ -16,6 +16,7 @@ Shader::Shader(const vk::Device device, std::span<const char> shaderData, vk::Sh
     shaderModuleInfo.codeSize = shaderData.size();
     shaderModuleInfo.pCode = reinterpret_cast<const uint32_t*>(shaderData.data());
     
+    
     auto res = device.createShaderModule(shaderModuleInfo);
     
     if(res.result != vk::Result::eSuccess){
@@ -26,6 +27,10 @@ Shader::Shader(const vk::Device device, std::span<const char> shaderData, vk::Sh
 }
 
 
-void Shader::Destroy(const vk::Device device){
+void Shader::Destroy(const vk::Device device) const {
     device.destroyShaderModule(m_shaderModule);
+}
+
+vk::ShaderModule Shader::GetShaderModule() const {
+    return m_shaderModule;
 }

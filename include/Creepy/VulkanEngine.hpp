@@ -5,6 +5,7 @@
 #include "VulkanJobSystem.hpp"
 #include "VulkanImage.hpp"
 #include "VulkanPipeline.hpp"
+#include "VulkanBuffer.hpp"
 
 struct GLFWwindow;
 
@@ -36,8 +37,12 @@ namespace Creepy {
 
             void createDescriptorSets();
             void createPipelines();
+
         private:
+            void createResources();
             void createImageResources();
+            void createBufferResources();
+
             void draw();
 
         private:
@@ -64,6 +69,8 @@ namespace Creepy {
             // Resources
 
             Image m_colorImage, m_depthImage;
+
+            VertexBuffer m_triangleVertexBuffer;
 
             // Pipeline
             Pipeline m_backgroundPipeline{};

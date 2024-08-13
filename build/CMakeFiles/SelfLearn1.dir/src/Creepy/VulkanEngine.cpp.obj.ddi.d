@@ -236,39 +236,9 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanEngine.cpp.obj.ddi: \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/elements_of.h \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/VulkanImage.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/VulkanPipeline.hpp \
- D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/VulkanUtils.hpp \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/print \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/filesystem \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/fs_fwd.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/chrono.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/ratio \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/fs_path.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/iomanip \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/quoted_string.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/sstream \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/istream \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/ios \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/basic_ios.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/basic_ios.tcc \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/ostream \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/ostream.tcc \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/istream.tcc \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/sstream.tcc \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/codecvt \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/ext/concurrence.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/shared_ptr.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/shared_ptr_base.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/allocated_ptr.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/unique_ptr.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/align.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/fs_dir.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/fs_ops.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/fstream \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/x86_64-w64-mingw32/bits/basic_file.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/x86_64-w64-mingw32/bits/c++io.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/fstream.tcc \
- D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/VulkanAllocator.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/VulkanBuffer.hpp \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/print \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/VulkanAllocator.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/Vertex.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/glm.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/detail/_fixes.hpp \
@@ -566,6 +536,37 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanEngine.cpp.obj.ddi: \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtc/type_ptr.inl \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtc/ulp.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtc/ulp.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/VulkanUtils.hpp \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/filesystem \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/fs_fwd.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/chrono.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/ratio \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/fs_path.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/iomanip \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/quoted_string.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/sstream \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/istream \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/ios \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/basic_ios.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/basic_ios.tcc \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/ostream \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/ostream.tcc \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/istream.tcc \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/sstream.tcc \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/codecvt \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/ext/concurrence.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/shared_ptr.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/shared_ptr_base.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/allocated_ptr.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/unique_ptr.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/align.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/fs_dir.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/fs_ops.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/fstream \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/x86_64-w64-mingw32/bits/basic_file.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/x86_64-w64-mingw32/bits/c++io.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/fstream.tcc \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/VulkanShader.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/GLFW/glfw3.h \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/GL/gl.h \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/imgui/imgui.hpp \

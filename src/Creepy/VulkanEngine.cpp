@@ -2,7 +2,7 @@
 #include <Creepy/VulkanEngine.hpp>
 #include <Creepy/VulkanUtils.hpp>
 #include <Creepy/VulkanAllocator.hpp>
-#include <Creepy/VulkanBuffer.hpp>
+#include <Creepy/VulkanShader.hpp>
 
 #include <GLFW/glfw3.h>
 #include <imgui/imgui.hpp>
@@ -33,7 +33,7 @@ namespace Creepy {
 
         // this->createPipelines();
 
-        this->createImageResources();
+        this->createResources();
     }
 
     VulkanEngine::~VulkanEngine(){
@@ -562,10 +562,14 @@ namespace Creepy {
             vk::VertexInputAttributeDescription{1, vertexBindings.at(1).binding, vk::Format::eR32G32B32Sfloat, sizeof(glm::vec3)},
             vk::VertexInputAttributeDescription{2, vertexBindings.at(2).binding, vk::Format::eR32G32Sfloat, sizeof(glm::vec3) * 2},
         };
+
+        Shader vertexShader{m_logicalDevice, readShaderSPIRVFile("./res/shaders/vertexShader.sprv"), vk::ShaderStageFlagBits::eVertex};
         
+        Shader fragmentShader{m_logicalDevice, readShaderSPIRVFile("/res/shaders/fragmentShader.sprv"), vk::ShaderStageFlagBits::eFragment};
+    
         PipelineState backgroundState{};
         backgroundState.InitPipelineLayout({}, {});
-        backgroundState.InitShaderStates({}, {});
+        backgroundState.InitShaderStates(vertexShader.GetShaderModule(), vertexShader.GetShaderModule());
         backgroundState.InitVertexInputState(vertexBindings, vertexAttributes);
         backgroundState.InitInputAssemblyState(vk::PrimitiveTopology::eTriangleList);
         backgroundState.InitViewportState(static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height));
@@ -583,6 +587,15 @@ namespace Creepy {
         m_clearner.AddJob([this]{
             m_backgroundPipeline.Destroy(m_logicalDevice);
         });
+        
+
+        vertexShader.Destroy(m_logicalDevice);
+        fragmentShader.Destroy(m_logicalDevice);
+    }
+
+    void VulkanEngine::createResources() {
+        this->createImageResources();
+        this->createBufferResources();
     }
 
     void VulkanEngine::createImageResources() {
@@ -595,37 +608,34 @@ namespace Creepy {
             m_colorImage.Destroy(m_logicalDevice);
             m_depthImage.Destroy(m_logicalDevice);
         });
+    }
 
-        
-        // Buffer<BufferType::DEVICE_LOCAL> myBuffer1{m_logicalDevice, 160, vk::Format::eR32G32B32A32Sfloat, vk::BufferUsageFlagBits::eIndexBuffer};
+    void VulkanEngine::createBufferResources() {
+        // constexpr float myDataTemp[16]{
+        //     1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 
+        //     5.0f, 5.0f, 5.0f, 5.0f, 5.0f,
+        //     5.0f, 5.0f, 5.0f, 5.0f, 5.0f,
+        //     5.0f
+        // };
 
-        // myBuffer1.UploadData(m_commandBuffer, nullptr, 0);
+        // Buffer<BufferType::HOST_COHERENT> myBuffer3{m_logicalDevice, 160, vk::Format::eR32G32B32A32Sfloat, vk::BufferUsageFlagBits::eIndexBuffer};
+
+        // myBuffer3.UploadData(nullptr, 0);
         
-        constexpr float myDataTemp[16]{
-            1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 
-            5.0f, 5.0f, 5.0f, 5.0f, 5.0f,
-            5.0f, 5.0f, 5.0f, 5.0f, 5.0f,
-            5.0f
+        // myBuffer3.Destroy(m_logicalDevice);
+
+        const std::array vertices{
+            Vertex{.Position = glm::vec3{0.0f, -0.5f, 0.0f}, .Normal = glm::vec3{1.0f, 1.0f, 1.0f}},
+            Vertex{.Position = glm::vec3{0.5f, 0.5f, 0.0f}, .Normal = glm::vec3{0.0f, 1.0f, 1.0f}},
+            Vertex{.Position = glm::vec3{-0.5f, 0.5f, 0.0f}, .Normal = glm::vec3{0.0f, 0.0f, 1.0f}},
         };
 
-        const std::array vert{
-            Vertex{},
-            Vertex{},
-            Vertex{},
-            Vertex{},
-        };
+        m_triangleVertexBuffer = VertexBuffer{m_logicalDevice, vertices};
 
-        VertexBuffer vbuf{m_logicalDevice, 300};
-        vbuf.UploadData(vert);
-        vbuf.Destroy(m_logicalDevice);
+        m_clearner.AddJob([this]{
+            m_triangleVertexBuffer.Destroy(m_logicalDevice);
+        });
 
-        Buffer<BufferType::HOST_COHERENT> myBuffer3{m_logicalDevice, 160, vk::Format::eR32G32B32A32Sfloat, vk::BufferUsageFlagBits::eIndexBuffer};
-
-        myBuffer3.UploadData(nullptr, 0);
-
-        // myBuffer1.Destroy(m_logicalDevice);
-        
-        myBuffer3.Destroy(m_logicalDevice);
     }
 
     void VulkanEngine::draw() {

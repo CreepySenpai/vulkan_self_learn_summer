@@ -33,7 +33,7 @@ namespace Creepy {
             //TODO: Handle uint64_t dataSize
             void UploadData(const void* data, size_t dataSizeInByte);
 
-            void Destroy(const vk::Device device){
+            void Destroy(const vk::Device device) const {
                 // device.destroyBufferView(m_bufferView);
                 VulkanAllocator::ImageAllocator.destroyBuffer(m_buffer, m_bufferLoc);
             }
@@ -73,7 +73,7 @@ namespace Creepy {
 
             void UploadData(const vk::CommandBuffer commandBuffer, const void *data, size_t dataSizeInByte);
 
-            void Destroy(const vk::Device device);
+            void Destroy(const vk::Device device) const;
 
             vk::Buffer GetBuffer() const {
                 return m_buffer;
@@ -119,7 +119,7 @@ namespace Creepy {
                 m_buffer.UploadData(data.data(), data.size() * sizeof(T));
             }
 
-            void Destroy(const vk::Device device) {
+            void Destroy(const vk::Device device) const {
                 m_buffer.Destroy(device);
             }
 

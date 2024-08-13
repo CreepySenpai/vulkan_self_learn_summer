@@ -71,7 +71,7 @@ namespace Creepy{
         }
     }
 
-    void Buffer<BufferType::DEVICE_LOCAL>::Destroy(const vk::Device device)
+    void Buffer<BufferType::DEVICE_LOCAL>::Destroy(const vk::Device device) const
     {
         // device.destroyBufferView(m_bufferView);
         VulkanAllocator::ImageAllocator.destroyBuffer(m_buffer, m_bufferLoc);
