@@ -1,12 +1,11 @@
 #include <cstring>
 #include <Creepy/VulkanBuffer.hpp>
+#include <Creepy/Vertex.hpp>
 
 namespace Creepy{
 
-    Buffer<BufferType::DEVICE_LOCAL>::Buffer(const vk::Device device, uint64_t bufferSize, vk::Format bufferFormat, vk::BufferUsageFlags bufferUsage)
-        : m_bufferSize{bufferSize}
-    {
-        std::println("Init Device Local");
+    // TODO: Move to utility, maybe more argument?
+    vk::BufferCreateInfo createBufferInfo(uint64_t bufferSize, vk::BufferUsageFlags bufferUsage){
 
         vk::BufferCreateInfo info{};
         info.flags = vk::BufferCreateFlags{};
@@ -14,10 +13,28 @@ namespace Creepy{
         info.size = bufferSize;
         info.usage = bufferUsage;
         
+        return info;
+    }
+
+    vma::AllocationCreateInfo createBufferAllocationInfo(vma::AllocationCreateFlags flags, vma::MemoryUsage memoryUsage, vk::MemoryPropertyFlags requiredFlags){
         vma::AllocationCreateInfo allocInfo{};
-        allocInfo.flags = vma::AllocationCreateFlags{};
-        allocInfo.usage = vma::MemoryUsage::eGpuOnly;
-        allocInfo.requiredFlags = vk::MemoryPropertyFlagBits::eDeviceLocal;
+        allocInfo.flags = flags;
+        allocInfo.usage = memoryUsage;
+        allocInfo.requiredFlags = requiredFlags;
+
+        return allocInfo;
+    }
+
+    ///////////////////////////////////////////////////////////////////////////////////
+
+    Buffer<BufferType::DEVICE_LOCAL>::Buffer(const vk::Device device, uint64_t bufferSize, vk::BufferUsageFlags bufferUsage)
+        : m_bufferSize{bufferSize}
+    {
+        std::println("Init Device Local");
+        
+        const vk::BufferCreateInfo info{createBufferInfo(bufferSize, bufferUsage)};
+        
+        const vma::AllocationCreateInfo allocInfo{createBufferAllocationInfo(vma::AllocationCreateFlags{}, vma::MemoryUsage::eGpuOnly, vk::MemoryPropertyFlagBits::eDeviceLocal)};
 
         auto res = VulkanAllocator::BufferAllocator.createBuffer(info, allocInfo);
 
@@ -26,7 +43,12 @@ namespace Creepy{
         }
 
         std::tie(m_buffer, m_bufferLoc) = res.value;
+    }
 
+    Buffer<BufferType::DEVICE_LOCAL>::Buffer(const vk::Device device, uint64_t bufferSize, vk::Format bufferFormat, vk::BufferUsageFlags bufferUsage)
+        : Buffer<BufferType::DEVICE_LOCAL>{device, bufferSize, bufferUsage}
+    {
+        //TODO: Create BufferView
         // vk::BufferViewCreateInfo bufferViewInfo{};
         // bufferViewInfo.flags = vk::BufferViewCreateFlags{};
         // bufferViewInfo.buffer = m_buffer;
@@ -55,23 +77,17 @@ namespace Creepy{
         VulkanAllocator::ImageAllocator.destroyBuffer(m_buffer, m_bufferLoc);
     }
 
+    ////////////////////////////////////////////////////////////////
 
     template <>
-    Buffer<BufferType::HOST_VISIBLE>::Buffer(const vk::Device device, uint64_t bufferSize, vk::Format bufferFormat, vk::BufferUsageFlags bufferUsage)
+    Buffer<BufferType::HOST_VISIBLE>::Buffer(const vk::Device device, uint64_t bufferSize, vk::BufferUsageFlags bufferUsage) 
         : m_bufferSize{bufferSize}
     {
         std::println("Init Host Visible");
 
-        vk::BufferCreateInfo info{};
-        info.flags = vk::BufferCreateFlags{};
-        info.sharingMode = vk::SharingMode::eExclusive;
-        info.size = bufferSize;
-        info.usage = bufferUsage;
+        const vk::BufferCreateInfo info{createBufferInfo(bufferSize, bufferUsage)};
         
-        vma::AllocationCreateInfo allocInfo{};
-        allocInfo.flags = vma::AllocationCreateFlagBits::eMapped;
-        allocInfo.usage = vma::MemoryUsage::eCpuToGpu;
-        allocInfo.requiredFlags = vk::MemoryPropertyFlagBits::eHostVisible;
+        const vma::AllocationCreateInfo allocInfo{createBufferAllocationInfo(vma::AllocationCreateFlagBits::eMapped, vma::MemoryUsage::eCpuToGpu, vk::MemoryPropertyFlagBits::eHostVisible)};
 
         auto res = VulkanAllocator::BufferAllocator.createBuffer(info, allocInfo);
         
@@ -82,7 +98,33 @@ namespace Creepy{
         std::tie(m_buffer, m_bufferLoc) = res.value;
 
         m_bufferInfo = VulkanAllocator::BufferAllocator.getAllocationInfo(m_bufferLoc);
+    }
 
+    template <>
+    Buffer<BufferType::HOST_COHERENT>::Buffer(const vk::Device device, uint64_t bufferSize, vk::BufferUsageFlags bufferUsage)
+        : m_bufferSize{bufferSize}
+    {
+        std::println("Init Host Coherent");
+        const vk::BufferCreateInfo info{createBufferInfo(bufferSize, bufferUsage)};
+        
+        const vma::AllocationCreateInfo allocInfo{createBufferAllocationInfo(vma::AllocationCreateFlagBits::eMapped, vma::MemoryUsage::eCpuToGpu, vk::MemoryPropertyFlagBits::eHostCoherent)};
+
+        auto res = VulkanAllocator::BufferAllocator.createBuffer(info, allocInfo);
+        // VulkanAllocator::BufferAllocator.createBuffer()
+        if(res.result != vk::Result::eSuccess){
+            std::println("Failed Create Buffer");
+        }
+
+        std::tie(m_buffer, m_bufferLoc) = res.value;
+
+        m_bufferInfo = VulkanAllocator::BufferAllocator.getAllocationInfo(m_bufferLoc);
+    }
+
+    template <>
+    Buffer<BufferType::HOST_VISIBLE>::Buffer(const vk::Device device, uint64_t bufferSize, vk::Format bufferFormat, vk::BufferUsageFlags bufferUsage)
+        : Buffer<BufferType::HOST_VISIBLE>{device, bufferSize, bufferUsage}
+    {
+        // TODO: Create Buffer View
         // vk::BufferViewCreateInfo bufferViewInfo{};
         // bufferViewInfo.flags = vk::BufferViewCreateFlags{};
         // bufferViewInfo.buffer = m_buffer;
@@ -101,30 +143,9 @@ namespace Creepy{
 
     template <>
     Buffer<BufferType::HOST_COHERENT>::Buffer(const vk::Device device, uint64_t bufferSize, vk::Format bufferFormat, vk::BufferUsageFlags bufferUsage)
-        : m_bufferSize{bufferSize}
+        : Buffer<BufferType::HOST_COHERENT>{device, bufferSize, bufferUsage}
     {
-        std::println("Init Host Coherent");
-        vk::BufferCreateInfo info{};
-        info.flags = vk::BufferCreateFlags{};
-        info.sharingMode = vk::SharingMode::eExclusive;
-        info.size = bufferSize;
-        info.usage = bufferUsage;
-        
-        vma::AllocationCreateInfo allocInfo{};
-        allocInfo.flags = vma::AllocationCreateFlagBits::eMapped;
-        allocInfo.usage = vma::MemoryUsage::eCpuToGpu;
-        allocInfo.requiredFlags = vk::MemoryPropertyFlagBits::eHostCoherent;
-
-        auto res = VulkanAllocator::BufferAllocator.createBuffer(info, allocInfo);
-        // VulkanAllocator::BufferAllocator.createBuffer()
-        if(res.result != vk::Result::eSuccess){
-            std::println("Failed Create Buffer");
-        }
-
-        std::tie(m_buffer, m_bufferLoc) = res.value;
-
-        m_bufferInfo = VulkanAllocator::BufferAllocator.getAllocationInfo(m_bufferLoc);
-
+        // TODO: Create Buffer View
         // vk::BufferViewCreateInfo bufferViewInfo{};
         // bufferViewInfo.flags = vk::BufferViewCreateFlags{};
         // bufferViewInfo.buffer = m_buffer;
@@ -163,4 +184,8 @@ namespace Creepy{
 
         std::memcpy(m_bufferInfo.pMappedData, data, dataSizeInByte);
     }
+
+    ///////////////////////////////////////////////////////////
+
+    
 }

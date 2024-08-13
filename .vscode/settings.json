@@ -71,6 +71,8 @@
         "list": "cpp",
         "iomanip": "cpp",
         "shared_mutex": "cpp",
-        "execution": "cpp"
+        "execution": "cpp",
+        "codecvt": "cpp",
+        "fstream": "cpp"
     }
 }

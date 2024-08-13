@@ -269,17 +269,7 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanEngine.cpp.obj.ddi: \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/fstream.tcc \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/VulkanAllocator.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/VulkanBuffer.hpp \
- D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/GLFW/glfw3.h \
- D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/GL/gl.h \
- D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/imgui/imgui.hpp \
- D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/imgui/imconfig.hpp \
- D:/Enviroments/mingw64_msvcrt/lib/gcc/x86_64-w64-mingw32/14.2.0/include/float.h \
- D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/float.h \
- D:/Enviroments/mingw64_msvcrt/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stdarg.h \
- D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/stdarg.h \
- D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/_mingw_stdarg.h \
- D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/imgui/imgui_impl_glfw.hpp \
- D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/imgui/imgui_impl_vulkan.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/Vertex.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/glm.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/detail/_fixes.hpp \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/cmath \
@@ -301,6 +291,8 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanEngine.cpp.obj.ddi: \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/simd/platform.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/climits \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/cfloat \
+ D:/Enviroments/mingw64_msvcrt/lib/gcc/x86_64-w64-mingw32/14.2.0/include/float.h \
+ D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/float.h \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/fwd.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/detail/qualifier.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/detail/setup.hpp \
@@ -573,4 +565,13 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanEngine.cpp.obj.ddi: \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtc/type_ptr.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtc/type_ptr.inl \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtc/ulp.hpp \
- D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtc/ulp.inl
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtc/ulp.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/GLFW/glfw3.h \
+ D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/GL/gl.h \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/imgui/imgui.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/imgui/imconfig.hpp \
+ D:/Enviroments/mingw64_msvcrt/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stdarg.h \
+ D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/stdarg.h \
+ D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/_mingw_stdarg.h \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/imgui/imgui_impl_glfw.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/imgui/imgui_impl_vulkan.hpp

@@ -596,27 +596,35 @@ namespace Creepy {
             m_depthImage.Destroy(m_logicalDevice);
         });
 
-        Buffer<BufferType::DEVICE_LOCAL> myBuffer1{m_logicalDevice, 160, vk::Format::eR32G32B32A32Sfloat, vk::BufferUsageFlagBits::eIndexBuffer};
-
-        myBuffer1.UploadData(m_commandBuffer, nullptr, 0);
-
         
-        Buffer<BufferType::HOST_VISIBLE> myBuffer2{m_logicalDevice, 160, vk::Format::eR32G32B32A32Sfloat, vk::BufferUsageFlagBits::eIndexBuffer};
+        // Buffer<BufferType::DEVICE_LOCAL> myBuffer1{m_logicalDevice, 160, vk::Format::eR32G32B32A32Sfloat, vk::BufferUsageFlagBits::eIndexBuffer};
 
+        // myBuffer1.UploadData(m_commandBuffer, nullptr, 0);
+        
         constexpr float myDataTemp[16]{
             1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 
             5.0f, 5.0f, 5.0f, 5.0f, 5.0f,
             5.0f, 5.0f, 5.0f, 5.0f, 5.0f,
             5.0f
         };
-        myBuffer2.UploadData(myDataTemp, sizeof(myDataTemp));
+
+        const std::array vert{
+            Vertex{},
+            Vertex{},
+            Vertex{},
+            Vertex{},
+        };
+
+        VertexBuffer vbuf{m_logicalDevice, 300};
+        vbuf.UploadData(vert);
+        vbuf.Destroy(m_logicalDevice);
 
         Buffer<BufferType::HOST_COHERENT> myBuffer3{m_logicalDevice, 160, vk::Format::eR32G32B32A32Sfloat, vk::BufferUsageFlagBits::eIndexBuffer};
 
         myBuffer3.UploadData(nullptr, 0);
 
-        myBuffer1.Destroy(m_logicalDevice);
-        myBuffer2.Destroy(m_logicalDevice);
+        // myBuffer1.Destroy(m_logicalDevice);
+        
         myBuffer3.Destroy(m_logicalDevice);
     }
 
