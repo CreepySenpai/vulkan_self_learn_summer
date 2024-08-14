@@ -360,7 +360,7 @@ namespace Creepy {
         info.oldSwapchain = nullptr;
         info.presentMode = choosePresentMode(m_physicalDevice, m_surface);
         //TODO: Fix me
-        info.imageUsage = vk::ImageUsageFlagBits::eColorAttachment;
+        info.imageUsage = vk::ImageUsageFlagBits::eTransferDst;
         info.imageArrayLayers = 1;
         info.imageSharingMode = vk::SharingMode::eExclusive;
         // info.queueFamilyIndexCount = 1;
@@ -693,14 +693,14 @@ namespace Creepy {
         // Begin render pass
         vk::RenderingInfo dynamicRenderInfo{};
         dynamicRenderInfo.flags = vk::RenderingFlags{};
-        
+        // dynamicRenderInfo.
         
 
         // Draw Call Here
 
         //TODO: Change
         imageLayoutTransition(currentCommandBuffer, m_swapchainImages.at(imageIndex), 
-            vk::ImageAspectFlagBits::eColor, vk::ImageLayout::eUndefined, vk::ImageLayout::eColorAttachmentOptimal, 
+            vk::ImageAspectFlagBits::eColor, vk::ImageLayout::eUndefined, vk::ImageLayout::eGeneral, 
             vk::AccessFlagBits2::eMemoryWrite, vk::AccessFlagBits2::eMemoryRead | vk::AccessFlagBits2::eMemoryRead,
             vk::PipelineStageFlagBits2::eAllCommands, vk::PipelineStageFlagBits2::eAllCommands);
 
@@ -713,16 +713,16 @@ namespace Creepy {
         someTest.levelCount = vk::RemainingMipLevels;
         someTest.layerCount = vk::RemainingArrayLayers;
         
-        currentCommandBuffer.clearColorImage(m_swapchainImages.at(imageIndex), vk::ImageLayout::eColorAttachmentOptimal, clearValue, someTest);
+        currentCommandBuffer.clearColorImage(m_swapchainImages.at(imageIndex), vk::ImageLayout::eGeneral, clearValue, someTest);
 
         // We cannot call image layout transition in here
-        currentCommandBuffer.beginRendering(dynamicRenderInfo);
+        // currentCommandBuffer.beginRendering(dynamicRenderInfo);
 
-        currentCommandBuffer.endRendering();
+        // currentCommandBuffer.endRendering();
 
          // End Draw Call
         imageLayoutTransition(currentCommandBuffer, m_swapchainImages.at(imageIndex), 
-            vk::ImageAspectFlagBits::eColor, vk::ImageLayout::eColorAttachmentOptimal, vk::ImageLayout::ePresentSrcKHR, 
+            vk::ImageAspectFlagBits::eColor, vk::ImageLayout::eGeneral, vk::ImageLayout::ePresentSrcKHR, 
             vk::AccessFlagBits2::eMemoryRead, vk::AccessFlagBits2::eMemoryRead | vk::AccessFlagBits2::eMemoryWrite,
             vk::PipelineStageFlagBits2::eAllCommands, vk::PipelineStageFlagBits2::eBottomOfPipe);
 
@@ -736,6 +736,12 @@ namespace Creepy {
         submitInfo.signalSemaphoreCount = 1;
         submitInfo.pSignalSemaphores = &currentImageRenderedSemaphore;
         
+        constexpr std::array<vk::PipelineStageFlags, 1> waitStages{
+            vk::PipelineStageFlagBits::eColorAttachmentOutput
+        };
+        
+        submitInfo.pWaitDstStageMask = waitStages.data();
+        
         auto submitRes = m_presentQueue.submit(submitInfo, currentFence);
 
         if(submitRes != vk::Result::eSuccess){
@@ -748,6 +754,7 @@ namespace Creepy {
         presentInfo.pImageIndices = &imageIndex;
         presentInfo.waitSemaphoreCount = 1;
         presentInfo.pWaitSemaphores = &currentImageRenderedSemaphore;
+        
 
         auto presentRes = m_presentQueue.presentKHR(presentInfo);
 
