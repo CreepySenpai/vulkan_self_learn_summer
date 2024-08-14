@@ -1,5 +1,7 @@
 #pragma once
 
+#include <atomic>
+
 #include <vulkan/vulkan.hpp>
 #include <vkmemoryalloc/vk_mem_alloc.hpp>
 #include "VulkanJobSystem.hpp"
@@ -64,10 +66,6 @@ namespace Creepy {
             vk::CommandPool m_cmdPool;
 
             Swapchain m_swapchain;
-            // vk::SwapchainKHR m_swapChain;
-            // std::vector<vk::Image> m_swapchainImages;
-            // std::vector<vk::ImageView> m_swapchainImageViews;
-            // vk::Format m_swapchainImageFormat;
             //TODO: List of cmdBuffer
 
             size_t m_totalFrames{}, m_currentFrame{};
@@ -85,5 +83,8 @@ namespace Creepy {
 
             vma::Allocator m_allocator;
             VulkanJobSystem m_clearner;
+
+            //TODO: Use atomic
+            bool m_isSwapchainResizing{false};
     };
 }

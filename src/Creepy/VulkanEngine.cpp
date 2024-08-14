@@ -591,9 +591,23 @@ namespace Creepy {
     }
     
     void VulkanEngine::recreateSwapchain() {
+        if(m_isSwapchainResizing){
+            return;
+        }
+        
         m_logicalDevice.waitIdle();
         
-        // m_swapchain.Recreate(device)
+        m_isSwapchainResizing = true;
+        // auto&& surfaceCap = m_physicalDevice.getSurfaceCapabilitiesKHR(m_surface).value;
+        auto&& surfaceFormat = chooseSurfaceFormat(m_physicalDevice, m_surface);
+
+        m_swapchain.Recreate(m_logicalDevice, m_surface, 
+        surfaceFormat.format, surfaceFormat.colorSpace, 
+        {static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height)}, 
+        choosePresentMode(m_physicalDevice, m_surface), 
+         m_physicalDevice.getSurfaceCapabilitiesKHR(m_surface).value);
+
+        m_isSwapchainResizing = false;
     }
 
     void VulkanEngine::createResources() {
@@ -655,6 +669,9 @@ namespace Creepy {
         
         if(waitRes.result != vk::Result::eSuccess){
             //TODO: Need to recreate swapchain
+            if(waitRes.result == vk::Result::eErrorOutOfDateKHR){
+                this->recreateSwapchain();
+            }
         }
 
         const uint32_t imageIndex{waitRes.value};
@@ -719,6 +736,9 @@ namespace Creepy {
 
         if(submitRes != vk::Result::eSuccess){
             //TODO: Recreate swapchain
+            if(submitRes == vk::Result::eErrorOutOfDateKHR){
+                this->recreateSwapchain();
+            }
         }
 
         const std::array presentSwapchains{
@@ -736,6 +756,9 @@ namespace Creepy {
 
         if(presentRes != vk::Result::eSuccess){
             //TODO: Recreate swapchain
+            if(presentRes == vk::Result::eErrorOutOfDateKHR){
+                this->recreateSwapchain();
+            }
         }
     }
 
