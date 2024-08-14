@@ -38,6 +38,7 @@ namespace Creepy {
     }
 
     VulkanEngine::~VulkanEngine(){
+        m_logicalDevice.waitIdle();
         m_clearner.Execute();
     }
 
@@ -349,60 +350,23 @@ namespace Creepy {
     
 
     void VulkanEngine::createSwapchain() {
-
-        const uint32_t graphicQueueFamilyIndex = findQueueFamilyIndex(m_physicalDevice, vk::QueueFlagBits::eGraphics);
         auto&& surfaceCap = m_physicalDevice.getSurfaceCapabilitiesKHR(m_surface).value;
-        
-        vk::SwapchainCreateInfoKHR info{};
-        
-        info.flags = vk::SwapchainCreateFlagsKHR{};
-        info.surface = m_surface;
-        info.oldSwapchain = nullptr;
-        info.presentMode = choosePresentMode(m_physicalDevice, m_surface);
-        //TODO: Fix me
-        info.imageUsage = vk::ImageUsageFlagBits::eTransferDst;
-        info.imageArrayLayers = 1;
-        info.imageSharingMode = vk::SharingMode::eExclusive;
-        // info.queueFamilyIndexCount = 1;
-        // info.pQueueFamilyIndices = &graphicQueueFamilyIndex;
-
-        const uint32_t imageCount{std::min(surfaceCap.maxImageCount, surfaceCap.minImageCount + 1)};
-        info.minImageCount = imageCount;
-        info.clipped = vk::True;
-        info.preTransform = surfaceCap.currentTransform;
-
         auto&& surfaceFormat = chooseSurfaceFormat(m_physicalDevice, m_surface);
-        m_swapchainImageFormat = surfaceFormat.format;
-        info.imageFormat = surfaceFormat.format;
-        info.imageColorSpace = surfaceFormat.colorSpace;
-        
-        // Make sure image W / H in bound
-        info.imageExtent.width = std::max(surfaceCap.minImageExtent.width, std::min(static_cast<uint32_t>(m_width), surfaceCap.maxImageExtent.width));
-        info.imageExtent.height = std::max(surfaceCap.minImageExtent.height, std::min(static_cast<uint32_t>(m_height), surfaceCap.maxImageExtent.height));
-        
-        std::println("Min: {} - {}", info.imageExtent.width, info.imageExtent.height);
-        
-        auto res = m_logicalDevice.createSwapchainKHR(info);
 
-        if(res.result != vk::Result::eSuccess){
-            std::println("Error createSwapchainKHR");
-        }
-
-        m_swapChain = res.value;
-
+        m_swapchain = Swapchain{m_logicalDevice, m_surface, 
+            surfaceFormat.format, surfaceFormat.colorSpace, {static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height)}, 
+            choosePresentMode(m_physicalDevice, m_surface), surfaceCap};
+        
         m_clearner.AddJob([this]{
-            m_logicalDevice.destroySwapchainKHR(m_swapChain);
+            m_swapchain.Destroy(m_logicalDevice);
         });
-        
 
-        m_swapchainImages = m_logicalDevice.getSwapchainImagesKHR(m_swapChain).value;
-
-        m_totalFrames = m_swapchainImages.size();
+        m_totalFrames = m_swapchain.GetSwapchainImages().size();
 
         m_renderFrames.resize(m_totalFrames);
 
         std::println("Swapchain Image Info");
-        for(int j{}; auto&& i : m_swapchainImages){
+        for(int j{}; auto&& i : m_swapchain.GetSwapchainImages()){
             auto memRequire = m_logicalDevice.getImageMemoryRequirements(i);
             std::println("Image: {} - {} - {} - {}", j, memRequire.alignment, memRequire.memoryTypeBits, memRequire.size);
             ++j;
@@ -536,14 +500,20 @@ namespace Creepy {
         imguiInfo.Queue = m_graphicQueue;
         //TODO: Store Queue Family Index
         imguiInfo.QueueFamily = findQueueFamilyIndex(m_physicalDevice, vk::QueueFlagBits::eGraphics);
-        imguiInfo.MinImageCount = static_cast<uint32_t>(m_swapchainImages.size());
-        imguiInfo.ImageCount = static_cast<uint32_t>(m_swapchainImages.size());
+        imguiInfo.MinImageCount = static_cast<uint32_t>(m_swapchain.GetSwapchainImages().size());
+        imguiInfo.ImageCount = static_cast<uint32_t>(m_swapchain.GetSwapchainImages().size());
         imguiInfo.DescriptorPool = res.value;
         imguiInfo.UseDynamicRendering = true;
 
+
+        const std::array swapchainImageFormat{
+            m_swapchain.GetSwapchainImageFormat()
+        };
+        
         vk::PipelineRenderingCreateInfo renderingInfo{};
-        renderingInfo.colorAttachmentCount = 1;
-        renderingInfo.pColorAttachmentFormats = &m_swapchainImageFormat;
+        renderingInfo.colorAttachmentCount = static_cast<uint32_t>(swapchainImageFormat.size());
+        
+        renderingInfo.pColorAttachmentFormats = swapchainImageFormat.data();
 
         imguiInfo.PipelineRenderingCreateInfo = renderingInfo;
 
@@ -573,17 +543,16 @@ namespace Creepy {
             vk::DynamicState::eViewport, vk::DynamicState::eScissor
         };
 
+        // Because we use interleave buffer type -> only need 1 binding
         constexpr std::array vertexBindings{
-            vk::VertexInputBindingDescription{0, sizeof(glm::vec3), vk::VertexInputRate::eVertex},
-            vk::VertexInputBindingDescription{1, sizeof(glm::vec3), vk::VertexInputRate::eVertex},
-            vk::VertexInputBindingDescription{2, sizeof(glm::vec2), vk::VertexInputRate::eVertex},
+            vk::VertexInputBindingDescription{0, sizeof(Vertex), vk::VertexInputRate::eVertex}
         };
         
         //TODO: Maybe change offset
         constexpr std::array vertexAttributes{
             vk::VertexInputAttributeDescription{0, vertexBindings.at(0).binding, vk::Format::eR32G32B32Sfloat, 0},
-            vk::VertexInputAttributeDescription{1, vertexBindings.at(1).binding, vk::Format::eR32G32B32Sfloat, sizeof(glm::vec3)},
-            vk::VertexInputAttributeDescription{2, vertexBindings.at(2).binding, vk::Format::eR32G32Sfloat, sizeof(glm::vec3) * 2},
+            vk::VertexInputAttributeDescription{1, vertexBindings.at(0).binding, vk::Format::eR32G32B32Sfloat, sizeof(glm::vec3)},
+            vk::VertexInputAttributeDescription{2, vertexBindings.at(0).binding, vk::Format::eR32G32Sfloat, sizeof(glm::vec3) * 2},
         };
 
         const Shader vertexShader{m_logicalDevice, readShaderSPVFile("./res/shaders/vertexShader.spv"), vk::ShaderStageFlagBits::eVertex};
@@ -619,6 +588,12 @@ namespace Creepy {
 
         vertexShader.Destroy(m_logicalDevice);
         fragmentShader.Destroy(m_logicalDevice);
+    }
+    
+    void VulkanEngine::recreateSwapchain() {
+        m_logicalDevice.waitIdle();
+        
+        // m_swapchain.Recreate(device)
     }
 
     void VulkanEngine::createResources() {
@@ -671,20 +646,19 @@ namespace Creepy {
         auto&& currentFence = m_renderFrames.at(m_currentFrame).m_renderCompleteFence;
         auto&& currentImageAvailableSemaphore = m_renderFrames.at(m_currentFrame).m_imageAvailableSemaphore;
         auto&& currentImageRenderedSemaphore = m_renderFrames.at(m_currentFrame).m_imageRenderedSemaphore;
+        
 
         m_logicalDevice.waitForFences(currentFence, vk::False, std::numeric_limits<uint64_t>::max());
         m_logicalDevice.resetFences(currentFence);
 
-        //TODO: Maybe don't need
-        // m_commandBuffer.reset();
-
-        auto waitRes = m_logicalDevice.acquireNextImageKHR(m_swapChain, std::numeric_limits<uint64_t>::max(), currentImageAvailableSemaphore);
+        auto waitRes = m_logicalDevice.acquireNextImageKHR(m_swapchain.GetSwapchainHandle(), std::numeric_limits<uint64_t>::max(), currentImageAvailableSemaphore);
         
         if(waitRes.result != vk::Result::eSuccess){
             //TODO: Need to recreate swapchain
         }
 
         const uint32_t imageIndex{waitRes.value};
+        const auto& currentSwapchainImage = m_swapchain.GetSwapchainImages().at(imageIndex);
 
         vk::CommandBufferBeginInfo beginCmdInfo{};
         beginCmdInfo.flags = vk::CommandBufferUsageFlagBits::eOneTimeSubmit;
@@ -694,12 +668,11 @@ namespace Creepy {
         vk::RenderingInfo dynamicRenderInfo{};
         dynamicRenderInfo.flags = vk::RenderingFlags{};
         // dynamicRenderInfo.
-        
 
         // Draw Call Here
 
         //TODO: Change
-        imageLayoutTransition(currentCommandBuffer, m_swapchainImages.at(imageIndex), 
+        imageLayoutTransition(currentCommandBuffer, currentSwapchainImage, 
             vk::ImageAspectFlagBits::eColor, vk::ImageLayout::eUndefined, vk::ImageLayout::eGeneral, 
             vk::AccessFlagBits2::eMemoryWrite, vk::AccessFlagBits2::eMemoryRead | vk::AccessFlagBits2::eMemoryRead,
             vk::PipelineStageFlagBits2::eAllCommands, vk::PipelineStageFlagBits2::eAllCommands);
@@ -713,7 +686,7 @@ namespace Creepy {
         someTest.levelCount = vk::RemainingMipLevels;
         someTest.layerCount = vk::RemainingArrayLayers;
         
-        currentCommandBuffer.clearColorImage(m_swapchainImages.at(imageIndex), vk::ImageLayout::eGeneral, clearValue, someTest);
+        currentCommandBuffer.clearColorImage(currentSwapchainImage, vk::ImageLayout::eGeneral, clearValue, someTest);
 
         // We cannot call image layout transition in here
         // currentCommandBuffer.beginRendering(dynamicRenderInfo);
@@ -721,12 +694,17 @@ namespace Creepy {
         // currentCommandBuffer.endRendering();
 
          // End Draw Call
-        imageLayoutTransition(currentCommandBuffer, m_swapchainImages.at(imageIndex), 
+        imageLayoutTransition(currentCommandBuffer, currentSwapchainImage, 
             vk::ImageAspectFlagBits::eColor, vk::ImageLayout::eGeneral, vk::ImageLayout::ePresentSrcKHR, 
             vk::AccessFlagBits2::eMemoryRead, vk::AccessFlagBits2::eMemoryRead | vk::AccessFlagBits2::eMemoryWrite,
             vk::PipelineStageFlagBits2::eAllCommands, vk::PipelineStageFlagBits2::eBottomOfPipe);
 
         currentCommandBuffer.end();
+
+
+        constexpr std::array<vk::PipelineStageFlags, 1> waitStages{
+            vk::PipelineStageFlagBits::eColorAttachmentOutput
+        };
 
         vk::SubmitInfo submitInfo{};
         submitInfo.commandBufferCount = 1;
@@ -735,11 +713,6 @@ namespace Creepy {
         submitInfo.pWaitSemaphores = &currentImageAvailableSemaphore;
         submitInfo.signalSemaphoreCount = 1;
         submitInfo.pSignalSemaphores = &currentImageRenderedSemaphore;
-        
-        constexpr std::array<vk::PipelineStageFlags, 1> waitStages{
-            vk::PipelineStageFlagBits::eColorAttachmentOutput
-        };
-        
         submitInfo.pWaitDstStageMask = waitStages.data();
         
         auto submitRes = m_presentQueue.submit(submitInfo, currentFence);
@@ -748,9 +721,12 @@ namespace Creepy {
             //TODO: Recreate swapchain
         }
 
+        const std::array presentSwapchains{
+            m_swapchain.GetSwapchainHandle()
+        };
         vk::PresentInfoKHR presentInfo{};
-        presentInfo.swapchainCount = 1;
-        presentInfo.pSwapchains = &m_swapChain;
+        presentInfo.swapchainCount = static_cast<uint32_t>(presentSwapchains.size());
+        presentInfo.pSwapchains = presentSwapchains.data();
         presentInfo.pImageIndices = &imageIndex;
         presentInfo.waitSemaphoreCount = 1;
         presentInfo.pWaitSemaphores = &currentImageRenderedSemaphore;

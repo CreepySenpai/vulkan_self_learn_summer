@@ -49,6 +49,12 @@
 },
 {
   "directory": "D:/Code/VSCode/C++/Vulkan/SelfLearn1/build",
+  "command": "D:\\Enviroments\\mingw64_msvcrt\\bin\\c++.exe -DSTB_IMAGE_IMPLEMENTATION -DVULKAN_HPP_NO_EXCEPTIONS -ID:/Code/VSCode/C++/Vulkan/SelfLearn1/include -ID:/Enviroments/vulkan/Include -O3 -DNDEBUG -std=gnu++26 -fmodules-ts -fmodule-mapper=CMakeFiles\\SelfLearn1.dir\\src\\Creepy\\VulkanSwapchain.cpp.obj.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles\\SelfLearn1.dir\\src\\Creepy\\VulkanSwapchain.cpp.obj -c D:\\Code\\VSCode\\C++\\Vulkan\\SelfLearn1\\src\\Creepy\\VulkanSwapchain.cpp",
+  "file": "D:\\Code\\VSCode\\C++\\Vulkan\\SelfLearn1\\src\\Creepy\\VulkanSwapchain.cpp",
+  "output": "CMakeFiles\\SelfLearn1.dir\\src\\Creepy\\VulkanSwapchain.cpp.obj"
+},
+{
+  "directory": "D:/Code/VSCode/C++/Vulkan/SelfLearn1/build",
   "command": "D:\\Enviroments\\mingw64_msvcrt\\bin\\c++.exe -DSTB_IMAGE_IMPLEMENTATION -DVULKAN_HPP_NO_EXCEPTIONS -ID:/Code/VSCode/C++/Vulkan/SelfLearn1/include -ID:/Enviroments/vulkan/Include -O3 -DNDEBUG -std=gnu++26 -fmodules-ts -fmodule-mapper=CMakeFiles\\SelfLearn1.dir\\src\\vkmemoryalloc\\alloc.cpp.obj.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles\\SelfLearn1.dir\\src\\vkmemoryalloc\\alloc.cpp.obj -c D:\\Code\\VSCode\\C++\\Vulkan\\SelfLearn1\\src\\vkmemoryalloc\\alloc.cpp",
   "file": "D:\\Code\\VSCode\\C++\\Vulkan\\SelfLearn1\\src\\vkmemoryalloc\\alloc.cpp",
   "output": "CMakeFiles\\SelfLearn1.dir\\src\\vkmemoryalloc\\alloc.cpp.obj"
