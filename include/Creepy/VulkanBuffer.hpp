@@ -31,7 +31,7 @@ namespace Creepy {
             }
 
             //TODO: Handle uint64_t dataSize
-            void UploadData(const void* data, size_t dataSizeInByte);
+            void UploadData(const void* data, size_t dataSizeInByte) const;
 
             void Destroy(const vk::Device device) const {
                 // device.destroyBufferView(m_bufferView);
@@ -71,7 +71,9 @@ namespace Creepy {
 
             Buffer(const vk::Device device, uint64_t bufferSize, vk::BufferUsageFlags bufferUsage);
 
-            void UploadData(const vk::CommandBuffer commandBuffer, const void *data, size_t dataSizeInByte);
+            void UploadData(const vk::Device device, const vk::CommandBuffer commandBuffer, const void *data, size_t dataSizeInByte) const;
+            
+            void UploadData(const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue, const void *data, size_t dataSizeInByte) const;
 
             void Destroy(const vk::Device device) const;
 
@@ -94,11 +96,13 @@ namespace Creepy {
             uint64_t m_bufferSize;
     };
 
+    // concept
 
-    template <typename T, vk::BufferUsageFlagBits... bufferUsages>
+    template <BufferType bufferType, typename T, vk::BufferUsageFlagBits... bufferUsages>
     class BufferWrapperNoView{
         public:
             using valueType_t = T;
+            static constexpr auto bufferType_v = bufferType;
             static constexpr auto bufferUsageFlags = (bufferUsages | ...);
 
             BufferWrapperNoView() = default;
@@ -115,7 +119,7 @@ namespace Creepy {
                 m_buffer.UploadData(data.data(), data.size() * sizeof(T));
             }
 
-            void UploadData(std::span<const T> data){
+            void UploadData(std::span<const T> data) const {
                 m_buffer.UploadData(data.data(), data.size() * sizeof(T));
             }
 
@@ -132,12 +136,50 @@ namespace Creepy {
             }
 
         private:
-            //TODO: Maybe change buffer to template?
-            Buffer<BufferType::HOST_VISIBLE> m_buffer;
+            Buffer<bufferType> m_buffer;
     };
 
-    using VertexBuffer = BufferWrapperNoView<Vertex, vk::BufferUsageFlagBits::eVertexBuffer>;
-    using IndexBuffer = BufferWrapperNoView<uint32_t, vk::BufferUsageFlagBits::eIndexBuffer>;
+    template <typename T, vk::BufferUsageFlagBits... bufferUsages>
+    class BufferWrapperNoView<BufferType::DEVICE_LOCAL, T, bufferUsages...>{
+        public:
+            using valueType_t = T;
+            static constexpr auto bufferType_v = BufferType::DEVICE_LOCAL;
+            static constexpr auto bufferUsageFlags = (bufferUsages | ...);
+
+            BufferWrapperNoView() = default;
+
+            BufferWrapperNoView(const vk::Device device, uint64_t bufferSize)
+                : m_buffer{device, bufferSize, (bufferUsages | ...)}
+            {
+                
+            }
+
+            void UploadData(const vk::Device device, const vk::CommandBuffer commandBuffer, std::span<const T> data) const {
+                m_buffer.UploadData(device, commandBuffer, data.data(), data.size() * sizeof(T));
+            }
+
+            void UploadData(const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue, std::span<const T> data) const {
+                m_buffer.UploadData(device, commandPool, queue, data.data(), data.size() * sizeof(T));
+            }
+
+            void Destroy(const vk::Device device) const {
+                m_buffer.Destroy(device);
+            }
+
+            vk::Buffer GetBuffer() const {
+                return m_buffer.GetBuffer();
+            }
+
+            uint64_t GetBufferSize() const {
+                return m_buffer.GetBufferSize();
+            }
+
+        private:
+            Buffer<BufferType::DEVICE_LOCAL> m_buffer;
+    };
+
+    using VertexBuffer = BufferWrapperNoView<BufferType::DEVICE_LOCAL, Vertex, vk::BufferUsageFlagBits::eVertexBuffer, vk::BufferUsageFlagBits::eTransferDst>;
+    using IndexBuffer = BufferWrapperNoView<BufferType::DEVICE_LOCAL, uint32_t, vk::BufferUsageFlagBits::eIndexBuffer, vk::BufferUsageFlagBits::eTransferDst>;
 }
 
 // Template Instanciation
@@ -155,7 +197,7 @@ Creepy::Buffer<Creepy::BufferType::HOST_COHERENT>::Buffer(const vk::Device devic
 
 
 template <>
-void Creepy::Buffer<Creepy::BufferType::HOST_VISIBLE>::UploadData(const void* data, size_t dataSizeInByte);
+void Creepy::Buffer<Creepy::BufferType::HOST_VISIBLE>::UploadData(const void* data, size_t dataSizeInByte) const;
 
 template <>
-void Creepy::Buffer<Creepy::BufferType::HOST_COHERENT>::UploadData(const void* data, size_t dataSizeInByte);
+void Creepy::Buffer<Creepy::BufferType::HOST_COHERENT>::UploadData(const void* data, size_t dataSizeInByte) const;

@@ -627,19 +627,21 @@ namespace Creepy {
         });
     }
 
+    // Note(Creepy): All device local buffer must be upload data in begin()/end() command buffer block -> recording state
     void VulkanEngine::createBufferResources() {
-        // constexpr float myDataTemp[16]{
-        //     1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 
-        //     5.0f, 5.0f, 5.0f, 5.0f, 5.0f,
-        //     5.0f, 5.0f, 5.0f, 5.0f, 5.0f,
-        //     5.0f
-        // };
 
-        // Buffer<BufferType::HOST_COHERENT> myBuffer3{m_logicalDevice, 160, vk::Format::eR32G32B32A32Sfloat, vk::BufferUsageFlagBits::eIndexBuffer};
-
-        // myBuffer3.UploadData(nullptr, 0);
+        constexpr float myDataTemp[16]{
+                1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 
+                5.0f, 5.0f, 5.0f, 5.0f, 5.0f,
+                5.0f, 5.0f, 5.0f, 5.0f, 5.0f,
+                5.0f
+            };
+            
+        const Buffer<BufferType::DEVICE_LOCAL> sickBuffer{m_logicalDevice, sizeof(myDataTemp), vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eVertexBuffer};
         
-        // myBuffer3.Destroy(m_logicalDevice);
+        sickBuffer.UploadData(m_logicalDevice, m_cmdPool, m_graphicQueue, myDataTemp, sizeof(myDataTemp));
+
+        sickBuffer.Destroy(m_logicalDevice);
 
         const std::array vertices{
             Vertex{.Position = glm::vec3{0.0f, -0.5f, 0.0f}, .Normal = glm::vec3{1.0f, 1.0f, 1.0f}},
@@ -647,7 +649,8 @@ namespace Creepy {
             Vertex{.Position = glm::vec3{-0.5f, 0.5f, 0.0f}, .Normal = glm::vec3{0.0f, 0.0f, 1.0f}},
         };
 
-        m_triangleVertexBuffer = VertexBuffer{m_logicalDevice, vertices};
+        m_triangleVertexBuffer = VertexBuffer{m_logicalDevice, vertices.size() * sizeof(Vertex)};
+        m_triangleVertexBuffer.UploadData(m_logicalDevice, m_cmdPool, m_graphicQueue, vertices);
 
         m_clearner.AddJob([this]{
             m_triangleVertexBuffer.Destroy(m_logicalDevice);

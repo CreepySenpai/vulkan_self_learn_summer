@@ -65,10 +65,66 @@ namespace Creepy{
         // m_bufferView = viewRes.value;
     }
 
-    void Buffer<BufferType::DEVICE_LOCAL>::UploadData(const vk::CommandBuffer commandBuffer, const void* data, size_t dataSizeInByte) {
-        if(commandBuffer == nullptr){
-            std::println("Require Command Buffer");
+    void Buffer<BufferType::DEVICE_LOCAL>::UploadData(const vk::Device device, const vk::CommandBuffer commandBuffer, const void* data, size_t dataSizeInByte) const {
+        std::println("StartCopy");
+        const Buffer<BufferType::HOST_VISIBLE> stagingBuffer{device, dataSizeInByte, vk::BufferUsageFlagBits::eTransferSrc};
+        stagingBuffer.UploadData(data, dataSizeInByte);
+        
+        // vk::CopyBuff
+        const vk::BufferCopy copyInfo{0, 0, dataSizeInByte};
+
+        commandBuffer.copyBuffer(stagingBuffer.GetBuffer(), m_buffer, copyInfo);
+
+        stagingBuffer.Destroy(device);
+    }
+
+    void Buffer<BufferType::DEVICE_LOCAL>::UploadData(const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue, const void *data, size_t dataSizeInByte) const {
+        std::println("StartCopy");
+
+        const Buffer<BufferType::HOST_VISIBLE> stagingBuffer{device, dataSizeInByte, vk::BufferUsageFlagBits::eTransferSrc};
+        stagingBuffer.UploadData(data, dataSizeInByte);
+
+        vk::CommandBufferAllocateInfo allocInfo{};
+        allocInfo.commandPool = commandPool;
+        allocInfo.commandBufferCount = 1;
+        allocInfo.level = vk::CommandBufferLevel::ePrimary;
+
+        auto tempCommandBuffer = device.allocateCommandBuffers(allocInfo).value.at(0);
+
+        vk::CommandBufferBeginInfo beginInfo{};
+        beginInfo.flags = vk::CommandBufferUsageFlagBits::eOneTimeSubmit;
+        
+        tempCommandBuffer.begin(beginInfo);
+
+        const vk::BufferCopy copyInfo{0, 0, dataSizeInByte};
+
+        tempCommandBuffer.copyBuffer(stagingBuffer.GetBuffer(), m_buffer, copyInfo);
+
+        tempCommandBuffer.end();
+
+        vk::FenceCreateInfo fenceInfo{};
+        fenceInfo.flags = vk::FenceCreateFlags{};
+        auto submitDoneFence = device.createFence(fenceInfo).value;
+
+        vk::SubmitInfo submitInfo{};
+        submitInfo.commandBufferCount = 1;
+        submitInfo.pCommandBuffers = &tempCommandBuffer;
+        
+        auto res = queue.submit(submitInfo, submitDoneFence);
+
+        if(res != vk::Result::eSuccess){
+            std::println("Failed Submit Data");
         }
+
+        res = device.waitForFences(submitDoneFence, vk::False, std::numeric_limits<uint64_t>::max());
+
+        if(res != vk::Result::eSuccess){
+            std::println("Failed Wait Submit Data");
+        }
+
+        device.destroyFence(submitDoneFence);
+        device.freeCommandBuffers(commandPool, tempCommandBuffer);
+        stagingBuffer.Destroy(device);
     }
 
     void Buffer<BufferType::DEVICE_LOCAL>::Destroy(const vk::Device device) const
@@ -163,7 +219,7 @@ namespace Creepy{
     }
 
     template <>
-    void Buffer<BufferType::HOST_VISIBLE>::UploadData(const void* data, size_t dataSizeInByte) {
+    void Buffer<BufferType::HOST_VISIBLE>::UploadData(const void* data, size_t dataSizeInByte) const {
         std::println("Host Vi: {}, {}, {}", m_bufferInfo.memoryType, m_bufferInfo.offset, m_bufferInfo.size);
         
         if(dataSizeInByte > static_cast<size_t>(m_bufferInfo.size)){
@@ -175,7 +231,7 @@ namespace Creepy{
     }
 
     template <>
-    void Buffer<BufferType::HOST_COHERENT>::UploadData(const void* data, size_t dataSizeInByte) {
+    void Buffer<BufferType::HOST_COHERENT>::UploadData(const void* data, size_t dataSizeInByte) const {
         std::println("Host Co: {}, {}, {}", m_bufferInfo.memoryType, m_bufferInfo.offset, m_bufferInfo.size);
         if(dataSizeInByte > static_cast<size_t>(m_bufferInfo.size)){
             std::println("Data too big");
