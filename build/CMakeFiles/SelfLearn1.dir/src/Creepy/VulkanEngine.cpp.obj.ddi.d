@@ -582,4 +582,6 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanEngine.cpp.obj.ddi: \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/stdarg.h \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/_mingw_stdarg.h \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/imgui/imgui_impl_glfw.hpp \
- D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/imgui/imgui_impl_vulkan.hpp
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/imgui/imgui_impl_vulkan.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/Model.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/Mesh.hpp

@@ -11,6 +11,8 @@
 
 #include <glm/glm.hpp>
 
+#include <Creepy/Model.hpp>
+
 namespace Creepy {
 
     VulkanEngine::VulkanEngine() : m_width{600}, m_height{600}{
@@ -617,9 +619,13 @@ namespace Creepy {
 
     void VulkanEngine::createImageResources() {
         
-        m_colorImage = Image{m_logicalDevice, static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height), vk::Format::eR8G8B8A8Unorm, vk::ImageUsageFlagBits::eColorAttachment, vk::ImageAspectFlagBits::eColor};
+        m_colorImage = Image{m_logicalDevice, static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height), 
+            vk::Format::eR8G8B8A8Unorm, vk::ImageUsageFlagBits::eColorAttachment | vk::ImageUsageFlagBits::eTransferSrc 
+            | vk::ImageUsageFlagBits::eTransferDst | vk::ImageUsageFlagBits::eStorage
+            , vk::ImageAspectFlagBits::eColor};
 
-        m_depthImage = Image{m_logicalDevice, static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height), vk::Format::eD24UnormS8Uint, vk::ImageUsageFlagBits::eDepthStencilAttachment, vk::ImageAspectFlagBits::eDepth};
+        m_depthImage = Image{m_logicalDevice, static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height), 
+            vk::Format::eD24UnormS8Uint, vk::ImageUsageFlagBits::eDepthStencilAttachment, vk::ImageAspectFlagBits::eDepth};
 
         m_clearner.AddJob([this]{
             m_colorImage.Destroy(m_logicalDevice);
@@ -630,18 +636,8 @@ namespace Creepy {
     // Note(Creepy): All device local buffer must be upload data in begin()/end() command buffer block -> recording state
     void VulkanEngine::createBufferResources() {
 
-        constexpr float myDataTemp[16]{
-                1.0f, 2.0f, 3.0f, 4.0f, 5.0f, 
-                5.0f, 5.0f, 5.0f, 5.0f, 5.0f,
-                5.0f, 5.0f, 5.0f, 5.0f, 5.0f,
-                5.0f
-            };
-            
-        const Buffer<BufferType::DEVICE_LOCAL> sickBuffer{m_logicalDevice, sizeof(myDataTemp), vk::BufferUsageFlagBits::eTransferDst | vk::BufferUsageFlagBits::eVertexBuffer};
-        
-        sickBuffer.UploadData(m_logicalDevice, m_cmdPool, m_graphicQueue, myDataTemp, sizeof(myDataTemp));
+        Model sick{"./res/models/shiba.gltf", m_logicalDevice, m_cmdPool, m_graphicQueue};
 
-        sickBuffer.Destroy(m_logicalDevice);
 
         const std::array vertices{
             Vertex{.Position = glm::vec3{0.0f, -0.5f, 0.0f}, .Normal = glm::vec3{1.0f, 1.0f, 1.0f}},
@@ -656,6 +652,7 @@ namespace Creepy {
             m_triangleVertexBuffer.Destroy(m_logicalDevice);
         });
 
+        sick.Destroy(m_logicalDevice);
     }
 
     void VulkanEngine::draw() {

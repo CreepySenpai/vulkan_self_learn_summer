@@ -73,5 +73,23 @@ namespace Creepy {
     vk::Format Image::GetImageFormat() const {
         return m_imageFormat;
     }
+
+    vk::Extent2D Image::GetImageExtent() const {
+        return {static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height)};
+    }
     
+
+    void Image::CopyImage(const vk::CommandBuffer commandBuffer, const vk::Image srcImage, const vk::Image dstImage, const vk::Extent2D srcSize, const vk::Extent2D dstSize) {
+        vk::ImageBlit2 blitRegion{};
+        
+        
+        vk::BlitImageInfo2 blitInfo{};
+        blitInfo.srcImage = srcImage;
+        blitInfo.srcImageLayout = vk::ImageLayout::eTransferSrcOptimal;
+        blitInfo.dstImage = dstImage;
+        blitInfo.dstImageLayout = vk::ImageLayout::eTransferDstOptimal;
+        blitInfo.filter = vk::Filter::eLinear;
+        // blitInfo.
+        // commandBuffer.blitImage2()
+    }
 }

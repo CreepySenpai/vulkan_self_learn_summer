@@ -1,6 +1,10 @@
 ninja_dyndep_version = 1.0
 build CMakeFiles/SelfLearn1.dir/main.cpp.obj: dyndep
 
+build CMakeFiles/SelfLearn1.dir/src/Creepy/Mesh.cpp.obj: dyndep
+
+build CMakeFiles/SelfLearn1.dir/src/Creepy/Model.cpp.obj: dyndep
+
 build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanAllocator.cpp.obj: dyndep
 
 build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanBuffer.cpp.obj: dyndep
