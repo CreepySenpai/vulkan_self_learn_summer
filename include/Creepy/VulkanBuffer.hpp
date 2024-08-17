@@ -174,6 +174,10 @@ namespace Creepy {
                 return m_buffer.GetBufferSize();
             }
 
+            uint32_t GetBufferCount() const {
+                return static_cast<uint32_t>(this->GetBufferSize() / sizeof(T));
+            }
+
         private:
             Buffer<BufferType::DEVICE_LOCAL> m_buffer;
     };

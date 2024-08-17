@@ -3,26 +3,28 @@
 #include <vector>
 #include <vulkan/vulkan.hpp>
 
-struct DescriptorSet{
-    vk::DescriptorSet m_descriptorSet;
-    vk::DescriptorSetLayout m_descriptorSetLayout;
-};
+namespace Creepy {
+    struct DescriptorSet{
+        vk::DescriptorSet m_descriptorSet;
+        vk::DescriptorSetLayout m_descriptorSetLayout;
+    };
 
-class DescriptorSetBuilder{
-    public:
-        void AddBinding(const uint32_t binding, vk::DescriptorType type);
-        
-        void BuildDescriptorLayout(const vk::Device device, vk::ShaderStageFlags shaderStage);
+    class DescriptorSetBuilder{
+        public:
+            void AddBinding(const uint32_t binding, vk::DescriptorType type);
+            
+            void BuildDescriptorLayout(const vk::Device device, vk::ShaderStageFlags shaderStage);
 
-        DescriptorSet AllocateDescriptorSet(const vk::Device device, const vk::DescriptorPool descriptorPool);
-    private:
-        std::vector<vk::DescriptorSetLayoutBinding> m_bindings;
-        vk::DescriptorSetLayout m_descriptorSetLayout{};
-};
+            DescriptorSet AllocateDescriptorSet(const vk::Device device, const vk::DescriptorPool descriptorPool);
+        private:
+            std::vector<vk::DescriptorSetLayoutBinding> m_bindings;
+            vk::DescriptorSetLayout m_descriptorSetLayout{};
+    };
 
-class DescriptorWriter{
-    public:
+    class DescriptorWriter{
+        public:
 
-    private:
-        
-};
+        private:
+            
+    };
+}

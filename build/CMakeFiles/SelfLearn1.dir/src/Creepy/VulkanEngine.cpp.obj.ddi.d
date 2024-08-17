@@ -574,6 +574,7 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanEngine.cpp.obj.ddi: \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/x86_64-w64-mingw32/bits/c++io.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/fstream.tcc \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/VulkanShader.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/Debug.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/GLFW/glfw3.h \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/GL/gl.h \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/imgui/imgui.hpp \

@@ -7,14 +7,49 @@ namespace Creepy {
     Image::Image(const vk::Device device, uint32_t width, uint32_t height, vk::Format format, vk::ImageUsageFlags imageUsage, vk::ImageAspectFlags aspect)
         : m_width{width}, m_height{height}, m_imageFormat{format}
     {
+        this->createImage(device, imageUsage, aspect);
+    }
+
+    void Image::Destroy(const vk::Device device) const {
+        device.destroyImageView(m_imageView);
+        VulkanAllocator::ImageAllocator.destroyImage(m_image, m_imageLoc);
+    }
+
+    vk::Image Image::GetImage() const {
+        return m_image;
+    }
+
+    vk::ImageView Image::GetImageView() const {
+        return m_imageView;
+    }
+
+    vk::Format Image::GetImageFormat() const {
+        return m_imageFormat;
+    }
+
+    vk::Extent2D Image::GetImageExtent() const {
+        return {static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height)};
+    }
+
+    void Image::ReCreate(const vk::Device device, uint32_t width, uint32_t height, vk::Format format, vk::ImageUsageFlags imageUsage, vk::ImageAspectFlags aspect) {
+        std::println("Call Re Image: {} - {}", width, height);
+        m_width = width;
+        m_height = height;
+        m_imageFormat = format;
+        this->Destroy(device);
+        this->createImage(device, imageUsage, aspect);
+        std::println("Image Size: {} - {}", m_width, m_height);
+    }
+
+    void Image::createImage(const vk::Device device, vk::ImageUsageFlags imageUsage, vk::ImageAspectFlags aspect) {
         vk::ImageCreateInfo info{};
         info.flags = vk::ImageCreateFlags{};
         info.imageType = vk::ImageType::e2D;
-        info.extent.width = width;
-        info.extent.height = height;
+        info.extent.width = m_width;
+        info.extent.height = m_height;
         info.extent.depth = 1;
 
-        info.format = format;
+        info.format = m_imageFormat;
         info.tiling = vk::ImageTiling::eOptimal;
         info.arrayLayers = 1;
         info.mipLevels = 1;
@@ -42,7 +77,7 @@ namespace Creepy {
         
         vk::ImageViewCreateInfo imageViewInfo{};
         imageViewInfo.flags = vk::ImageViewCreateFlags{};
-        imageViewInfo.format = format;
+        imageViewInfo.format = m_imageFormat;
         imageViewInfo.image = m_image;
         imageViewInfo.viewType = vk::ImageViewType::e2D;
         imageViewInfo.subresourceRange.aspectMask = aspect;
@@ -64,24 +99,28 @@ namespace Creepy {
 
         m_imageView = imgViewRes.value;
     }
-
-    void Image::Destroy(const vk::Device device) const {
-        device.destroyImageView(m_imageView);
-        VulkanAllocator::ImageAllocator.destroyImage(m_image, m_imageLoc);
-    }
-
-    vk::Format Image::GetImageFormat() const {
-        return m_imageFormat;
-    }
-
-    vk::Extent2D Image::GetImageExtent() const {
-        return {static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height)};
-    }
     
 
     void Image::CopyImage(const vk::CommandBuffer commandBuffer, const vk::Image srcImage, const vk::Image dstImage, const vk::Extent2D srcSize, const vk::Extent2D dstSize) {
         vk::ImageBlit2 blitRegion{};
-        
+        blitRegion.srcOffsets.at(1).x = srcSize.width;
+        blitRegion.srcOffsets.at(1).y = srcSize.height;
+        blitRegion.srcOffsets.at(1).z = 1;
+
+        blitRegion.dstOffsets.at(1).x = dstSize.width;
+        blitRegion.dstOffsets.at(1).y = dstSize.height;
+        blitRegion.dstOffsets.at(1).z = 1;
+
+        // TODO: Handle More Image Type
+        blitRegion.srcSubresource.aspectMask = vk::ImageAspectFlagBits::eColor;
+        blitRegion.srcSubresource.baseArrayLayer = 0;
+        blitRegion.srcSubresource.mipLevel = 0;
+        blitRegion.srcSubresource.layerCount = 1;
+
+        blitRegion.dstSubresource.aspectMask = vk::ImageAspectFlagBits::eColor;
+        blitRegion.dstSubresource.baseArrayLayer = 0;
+        blitRegion.dstSubresource.mipLevel = 0;
+        blitRegion.dstSubresource.layerCount = 1;
         
         vk::BlitImageInfo2 blitInfo{};
         blitInfo.srcImage = srcImage;
@@ -89,7 +128,9 @@ namespace Creepy {
         blitInfo.dstImage = dstImage;
         blitInfo.dstImageLayout = vk::ImageLayout::eTransferDstOptimal;
         blitInfo.filter = vk::Filter::eLinear;
-        // blitInfo.
-        // commandBuffer.blitImage2()
+        blitInfo.regionCount = 1;
+        blitInfo.pRegions = &blitRegion;
+
+        commandBuffer.blitImage2(blitInfo);
     }
 }

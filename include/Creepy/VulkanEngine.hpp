@@ -48,10 +48,12 @@ namespace Creepy {
             void createImageResources();
             void createBufferResources();
 
+            const VulkanFrame& getCurrentRenderFrame() const;
         private:
             void draw();
-            void drawBackground();
-
+            void drawBackground(const vk::CommandBuffer currentCommandBuffer, const vk::Image image);
+            void drawModels(const vk::CommandBuffer currentCommandBuffer, const vk::Image colorImage, const vk::ImageView colorImageView, const vk::Image depthImage, const vk::ImageView depthImageView);
+            void drawImGui(const vk::CommandBuffer currentCommandBuffer, const vk::Image colorImage, const vk::ImageView colorImageView);
         private:
             int m_width{}, m_height{};
             GLFWwindow* m_window{nullptr};
@@ -77,6 +79,7 @@ namespace Creepy {
             Image m_colorImage, m_depthImage;
 
             VertexBuffer m_triangleVertexBuffer;
+            IndexBuffer m_triangleIndexBuffer;
 
             // Pipeline
             Pipeline m_backgroundPipeline{};

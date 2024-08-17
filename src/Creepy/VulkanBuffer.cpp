@@ -122,6 +122,7 @@ namespace Creepy{
             std::println("Failed Wait Submit Data");
         }
 
+        std::println("Call Free Cmd");
         device.destroyFence(submitDoneFence);
         device.freeCommandBuffers(commandPool, tempCommandBuffer);
         stagingBuffer.Destroy(device);

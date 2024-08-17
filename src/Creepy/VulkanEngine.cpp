@@ -3,6 +3,7 @@
 #include <Creepy/VulkanUtils.hpp>
 #include <Creepy/VulkanAllocator.hpp>
 #include <Creepy/VulkanShader.hpp>
+#include <Creepy/Debug.hpp>
 
 #include <GLFW/glfw3.h>
 #include <imgui/imgui.hpp>
@@ -48,6 +49,7 @@ namespace Creepy {
         while(!glfwWindowShouldClose(m_window)){
 
             glfwGetWindowSize(m_window, &m_width, &m_height);
+
             glfwPollEvents();
 
             // Draw Here
@@ -239,8 +241,8 @@ namespace Creepy {
         queueInfo.queueCount = static_cast<uint32_t>(totalCreateQueues.size());
         queueInfo.queueFamilyIndex = 0;
         queueInfo.pQueuePriorities = queuePriorities;
-
-        vk::StructureChain<vk::DeviceCreateInfo, vk::PhysicalDeviceVulkan12Features, vk::PhysicalDeviceVulkan13Features> deviceChain;
+        
+        vk::StructureChain<vk::DeviceCreateInfo, vk::PhysicalDeviceFeatures2, vk::PhysicalDeviceVulkan12Features, vk::PhysicalDeviceVulkan13Features> deviceChain;
         
         auto& deviceInfo = deviceChain.get<vk::DeviceCreateInfo>();
         deviceInfo.flags = vk::DeviceCreateFlags{};
@@ -252,6 +254,8 @@ namespace Creepy {
         deviceInfo.pQueueCreateInfos = &queueInfo;
 
         // Enable Features
+        auto& vulkanCoreFeatures = deviceChain.get<vk::PhysicalDeviceFeatures2>();
+        vulkanCoreFeatures.features.samplerAnisotropy = vk::True;
         auto& vulkan12Features = deviceChain.get<vk::PhysicalDeviceVulkan12Features>();
         vulkan12Features.bufferDeviceAddress = vk::True;
         auto& vulkan13Features = deviceChain.get<vk::PhysicalDeviceVulkan13Features>();
@@ -392,12 +396,6 @@ namespace Creepy {
 
             frame.m_commandBuffer = res.value.at(0);
         }
-
-        m_clearner.AddJob([this]{
-            for(auto& frame : m_renderFrames){
-                m_logicalDevice.freeCommandBuffers(m_cmdPool, frame.m_commandBuffer);
-            }
-        });
     }
 
 
@@ -418,6 +416,7 @@ namespace Creepy {
 
         m_clearner.AddJob([this]{
             for(auto& frame : m_renderFrames){
+                m_logicalDevice.freeCommandBuffers(m_cmdPool, frame.m_commandBuffer);
                 m_logicalDevice.destroySemaphore(frame.m_imageAvailableSemaphore);
                 m_logicalDevice.destroySemaphore(frame.m_imageRenderedSemaphore);
                 m_logicalDevice.destroyFence(frame.m_renderCompleteFence);
@@ -465,8 +464,9 @@ namespace Creepy {
         io.ConfigFlags = ImGuiConfigFlags_DockingEnable;
 
         ImGui::StyleColorsDark();
-
-        ImGui_ImplGlfw_InitForVulkan(m_window, false);
+        
+        // Note(Creepy): Enable Callback unless u suck
+        ImGui_ImplGlfw_InitForVulkan(m_window, true);
 
         // Big Pool For ImGui
         constexpr std::array imguiDescriptorPoolSizes{
@@ -565,6 +565,7 @@ namespace Creepy {
         backgroundState.InitPipelineLayout({}, {});
         backgroundState.InitShaderStates(vertexShader.GetShaderModule(), fragmentShader.GetShaderModule());
         backgroundState.InitVertexInputState(vertexBindings, vertexAttributes);
+        // backgroundState.InitVertexInputState({}, {});
         backgroundState.InitInputAssemblyState(vk::PrimitiveTopology::eTriangleList);
         backgroundState.InitViewportState(static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height));
         backgroundState.InitRasterizationState(vk::PolygonMode::eFill, vk::CullModeFlagBits::eNone, vk::FrontFace::eClockwise);
@@ -572,14 +573,17 @@ namespace Creepy {
         backgroundState.InitDepthStencilState(vk::CompareOp::eLess);
         backgroundState.InitColorBlendState();
         backgroundState.InitDynamicState(dynamicStates);
+        backgroundState.DisableBlending();
+        backgroundState.DisableDepthTest();
 
         const std::array colorAttachmentFormats{
-            m_colorImage.GetImageFormat(),
-            //  m_swapchainImageFormat
+            // m_colorImage.GetImageFormat(),
+             m_swapchain.GetSwapchainImageFormat()
         };
 
         //TODO: use images and depth format
-        backgroundState.InitRenderingInfo(colorAttachmentFormats, m_depthImage.GetImageFormat());
+        // backgroundState.InitRenderingInfo(colorAttachmentFormats, m_depthImage.GetImageFormat());
+        backgroundState.InitRenderingInfo(colorAttachmentFormats, vk::Format::eUndefined);
 
         m_backgroundPipeline.Build(m_logicalDevice, backgroundState);
 
@@ -600,6 +604,14 @@ namespace Creepy {
         m_logicalDevice.waitIdle();
         
         m_isSwapchainResizing = true;
+
+        glfwGetWindowSize(m_window, &m_width, &m_height);
+
+        while(m_width == 0 || m_height == 0){
+            glfwGetWindowSize(m_window, &m_width, &m_height);
+            glfwWaitEvents();
+        }
+
         // auto&& surfaceCap = m_physicalDevice.getSurfaceCapabilitiesKHR(m_surface).value;
         auto&& surfaceFormat = chooseSurfaceFormat(m_physicalDevice, m_surface);
 
@@ -608,6 +620,11 @@ namespace Creepy {
         {static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height)}, 
         choosePresentMode(m_physicalDevice, m_surface), 
          m_physicalDevice.getSurfaceCapabilitiesKHR(m_surface).value);
+
+        m_depthImage.ReCreate(m_logicalDevice, static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height), 
+        vk::Format::eD24UnormS8Uint, vk::ImageUsageFlagBits::eDepthStencilAttachment, vk::ImageAspectFlagBits::eDepth);
+
+        m_logicalDevice.waitIdle();
 
         m_isSwapchainResizing = false;
     }
@@ -636,39 +653,58 @@ namespace Creepy {
     // Note(Creepy): All device local buffer must be upload data in begin()/end() command buffer block -> recording state
     void VulkanEngine::createBufferResources() {
 
-        Model sick{"./res/models/shiba.gltf", m_logicalDevice, m_cmdPool, m_graphicQueue};
-
+        // Model sick{"./res/models/shiba.gltf", m_logicalDevice, m_cmdPool, m_graphicQueue};
+        // sick.Destroy(m_logicalDevice);
 
         const std::array vertices{
-            Vertex{.Position = glm::vec3{0.0f, -0.5f, 0.0f}, .Normal = glm::vec3{1.0f, 1.0f, 1.0f}},
-            Vertex{.Position = glm::vec3{0.5f, 0.5f, 0.0f}, .Normal = glm::vec3{0.0f, 1.0f, 1.0f}},
+            Vertex{.Position = glm::vec3{-0.5f, -0.5f, 0.0f}, .Normal = glm::vec3{1.0f, 0.0f, 0.0f}},
+            Vertex{.Position = glm::vec3{0.5f, 0.5f, 0.0f}, .Normal = glm::vec3{0.0f, 1.0f, 0.0f}},
             Vertex{.Position = glm::vec3{-0.5f, 0.5f, 0.0f}, .Normal = glm::vec3{0.0f, 0.0f, 1.0f}},
+            Vertex{.Position = glm::vec3{0.5f, -0.5f, 0.0f}, .Normal = glm::vec3{1.0f, 0.0f, 0.0f}},
         };
 
         m_triangleVertexBuffer = VertexBuffer{m_logicalDevice, vertices.size() * sizeof(Vertex)};
         m_triangleVertexBuffer.UploadData(m_logicalDevice, m_cmdPool, m_graphicQueue, vertices);
 
+        const std::array indices{0u, 2u, 1u, 0u, 3u, 1u};
+
+        m_triangleIndexBuffer = IndexBuffer{m_logicalDevice, indices.size() * sizeof(uint32_t)};
+        m_triangleIndexBuffer.UploadData(m_logicalDevice, m_cmdPool, m_graphicQueue, indices);
+
+        std::println("Index COunt: {}", m_triangleIndexBuffer.GetBufferCount());
         m_clearner.AddJob([this]{
             m_triangleVertexBuffer.Destroy(m_logicalDevice);
+            m_triangleIndexBuffer.Destroy(m_logicalDevice);
         });
-
-        sick.Destroy(m_logicalDevice);
     }
 
     void VulkanEngine::draw() {
-        auto&& currentCommandBuffer = m_renderFrames.at(m_currentFrame).m_commandBuffer;
-        auto&& currentFence = m_renderFrames.at(m_currentFrame).m_renderCompleteFence;
-        auto&& currentImageAvailableSemaphore = m_renderFrames.at(m_currentFrame).m_imageAvailableSemaphore;
-        auto&& currentImageRenderedSemaphore = m_renderFrames.at(m_currentFrame).m_imageRenderedSemaphore;
+        // Debug call
+        Debug::BeginFrame();
+
+        Debug::DrawFrame();
+
+        Debug::EndFrame();
+
+        // std::println("Begin Draw {}", m_currentFrame);
+        auto currentCommandBuffer = getCurrentRenderFrame().m_commandBuffer;
+        auto currentFence = getCurrentRenderFrame().m_renderCompleteFence;
+        auto currentImageAvailableSemaphore = getCurrentRenderFrame().m_imageAvailableSemaphore;
+        auto currentImageRenderedSemaphore = getCurrentRenderFrame().m_imageRenderedSemaphore;
         
 
-        m_logicalDevice.waitForFences(currentFence, vk::False, std::numeric_limits<uint64_t>::max());
+        auto waitPreFrameDone = m_logicalDevice.waitForFences(currentFence, vk::True, std::numeric_limits<uint64_t>::max());
+
+        while(waitPreFrameDone != vk::Result::eSuccess){
+            std::println("Error: {}", std::to_underlying(waitPreFrameDone));
+            waitPreFrameDone = m_logicalDevice.waitForFences(currentFence, vk::True, std::numeric_limits<uint64_t>::max());
+        }
+
         m_logicalDevice.resetFences(currentFence);
 
         auto waitRes = m_logicalDevice.acquireNextImageKHR(m_swapchain.GetSwapchainHandle(), std::numeric_limits<uint64_t>::max(), currentImageAvailableSemaphore);
         
         if(waitRes.result != vk::Result::eSuccess){
-            //TODO: Need to recreate swapchain
             if(waitRes.result == vk::Result::eErrorOutOfDateKHR){
                 this->recreateSwapchain();
             }
@@ -676,66 +712,73 @@ namespace Creepy {
 
         const uint32_t imageIndex{waitRes.value};
         const auto& currentSwapchainImage = m_swapchain.GetSwapchainImages().at(imageIndex);
+        const auto& currentSwapchainImageView = m_swapchain.GetSwapchainImageViews().at(imageIndex);
 
+        currentCommandBuffer.reset();
         vk::CommandBufferBeginInfo beginCmdInfo{};
         beginCmdInfo.flags = vk::CommandBufferUsageFlagBits::eOneTimeSubmit;
         currentCommandBuffer.begin(beginCmdInfo);
 
         // Begin render pass
-        vk::RenderingInfo dynamicRenderInfo{};
-        dynamicRenderInfo.flags = vk::RenderingFlags{};
-        // dynamicRenderInfo.
 
         // Draw Call Here
 
         //TODO: Change
         imageLayoutTransition(currentCommandBuffer, currentSwapchainImage, 
-            vk::ImageAspectFlagBits::eColor, vk::ImageLayout::eUndefined, vk::ImageLayout::eGeneral, 
-            vk::AccessFlagBits2::eMemoryWrite, vk::AccessFlagBits2::eMemoryRead | vk::AccessFlagBits2::eMemoryRead,
-            vk::PipelineStageFlagBits2::eAllCommands, vk::PipelineStageFlagBits2::eAllCommands);
-
-        vk::ClearColorValue clearValue{1.0f, 0.0f, 0.0f, 1.0f};
-
-        vk::ImageSubresourceRange someTest{};
-        someTest.aspectMask = vk::ImageAspectFlagBits::eColor;
-        someTest.baseArrayLayer = 0;
-        someTest.baseMipLevel = 0;
-        someTest.levelCount = vk::RemainingMipLevels;
-        someTest.layerCount = vk::RemainingArrayLayers;
+            vk::ImageAspectFlagBits::eColor, vk::ImageLayout::eUndefined, vk::ImageLayout::eColorAttachmentOptimal, 
+            vk::AccessFlagBits2::eMemoryWrite, vk::AccessFlagBits2::eMemoryRead | vk::AccessFlagBits2::eMemoryWrite,
+            vk::PipelineStageFlagBits2::eColorAttachmentOutput, vk::PipelineStageFlagBits2::eColorAttachmentOutput);
         
-        currentCommandBuffer.clearColorImage(currentSwapchainImage, vk::ImageLayout::eGeneral, clearValue, someTest);
+        // imageLayoutTransition(currentCommandBuffer, m_depthImage.GetImage(), vk::ImageAspectFlagBits::eDepth | vk::ImageAspectFlagBits::eStencil, 
+        //     vk::ImageLayout::eUndefined, vk::ImageLayout::eDepthStencilAttachmentOptimal, 
+        //     vk::AccessFlagBits2::eMemoryWrite, vk::AccessFlagBits2::eMemoryWrite | vk::AccessFlagBits2::eMemoryRead, 
+        //     vk::PipelineStageFlagBits2::eEarlyFragmentTests | vk::PipelineStageFlagBits2::eLateFragmentTests,
+        //     vk::PipelineStageFlagBits2::eEarlyFragmentTests | vk::PipelineStageFlagBits2::eLateFragmentTests);
 
+        // this->drawBackground(currentCommandBuffer, currentSwapchainImage);
+
+        auto sus = m_depthImage.GetImageExtent();
+        vk::Extent2D renderArea{std::min((uint32_t)m_width, sus.width), std::min((uint32_t)m_height, sus.height)};
+        this->drawModels(currentCommandBuffer, currentSwapchainImage, currentSwapchainImageView, m_depthImage.GetImage(), m_depthImage.GetImageView());
+
+        this->drawImGui(currentCommandBuffer, currentSwapchainImage, currentSwapchainImageView);
         // We cannot call image layout transition in here
-        // currentCommandBuffer.beginRendering(dynamicRenderInfo);
-
-        // currentCommandBuffer.endRendering();
 
          // End Draw Call
         imageLayoutTransition(currentCommandBuffer, currentSwapchainImage, 
-            vk::ImageAspectFlagBits::eColor, vk::ImageLayout::eGeneral, vk::ImageLayout::ePresentSrcKHR, 
+            vk::ImageAspectFlagBits::eColor, vk::ImageLayout::eColorAttachmentOptimal, vk::ImageLayout::ePresentSrcKHR, 
             vk::AccessFlagBits2::eMemoryRead, vk::AccessFlagBits2::eMemoryRead | vk::AccessFlagBits2::eMemoryWrite,
-            vk::PipelineStageFlagBits2::eAllCommands, vk::PipelineStageFlagBits2::eBottomOfPipe);
+            vk::PipelineStageFlagBits2::eColorAttachmentOutput, vk::PipelineStageFlagBits2::eBottomOfPipe);
 
         currentCommandBuffer.end();
 
+        vk::CommandBufferSubmitInfo cmbSubmitInfo{};
+        cmbSubmitInfo.commandBuffer = currentCommandBuffer;
+        cmbSubmitInfo.deviceMask = 0;
 
-        constexpr std::array<vk::PipelineStageFlags, 1> waitStages{
-            vk::PipelineStageFlagBits::eColorAttachmentOutput
-        };
+        vk::SemaphoreSubmitInfo waitSemInfo{};
+        waitSemInfo.semaphore = currentImageAvailableSemaphore;
+        waitSemInfo.value = 1;
+        waitSemInfo.deviceIndex = 0;
+        waitSemInfo.stageMask = vk::PipelineStageFlagBits2::eColorAttachmentOutput;
 
-        vk::SubmitInfo submitInfo{};
-        submitInfo.commandBufferCount = 1;
-        submitInfo.pCommandBuffers = &currentCommandBuffer;
-        submitInfo.waitSemaphoreCount = 1;
-        submitInfo.pWaitSemaphores = &currentImageAvailableSemaphore;
-        submitInfo.signalSemaphoreCount = 1;
-        submitInfo.pSignalSemaphores = &currentImageRenderedSemaphore;
-        submitInfo.pWaitDstStageMask = waitStages.data();
-        
-        auto submitRes = m_presentQueue.submit(submitInfo, currentFence);
+        vk::SemaphoreSubmitInfo signalSemInfo{};
+        signalSemInfo.semaphore = currentImageRenderedSemaphore;
+        signalSemInfo.value = 1;
+        signalSemInfo.deviceIndex = 0;
+        signalSemInfo.stageMask = vk::PipelineStageFlagBits2::eAllGraphics;
+
+        vk::SubmitInfo2 submitInfo2{};
+        submitInfo2.waitSemaphoreInfoCount = 1;
+        submitInfo2.pWaitSemaphoreInfos = &waitSemInfo;
+        submitInfo2.signalSemaphoreInfoCount =1;
+        submitInfo2.pSignalSemaphoreInfos = &signalSemInfo;
+        submitInfo2.commandBufferInfoCount = 1;
+        submitInfo2.pCommandBufferInfos = &cmbSubmitInfo;
+
+        auto submitRes = m_presentQueue.submit2(submitInfo2, currentFence);
 
         if(submitRes != vk::Result::eSuccess){
-            //TODO: Recreate swapchain
             if(submitRes == vk::Result::eErrorOutOfDateKHR){
                 this->recreateSwapchain();
             }
@@ -744,6 +787,7 @@ namespace Creepy {
         const std::array presentSwapchains{
             m_swapchain.GetSwapchainHandle()
         };
+
         vk::PresentInfoKHR presentInfo{};
         presentInfo.swapchainCount = static_cast<uint32_t>(presentSwapchains.size());
         presentInfo.pSwapchains = presentSwapchains.data();
@@ -755,14 +799,101 @@ namespace Creepy {
         auto presentRes = m_presentQueue.presentKHR(presentInfo);
 
         if(presentRes != vk::Result::eSuccess){
-            //TODO: Recreate swapchain
             if(presentRes == vk::Result::eErrorOutOfDateKHR){
                 this->recreateSwapchain();
             }
         }
+
+        // std::println("End Draw {}", m_currentFrame);
     }
 
-    void VulkanEngine::drawBackground() {
+    void VulkanEngine::drawBackground(const vk::CommandBuffer currentCommandBuffer, const vk::Image image) {
+        // vk::ClearColorValue clearValue{1.0f, 0.0f, 0.0f, 1.0f};
         
+        // vk::ImageSubresourceRange someTest{};
+        // someTest.aspectMask = vk::ImageAspectFlagBits::eColor;
+        // someTest.baseArrayLayer = 0;
+        // someTest.baseMipLevel = 0;
+        // someTest.levelCount = vk::RemainingMipLevels;
+        // someTest.layerCount = vk::RemainingArrayLayers;
+        
+        // //TODO: Add clear depth
+        // currentCommandBuffer.clearColorImage(image, vk::ImageLayout::eColorAttachmentOptimal, clearValue, someTest);
+    }
+
+    void VulkanEngine::drawModels(const vk::CommandBuffer currentCommandBuffer, const vk::Image colorImage, const vk::ImageView colorImageView, const vk::Image depthImage, const vk::ImageView depthImageView) {
+        vk::RenderingAttachmentInfo colorAttachmentInfo{};
+        colorAttachmentInfo.clearValue.color = {0.0f, 1.0f, 0.0f, 1.0f};
+        colorAttachmentInfo.imageLayout = vk::ImageLayout::eColorAttachmentOptimal;
+        colorAttachmentInfo.imageView = colorImageView;
+        colorAttachmentInfo.loadOp = vk::AttachmentLoadOp::eClear;
+        colorAttachmentInfo.storeOp = vk::AttachmentStoreOp::eStore;
+
+        vk::RenderingAttachmentInfo depthAttachmentInfo{};
+        depthAttachmentInfo.clearValue.depthStencil.depth = 1.0f;
+        depthAttachmentInfo.clearValue.depthStencil.stencil = 0.0f;
+        depthAttachmentInfo.imageLayout = vk::ImageLayout::eDepthStencilAttachmentOptimal;
+        depthAttachmentInfo.imageView = depthImageView;
+        depthAttachmentInfo.loadOp = vk::AttachmentLoadOp::eClear;
+        depthAttachmentInfo.storeOp = vk::AttachmentStoreOp::eStore;
+        
+        
+        vk::RenderingInfo dynamicRenderInfo{};
+        dynamicRenderInfo.flags = vk::RenderingFlags{};
+        dynamicRenderInfo.layerCount = 1;
+        dynamicRenderInfo.colorAttachmentCount = 1;
+        dynamicRenderInfo.pColorAttachments = &colorAttachmentInfo;
+        // dynamicRenderInfo.pDepthAttachment = &depthAttachmentInfo;
+        dynamicRenderInfo.renderArea = vk::Rect2D{{0, 0}, {static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height)}};
+
+        currentCommandBuffer.beginRendering(dynamicRenderInfo);
+
+        // Draw Call
+
+        const vk::Viewport viewPort{0.0f, 0.0f, static_cast<float>(m_width), static_cast<float>(m_height), 0.0f, 1.0f};
+        currentCommandBuffer.setViewport(0, viewPort);
+
+        const vk::Rect2D scissor{{0, 0}, {static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height)}};
+
+        currentCommandBuffer.setScissor(0, scissor);
+    
+        currentCommandBuffer.bindPipeline(vk::PipelineBindPoint::eGraphics, m_backgroundPipeline.GetPipeline());
+
+        constexpr std::array<uint64_t, 1> offsets{0};
+
+        currentCommandBuffer.bindVertexBuffers(0, m_triangleVertexBuffer.GetBuffer(), offsets);
+        currentCommandBuffer.bindIndexBuffer(m_triangleIndexBuffer.GetBuffer(), 0, vk::IndexType::eUint32);
+
+        // currentCommandBuffer.draw(3, 1, 0, 0);
+        
+        currentCommandBuffer.drawIndexed(m_triangleIndexBuffer.GetBufferCount(), 1, 0, 0, 0);
+
+        currentCommandBuffer.endRendering();
+    }
+
+    void VulkanEngine::drawImGui(const vk::CommandBuffer currentCommandBuffer, const vk::Image colorImage, const vk::ImageView colorImageView) {
+        vk::RenderingAttachmentInfo colorAttachmentInfo{};
+        colorAttachmentInfo.loadOp = vk::AttachmentLoadOp::eLoad;
+        colorAttachmentInfo.storeOp = vk::AttachmentStoreOp::eStore;
+        colorAttachmentInfo.imageView = colorImageView;
+        colorAttachmentInfo.imageLayout = vk::ImageLayout::eColorAttachmentOptimal;
+        
+        
+        vk::RenderingInfo dynamicRenderInfo{};
+        dynamicRenderInfo.flags = vk::RenderingFlags{};
+        dynamicRenderInfo.layerCount = 1;
+        dynamicRenderInfo.colorAttachmentCount = 1;
+        dynamicRenderInfo.pColorAttachments = &colorAttachmentInfo;
+        dynamicRenderInfo.renderArea = vk::Rect2D{{0u, 0u}, {static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height)}};
+
+        currentCommandBuffer.beginRendering(dynamicRenderInfo);
+
+        ImGui_ImplVulkan_RenderDrawData(ImGui::GetDrawData(), currentCommandBuffer);
+
+        currentCommandBuffer.endRendering();
+    }
+
+    const VulkanFrame& VulkanEngine::getCurrentRenderFrame() const {
+        return m_renderFrames.at(m_currentFrame % m_totalFrames);
     }
 }
