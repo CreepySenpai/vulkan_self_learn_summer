@@ -38,6 +38,8 @@ namespace Creepy {
         this->createResources();
 
         this->createPipelines();
+
+        this->submitDataBeforeDraw();
     }
 
     VulkanEngine::~VulkanEngine(){
@@ -536,7 +538,11 @@ namespace Creepy {
     }
 
     void VulkanEngine::createDescriptorSets() {
+        DescriptorSetBuilder builder{};
+        builder.AddBinding(0, vk::DescriptorType::eCombinedImageSampler);
+        builder.BuildDescriptorLayout(m_logicalDevice, vk::ShaderStageFlagBits::eFragment);
 
+        m_triangleDescriptorSet = builder.AllocateDescriptorSet(m_logicalDevice, m_descriptorPool);
     }
 
     void VulkanEngine::createPipelines() {
@@ -664,17 +670,31 @@ namespace Creepy {
         };
 
         m_triangleVertexBuffer = VertexBuffer{m_logicalDevice, vertices.size() * sizeof(Vertex)};
+
+        // m_submitter.AddToSubmit([&, this](const vk::CommandBuffer commandBuffer){
+        //     m_triangleVertexBuffer.UploadData(m_logicalDevice, commandBuffer, vertices);
+        // });
+
         m_triangleVertexBuffer.UploadData(m_logicalDevice, m_cmdPool, m_graphicQueue, vertices);
 
         const std::array indices{0u, 2u, 1u, 0u, 3u, 1u};
 
         m_triangleIndexBuffer = IndexBuffer{m_logicalDevice, indices.size() * sizeof(uint32_t)};
+
+        // m_submitter.AddToSubmit([&, this](const vk::CommandBuffer commandBuffer){
+        //     m_triangleIndexBuffer.UploadData(m_logicalDevice, commandBuffer, indices);
+        // });
+
         m_triangleIndexBuffer.UploadData(m_logicalDevice, m_cmdPool, m_graphicQueue, indices);
 
         std::println("Index COunt: {}", m_triangleIndexBuffer.GetBufferCount());
+
+        m_shibaTexture.LoadTexture("./res/textures/shiba.png", m_logicalDevice, m_cmdPool, m_graphicQueue);
+
         m_clearner.AddJob([this]{
             m_triangleVertexBuffer.Destroy(m_logicalDevice);
             m_triangleIndexBuffer.Destroy(m_logicalDevice);
+            m_shibaTexture.Destroy(m_logicalDevice);
         });
     }
 
@@ -891,6 +911,60 @@ namespace Creepy {
         ImGui_ImplVulkan_RenderDrawData(ImGui::GetDrawData(), currentCommandBuffer);
 
         currentCommandBuffer.endRendering();
+    }
+
+    void VulkanEngine::submitDataBeforeDraw() {
+
+        if(m_submitter.GetCount() == 0){
+            return;
+        }
+
+        // vk::CommandBufferAllocateInfo allocInfo{};
+        // allocInfo.commandPool = m_cmdPool;
+        // allocInfo.level = vk::CommandBufferLevel::ePrimary;
+        // allocInfo.commandBufferCount = static_cast<uint32_t>(m_submitter.GetCount());
+        
+        // auto submitCommandBuffers = m_logicalDevice.allocateCommandBuffers(allocInfo).value;
+
+        // vk::CommandBufferBeginInfo beginInfo{};
+        // beginInfo.flags = vk::CommandBufferUsageFlagBits::eOneTimeSubmit;
+        
+        // std::println("Prepare {} to submit", submitCommandBuffers.size());
+
+        // for(uint32_t i{}; auto commandBuffer : submitCommandBuffers){
+        //     commandBuffer.begin(beginInfo);
+
+        //     m_submitter.Submit(i, commandBuffer);
+
+        //     commandBuffer.end();
+        //     ++i;
+        // }
+
+        // vk::FenceCreateInfo fenceInfo{};
+        // fenceInfo.flags = vk::FenceCreateFlags{};
+        
+        // auto waitResourcesUploaded = m_logicalDevice.createFence(fenceInfo).value;
+
+        // vk::SubmitInfo submitInfo{};
+        // submitInfo.commandBufferCount = static_cast<uint32_t>(submitCommandBuffers.size());
+        // submitInfo.pCommandBuffers = submitCommandBuffers.data();
+        
+        // auto res = m_graphicQueue.submit(submitInfo, waitResourcesUploaded);
+
+        // if(res != vk::Result::eSuccess){
+        //     std::println("Failed Upload Resources Before Draw");
+        // }
+
+        // res = m_logicalDevice.waitForFences(waitResourcesUploaded, vk::True, std::numeric_limits<uint64_t>::max());
+
+        // if(res != vk::Result::eSuccess){
+        //     std::println("Failed Upload Resources Before Draw");
+        // }
+
+        // m_logicalDevice.destroyFence(waitResourcesUploaded);
+        // m_logicalDevice.freeCommandBuffers(m_cmdPool, submitCommandBuffers);
+
+        // std::println("All Resources Uploaded");
     }
 
     const VulkanFrame& VulkanEngine::getCurrentRenderFrame() const {

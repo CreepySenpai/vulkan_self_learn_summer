@@ -10,6 +10,8 @@
 #include "VulkanBuffer.hpp"
 #include "VulkanFrame.hpp"
 #include "VulkanSwapchain.hpp"
+#include "VulkanDescriptor.hpp"
+#include "Texture.hpp"
 
 struct GLFWwindow;
 
@@ -47,7 +49,8 @@ namespace Creepy {
             void createResources();
             void createImageResources();
             void createBufferResources();
-
+            
+            void submitDataBeforeDraw();
             const VulkanFrame& getCurrentRenderFrame() const;
         private:
             void draw();
@@ -74,6 +77,7 @@ namespace Creepy {
             std::vector<VulkanFrame> m_renderFrames;
 
             vk::DescriptorPool m_descriptorPool;
+            DescriptorSet m_triangleDescriptorSet;
             // Resources
 
             Image m_colorImage, m_depthImage;
@@ -86,6 +90,9 @@ namespace Creepy {
 
             vma::Allocator m_allocator;
             VulkanJobSystem m_clearner;
+            VulkanCommandBufferSubmitData m_submitter;
+
+            Texture m_shibaTexture;
 
             //TODO: Use atomic
             bool m_isSwapchainResizing{false};

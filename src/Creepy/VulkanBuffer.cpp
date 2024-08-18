@@ -1,6 +1,7 @@
 #include <cstring>
 #include <Creepy/VulkanBuffer.hpp>
 #include <Creepy/Vertex.hpp>
+#include <Creepy/VulkanUtils.hpp>
 
 namespace Creepy{
 
@@ -84,47 +85,14 @@ namespace Creepy{
         const Buffer<BufferType::HOST_VISIBLE> stagingBuffer{device, dataSizeInByte, vk::BufferUsageFlagBits::eTransferSrc};
         stagingBuffer.UploadData(data, dataSizeInByte);
 
-        vk::CommandBufferAllocateInfo allocInfo{};
-        allocInfo.commandPool = commandPool;
-        allocInfo.commandBufferCount = 1;
-        allocInfo.level = vk::CommandBufferLevel::ePrimary;
-
-        auto tempCommandBuffer = device.allocateCommandBuffers(allocInfo).value.at(0);
-
-        vk::CommandBufferBeginInfo beginInfo{};
-        beginInfo.flags = vk::CommandBufferUsageFlagBits::eOneTimeSubmit;
-        
-        tempCommandBuffer.begin(beginInfo);
+        auto tempCommandBuffer = BeginOneTimeCommandBuffer(device, commandPool);
 
         const vk::BufferCopy copyInfo{0, 0, dataSizeInByte};
 
         tempCommandBuffer.copyBuffer(stagingBuffer.GetBuffer(), m_buffer, copyInfo);
 
-        tempCommandBuffer.end();
+        EndOneTimeCommandBuffer(device, commandPool, tempCommandBuffer, queue);
 
-        vk::FenceCreateInfo fenceInfo{};
-        fenceInfo.flags = vk::FenceCreateFlags{};
-        auto submitDoneFence = device.createFence(fenceInfo).value;
-
-        vk::SubmitInfo submitInfo{};
-        submitInfo.commandBufferCount = 1;
-        submitInfo.pCommandBuffers = &tempCommandBuffer;
-        
-        auto res = queue.submit(submitInfo, submitDoneFence);
-
-        if(res != vk::Result::eSuccess){
-            std::println("Failed Submit Data");
-        }
-
-        res = device.waitForFences(submitDoneFence, vk::False, std::numeric_limits<uint64_t>::max());
-
-        if(res != vk::Result::eSuccess){
-            std::println("Failed Wait Submit Data");
-        }
-
-        std::println("Call Free Cmd");
-        device.destroyFence(submitDoneFence);
-        device.freeCommandBuffers(commandPool, tempCommandBuffer);
         stagingBuffer.Destroy(device);
     }
 

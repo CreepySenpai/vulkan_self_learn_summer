@@ -23,4 +23,23 @@ namespace Creepy {
             std::vector<std::function<void()>> m_jobs;
     };
 
+
+    class VulkanCommandBufferSubmitData{
+        public:
+            constexpr void AddToSubmit(std::function<void(const vk::CommandBuffer)>&& submit){
+                m_submits.emplace_back(std::forward<std::function<void(const vk::CommandBuffer)>&&>(submit));
+            }
+
+            constexpr size_t GetCount() noexcept{
+                return m_submits.size();
+            }
+
+            constexpr void Submit(uint32_t index, const vk::CommandBuffer cmd){
+                m_submits.at(index)(cmd);
+            }
+
+        private:
+            std::vector<std::function<void(const vk::CommandBuffer)>> m_submits;
+    };
+
 }

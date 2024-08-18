@@ -23,8 +23,11 @@ namespace Creepy {
 
     class DescriptorWriter{
         public:
+            void AddBufferBinding(const uint32_t binding, const vk::DescriptorSet descriptorSet, vk::DescriptorType descriptorType);
+            void AddImageBinding(const uint32_t binding, const vk::DescriptorSet descriptorSet, vk::DescriptorType descriptorType);
 
+            void UpdateDescriptorSets(const vk::Device device);
         private:
-            
+            std::vector<vk::WriteDescriptorSet> m_writers;
     };
 }

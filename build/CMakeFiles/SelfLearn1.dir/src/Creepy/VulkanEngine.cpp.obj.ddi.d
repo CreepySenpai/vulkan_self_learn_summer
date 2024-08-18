@@ -543,7 +543,7 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanEngine.cpp.obj.ddi: \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtc/ulp.inl \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/VulkanFrame.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/VulkanSwapchain.hpp \
- D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/VulkanUtils.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/Texture.hpp \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/filesystem \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/fs_fwd.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/chrono.h \
@@ -569,6 +569,7 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanEngine.cpp.obj.ddi: \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/align.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/fs_dir.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/fs_ops.h \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/VulkanUtils.hpp \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/fstream \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/x86_64-w64-mingw32/bits/basic_file.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/x86_64-w64-mingw32/bits/c++io.h \

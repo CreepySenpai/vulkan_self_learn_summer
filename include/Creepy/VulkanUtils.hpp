@@ -122,4 +122,48 @@ namespace Creepy{
 
         commandBuffer.pipelineBarrier2(depenInfo);
     }
+
+    static vk::CommandBuffer BeginOneTimeCommandBuffer(const vk::Device device, const vk::CommandPool commandPool){
+        vk::CommandBufferAllocateInfo allocInfo{};
+        allocInfo.commandPool = commandPool;
+        allocInfo.commandBufferCount = 1;
+        allocInfo.level = vk::CommandBufferLevel::ePrimary;
+
+        auto tempCommandBuffer = device.allocateCommandBuffers(allocInfo).value.at(0);
+
+        vk::CommandBufferBeginInfo beginInfo{};
+        beginInfo.flags = vk::CommandBufferUsageFlagBits::eOneTimeSubmit;
+        
+        tempCommandBuffer.begin(beginInfo);
+
+        return tempCommandBuffer;
+    }
+
+    static void EndOneTimeCommandBuffer(const vk::Device device, const vk::CommandPool commandPool, const vk::CommandBuffer commandBuffer, const vk::Queue queue){
+        
+        commandBuffer.end();
+
+        vk::FenceCreateInfo fenceInfo{};
+        fenceInfo.flags = vk::FenceCreateFlags{};
+        auto submitDoneFence = device.createFence(fenceInfo).value;
+
+        vk::SubmitInfo submitInfo{};
+        submitInfo.commandBufferCount = 1;
+        submitInfo.pCommandBuffers = &commandBuffer;
+        
+        auto res = queue.submit(submitInfo, submitDoneFence);
+
+        if(res != vk::Result::eSuccess){
+            std::println("Failed Submit Data");
+        }
+
+        res = device.waitForFences(submitDoneFence, vk::False, std::numeric_limits<uint64_t>::max());
+
+        if(res != vk::Result::eSuccess){
+            std::println("Failed Wait Submit Data");
+        }
+
+        device.destroyFence(submitDoneFence);
+        device.freeCommandBuffers(commandPool, commandBuffer);
+    }
 }

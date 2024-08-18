@@ -1,0 +1,11 @@
+{
+"rules": [
+{
+"primary-output": "CMakeFiles/SelfLearn1.dir/src/Creepy/Texture.cpp.o",
+"requires": [
+]
+}
+],
+"version": 0,
+"revision": 0
+}

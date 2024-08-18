@@ -542,4 +542,30 @@ CMakeFiles\SelfLearn1.dir\main.cpp.obj.ddi: \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtc/ulp.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtc/ulp.inl \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/VulkanFrame.hpp \
- D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/VulkanSwapchain.hpp
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/VulkanSwapchain.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/Texture.hpp \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/filesystem \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/fs_fwd.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/chrono.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/ratio \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/fs_path.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/iomanip \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/quoted_string.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/sstream \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/istream \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/ios \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/basic_ios.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/basic_ios.tcc \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/ostream \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/ostream.tcc \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/istream.tcc \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/sstream.tcc \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/codecvt \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/ext/concurrence.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/shared_ptr.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/shared_ptr_base.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/allocated_ptr.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/unique_ptr.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/align.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/fs_dir.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/fs_ops.h

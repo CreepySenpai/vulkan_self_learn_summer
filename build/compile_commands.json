@@ -25,6 +25,12 @@
 },
 {
   "directory": "D:/Code/VSCode/C++/Vulkan/SelfLearn1/build",
+  "command": "D:\\Enviroments\\mingw64_msvcrt\\bin\\c++.exe -DSTB_IMAGE_IMPLEMENTATION -DVULKAN_HPP_NO_EXCEPTIONS -ID:/Code/VSCode/C++/Vulkan/SelfLearn1/include -ID:/Enviroments/vulkan/Include -O3 -DNDEBUG -std=gnu++26 -fmodules-ts -fmodule-mapper=CMakeFiles\\SelfLearn1.dir\\src\\Creepy\\Texture.cpp.obj.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles\\SelfLearn1.dir\\src\\Creepy\\Texture.cpp.obj -c D:\\Code\\VSCode\\C++\\Vulkan\\SelfLearn1\\src\\Creepy\\Texture.cpp",
+  "file": "D:\\Code\\VSCode\\C++\\Vulkan\\SelfLearn1\\src\\Creepy\\Texture.cpp",
+  "output": "CMakeFiles\\SelfLearn1.dir\\src\\Creepy\\Texture.cpp.obj"
+},
+{
+  "directory": "D:/Code/VSCode/C++/Vulkan/SelfLearn1/build",
   "command": "D:\\Enviroments\\mingw64_msvcrt\\bin\\c++.exe -DSTB_IMAGE_IMPLEMENTATION -DVULKAN_HPP_NO_EXCEPTIONS -ID:/Code/VSCode/C++/Vulkan/SelfLearn1/include -ID:/Enviroments/vulkan/Include -O3 -DNDEBUG -std=gnu++26 -fmodules-ts -fmodule-mapper=CMakeFiles\\SelfLearn1.dir\\src\\Creepy\\VulkanAllocator.cpp.obj.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles\\SelfLearn1.dir\\src\\Creepy\\VulkanAllocator.cpp.obj -c D:\\Code\\VSCode\\C++\\Vulkan\\SelfLearn1\\src\\Creepy\\VulkanAllocator.cpp",
   "file": "D:\\Code\\VSCode\\C++\\Vulkan\\SelfLearn1\\src\\Creepy\\VulkanAllocator.cpp",
   "output": "CMakeFiles\\SelfLearn1.dir\\src\\Creepy\\VulkanAllocator.cpp.obj"

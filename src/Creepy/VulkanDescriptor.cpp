@@ -40,4 +40,30 @@ namespace Creepy{
 
         return {res.value.at(0), m_descriptorSetLayout};
     }
+
+
+    //////////////////////////////////////////////////////////////////////////////
+
+    void DescriptorWriter::AddBufferBinding(const uint32_t binding, const vk::DescriptorSet descriptorSet, vk::DescriptorType descriptorType) {
+        vk::WriteDescriptorSet writer{};
+        writer.descriptorCount = 1;
+        writer.descriptorType = descriptorType;
+        writer.dstBinding = binding;
+        writer.dstSet = descriptorSet;
+    }
+
+    void DescriptorWriter::AddImageBinding(const uint32_t binding, const vk::DescriptorSet descriptorSet, vk::DescriptorType descriptorType) {
+        vk::DescriptorImageInfo textureInfo{};
+        // textureInfo.
+        
+        vk::WriteDescriptorSet writer{};
+        writer.descriptorCount = 1;
+        writer.descriptorType = descriptorType;
+        writer.dstBinding = binding;
+        writer.dstSet = descriptorSet;
+    }
+
+    void DescriptorWriter::UpdateDescriptorSets(const vk::Device device) {
+
+    }
 }
