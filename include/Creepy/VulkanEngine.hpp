@@ -54,7 +54,6 @@ namespace Creepy {
             const VulkanFrame& getCurrentRenderFrame() const;
         private:
             void draw();
-            void drawBackground(const vk::CommandBuffer currentCommandBuffer, const vk::Image image);
             void drawModels(const vk::CommandBuffer currentCommandBuffer, const vk::Image colorImage, const vk::ImageView colorImageView, const vk::Image depthImage, const vk::ImageView depthImageView);
             void drawImGui(const vk::CommandBuffer currentCommandBuffer, const vk::Image colorImage, const vk::ImageView colorImageView);
         private:

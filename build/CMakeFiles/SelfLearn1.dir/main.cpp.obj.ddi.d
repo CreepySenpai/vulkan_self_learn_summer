@@ -543,6 +543,7 @@ CMakeFiles\SelfLearn1.dir\main.cpp.obj.ddi: \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtc/ulp.inl \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/VulkanFrame.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/VulkanSwapchain.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/VulkanDescriptor.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/Texture.hpp \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/filesystem \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/fs_fwd.h \

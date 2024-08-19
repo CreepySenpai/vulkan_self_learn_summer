@@ -1,6 +1,6 @@
 #include <print>
 #include <Creepy/VulkanDescriptor.hpp>
-
+#include <Creepy/Texture.hpp>
 
 namespace Creepy{
     void DescriptorSetBuilder::AddBinding(const uint32_t binding, vk::DescriptorType type) {
@@ -44,26 +44,43 @@ namespace Creepy{
 
     //////////////////////////////////////////////////////////////////////////////
 
-    void DescriptorWriter::AddBufferBinding(const uint32_t binding, const vk::DescriptorSet descriptorSet, vk::DescriptorType descriptorType) {
-        vk::WriteDescriptorSet writer{};
-        writer.descriptorCount = 1;
-        writer.descriptorType = descriptorType;
-        writer.dstBinding = binding;
-        writer.dstSet = descriptorSet;
-    }
-
-    void DescriptorWriter::AddImageBinding(const uint32_t binding, const vk::DescriptorSet descriptorSet, vk::DescriptorType descriptorType) {
-        vk::DescriptorImageInfo textureInfo{};
-        // textureInfo.
+    void DescriptorSetWriter::AddBufferBinding(const uint32_t binding, const vk::DescriptorSet descriptorSet, vk::DescriptorType descriptorType, const vk::Buffer buffer, uint64_t bufferSize) {
+        vk::DescriptorBufferInfo bufferInfo{};
+        bufferInfo.offset = 0;
+        bufferInfo.buffer = buffer;
+        bufferInfo.range = bufferSize;
+        
         
         vk::WriteDescriptorSet writer{};
         writer.descriptorCount = 1;
         writer.descriptorType = descriptorType;
         writer.dstBinding = binding;
         writer.dstSet = descriptorSet;
+        writer.pBufferInfo = &bufferInfo;
+
+        m_writers.push_back(std::move(writer));
     }
 
-    void DescriptorWriter::UpdateDescriptorSets(const vk::Device device) {
+    void DescriptorSetWriter::AddImageBinding(const uint32_t binding, const vk::DescriptorSet descriptorSet, vk::DescriptorType descriptorType, const Texture& texture) {
+        vk::DescriptorImageInfo textureInfo{};
+        textureInfo.imageView = texture.GetImageView();
+        textureInfo.sampler = texture.GetSampler();
 
+        //TODO: Storage Texture Layout
+        textureInfo.imageLayout = vk::ImageLayout::eShaderReadOnlyOptimal;
+        
+        
+        vk::WriteDescriptorSet writer{};
+        writer.descriptorCount = 1;
+        writer.descriptorType = descriptorType;
+        writer.dstBinding = binding;
+        writer.dstSet = descriptorSet;
+        writer.pImageInfo = &textureInfo;
+
+        m_writers.push_back(std::move(writer));
+    }
+
+    void DescriptorSetWriter::UpdateDescriptorSets(const vk::Device device) {
+        device.updateDescriptorSets(m_writers, nullptr);
     }
 }

@@ -5,8 +5,8 @@
 
 namespace Creepy {
     struct DescriptorSet{
-        vk::DescriptorSet m_descriptorSet;
-        vk::DescriptorSetLayout m_descriptorSetLayout;
+        vk::DescriptorSet DescriptorSet;
+        vk::DescriptorSetLayout DescriptorSetLayout;
     };
 
     class DescriptorSetBuilder{
@@ -21,10 +21,10 @@ namespace Creepy {
             vk::DescriptorSetLayout m_descriptorSetLayout{};
     };
 
-    class DescriptorWriter{
+    class DescriptorSetWriter{
         public:
-            void AddBufferBinding(const uint32_t binding, const vk::DescriptorSet descriptorSet, vk::DescriptorType descriptorType);
-            void AddImageBinding(const uint32_t binding, const vk::DescriptorSet descriptorSet, vk::DescriptorType descriptorType);
+            void AddBufferBinding(const uint32_t binding, const vk::DescriptorSet descriptorSet, vk::DescriptorType descriptorType, const vk::Buffer buffer, uint64_t bufferSize);
+            void AddImageBinding(const uint32_t binding, const vk::DescriptorSet descriptorSet, vk::DescriptorType descriptorType, const class Texture& texture);
 
             void UpdateDescriptorSets(const vk::Device device);
         private:

@@ -32,10 +32,10 @@ namespace Creepy {
 
         this->initImGUI();
 
-        this->createDescriptorSets();
-
-        //Note(Creepy): We need resources before create Pipelines
+        //Note(Creepy): We need resources before create Pipelines + Descriptor Set
         this->createResources();
+
+        this->createDescriptorSets();
 
         this->createPipelines();
 
@@ -538,11 +538,21 @@ namespace Creepy {
     }
 
     void VulkanEngine::createDescriptorSets() {
+        m_logicalDevice.waitIdle();
         DescriptorSetBuilder builder{};
         builder.AddBinding(0, vk::DescriptorType::eCombinedImageSampler);
         builder.BuildDescriptorLayout(m_logicalDevice, vk::ShaderStageFlagBits::eFragment);
 
         m_triangleDescriptorSet = builder.AllocateDescriptorSet(m_logicalDevice, m_descriptorPool);
+
+        DescriptorSetWriter writer{};
+        writer.AddImageBinding(0, m_triangleDescriptorSet.DescriptorSet, vk::DescriptorType::eCombinedImageSampler, m_shibaTexture);
+
+        writer.UpdateDescriptorSets(m_logicalDevice);
+
+        m_clearner.AddJob([this]{
+            m_logicalDevice.destroyDescriptorSetLayout(m_triangleDescriptorSet.DescriptorSetLayout);
+        });
     }
 
     void VulkanEngine::createPipelines() {
@@ -566,9 +576,13 @@ namespace Creepy {
         const Shader vertexShader{m_logicalDevice, readShaderSPVFile("./res/shaders/vertexShader.spv"), vk::ShaderStageFlagBits::eVertex};
         
         const Shader fragmentShader{m_logicalDevice, readShaderSPVFile("./res/shaders/fragmentShader.spv"), vk::ShaderStageFlagBits::eFragment};
-    
+
+        const std::array descriptorSetLayouts{
+            m_triangleDescriptorSet.DescriptorSetLayout
+        };
+
         PipelineState backgroundState{};
-        backgroundState.InitPipelineLayout({}, {});
+        backgroundState.InitPipelineLayout(descriptorSetLayouts, {});
         backgroundState.InitShaderStates(vertexShader.GetShaderModule(), fragmentShader.GetShaderModule());
         backgroundState.InitVertexInputState(vertexBindings, vertexAttributes);
         // backgroundState.InitVertexInputState({}, {});
@@ -663,10 +677,10 @@ namespace Creepy {
         // sick.Destroy(m_logicalDevice);
 
         const std::array vertices{
-            Vertex{.Position = glm::vec3{-0.5f, -0.5f, 0.0f}, .Normal = glm::vec3{1.0f, 0.0f, 0.0f}},
-            Vertex{.Position = glm::vec3{0.5f, 0.5f, 0.0f}, .Normal = glm::vec3{0.0f, 1.0f, 0.0f}},
-            Vertex{.Position = glm::vec3{-0.5f, 0.5f, 0.0f}, .Normal = glm::vec3{0.0f, 0.0f, 1.0f}},
-            Vertex{.Position = glm::vec3{0.5f, -0.5f, 0.0f}, .Normal = glm::vec3{1.0f, 0.0f, 0.0f}},
+            Vertex{.Position = glm::vec3{-0.5f, -0.5f, 0.0f}, .Normal = glm::vec3{1.0f, 0.0f, 0.0f}, .TexCoord = glm::vec2{0.0f, 0.0f}},
+            Vertex{.Position = glm::vec3{0.5f, 0.5f, 0.0f}, .Normal = glm::vec3{0.0f, 1.0f, 0.0f}, .TexCoord = glm::vec2{1.0f, 1.0f}},
+            Vertex{.Position = glm::vec3{-0.5f, 0.5f, 0.0f}, .Normal = glm::vec3{0.0f, 0.0f, 1.0f}, .TexCoord = glm::vec2{0.0f, 1.0f}},
+            Vertex{.Position = glm::vec3{0.5f, -0.5f, 0.0f}, .Normal = glm::vec3{1.0f, 0.0f, 0.0f}, .TexCoord = glm::vec2{1.0f, 0.0f}},
         };
 
         m_triangleVertexBuffer = VertexBuffer{m_logicalDevice, vertices.size() * sizeof(Vertex)};
@@ -827,20 +841,6 @@ namespace Creepy {
         // std::println("End Draw {}", m_currentFrame);
     }
 
-    void VulkanEngine::drawBackground(const vk::CommandBuffer currentCommandBuffer, const vk::Image image) {
-        // vk::ClearColorValue clearValue{1.0f, 0.0f, 0.0f, 1.0f};
-        
-        // vk::ImageSubresourceRange someTest{};
-        // someTest.aspectMask = vk::ImageAspectFlagBits::eColor;
-        // someTest.baseArrayLayer = 0;
-        // someTest.baseMipLevel = 0;
-        // someTest.levelCount = vk::RemainingMipLevels;
-        // someTest.layerCount = vk::RemainingArrayLayers;
-        
-        // //TODO: Add clear depth
-        // currentCommandBuffer.clearColorImage(image, vk::ImageLayout::eColorAttachmentOptimal, clearValue, someTest);
-    }
-
     void VulkanEngine::drawModels(const vk::CommandBuffer currentCommandBuffer, const vk::Image colorImage, const vk::ImageView colorImageView, const vk::Image depthImage, const vk::ImageView depthImageView) {
         vk::RenderingAttachmentInfo colorAttachmentInfo{};
         colorAttachmentInfo.clearValue.color = {0.0f, 1.0f, 0.0f, 1.0f};
@@ -876,7 +876,8 @@ namespace Creepy {
         const vk::Rect2D scissor{{0, 0}, {static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height)}};
 
         currentCommandBuffer.setScissor(0, scissor);
-    
+
+        currentCommandBuffer.bindDescriptorSets(vk::PipelineBindPoint::eGraphics, m_backgroundPipeline.GetPipelineLayout(), 0, m_triangleDescriptorSet.DescriptorSet, nullptr);
         currentCommandBuffer.bindPipeline(vk::PipelineBindPoint::eGraphics, m_backgroundPipeline.GetPipeline());
 
         constexpr std::array<uint64_t, 1> offsets{0};
