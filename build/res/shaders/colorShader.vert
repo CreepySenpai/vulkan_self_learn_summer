@@ -16,6 +16,7 @@ layout(location = 1) out vec2 outTexCoord;
 
 
 void main(){
+    vec4 loc = MVPMatrix.projectionMatrix * MVPMatrix.viewMatrix * MVPMatrix.modelMatrix * vec4(inVertex, 1.0);
     gl_Position = vec4(inVertex, 1.0);
 
     outColor = inNormal;

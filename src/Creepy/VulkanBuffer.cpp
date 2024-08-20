@@ -26,11 +26,11 @@ namespace Creepy{
         return allocInfo;
     }
 
-    vk::DescriptorBufferInfo createDescriptorBuffer(const vk::Buffer buffer, const vma::AllocationInfo& bufferAllocInfo){
+    vk::DescriptorBufferInfo createDescriptorBuffer(const vk::Buffer buffer, const vma::AllocationInfo& bufferAllocInfo, uint64_t bufferSize){
         vk::DescriptorBufferInfo bufferInfo{};
         bufferInfo.buffer = buffer;
         bufferInfo.offset = bufferAllocInfo.offset;
-        bufferInfo.range = bufferAllocInfo.size;
+        bufferInfo.range = bufferSize;
         
         return bufferInfo;
     }
@@ -55,7 +55,7 @@ namespace Creepy{
         std::tie(m_buffer, m_bufferLoc) = res.value;
 
         // Create Descriptor
-        m_bufferDescriptor = createDescriptorBuffer(m_buffer, VulkanAllocator::BufferAllocator.getAllocationInfo(m_bufferLoc));
+        m_bufferDescriptor = createDescriptorBuffer(m_buffer, VulkanAllocator::BufferAllocator.getAllocationInfo(m_bufferLoc), m_bufferSize);
     }
 
     Buffer<BufferType::DEVICE_LOCAL>::Buffer(const vk::Device device, uint64_t bufferSize, vk::Format bufferFormat, vk::BufferUsageFlags bufferUsage)
@@ -136,7 +136,7 @@ namespace Creepy{
         
         m_bufferInfo = VulkanAllocator::BufferAllocator.getAllocationInfo(m_bufferLoc);
 
-        m_bufferDescriptor = createDescriptorBuffer(m_buffer, m_bufferInfo);
+        m_bufferDescriptor = createDescriptorBuffer(m_buffer, m_bufferInfo, m_bufferSize);
     }
 
     template <>
@@ -158,7 +158,7 @@ namespace Creepy{
 
         m_bufferInfo = VulkanAllocator::BufferAllocator.getAllocationInfo(m_bufferLoc);
 
-        m_bufferDescriptor = createDescriptorBuffer(m_buffer, m_bufferInfo);
+        m_bufferDescriptor = createDescriptorBuffer(m_buffer, m_bufferInfo, m_bufferSize);
     }
 
     template <>
@@ -217,7 +217,7 @@ namespace Creepy{
 
     template <>
     void Buffer<BufferType::HOST_COHERENT>::UploadData(const void* data, size_t dataSizeInByte) const {
-        // std::println("Host Co: {}, {}, {}", m_bufferInfo.memoryType, m_bufferInfo.offset, m_bufferInfo.size);
+        std::println("Host Co: {}, {}, {}", m_bufferInfo.memoryType, m_bufferInfo.offset, m_bufferInfo.size);
         if(dataSizeInByte > static_cast<size_t>(m_bufferInfo.size)){
             std::println("Data too big");
             return;

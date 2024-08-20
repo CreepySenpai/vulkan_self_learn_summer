@@ -93,31 +93,6 @@ namespace Creepy {
         instanceInfo.ppEnabledExtensionNames = glfwExtensionss.data();
         instanceInfo.enabledLayerCount = static_cast<uint32_t>(layers.size());
         instanceInfo.ppEnabledLayerNames = layers.data();
-        
-        {   // For Disable Validation
-            // vk::ValidationCheckEXT valicheck = vk::ValidationCheckEXT::eAll;
-            // vk::ValidationFlagsEXT validation{};
-            // validation.disabledValidationCheckCount = 1;
-            // validation.pDisabledValidationChecks = &valicheck;
-            // instanceInfo.pNext = &validation;
-        }
-
-        {   // For enable some validation features
-            // std::array enables{
-            //     vk::ValidationFeatureEnableEXT::eBestPractices
-            // };
-            // std::array disables{
-            //     vk::ValidationFeatureDisableEXT::eUniqueHandles
-            // };
-    
-            // vk::ValidationFeaturesEXT validation{};
-            // validation.disabledValidationFeatureCount = static_cast<uint32_t>(disables.size());
-            // validation.pDisabledValidationFeatures = disables.data();
-            // validation.enabledValidationFeatureCount = static_cast<uint32_t>(enables.size());
-            // validation.pEnabledValidationFeatures = enables.data();
-
-            // instanceInfo.pNext = &validation;
-        }
 
         auto res = vk::createInstance(instanceInfo);
 
@@ -539,16 +514,16 @@ namespace Creepy {
     void VulkanEngine::createDescriptorSets() {
         m_logicalDevice.waitIdle();
         DescriptorSetBuilder builder{};
-        // builder.AddBinding(0, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eVertex);
-        builder.AddBinding(0, vk::DescriptorType::eCombinedImageSampler, vk::ShaderStageFlagBits::eFragment);
+        builder.AddBinding(0, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eVertex);
+        builder.AddBinding(1, vk::DescriptorType::eCombinedImageSampler, vk::ShaderStageFlagBits::eFragment);
         builder.BuildDescriptorLayout(m_logicalDevice);
 
         m_triangleDescriptorSet = builder.AllocateDescriptorSet(m_logicalDevice, m_descriptorPool);
 
         DescriptorSetWriter writer{};
-        // writer.AddBufferBinding(0, m_triangleDescriptorSet.DescriptorSet, vk::DescriptorType::eUniformBuffer, )
+        writer.AddBufferBinding(0, m_triangleDescriptorSet.DescriptorSet, vk::DescriptorType::eUniformBuffer, m_uniformBuffer);
 
-        writer.AddImageBinding(0, m_triangleDescriptorSet.DescriptorSet, vk::DescriptorType::eCombinedImageSampler, m_shibaTexture);
+        writer.AddImageBinding(1, m_triangleDescriptorSet.DescriptorSet, vk::DescriptorType::eCombinedImageSampler, m_shibaTexture);
 
         writer.UpdateDescriptorSets(m_logicalDevice);
 
@@ -587,7 +562,6 @@ namespace Creepy {
         backgroundState.InitPipelineLayout(descriptorSetLayouts, {});
         backgroundState.InitShaderStates(vertexShader.GetShaderModule(), fragmentShader.GetShaderModule());
         backgroundState.InitVertexInputState(vertexBindings, vertexAttributes);
-        // backgroundState.InitVertexInputState({}, {});
         backgroundState.InitInputAssemblyState(vk::PrimitiveTopology::eTriangleList);
         backgroundState.InitViewportState(static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height));
         backgroundState.InitRasterizationState(vk::PolygonMode::eFill, vk::CullModeFlagBits::eNone, vk::FrontFace::eClockwise);
@@ -599,7 +573,6 @@ namespace Creepy {
         backgroundState.DisableDepthTest();
 
         const std::array colorAttachmentFormats{
-            // m_colorImage.GetImageFormat(),
              m_swapchain.GetSwapchainImageFormat()
         };
 
@@ -762,10 +735,8 @@ namespace Creepy {
         //     vk::PipelineStageFlagBits2::eEarlyFragmentTests | vk::PipelineStageFlagBits2::eLateFragmentTests,
         //     vk::PipelineStageFlagBits2::eEarlyFragmentTests | vk::PipelineStageFlagBits2::eLateFragmentTests);
 
-        // this->drawBackground(currentCommandBuffer, currentSwapchainImage);
-
-        auto sus = m_depthImage.GetImageExtent();
-        vk::Extent2D renderArea{std::min((uint32_t)m_width, sus.width), std::min((uint32_t)m_height, sus.height)};
+        // auto sus = m_depthImage.GetImageExtent();
+        // vk::Extent2D renderArea{std::min((uint32_t)m_width, sus.width), std::min((uint32_t)m_height, sus.height)};
         this->drawModels(currentCommandBuffer, currentSwapchainImage, currentSwapchainImageView, m_depthImage.GetImage(), m_depthImage.GetImageView());
 
         this->drawImGui(currentCommandBuffer, currentSwapchainImage, currentSwapchainImageView);

@@ -2,6 +2,7 @@
 
 #include <filesystem>
 #include "Mesh.hpp"
+#include "Texture.hpp"
 
 struct aiScene;
 struct aiNode;
@@ -23,6 +24,7 @@ namespace Creepy{
 
         private:
             std::vector<Mesh> m_meshes;
+            std::vector<Texture> m_textures;
     };
     
 }

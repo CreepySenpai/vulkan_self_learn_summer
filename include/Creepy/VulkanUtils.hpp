@@ -73,28 +73,6 @@ namespace Creepy{
         return {std::istreambuf_iterator<char>{fileIn}, std::istreambuf_iterator<char>{}};
     }
 
-    // static std::vector<uint32_t> readShaderSPVFile(const std::filesystem::path& filePath){
-    //     if(!std::filesystem::exists(filePath)){
-    //         std::println("File Not Exists: {}", filePath.string());
-    //         return {};
-    //     }
-
-    //     std::ifstream fileIn{filePath, std::ios::ate | std::ios::binary};
-
-    //     const auto fileSize = fileIn.tellg();
-
-    //     std::vector<uint32_t> spvData(fileSize / sizeof(uint32_t));
-
-    //     fileIn.seekg(0);
-
-    //     fileIn.read(reinterpret_cast<char*>(spvData.data()), fileSize);
-
-    //     fileIn.close();
-
-    //     return spvData;
-    // }
-
-
     static void imageLayoutTransition(const vk::CommandBuffer commandBuffer, vk::Image image, vk::ImageAspectFlags imageAspect, vk::ImageLayout currentLayout, vk::ImageLayout newLayout, vk::AccessFlags2 srcAccess, vk::AccessFlags2 dstAccess, vk::PipelineStageFlags2 srcStage, vk::PipelineStageFlags2 dstStage){
         
         vk::ImageMemoryBarrier2 imageBarrier{};
@@ -157,7 +135,7 @@ namespace Creepy{
             std::println("Failed Submit Data");
         }
 
-        res = device.waitForFences(submitDoneFence, vk::False, std::numeric_limits<uint64_t>::max());
+        res = device.waitForFences(submitDoneFence, vk::True, std::numeric_limits<uint64_t>::max());
 
         if(res != vk::Result::eSuccess){
             std::println("Failed Wait Submit Data");

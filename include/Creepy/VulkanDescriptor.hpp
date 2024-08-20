@@ -25,8 +25,8 @@ namespace Creepy {
 
     class DescriptorSetWriter{
         public:
-            template <BufferType bufferType>
-            void AddBufferBinding(const uint32_t binding, const vk::DescriptorSet descriptorSet, vk::DescriptorType descriptorType, const Buffer<bufferType>& buffer){
+            template <BufferType bufferType, typename T, vk::BufferUsageFlagBits... bufferUsages>
+            void AddBufferBinding(const uint32_t binding, const vk::DescriptorSet descriptorSet, vk::DescriptorType descriptorType, const BufferWrapperNoView<bufferType, T, bufferUsages...>& buffer){
                 const vk::DescriptorBufferInfo bufferInfo = buffer.GetDescriptorBuffer();
                 vk::WriteDescriptorSet writer{};
                 writer.descriptorCount = 1;
@@ -38,7 +38,6 @@ namespace Creepy {
                 m_writers.push_back(std::move(writer));
             }
 
-            void AddBufferBinding(const uint32_t binding, const vk::DescriptorSet descriptorSet, vk::DescriptorType descriptorType, const vk::Buffer buffer, uint64_t bufferSize);
             void AddImageBinding(const uint32_t binding, const vk::DescriptorSet descriptorSet, vk::DescriptorType descriptorType, const class Texture& texture);
 
             void UpdateDescriptorSets(const vk::Device device);
