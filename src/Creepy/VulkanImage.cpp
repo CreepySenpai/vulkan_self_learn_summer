@@ -8,6 +8,7 @@ namespace Creepy {
         : m_width{width}, m_height{height}, m_imageFormat{format}
     {
         this->createImage(device, imageUsage, aspect);
+        this->CreateImageView(device, aspect);
     }
 
     void Image::Destroy(const vk::Device device) const {
@@ -38,6 +39,7 @@ namespace Creepy {
         m_imageFormat = format;
         this->Destroy(device);
         this->createImage(device, imageUsage, aspect);
+        this->CreateImageView(device, aspect);
         std::println("Image Size: {} - {}", m_width, m_height);
     }
 

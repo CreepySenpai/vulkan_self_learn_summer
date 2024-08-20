@@ -21,6 +21,7 @@ namespace Creepy{
             void DisableMultiSampling();
             void DisableBlending();
             void DisableDepthTest();
+            void EnableDepthTest();
         private:
             friend class Pipeline;
             std::vector<vk::PipelineShaderStageCreateInfo> m_shaderStates;

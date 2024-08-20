@@ -54,7 +54,7 @@ namespace Creepy{
 
         stbi_image_free(textureData);
 
-        m_image.CreateImageView(device, vk::ImageAspectFlagBits::eColor);
+        // m_image.CreateImageView(device, vk::ImageAspectFlagBits::eColor);
         
         this->createSampler(device);
 

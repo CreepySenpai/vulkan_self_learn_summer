@@ -139,13 +139,22 @@ namespace Creepy{
 
     void PipelineState::DisableDepthTest() {
         m_depthStencilState.depthTestEnable = vk::False;
-        m_depthStencilState.depthTestEnable = vk::False;
+        m_depthStencilState.depthWriteEnable = vk::False;
         m_depthStencilState.depthCompareOp = vk::CompareOp::eNever;
         m_depthStencilState.depthBoundsTestEnable = vk::False;
         m_depthStencilState.stencilTestEnable = vk::False;
-        // m_depthStencilState.front = {};
-        // m_depthStencilState.back = {};
 
+        m_depthStencilState.minDepthBounds = 0.0f;
+        m_depthStencilState.maxDepthBounds = 1.0f;
+    }
+
+    void PipelineState::EnableDepthTest() {
+        m_depthStencilState.depthTestEnable = vk::True;
+        m_depthStencilState.depthWriteEnable = vk::True;
+        m_depthStencilState.depthBoundsTestEnable = vk::False;
+        m_depthStencilState.depthCompareOp = vk::CompareOp::eLessOrEqual;
+        m_depthStencilState.stencilTestEnable = vk::False;
+        
         m_depthStencilState.minDepthBounds = 0.0f;
         m_depthStencilState.maxDepthBounds = 1.0f;
     }

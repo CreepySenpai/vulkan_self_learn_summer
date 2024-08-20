@@ -232,6 +232,7 @@ namespace Creepy {
         // Enable Features
         auto& vulkanCoreFeatures = deviceChain.get<vk::PhysicalDeviceFeatures2>();
         vulkanCoreFeatures.features.samplerAnisotropy = vk::True;
+        
         auto& vulkan12Features = deviceChain.get<vk::PhysicalDeviceVulkan12Features>();
         vulkan12Features.bufferDeviceAddress = vk::True;
         auto& vulkan13Features = deviceChain.get<vk::PhysicalDeviceVulkan13Features>();
@@ -570,15 +571,18 @@ namespace Creepy {
         backgroundState.InitColorBlendState();
         backgroundState.InitDynamicState(dynamicStates);
         backgroundState.DisableBlending();
-        backgroundState.DisableDepthTest();
+        // backgroundState.DisableDepthTest();
+        backgroundState.EnableDepthTest();
 
         const std::array colorAttachmentFormats{
              m_swapchain.GetSwapchainImageFormat()
         };
 
         //TODO: use images and depth format
-        // backgroundState.InitRenderingInfo(colorAttachmentFormats, m_depthImage.GetImageFormat());
-        backgroundState.InitRenderingInfo(colorAttachmentFormats, vk::Format::eUndefined);
+        if(m_depthImage.GetImageFormat() == vk::Format::eD24UnormS8Uint){
+            std::println("Disss format");
+        }
+        backgroundState.InitRenderingInfo(colorAttachmentFormats, vk::Format::eD24UnormS8Uint);
 
         m_backgroundPipeline.Build(m_logicalDevice, backgroundState);
 
@@ -729,11 +733,11 @@ namespace Creepy {
             vk::AccessFlagBits2::eMemoryWrite, vk::AccessFlagBits2::eMemoryRead | vk::AccessFlagBits2::eMemoryWrite,
             vk::PipelineStageFlagBits2::eColorAttachmentOutput, vk::PipelineStageFlagBits2::eColorAttachmentOutput);
         
-        // imageLayoutTransition(currentCommandBuffer, m_depthImage.GetImage(), vk::ImageAspectFlagBits::eDepth | vk::ImageAspectFlagBits::eStencil, 
-        //     vk::ImageLayout::eUndefined, vk::ImageLayout::eDepthStencilAttachmentOptimal, 
-        //     vk::AccessFlagBits2::eMemoryWrite, vk::AccessFlagBits2::eMemoryWrite | vk::AccessFlagBits2::eMemoryRead, 
-        //     vk::PipelineStageFlagBits2::eEarlyFragmentTests | vk::PipelineStageFlagBits2::eLateFragmentTests,
-        //     vk::PipelineStageFlagBits2::eEarlyFragmentTests | vk::PipelineStageFlagBits2::eLateFragmentTests);
+        imageLayoutTransition(currentCommandBuffer, m_depthImage.GetImage(), vk::ImageAspectFlagBits::eDepth | vk::ImageAspectFlagBits::eStencil, 
+            vk::ImageLayout::eUndefined, vk::ImageLayout::eDepthStencilAttachmentOptimal, 
+            vk::AccessFlagBits2::eMemoryWrite, vk::AccessFlagBits2::eMemoryWrite | vk::AccessFlagBits2::eMemoryRead, 
+            vk::PipelineStageFlagBits2::eEarlyFragmentTests | vk::PipelineStageFlagBits2::eLateFragmentTests,
+            vk::PipelineStageFlagBits2::eEarlyFragmentTests | vk::PipelineStageFlagBits2::eLateFragmentTests);
 
         // auto sus = m_depthImage.GetImageExtent();
         // vk::Extent2D renderArea{std::min((uint32_t)m_width, sus.width), std::min((uint32_t)m_height, sus.height)};
@@ -821,13 +825,12 @@ namespace Creepy {
         depthAttachmentInfo.loadOp = vk::AttachmentLoadOp::eClear;
         depthAttachmentInfo.storeOp = vk::AttachmentStoreOp::eStore;
         
-        
         vk::RenderingInfo dynamicRenderInfo{};
         dynamicRenderInfo.flags = vk::RenderingFlags{};
         dynamicRenderInfo.layerCount = 1;
         dynamicRenderInfo.colorAttachmentCount = 1;
         dynamicRenderInfo.pColorAttachments = &colorAttachmentInfo;
-        // dynamicRenderInfo.pDepthAttachment = &depthAttachmentInfo;
+        dynamicRenderInfo.pDepthAttachment = &depthAttachmentInfo;
         dynamicRenderInfo.renderArea = vk::Rect2D{{0, 0}, {static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height)}};
 
         currentCommandBuffer.beginRendering(dynamicRenderInfo);
