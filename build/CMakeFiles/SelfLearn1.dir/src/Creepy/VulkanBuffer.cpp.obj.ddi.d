@@ -515,6 +515,7 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanBuffer.cpp.obj.ddi: \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtc/type_ptr.inl \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtc/ulp.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtc/ulp.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/Uniform.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/VulkanUtils.hpp \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/filesystem \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/fs_fwd.h \

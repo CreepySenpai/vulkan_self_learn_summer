@@ -38,8 +38,6 @@ namespace Creepy {
         this->createDescriptorSets();
 
         this->createPipelines();
-
-        this->submitDataBeforeDraw();
     }
 
     VulkanEngine::~VulkanEngine(){
@@ -54,6 +52,7 @@ namespace Creepy {
 
             glfwPollEvents();
 
+            this->updateUniformBuffer();
             // Draw Here
             this->draw();
 
@@ -540,12 +539,15 @@ namespace Creepy {
     void VulkanEngine::createDescriptorSets() {
         m_logicalDevice.waitIdle();
         DescriptorSetBuilder builder{};
-        builder.AddBinding(0, vk::DescriptorType::eCombinedImageSampler);
-        builder.BuildDescriptorLayout(m_logicalDevice, vk::ShaderStageFlagBits::eFragment);
+        // builder.AddBinding(0, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eVertex);
+        builder.AddBinding(0, vk::DescriptorType::eCombinedImageSampler, vk::ShaderStageFlagBits::eFragment);
+        builder.BuildDescriptorLayout(m_logicalDevice);
 
         m_triangleDescriptorSet = builder.AllocateDescriptorSet(m_logicalDevice, m_descriptorPool);
 
         DescriptorSetWriter writer{};
+        // writer.AddBufferBinding(0, m_triangleDescriptorSet.DescriptorSet, vk::DescriptorType::eUniformBuffer, )
+
         writer.AddImageBinding(0, m_triangleDescriptorSet.DescriptorSet, vk::DescriptorType::eCombinedImageSampler, m_shibaTexture);
 
         writer.UpdateDescriptorSets(m_logicalDevice);
@@ -672,10 +674,6 @@ namespace Creepy {
 
     // Note(Creepy): All device local buffer must be upload data in begin()/end() command buffer block -> recording state
     void VulkanEngine::createBufferResources() {
-
-        // Model sick{"./res/models/shiba.gltf", m_logicalDevice, m_cmdPool, m_graphicQueue};
-        // sick.Destroy(m_logicalDevice);
-
         const std::array vertices{
             Vertex{.Position = glm::vec3{-0.5f, -0.5f, 0.0f}, .Normal = glm::vec3{1.0f, 0.0f, 0.0f}, .TexCoord = glm::vec2{0.0f, 0.0f}},
             Vertex{.Position = glm::vec3{0.5f, 0.5f, 0.0f}, .Normal = glm::vec3{0.0f, 1.0f, 0.0f}, .TexCoord = glm::vec2{1.0f, 1.0f}},
@@ -685,19 +683,11 @@ namespace Creepy {
 
         m_triangleVertexBuffer = VertexBuffer{m_logicalDevice, vertices.size() * sizeof(Vertex)};
 
-        // m_submitter.AddToSubmit([&, this](const vk::CommandBuffer commandBuffer){
-        //     m_triangleVertexBuffer.UploadData(m_logicalDevice, commandBuffer, vertices);
-        // });
-
         m_triangleVertexBuffer.UploadData(m_logicalDevice, m_cmdPool, m_graphicQueue, vertices);
 
         const std::array indices{0u, 2u, 1u, 0u, 3u, 1u};
 
         m_triangleIndexBuffer = IndexBuffer{m_logicalDevice, indices.size() * sizeof(uint32_t)};
-
-        // m_submitter.AddToSubmit([&, this](const vk::CommandBuffer commandBuffer){
-        //     m_triangleIndexBuffer.UploadData(m_logicalDevice, commandBuffer, indices);
-        // });
 
         m_triangleIndexBuffer.UploadData(m_logicalDevice, m_cmdPool, m_graphicQueue, indices);
 
@@ -705,10 +695,13 @@ namespace Creepy {
 
         m_shibaTexture.LoadTexture("./res/textures/shiba.png", m_logicalDevice, m_cmdPool, m_graphicQueue);
 
+        m_uniformBuffer = UniformBuffer{m_logicalDevice, sizeof(UniformData)};
+
         m_clearner.AddJob([this]{
             m_triangleVertexBuffer.Destroy(m_logicalDevice);
             m_triangleIndexBuffer.Destroy(m_logicalDevice);
             m_shibaTexture.Destroy(m_logicalDevice);
+            m_uniformBuffer.Destroy(m_logicalDevice);
         });
     }
 
@@ -884,7 +877,7 @@ namespace Creepy {
 
         currentCommandBuffer.bindVertexBuffers(0, m_triangleVertexBuffer.GetBuffer(), offsets);
         currentCommandBuffer.bindIndexBuffer(m_triangleIndexBuffer.GetBuffer(), 0, vk::IndexType::eUint32);
-
+        
         // currentCommandBuffer.draw(3, 1, 0, 0);
         
         currentCommandBuffer.drawIndexed(m_triangleIndexBuffer.GetBufferCount(), 1, 0, 0, 0);
@@ -914,61 +907,18 @@ namespace Creepy {
         currentCommandBuffer.endRendering();
     }
 
-    void VulkanEngine::submitDataBeforeDraw() {
-
-        if(m_submitter.GetCount() == 0){
-            return;
-        }
-
-        // vk::CommandBufferAllocateInfo allocInfo{};
-        // allocInfo.commandPool = m_cmdPool;
-        // allocInfo.level = vk::CommandBufferLevel::ePrimary;
-        // allocInfo.commandBufferCount = static_cast<uint32_t>(m_submitter.GetCount());
-        
-        // auto submitCommandBuffers = m_logicalDevice.allocateCommandBuffers(allocInfo).value;
-
-        // vk::CommandBufferBeginInfo beginInfo{};
-        // beginInfo.flags = vk::CommandBufferUsageFlagBits::eOneTimeSubmit;
-        
-        // std::println("Prepare {} to submit", submitCommandBuffers.size());
-
-        // for(uint32_t i{}; auto commandBuffer : submitCommandBuffers){
-        //     commandBuffer.begin(beginInfo);
-
-        //     m_submitter.Submit(i, commandBuffer);
-
-        //     commandBuffer.end();
-        //     ++i;
-        // }
-
-        // vk::FenceCreateInfo fenceInfo{};
-        // fenceInfo.flags = vk::FenceCreateFlags{};
-        
-        // auto waitResourcesUploaded = m_logicalDevice.createFence(fenceInfo).value;
-
-        // vk::SubmitInfo submitInfo{};
-        // submitInfo.commandBufferCount = static_cast<uint32_t>(submitCommandBuffers.size());
-        // submitInfo.pCommandBuffers = submitCommandBuffers.data();
-        
-        // auto res = m_graphicQueue.submit(submitInfo, waitResourcesUploaded);
-
-        // if(res != vk::Result::eSuccess){
-        //     std::println("Failed Upload Resources Before Draw");
-        // }
-
-        // res = m_logicalDevice.waitForFences(waitResourcesUploaded, vk::True, std::numeric_limits<uint64_t>::max());
-
-        // if(res != vk::Result::eSuccess){
-        //     std::println("Failed Upload Resources Before Draw");
-        // }
-
-        // m_logicalDevice.destroyFence(waitResourcesUploaded);
-        // m_logicalDevice.freeCommandBuffers(m_cmdPool, submitCommandBuffers);
-
-        // std::println("All Resources Uploaded");
-    }
-
     const VulkanFrame& VulkanEngine::getCurrentRenderFrame() const {
         return m_renderFrames.at(m_currentFrame % m_totalFrames);
+    }
+
+    void VulkanEngine::updateUniformBuffer() {
+        m_uniformData.cameraPosition.x = 0.0f;
+        m_uniformData.cameraPosition.y = 0.0f;
+        m_uniformData.cameraPosition.z = 0.0f;
+        
+        const std::array data{
+            m_uniformData
+        };
+        m_uniformBuffer.UploadData(data);
     }
 }

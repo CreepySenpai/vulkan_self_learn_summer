@@ -41,6 +41,32 @@ namespace Creepy {
         std::println("Image Size: {} - {}", m_width, m_height);
     }
 
+    void Image::CreateImageView(const vk::Device device, vk::ImageAspectFlags aspect) {
+         vk::ImageViewCreateInfo imageViewInfo{};
+        imageViewInfo.flags = vk::ImageViewCreateFlags{};
+        imageViewInfo.format = m_imageFormat;
+        imageViewInfo.image = m_image;
+        imageViewInfo.viewType = vk::ImageViewType::e2D;
+        imageViewInfo.subresourceRange.aspectMask = aspect;
+        imageViewInfo.subresourceRange.baseMipLevel = 0;
+        imageViewInfo.subresourceRange.baseArrayLayer = 0;
+        imageViewInfo.subresourceRange.levelCount = 1;
+        imageViewInfo.subresourceRange.layerCount = 1;
+        imageViewInfo.components.a = vk::ComponentSwizzle::eIdentity;
+        imageViewInfo.components.g = vk::ComponentSwizzle::eIdentity;
+        imageViewInfo.components.b = vk::ComponentSwizzle::eIdentity;
+        imageViewInfo.components.r = vk::ComponentSwizzle::eIdentity;
+
+
+        auto imgViewRes = device.createImageView(imageViewInfo);
+
+        if(imgViewRes.result != vk::Result::eSuccess){
+            std::println("Failed Create ImgView");
+        }
+
+        m_imageView = imgViewRes.value;
+    }
+
     void Image::createImage(const vk::Device device, vk::ImageUsageFlags imageUsage, vk::ImageAspectFlags aspect) {
         vk::ImageCreateInfo info{};
         info.flags = vk::ImageCreateFlags{};
@@ -74,30 +100,6 @@ namespace Creepy {
         }
 
         std::tie(m_image, m_imageLoc) = res.value;
-        
-        vk::ImageViewCreateInfo imageViewInfo{};
-        imageViewInfo.flags = vk::ImageViewCreateFlags{};
-        imageViewInfo.format = m_imageFormat;
-        imageViewInfo.image = m_image;
-        imageViewInfo.viewType = vk::ImageViewType::e2D;
-        imageViewInfo.subresourceRange.aspectMask = aspect;
-        imageViewInfo.subresourceRange.baseMipLevel = 0;
-        imageViewInfo.subresourceRange.baseArrayLayer = 0;
-        imageViewInfo.subresourceRange.levelCount = 1;
-        imageViewInfo.subresourceRange.layerCount = 1;
-        imageViewInfo.components.a = vk::ComponentSwizzle::eIdentity;
-        imageViewInfo.components.g = vk::ComponentSwizzle::eIdentity;
-        imageViewInfo.components.b = vk::ComponentSwizzle::eIdentity;
-        imageViewInfo.components.r = vk::ComponentSwizzle::eIdentity;
-
-
-        auto imgViewRes = device.createImageView(imageViewInfo);
-
-        if(imgViewRes.result != vk::Result::eSuccess){
-            std::println("Failed Create ImgView");
-        }
-
-        m_imageView = imgViewRes.value;
     }
     
 

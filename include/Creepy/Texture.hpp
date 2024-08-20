@@ -13,14 +13,17 @@ namespace Creepy{
             vk::Image GetImage() const;
             vk::ImageView GetImageView() const;
             vk::Sampler GetSampler() const;
+            vk::DescriptorImageInfo GetDescriptorImage() const;
 
             void Destroy(const vk::Device device) const;
 
         private:
             void createSampler(const vk::Device device);
+            void createImageDescriptor();
         private:
             Image m_image;
-            vk::Sampler m_sampler{};
+            vk::Sampler m_sampler;
+            vk::DescriptorImageInfo m_imageDescriptor;
     };
 
 }

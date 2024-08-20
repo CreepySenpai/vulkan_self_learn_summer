@@ -5,6 +5,7 @@
 #include <vkmemoryalloc/vk_mem_alloc.hpp>
 #include "VulkanAllocator.hpp"
 #include "Vertex.hpp"
+#include "Uniform.hpp"
 
 namespace Creepy {
 
@@ -50,12 +51,17 @@ namespace Creepy {
                 return m_bufferSize;
             }
 
+            vk::DescriptorBufferInfo GetDescriptorBuffer() const{
+                return m_bufferDescriptor;
+            }
+
         private:
             vk::Buffer m_buffer;
             vk::BufferView m_bufferView;
             vma::Allocation m_bufferLoc;
             vma::AllocationInfo m_bufferInfo;
             uint64_t m_bufferSize;
+            vk::DescriptorBufferInfo m_bufferDescriptor;
     };
 
 
@@ -89,14 +95,18 @@ namespace Creepy {
                 return m_bufferSize;
             }
 
+            vk::DescriptorBufferInfo GetDescriptorBuffer() const{
+                return m_bufferDescriptor;
+            }
+
         private:
             vk::Buffer m_buffer;
             vk::BufferView m_bufferView;
             vma::Allocation m_bufferLoc;
             uint64_t m_bufferSize;
+            vk::DescriptorBufferInfo m_bufferDescriptor;
     };
 
-    // concept
 
     template <BufferType bufferType, typename T, vk::BufferUsageFlagBits... bufferUsages>
     class BufferWrapperNoView{
@@ -133,6 +143,10 @@ namespace Creepy {
 
             uint64_t GetBufferSize() const {
                 return m_buffer.GetBufferSize();
+            }
+
+            vk::DescriptorBufferInfo GetDescriptorBuffer() const{
+                return m_buffer.GetDescriptorBuffer();
             }
 
         private:
@@ -178,12 +192,17 @@ namespace Creepy {
                 return static_cast<uint32_t>(this->GetBufferSize() / sizeof(T));
             }
 
+            vk::DescriptorBufferInfo GetDescriptorBuffer() const{
+                return m_buffer.GetDescriptorBuffer();
+            }
+
         private:
             Buffer<BufferType::DEVICE_LOCAL> m_buffer;
     };
 
     using VertexBuffer = BufferWrapperNoView<BufferType::DEVICE_LOCAL, Vertex, vk::BufferUsageFlagBits::eVertexBuffer, vk::BufferUsageFlagBits::eTransferDst>;
     using IndexBuffer = BufferWrapperNoView<BufferType::DEVICE_LOCAL, uint32_t, vk::BufferUsageFlagBits::eIndexBuffer, vk::BufferUsageFlagBits::eTransferDst>;
+    using UniformBuffer = BufferWrapperNoView<BufferType::HOST_COHERENT, UniformData, vk::BufferUsageFlagBits::eUniformBuffer, vk::BufferUsageFlagBits::eTransferDst>;
 }
 
 // Template Instanciation

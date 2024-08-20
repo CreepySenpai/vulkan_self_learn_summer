@@ -26,6 +26,15 @@ namespace Creepy{
         return allocInfo;
     }
 
+    vk::DescriptorBufferInfo createDescriptorBuffer(const vk::Buffer buffer, const vma::AllocationInfo& bufferAllocInfo){
+        vk::DescriptorBufferInfo bufferInfo{};
+        bufferInfo.buffer = buffer;
+        bufferInfo.offset = bufferAllocInfo.offset;
+        bufferInfo.range = bufferAllocInfo.size;
+        
+        return bufferInfo;
+    }
+
     ///////////////////////////////////////////////////////////////////////////////////
 
     Buffer<BufferType::DEVICE_LOCAL>::Buffer(const vk::Device device, uint64_t bufferSize, vk::BufferUsageFlags bufferUsage)
@@ -42,8 +51,11 @@ namespace Creepy{
         if(res.result != vk::Result::eSuccess){
             std::println("Failed Create Buffer");
         }
-
+        
         std::tie(m_buffer, m_bufferLoc) = res.value;
+
+        // Create Descriptor
+        m_bufferDescriptor = createDescriptorBuffer(m_buffer, VulkanAllocator::BufferAllocator.getAllocationInfo(m_bufferLoc));
     }
 
     Buffer<BufferType::DEVICE_LOCAL>::Buffer(const vk::Device device, uint64_t bufferSize, vk::Format bufferFormat, vk::BufferUsageFlags bufferUsage)
@@ -121,8 +133,10 @@ namespace Creepy{
         }
 
         std::tie(m_buffer, m_bufferLoc) = res.value;
-
+        
         m_bufferInfo = VulkanAllocator::BufferAllocator.getAllocationInfo(m_bufferLoc);
+
+        m_bufferDescriptor = createDescriptorBuffer(m_buffer, m_bufferInfo);
     }
 
     template <>
@@ -135,7 +149,7 @@ namespace Creepy{
         const vma::AllocationCreateInfo allocInfo{createBufferAllocationInfo(vma::AllocationCreateFlagBits::eMapped, vma::MemoryUsage::eCpuToGpu, vk::MemoryPropertyFlagBits::eHostCoherent)};
 
         auto res = VulkanAllocator::BufferAllocator.createBuffer(info, allocInfo);
-        // VulkanAllocator::BufferAllocator.createBuffer()
+        
         if(res.result != vk::Result::eSuccess){
             std::println("Failed Create Buffer");
         }
@@ -143,6 +157,8 @@ namespace Creepy{
         std::tie(m_buffer, m_bufferLoc) = res.value;
 
         m_bufferInfo = VulkanAllocator::BufferAllocator.getAllocationInfo(m_bufferLoc);
+
+        m_bufferDescriptor = createDescriptorBuffer(m_buffer, m_bufferInfo);
     }
 
     template <>
@@ -201,7 +217,7 @@ namespace Creepy{
 
     template <>
     void Buffer<BufferType::HOST_COHERENT>::UploadData(const void* data, size_t dataSizeInByte) const {
-        std::println("Host Co: {}, {}, {}", m_bufferInfo.memoryType, m_bufferInfo.offset, m_bufferInfo.size);
+        // std::println("Host Co: {}, {}, {}", m_bufferInfo.memoryType, m_bufferInfo.offset, m_bufferInfo.size);
         if(dataSizeInByte > static_cast<size_t>(m_bufferInfo.size)){
             std::println("Data too big");
             return;

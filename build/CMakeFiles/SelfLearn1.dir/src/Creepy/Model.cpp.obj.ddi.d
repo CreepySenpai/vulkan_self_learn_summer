@@ -543,6 +543,7 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\Model.cpp.obj.ddi: \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/vkmemoryalloc/vk_mem_alloc_structs.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/vkmemoryalloc/vk_mem_alloc_funcs.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/VulkanAllocator.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/Uniform.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/assimp/Importer.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/assimp/types.h \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/assimp/defs.h \

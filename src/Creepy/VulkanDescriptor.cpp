@@ -3,15 +3,12 @@
 #include <Creepy/Texture.hpp>
 
 namespace Creepy{
-    void DescriptorSetBuilder::AddBinding(const uint32_t binding, vk::DescriptorType type) {
-        m_bindings.emplace_back(binding, type, 1);
+    void DescriptorSetBuilder::AddBinding(const uint32_t binding, vk::DescriptorType type, vk::ShaderStageFlags shaderStage) {
+        auto& bindingType = m_bindings.emplace_back(binding, type, 1);
+        bindingType.stageFlags |= shaderStage;
     }
             
-    void DescriptorSetBuilder::BuildDescriptorLayout(const vk::Device device, vk::ShaderStageFlags shaderStage) {
-        for(auto&& binding : m_bindings){
-            binding.stageFlags |= shaderStage;
-        }
-
+    void DescriptorSetBuilder::BuildDescriptorLayout(const vk::Device device) {
         vk::DescriptorSetLayoutCreateInfo layoutInfo{};
         layoutInfo.flags = vk::DescriptorSetLayoutCreateFlags{};
         layoutInfo.bindingCount = static_cast<uint32_t>(m_bindings.size());
@@ -44,31 +41,8 @@ namespace Creepy{
 
     //////////////////////////////////////////////////////////////////////////////
 
-    void DescriptorSetWriter::AddBufferBinding(const uint32_t binding, const vk::DescriptorSet descriptorSet, vk::DescriptorType descriptorType, const vk::Buffer buffer, uint64_t bufferSize) {
-        vk::DescriptorBufferInfo bufferInfo{};
-        bufferInfo.offset = 0;
-        bufferInfo.buffer = buffer;
-        bufferInfo.range = bufferSize;
-        
-        
-        vk::WriteDescriptorSet writer{};
-        writer.descriptorCount = 1;
-        writer.descriptorType = descriptorType;
-        writer.dstBinding = binding;
-        writer.dstSet = descriptorSet;
-        writer.pBufferInfo = &bufferInfo;
-
-        m_writers.push_back(std::move(writer));
-    }
-
     void DescriptorSetWriter::AddImageBinding(const uint32_t binding, const vk::DescriptorSet descriptorSet, vk::DescriptorType descriptorType, const Texture& texture) {
-        vk::DescriptorImageInfo textureInfo{};
-        textureInfo.imageView = texture.GetImageView();
-        textureInfo.sampler = texture.GetSampler();
-
-        //TODO: Storage Texture Layout
-        textureInfo.imageLayout = vk::ImageLayout::eShaderReadOnlyOptimal;
-        
+        const vk::DescriptorImageInfo textureInfo = texture.GetDescriptorImage();
         
         vk::WriteDescriptorSet writer{};
         writer.descriptorCount = 1;

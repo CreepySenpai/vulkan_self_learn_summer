@@ -50,8 +50,9 @@ namespace Creepy {
             void createImageResources();
             void createBufferResources();
             
-            void submitDataBeforeDraw();
             const VulkanFrame& getCurrentRenderFrame() const;
+
+            void updateUniformBuffer();
         private:
             void draw();
             void drawModels(const vk::CommandBuffer currentCommandBuffer, const vk::Image colorImage, const vk::ImageView colorImageView, const vk::Image depthImage, const vk::ImageView depthImageView);
@@ -92,6 +93,9 @@ namespace Creepy {
             VulkanCommandBufferSubmitData m_submitter;
 
             Texture m_shibaTexture;
+
+            UniformBuffer m_uniformBuffer;
+            UniformData m_uniformData;
 
             //TODO: Use atomic
             bool m_isSwapchainResizing{false};

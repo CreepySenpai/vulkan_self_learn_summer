@@ -112,8 +112,8 @@ namespace Creepy{
         imageBarrier.subresourceRange.aspectMask = imageAspect;
         imageBarrier.subresourceRange.baseMipLevel = 0;
         imageBarrier.subresourceRange.baseArrayLayer = 0;
-        imageBarrier.subresourceRange.levelCount = vk::RemainingMipLevels;
-        imageBarrier.subresourceRange.layerCount = vk::RemainingArrayLayers;
+        imageBarrier.subresourceRange.levelCount = 1;
+        imageBarrier.subresourceRange.layerCount = 1;
 
         vk::DependencyInfo depenInfo{};
         depenInfo.dependencyFlags = vk::DependencyFlags{};

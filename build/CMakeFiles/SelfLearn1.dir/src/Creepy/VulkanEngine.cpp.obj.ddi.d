@@ -541,6 +541,7 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanEngine.cpp.obj.ddi: \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtc/type_ptr.inl \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtc/ulp.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtc/ulp.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/Uniform.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/VulkanFrame.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/VulkanSwapchain.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/VulkanDescriptor.hpp \

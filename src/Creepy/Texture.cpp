@@ -11,8 +11,8 @@ namespace Creepy{
         auto textureData = stbi_load(filePath.string().c_str(), &width, &height, &channel, 4);
 
         m_image = Image{device, static_cast<uint32_t>(width), static_cast<uint32_t>(height), vk::Format::eR8G8B8A8Unorm, 
-            vk::ImageUsageFlagBits::eTransferDst | vk::ImageUsageFlagBits::eSampled, vk::ImageAspectFlagBits::eColor};
-
+            vk::ImageUsageFlagBits::eTransferDst | vk::ImageUsageFlagBits::eSampled | vk::ImageUsageFlagBits::eTransferSrc, vk::ImageAspectFlagBits::eColor};
+        
         Buffer<BufferType::HOST_VISIBLE> stagingBuffer{device, 
             static_cast<uint32_t>(width) * static_cast<uint32_t>(height) * sizeof(uint32_t), 
             vk::BufferUsageFlagBits::eTransferSrc};
@@ -54,7 +54,11 @@ namespace Creepy{
 
         stbi_image_free(textureData);
 
+        m_image.CreateImageView(device, vk::ImageAspectFlagBits::eColor);
+        
         this->createSampler(device);
+
+        this->createImageDescriptor();
     }
     
     vk::Image Texture::GetImage() const {
@@ -69,6 +73,10 @@ namespace Creepy{
         return m_sampler;
     }
 
+    vk::DescriptorImageInfo Texture::GetDescriptorImage() const {
+        return m_imageDescriptor;
+    }
+
     void Texture::Destroy(const vk::Device device) const {
         device.destroySampler(m_sampler);
         m_image.Destroy(device);
@@ -77,9 +85,9 @@ namespace Creepy{
     void Texture::createSampler(const vk::Device device) {
         vk::SamplerCreateInfo samplerInfo{};
         samplerInfo.flags = vk::SamplerCreateFlags{};
-        samplerInfo.addressModeU = vk::SamplerAddressMode::eClampToEdge;
-        samplerInfo.addressModeV = vk::SamplerAddressMode::eClampToEdge;
-        samplerInfo.addressModeW = vk::SamplerAddressMode::eClampToEdge;
+        samplerInfo.addressModeU = vk::SamplerAddressMode::eRepeat;
+        samplerInfo.addressModeV = vk::SamplerAddressMode::eRepeat;
+        samplerInfo.addressModeW = vk::SamplerAddressMode::eRepeat;
         samplerInfo.minFilter = vk::Filter::eNearest;
         samplerInfo.magFilter = vk::Filter::eNearest;
         samplerInfo.mipmapMode = vk::SamplerMipmapMode::eLinear;
@@ -92,6 +100,12 @@ namespace Creepy{
         samplerInfo.maxAnisotropy = 1.0f;
 
         m_sampler = device.createSampler(samplerInfo).value;
+    }
+
+    void Texture::createImageDescriptor() {
+        m_imageDescriptor.imageLayout = vk::ImageLayout::eShaderReadOnlyOptimal;
+        m_imageDescriptor.imageView = m_image.GetImageView();
+        m_imageDescriptor.sampler = m_sampler;
     }
 
 }
