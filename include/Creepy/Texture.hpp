@@ -14,6 +14,9 @@ namespace Creepy{
             vk::ImageView GetImageView() const;
             vk::Sampler GetSampler() const;
             vk::DescriptorImageInfo GetDescriptorImage() const;
+            
+            vk::DescriptorSet GetDescriptorSet() const;
+            void SetDescriptorSet(const vk::DescriptorSet descriptorSet);
 
             void Destroy(const vk::Device device) const;
 
@@ -24,6 +27,7 @@ namespace Creepy{
             Image m_image;
             vk::Sampler m_sampler;
             vk::DescriptorImageInfo m_imageDescriptor;
+            vk::DescriptorSet m_imageDescriptorSet;
     };
 
 }

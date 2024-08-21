@@ -8,7 +8,7 @@ namespace Creepy{
         bindingType.stageFlags |= shaderStage;
     }
             
-    void DescriptorSetBuilder::BuildDescriptorLayout(const vk::Device device) {
+    vk::DescriptorSetLayout DescriptorSetBuilder::BuildDescriptorLayout(const vk::Device device) {
         vk::DescriptorSetLayoutCreateInfo layoutInfo{};
         layoutInfo.flags = vk::DescriptorSetLayoutCreateFlags{};
         layoutInfo.bindingCount = static_cast<uint32_t>(m_bindings.size());
@@ -21,6 +21,8 @@ namespace Creepy{
         }
 
         m_descriptorSetLayout = res.value;
+
+        return m_descriptorSetLayout;
     }
 
     DescriptorSet DescriptorSetBuilder::AllocateDescriptorSet(const vk::Device device, const vk::DescriptorPool descriptorPool){

@@ -205,7 +205,7 @@ namespace Creepy{
 
     template <>
     void Buffer<BufferType::HOST_VISIBLE>::UploadData(const void* data, size_t dataSizeInByte) const {
-        std::println("Host Vi: {}, {}, {}", m_bufferInfo.memoryType, m_bufferInfo.offset, m_bufferInfo.size);
+        // std::println("Host Vi: {}, {}, {}", m_bufferInfo.memoryType, m_bufferInfo.offset, m_bufferInfo.size);
         
         if(dataSizeInByte > static_cast<size_t>(m_bufferInfo.size)){
             std::println("Data too big");
@@ -217,7 +217,7 @@ namespace Creepy{
 
     template <>
     void Buffer<BufferType::HOST_COHERENT>::UploadData(const void* data, size_t dataSizeInByte) const {
-        std::println("Host Co: {}, {}, {}", m_bufferInfo.memoryType, m_bufferInfo.offset, m_bufferInfo.size);
+        // std::println("Host Co: {}, {}, {}", m_bufferInfo.memoryType, m_bufferInfo.offset, m_bufferInfo.size);
         if(dataSizeInByte > static_cast<size_t>(m_bufferInfo.size)){
             std::println("Data too big");
             return;

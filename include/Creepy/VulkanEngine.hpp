@@ -1,6 +1,6 @@
 #pragma once
 
-#include <atomic>
+#include <unordered_map>
 
 #include <vulkan/vulkan.hpp>
 #include <vkmemoryalloc/vk_mem_alloc.hpp>
@@ -12,6 +12,7 @@
 #include "VulkanSwapchain.hpp"
 #include "VulkanDescriptor.hpp"
 #include "Texture.hpp"
+#include "Model.hpp"
 
 struct GLFWwindow;
 
@@ -77,7 +78,9 @@ namespace Creepy {
             std::vector<VulkanFrame> m_renderFrames;
 
             vk::DescriptorPool m_descriptorPool;
-            DescriptorSet m_triangleDescriptorSet;
+            DescriptorSet m_uniformBufferDescriptorSet;
+            vk::DescriptorSetLayout m_textureDescriptorSetLayout;
+
             // Resources
 
             Image m_colorImage, m_depthImage;
@@ -96,6 +99,8 @@ namespace Creepy {
 
             UniformBuffer m_uniformBuffer;
             UniformData m_uniformData;
+
+            std::unordered_map<std::string, Model> m_models;
 
             //TODO: Use atomic
             bool m_isSwapchainResizing{false};

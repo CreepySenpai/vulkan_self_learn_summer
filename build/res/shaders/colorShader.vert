@@ -19,6 +19,7 @@ void main(){
     vec4 loc = MVPMatrix.projectionMatrix * MVPMatrix.viewMatrix * MVPMatrix.modelMatrix * vec4(inVertex, 1.0);
     gl_Position = vec4(inVertex, 1.0);
 
-    outColor = inNormal;
+    // outColor = inNormal;
+    outColor = MVPMatrix.cameraPosition.xyz;
     outTexCoord = inTexCoord;
 }

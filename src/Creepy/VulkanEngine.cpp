@@ -514,22 +514,41 @@ namespace Creepy {
 
     void VulkanEngine::createDescriptorSets() {
         m_logicalDevice.waitIdle();
-        DescriptorSetBuilder builder{};
-        builder.AddBinding(0, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eVertex);
-        builder.AddBinding(1, vk::DescriptorType::eCombinedImageSampler, vk::ShaderStageFlagBits::eFragment);
-        builder.BuildDescriptorLayout(m_logicalDevice);
 
-        m_triangleDescriptorSet = builder.AllocateDescriptorSet(m_logicalDevice, m_descriptorPool);
+        // Set Up DescriptorSet For Uniform Buffer - Set 1
+        {
+            DescriptorSetBuilder builder{};
+            builder.AddBinding(0, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eVertex);
+            builder.BuildDescriptorLayout(m_logicalDevice);
+            m_uniformBufferDescriptorSet = builder.AllocateDescriptorSet(m_logicalDevice, m_descriptorPool);
 
-        DescriptorSetWriter writer{};
-        writer.AddBufferBinding(0, m_triangleDescriptorSet.DescriptorSet, vk::DescriptorType::eUniformBuffer, m_uniformBuffer);
+            DescriptorSetWriter writer{};
+            writer.AddBufferBinding(0, m_uniformBufferDescriptorSet.DescriptorSet, vk::DescriptorType::eUniformBuffer, m_uniformBuffer);
+            writer.UpdateDescriptorSets(m_logicalDevice);
+        }
 
-        writer.AddImageBinding(1, m_triangleDescriptorSet.DescriptorSet, vk::DescriptorType::eCombinedImageSampler, m_shibaTexture);
+        {
+            if(!m_models.empty()){
+                DescriptorSetBuilder builder{};
+                builder.AddBinding(0, vk::DescriptorType::eCombinedImageSampler, vk::ShaderStageFlagBits::eFragment);
+                m_textureDescriptorSetLayout = builder.BuildDescriptorLayout(m_logicalDevice);
+                
+                for(auto& [name, model] : m_models){
+                    for(auto& texture : model.GetTextures()){
+                        auto temp = builder.AllocateDescriptorSet(m_logicalDevice, m_descriptorPool);
+                        texture.SetDescriptorSet(temp.DescriptorSet);
+                        DescriptorSetWriter writer{};
+                        writer.AddImageBinding(0, texture.GetDescriptorSet(), vk::DescriptorType::eCombinedImageSampler, texture);
+                    }
+                }
+            }
+            
 
-        writer.UpdateDescriptorSets(m_logicalDevice);
+        }
 
         m_clearner.AddJob([this]{
-            m_logicalDevice.destroyDescriptorSetLayout(m_triangleDescriptorSet.DescriptorSetLayout);
+            m_logicalDevice.destroyDescriptorSetLayout(m_uniformBufferDescriptorSet.DescriptorSetLayout);
+            m_logicalDevice.destroyDescriptorSetLayout(m_textureDescriptorSetLayout);
         });
     }
 
@@ -555,8 +574,10 @@ namespace Creepy {
         
         const Shader fragmentShader{m_logicalDevice, readShaderSPVFile("./res/shaders/fragmentShader.spv"), vk::ShaderStageFlagBits::eFragment};
 
+        // TODO: ADD Texture DescriptorSetLayout
         const std::array descriptorSetLayouts{
-            m_triangleDescriptorSet.DescriptorSetLayout
+            m_uniformBufferDescriptorSet.DescriptorSetLayout,
+            // m_textureDescriptorSetLayout
         };
 
         PipelineState backgroundState{};
@@ -571,7 +592,6 @@ namespace Creepy {
         backgroundState.InitColorBlendState();
         backgroundState.InitDynamicState(dynamicStates);
         backgroundState.DisableBlending();
-        // backgroundState.DisableDepthTest();
         backgroundState.EnableDepthTest();
 
         const std::array colorAttachmentFormats{
@@ -579,10 +599,7 @@ namespace Creepy {
         };
 
         //TODO: use images and depth format
-        if(m_depthImage.GetImageFormat() == vk::Format::eD24UnormS8Uint){
-            std::println("Disss format");
-        }
-        backgroundState.InitRenderingInfo(colorAttachmentFormats, vk::Format::eD24UnormS8Uint);
+        backgroundState.InitRenderingInfo(colorAttachmentFormats, m_depthImage.GetImageFormat());
 
         m_backgroundPipeline.Build(m_logicalDevice, backgroundState);
 
@@ -611,7 +628,6 @@ namespace Creepy {
             glfwWaitEvents();
         }
 
-        // auto&& surfaceCap = m_physicalDevice.getSurfaceCapabilitiesKHR(m_surface).value;
         auto&& surfaceFormat = chooseSurfaceFormat(m_physicalDevice, m_surface);
 
         m_swapchain.Recreate(m_logicalDevice, m_surface, 
@@ -687,6 +703,8 @@ namespace Creepy {
         Debug::BeginFrame();
 
         Debug::DrawFrame();
+
+        Debug::DrawUniformData(m_uniformData);
 
         Debug::EndFrame();
 
@@ -844,7 +862,7 @@ namespace Creepy {
 
         currentCommandBuffer.setScissor(0, scissor);
 
-        currentCommandBuffer.bindDescriptorSets(vk::PipelineBindPoint::eGraphics, m_backgroundPipeline.GetPipelineLayout(), 0, m_triangleDescriptorSet.DescriptorSet, nullptr);
+        currentCommandBuffer.bindDescriptorSets(vk::PipelineBindPoint::eGraphics, m_backgroundPipeline.GetPipelineLayout(), 0, m_uniformBufferDescriptorSet.DescriptorSet, nullptr);
         currentCommandBuffer.bindPipeline(vk::PipelineBindPoint::eGraphics, m_backgroundPipeline.GetPipeline());
 
         constexpr std::array<uint64_t, 1> offsets{0};
@@ -886,9 +904,9 @@ namespace Creepy {
     }
 
     void VulkanEngine::updateUniformBuffer() {
-        m_uniformData.cameraPosition.x = 0.0f;
-        m_uniformData.cameraPosition.y = 0.0f;
-        m_uniformData.cameraPosition.z = 0.0f;
+        // m_uniformData.cameraPosition.x = 0.0f;
+        // m_uniformData.cameraPosition.y = 0.0f;
+        // m_uniformData.cameraPosition.z = 0.0f;
         
         const std::array data{
             m_uniformData

@@ -17,6 +17,8 @@ namespace Creepy{
             
             void Destroy(const vk::Device device) const;
 
+            std::span<const Texture> GetTextures() const;
+            std::span<Texture> GetTextures();
         private:
             void loadModel(const std::filesystem::path& filePath, const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue);
             void processNode(aiNode* node, const aiScene* scene, const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue);

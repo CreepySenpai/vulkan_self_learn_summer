@@ -16,6 +16,14 @@ namespace Creepy{
         }
     }
 
+    std::span<const Texture> Model::GetTextures() const {
+        return m_textures;
+    }
+
+    std::span<Texture> Model::GetTextures() {
+        return m_textures;
+    }
+
     void Model::loadModel(const std::filesystem::path& filePath, const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue){
         Assimp::Importer importer{};
 

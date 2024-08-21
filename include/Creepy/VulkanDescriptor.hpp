@@ -5,7 +5,7 @@
 #include "VulkanBuffer.hpp"
 
 namespace Creepy {
-
+    
     struct DescriptorSet{
         vk::DescriptorSet DescriptorSet;
         vk::DescriptorSetLayout DescriptorSetLayout;
@@ -15,7 +15,7 @@ namespace Creepy {
         public:
             void AddBinding(const uint32_t binding, vk::DescriptorType type, vk::ShaderStageFlags shaderStage);
             
-            void BuildDescriptorLayout(const vk::Device device);
+            vk::DescriptorSetLayout BuildDescriptorLayout(const vk::Device device);
 
             DescriptorSet AllocateDescriptorSet(const vk::Device device, const vk::DescriptorPool descriptorPool);
         private:

@@ -18,12 +18,54 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanEngine.cpp.obj.ddi: \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/cpp_type_traits.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/ext/type_traits.h \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/VulkanEngine.hpp \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/atomic \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/atomic_base.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/unordered_map \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/requires_hosted.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/unordered_map.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/hashtable.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/hashtable_policy.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/tuple \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/uses_allocator.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/invoke.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/ranges_util.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/ranges_base.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/stl_iterator.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/stl_iterator_base_types.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/iterator_concepts.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/ptr_traits.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/ranges_cmp.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/new \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/exception.h \
- D:/Enviroments/mingw64_msvcrt/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stdint.h \
- D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/stdint.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/exception_defines.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/stl_construct.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/stl_iterator_base_funcs.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/concept_check.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/debug/assertions.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/max_size_type.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/numbers \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/functional_hash.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/hash_bytes.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/stl_algobase.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/functexcept.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/debug/debug.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/predefined_ops.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bit \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/ext/aligned_buffer.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/ext/alloc_traits.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/alloc_traits.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/memoryfwd.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/allocator.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/x86_64-w64-mingw32/bits/c++allocator.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/new_allocator.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/enable_special_members.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/stl_function.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/backward/binders.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/node_handle.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/range_access.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/erase_if.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/memory_resource.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/cstddef \
+ D:/Enviroments/mingw64_msvcrt/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stddef.h \
+ D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/stddef.h \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/crtdefs.h \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/corecrt.h \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/_mingw.h \
@@ -31,51 +73,9 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanEngine.cpp.obj.ddi: \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/_mingw_secapi.h \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/vadefs.h \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/sdks/_mingw_ddk.h \
- D:/Enviroments/mingw64_msvcrt/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stddef.h \
- D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/stddef.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/atomic_lockfree_defines.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/atomic_wait.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/cstdint \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/functional_hash.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/hash_bytes.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/x86_64-w64-mingw32/bits/gthr.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/x86_64-w64-mingw32/bits/gthr-default.h \
- D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/pthread.h \
- D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/errno.h \
- D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/sys/types.h \
- D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/_mingw_off_t.h \
- D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/process.h \
- D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/corecrt_startup.h \
- D:/Enviroments/mingw64_msvcrt/lib/gcc/x86_64-w64-mingw32/14.2.0/include/limits.h \
- D:/Enviroments/mingw64_msvcrt/lib/gcc/x86_64-w64-mingw32/14.2.0/include/syslimits.h \
- D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/limits.h \
- D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/signal.h \
- D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/pthread_signal.h \
- D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/time.h \
- D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/sys/timeb.h \
- D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/sec_api/sys/timeb_s.h \
- D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/_timeval.h \
- D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/pthread_time.h \
- D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/pthread_compat.h \
- D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/pthread_unistd.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/std_mutex.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/functexcept.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/exception_defines.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/uses_allocator_args.h \
  D:/Enviroments/vulkan/Include/vulkan/vulkan.hpp \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/algorithm \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/stl_algobase.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/stl_iterator_base_types.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/iterator_concepts.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/ptr_traits.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/ranges_cmp.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/stl_iterator_base_funcs.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/concept_check.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/debug/assertions.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/stl_iterator.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/stl_construct.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/debug/debug.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/predefined_ops.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bit \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/stl_algo.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/algorithmfwd.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/stl_heap.h \
@@ -84,10 +84,14 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanEngine.cpp.obj.ddi: \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/cstdlib \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/stdlib.h \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/corecrt_wstdlib.h \
+ D:/Enviroments/mingw64_msvcrt/lib/gcc/x86_64-w64-mingw32/14.2.0/include/limits.h \
+ D:/Enviroments/mingw64_msvcrt/lib/gcc/x86_64-w64-mingw32/14.2.0/include/syslimits.h \
+ D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/limits.h \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/sec_api/stdlib_s.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/stdlib.h \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/malloc.h \
  D:/Enviroments/mingw64_msvcrt/lib/gcc/x86_64-w64-mingw32/14.2.0/include/mm_malloc.h \
+ D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/errno.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/std_abs.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/ranges_algo.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/optional \
@@ -96,34 +100,23 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanEngine.cpp.obj.ddi: \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/cxxabi_init_exception.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/typeinfo \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/nested_exception.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/enable_special_members.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/invoke.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/ranges_algobase.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/ranges_base.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/max_size_type.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/numbers \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/ranges_util.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/pstl/glue_algorithm_defs.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/pstl/execution_defs.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/array \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/range_access.h \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/string.h \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/sec_api/string_s.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/string \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/requires_hosted.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/stringfwd.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/memoryfwd.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/char_traits.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/postypes.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/cwchar \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/wchar.h \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/corecrt_stdio_config.h \
+ D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/_mingw_off_t.h \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/_mingw_stat64.h \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/swprintf.inl \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/sec_api/wchar_s.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/allocator.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/x86_64-w64-mingw32/bits/c++allocator.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/new_allocator.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/localefwd.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/x86_64-w64-mingw32/bits/c++locale.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/clocale \
@@ -135,12 +128,8 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanEngine.cpp.obj.ddi: \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/ctype.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/ostream_insert.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/cxxabi_forced.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/stl_function.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/backward/binders.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/refwrap.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/basic_string.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/ext/alloc_traits.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/alloc_traits.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/string_view \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/string_view.tcc \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/charconv \
@@ -150,13 +139,10 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanEngine.cpp.obj.ddi: \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/ext/string_conversions.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/cstdio \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/basic_string.tcc \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/memory_resource.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/cstddef \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/uses_allocator.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/uses_allocator_args.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/tuple \
  D:/Enviroments/vulkan/Include/vulkan/vulkan.h \
  D:/Enviroments/vulkan/Include/vulkan/vk_platform.h \
+ D:/Enviroments/mingw64_msvcrt/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stdint.h \
+ D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/stdint.h \
  D:/Enviroments/vulkan/Include/vulkan/vulkan_core.h \
  D:/Enviroments/vulkan/Include/vk_video/vulkan_video_codec_h264std.h \
  D:/Enviroments/vulkan/Include/vk_video/vulkan_video_codecs_common.h \
@@ -188,6 +174,21 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanEngine.cpp.obj.ddi: \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/locale \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/locale_classes.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/ext/atomicity.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/x86_64-w64-mingw32/bits/gthr.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/x86_64-w64-mingw32/bits/gthr-default.h \
+ D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/pthread.h \
+ D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/sys/types.h \
+ D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/process.h \
+ D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/corecrt_startup.h \
+ D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/signal.h \
+ D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/pthread_signal.h \
+ D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/time.h \
+ D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/sys/timeb.h \
+ D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/sec_api/sys/timeb_s.h \
+ D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/_timeval.h \
+ D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/pthread_time.h \
+ D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/pthread_compat.h \
+ D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/pthread_unistd.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/x86_64-w64-mingw32/bits/atomic_word.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/locale_classes.tcc \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/locale_facets.h \
@@ -212,6 +213,7 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanEngine.cpp.obj.ddi: \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/variant \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/parse_numbers.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/unicode.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/cstdint \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/unicode-data.h \
  D:/Enviroments/vulkan/Include/vulkan/vulkan_handles.hpp \
  D:/Enviroments/vulkan/Include/vulkan/vulkan_structs.hpp \
@@ -226,13 +228,6 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanEngine.cpp.obj.ddi: \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/VulkanJobSystem.hpp \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/functional \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/std_function.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/unordered_map \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/unordered_map.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/hashtable.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/hashtable_policy.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/ext/aligned_buffer.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/node_handle.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/erase_if.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/move_only_function.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/mofunc_impl.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/ranges \
@@ -571,6 +566,8 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanEngine.cpp.obj.ddi: \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/align.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/fs_dir.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/fs_ops.h \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/Model.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/Mesh.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/VulkanUtils.hpp \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/fstream \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/x86_64-w64-mingw32/bits/basic_file.h \
@@ -586,6 +583,4 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanEngine.cpp.obj.ddi: \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/stdarg.h \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/_mingw_stdarg.h \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/imgui/imgui_impl_glfw.hpp \
- D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/imgui/imgui_impl_vulkan.hpp \
- D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/Model.hpp \
- D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/Mesh.hpp
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/imgui/imgui_impl_vulkan.hpp

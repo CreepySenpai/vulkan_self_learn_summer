@@ -8,8 +8,9 @@ namespace Creepy{
     void Texture::LoadTexture(const std::filesystem::path& filePath, const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue) {
         int width{}, height{}, channel{};
         
-        auto textureData = stbi_load(filePath.string().c_str(), &width, &height, &channel, 4);
+        auto textureData = stbi_load(filePath.string().c_str(), &width, &height, &channel, STBI_rgb_alpha);
 
+        std::println("Load Texture: {} - {}", width, height);
         m_image = Image{device, static_cast<uint32_t>(width), static_cast<uint32_t>(height), vk::Format::eR8G8B8A8Unorm, 
             vk::ImageUsageFlagBits::eTransferDst | vk::ImageUsageFlagBits::eSampled | vk::ImageUsageFlagBits::eTransferSrc, vk::ImageAspectFlagBits::eColor};
         
@@ -37,6 +38,9 @@ namespace Creepy{
         copyRegion.imageSubresource.baseArrayLayer = 0;
         copyRegion.imageSubresource.mipLevel = 0;
         copyRegion.imageSubresource.layerCount = 1;
+        copyRegion.imageOffset.x = 0;
+        copyRegion.imageOffset.y = 0;
+        copyRegion.imageOffset.z = 0;
         
         tempCommandBuffer.copyBufferToImage(stagingBuffer.GetBuffer(), m_image.GetImage(), vk::ImageLayout::eTransferDstOptimal, copyRegion);
 
@@ -53,8 +57,6 @@ namespace Creepy{
         stagingBuffer.Destroy(device);
 
         stbi_image_free(textureData);
-
-        // m_image.CreateImageView(device, vk::ImageAspectFlagBits::eColor);
         
         this->createSampler(device);
 
@@ -75,6 +77,14 @@ namespace Creepy{
 
     vk::DescriptorImageInfo Texture::GetDescriptorImage() const {
         return m_imageDescriptor;
+    }
+
+    vk::DescriptorSet Texture::GetDescriptorSet() const {
+        return m_imageDescriptorSet;
+    }
+
+    void Texture::SetDescriptorSet(const vk::DescriptorSet descriptorSet) {
+        m_imageDescriptorSet = descriptorSet;
     }
 
     void Texture::Destroy(const vk::Device device) const {
