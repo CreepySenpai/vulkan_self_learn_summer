@@ -394,44 +394,54 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\Mesh.cpp.obj.ddi: \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtc/type_ptr.inl \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtc/ulp.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtc/ulp.inl \
- D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/VulkanBuffer.hpp \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/print \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/format \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/array \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/charconv \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/charconv.h \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/Texture.hpp \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/filesystem \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/fs_fwd.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/system_error \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/x86_64-w64-mingw32/bits/error_constants.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/cerrno \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/locale \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/localefwd.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/x86_64-w64-mingw32/bits/c++locale.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/clocale \
- D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/locale.h \
- D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/stdio.h \
- D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/corecrt_stdio_config.h \
- D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/_mingw_off_t.h \
- D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/swprintf.inl \
- D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/sec_api/stdio_s.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/iosfwd \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/stringfwd.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/postypes.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/cwchar \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/wchar.h \
+ D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/corecrt_stdio_config.h \
+ D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/_mingw_off_t.h \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/_mingw_stat64.h \
+ D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/swprintf.inl \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/sec_api/wchar_s.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/cctype \
- D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/ctype.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/locale_classes.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/stdexcept \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/exception \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/exception_ptr.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/cxxabi_init_exception.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/typeinfo \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/nested_exception.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/string \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/char_traits.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/localefwd.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/x86_64-w64-mingw32/bits/c++locale.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/clocale \
+ D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/locale.h \
+ D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/stdio.h \
+ D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/sec_api/stdio_s.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/cctype \
+ D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/ctype.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/ostream_insert.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/cxxabi_forced.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/basic_string.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/string_view \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/string_view.tcc \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/charconv \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/charconv.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/ext/string_conversions.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/cstdio \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/basic_string.tcc \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/chrono.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/ratio \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/parse_numbers.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/fs_path.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/locale \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/locale_classes.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/ext/atomicity.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/x86_64-w64-mingw32/bits/gthr.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/x86_64-w64-mingw32/bits/gthr-default.h \
@@ -450,13 +460,6 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\Mesh.cpp.obj.ddi: \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/wctype.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/x86_64-w64-mingw32/bits/ctype_base.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/ios_base.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/system_error \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/stdexcept \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/exception \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/exception_ptr.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/cxxabi_init_exception.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/typeinfo \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/nested_exception.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/streambuf \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/streambuf.tcc \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/streambuf_iterator.h \
@@ -468,11 +471,20 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\Mesh.cpp.obj.ddi: \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/codecvt.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/locale_facets_nonio.tcc \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/locale_conv.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/iomanip \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/quoted_string.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/sstream \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/istream \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/ios \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/basic_ios.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/basic_ios.tcc \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/ostream \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/format \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/array \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/optional \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/enable_special_members.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/span \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/variant \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/parse_numbers.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/ranges_algobase.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/unicode.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/stl_algo.h \
@@ -481,6 +493,20 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\Mesh.cpp.obj.ddi: \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/uniform_int_dist.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/stl_tempbuf.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/unicode-data.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/ostream.tcc \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/istream.tcc \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/sstream.tcc \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/codecvt \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/ext/concurrence.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/shared_ptr.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/shared_ptr_base.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/allocated_ptr.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/unique_ptr.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/ext/aligned_buffer.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/align.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/fs_dir.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/fs_ops.h \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/VulkanImage.hpp \
  D:/Enviroments/vulkan/Include/vulkan/vulkan.hpp \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/algorithm \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/ranges_algo.h \
@@ -515,5 +541,7 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\Mesh.cpp.obj.ddi: \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/vkmemoryalloc/vk_mem_alloc_handles.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/vkmemoryalloc/vk_mem_alloc_structs.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/vkmemoryalloc/vk_mem_alloc_funcs.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/VulkanBuffer.hpp \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/print \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/VulkanAllocator.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/Uniform.hpp

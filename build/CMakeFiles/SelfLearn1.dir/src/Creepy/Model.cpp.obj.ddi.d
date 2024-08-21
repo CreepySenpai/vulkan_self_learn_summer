@@ -506,8 +506,8 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\Model.cpp.obj.ddi: \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtc/type_ptr.inl \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtc/ulp.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtc/ulp.inl \
- D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/VulkanBuffer.hpp \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/print \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/Texture.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/VulkanImage.hpp \
  D:/Enviroments/vulkan/Include/vulkan/vulkan.hpp \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/algorithm \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/ranges_algo.h \
@@ -542,10 +542,10 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\Model.cpp.obj.ddi: \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/vkmemoryalloc/vk_mem_alloc_handles.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/vkmemoryalloc/vk_mem_alloc_structs.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/vkmemoryalloc/vk_mem_alloc_funcs.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/VulkanBuffer.hpp \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/print \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/VulkanAllocator.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/Uniform.hpp \
- D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/Texture.hpp \
- D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/VulkanImage.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/assimp/Importer.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/assimp/types.h \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/assimp/defs.h \
