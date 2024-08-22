@@ -549,11 +549,4 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\Texture.cpp.obj.ddi: \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtc/ulp.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtc/ulp.inl \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/Uniform.hpp \
- D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h \
- D:/Enviroments/mingw64_msvcrt/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stdarg.h \
- D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/stdarg.h \
- D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/_mingw_stdarg.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/math.h \
- D:/Enviroments/mingw64_msvcrt/lib/gcc/x86_64-w64-mingw32/14.2.0/include/emmintrin.h \
- D:/Enviroments/mingw64_msvcrt/lib/gcc/x86_64-w64-mingw32/14.2.0/include/xmmintrin.h \
- D:/Enviroments/mingw64_msvcrt/lib/gcc/x86_64-w64-mingw32/14.2.0/include/mmintrin.h
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h

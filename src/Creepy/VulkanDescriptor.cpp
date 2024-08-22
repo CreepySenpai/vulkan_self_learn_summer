@@ -39,24 +39,4 @@ namespace Creepy{
 
         return {res.value.at(0), m_descriptorSetLayout};
     }
-
-
-    //////////////////////////////////////////////////////////////////////////////
-
-    void DescriptorSetWriter::AddImageBinding(const uint32_t binding, const vk::DescriptorSet descriptorSet, vk::DescriptorType descriptorType, const Texture& texture) {
-        const vk::DescriptorImageInfo textureInfo = texture.GetDescriptorImage();
-        
-        vk::WriteDescriptorSet writer{};
-        writer.descriptorCount = 1;
-        writer.descriptorType = descriptorType;
-        writer.dstBinding = binding;
-        writer.dstSet = descriptorSet;
-        writer.pImageInfo = &textureInfo;
-
-        m_writers.push_back(std::move(writer));
-    }
-
-    void DescriptorSetWriter::UpdateDescriptorSets(const vk::Device device) {
-        device.updateDescriptorSets(m_writers, nullptr);
-    }
 }

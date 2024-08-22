@@ -2,6 +2,7 @@
 
 #include <vector>
 #include "Vertex.hpp"
+#include "Texture.hpp"
 #include "VulkanBuffer.hpp"
 
 namespace Creepy{
@@ -9,14 +10,19 @@ namespace Creepy{
     struct Mesh{
         public:
             Mesh() = default;
-            Mesh(const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue, std::span<const Vertex> vertices, std::span<const uint32_t> indices);
+            Mesh(const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue, std::span<const Vertex> vertices, std::span<const uint32_t> indices, std::span<Texture> textures);
             
             void UploadData(const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue, std::span<const Vertex> vertices, std::span<const uint32_t> indices) const;
 
             void Destroy(const vk::Device device) const;
+
+            std::span<const Texture> GetTextures() const;
+
+            std::span<Texture> GetTextures();
         private:
             VertexBuffer m_vertexBuffer;
             IndexBuffer m_indexBuffer;
+            std::vector<Texture> m_textures;
     };
 
 }

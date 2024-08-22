@@ -25,6 +25,8 @@ build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanShader.cpp.obj: dyndep
 
 build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanSwapchain.cpp.obj: dyndep
 
+build CMakeFiles/SelfLearn1.dir/src/stb/stb_image.cpp.obj: dyndep
+
 build CMakeFiles/SelfLearn1.dir/src/vkmemoryalloc/alloc.cpp.obj: dyndep
 
 build CMakeFiles/SelfLearn1.dir/src/imgui/imgui.cpp.obj: dyndep

@@ -2,11 +2,11 @@
 
 #include <filesystem>
 #include "Mesh.hpp"
-#include "Texture.hpp"
 
 struct aiScene;
 struct aiNode;
 struct aiMesh;
+struct aiMaterial;
 
 namespace Creepy{
 
@@ -17,16 +17,18 @@ namespace Creepy{
             
             void Destroy(const vk::Device device) const;
 
-            std::span<const Texture> GetTextures() const;
-            std::span<Texture> GetTextures();
-        private:
-            void loadModel(const std::filesystem::path& filePath, const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue);
-            void processNode(aiNode* node, const aiScene* scene, const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue);
-            Mesh processMesh(aiMesh* mesh, const aiScene* scene, const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue);
+            std::span<const Mesh> GetMeshes() const;
+            std::span<Mesh> GetMeshes();
 
+            void LoadModel(const std::filesystem::path& filePath, const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue);
+        
+        private:
+            void processNode(aiNode* currentNode, const aiScene* currentScene, const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue);
+            Mesh processMesh(aiMesh* currentMesh, const aiScene* currentScene, const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue);
+
+            std::vector<Texture> loadMaterialTextures(aiMaterial* currentMaterial, const aiScene* currentScene, const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue);
         private:
             std::vector<Mesh> m_meshes;
-            std::vector<Texture> m_textures;
     };
     
 }

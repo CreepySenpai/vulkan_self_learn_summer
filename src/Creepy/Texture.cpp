@@ -10,9 +10,12 @@ namespace Creepy{
         
         auto textureData = stbi_load(filePath.string().c_str(), &width, &height, &channel, STBI_rgb_alpha);
 
-        std::println("Load Texture: {} - {}", width, height);
+        std::println("Load Texture: {} - {} - {}",filePath.string(), width, height);
+
         m_image = Image{device, static_cast<uint32_t>(width), static_cast<uint32_t>(height), vk::Format::eR8G8B8A8Unorm, 
-            vk::ImageUsageFlagBits::eTransferDst | vk::ImageUsageFlagBits::eSampled | vk::ImageUsageFlagBits::eTransferSrc, vk::ImageAspectFlagBits::eColor};
+            vk::ImageUsageFlagBits::eTransferDst | vk::ImageUsageFlagBits::eSampled, vk::ImageAspectFlagBits::eColor};
+
+        this->createSampler(device);
         
         Buffer<BufferType::HOST_VISIBLE> stagingBuffer{device, 
             static_cast<uint32_t>(width) * static_cast<uint32_t>(height) * sizeof(uint32_t), 
@@ -33,7 +36,7 @@ namespace Creepy{
         copyRegion.bufferOffset = 0;
         copyRegion.bufferRowLength = 0;
         copyRegion.bufferImageHeight = 0;
-        copyRegion.imageExtent = vk::Extent3D{m_image.GetImageExtent(), 1};
+        copyRegion.imageExtent = vk::Extent3D{static_cast<uint32_t>(width), static_cast<uint32_t>(height), 1};
         copyRegion.imageSubresource.aspectMask = vk::ImageAspectFlagBits::eColor;
         copyRegion.imageSubresource.baseArrayLayer = 0;
         copyRegion.imageSubresource.mipLevel = 0;
@@ -57,10 +60,6 @@ namespace Creepy{
         stagingBuffer.Destroy(device);
 
         stbi_image_free(textureData);
-        
-        this->createSampler(device);
-
-        this->createImageDescriptor();
     }
     
     vk::Image Texture::GetImage() const {
@@ -73,10 +72,6 @@ namespace Creepy{
 
     vk::Sampler Texture::GetSampler() const {
         return m_sampler;
-    }
-
-    vk::DescriptorImageInfo Texture::GetDescriptorImage() const {
-        return m_imageDescriptor;
     }
 
     vk::DescriptorSet Texture::GetDescriptorSet() const {
@@ -110,12 +105,6 @@ namespace Creepy{
         samplerInfo.maxAnisotropy = 1.0f;
 
         m_sampler = device.createSampler(samplerInfo).value;
-    }
-
-    void Texture::createImageDescriptor() {
-        m_imageDescriptor.imageLayout = vk::ImageLayout::eShaderReadOnlyOptimal;
-        m_imageDescriptor.imageView = m_image.GetImageView();
-        m_imageDescriptor.sampler = m_sampler;
     }
 
 }

@@ -23,25 +23,20 @@ namespace Creepy {
             vk::DescriptorSetLayout m_descriptorSetLayout{};
     };
 
-    class DescriptorSetWriter{
-        public:
-            template <BufferType bufferType, typename T, vk::BufferUsageFlagBits... bufferUsages>
-            void AddBufferBinding(const uint32_t binding, const vk::DescriptorSet descriptorSet, vk::DescriptorType descriptorType, const BufferWrapperNoView<bufferType, T, bufferUsages...>& buffer){
-                const vk::DescriptorBufferInfo bufferInfo = buffer.GetDescriptorBuffer();
-                vk::WriteDescriptorSet writer{};
-                writer.descriptorCount = 1;
-                writer.descriptorType = descriptorType;
-                writer.dstBinding = binding;
-                writer.dstSet = descriptorSet;
-                writer.pBufferInfo = &bufferInfo;
+    // class DescriptorImage{
+    //     public:
 
-                m_writers.push_back(std::move(writer));
-            }
+    //     private:
+    // };
 
-            void AddImageBinding(const uint32_t binding, const vk::DescriptorSet descriptorSet, vk::DescriptorType descriptorType, const class Texture& texture);
+    // class DescriptorSetWriter{
+    //     public:
+    //         void AddBufferBinding();
 
-            void UpdateDescriptorSets(const vk::Device device);
-        private:
-            std::vector<vk::WriteDescriptorSet> m_writers;
-    };
+    //         void AddImageBinding();
+
+    //         void UpdateDescriptorSets(const vk::Device device);
+    //     private:
+    //         std::vector<vk::WriteDescriptorSet> m_writers;
+    // };
 }

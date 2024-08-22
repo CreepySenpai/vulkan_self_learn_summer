@@ -51,6 +51,10 @@ namespace Creepy {
                 return m_bufferSize;
             }
 
+            uint64_t GetBufferOffset() const{
+                return m_bufferInfo.offset;
+            }
+
             vk::DescriptorBufferInfo GetDescriptorBuffer() const{
                 return m_bufferDescriptor;
             }
@@ -94,6 +98,8 @@ namespace Creepy {
             uint64_t GetBufferSize() const {
                 return m_bufferSize;
             }
+
+            uint64_t GetBufferOffset() const;
 
             vk::DescriptorBufferInfo GetDescriptorBuffer() const{
                 return m_bufferDescriptor;
@@ -143,6 +149,10 @@ namespace Creepy {
 
             uint64_t GetBufferSize() const {
                 return m_buffer.GetBufferSize();
+            }
+
+            uint64_t GetBufferOffset() const {
+                return m_buffer.GetBufferOffset();
             }
 
             vk::DescriptorBufferInfo GetDescriptorBuffer() const{

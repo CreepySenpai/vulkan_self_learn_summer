@@ -114,6 +114,10 @@ namespace Creepy{
         VulkanAllocator::ImageAllocator.destroyBuffer(m_buffer, m_bufferLoc);
     }
 
+    uint64_t Buffer<BufferType::DEVICE_LOCAL>::GetBufferOffset() const {
+        return VulkanAllocator::BufferAllocator.getAllocationInfo(m_bufferLoc).offset;
+    }
+
     ////////////////////////////////////////////////////////////////
 
     template <>

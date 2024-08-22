@@ -22,13 +22,13 @@ namespace Creepy {
 
             void ReCreate(const vk::Device device, uint32_t width, uint32_t height, vk::Format format, vk::ImageUsageFlags imageUsage, vk::ImageAspectFlags aspect);
             
-            void CreateImageView(const vk::Device device, vk::ImageAspectFlags aspect);
+            
         public:
             static void CopyImage(const vk::CommandBuffer commandBuffer, const vk::Image srcImage, const vk::Image dstImage, const vk::Extent2D srcSize, const vk::Extent2D dstSize);
             
         private:
             void createImage(const vk::Device device, vk::ImageUsageFlags imageUsage, vk::ImageAspectFlags aspect);
-
+            void createImageView(const vk::Device device, vk::ImageAspectFlags aspect);
         private:
             vk::Image m_image;
             vk::ImageView m_imageView;

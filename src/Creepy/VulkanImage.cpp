@@ -7,8 +7,9 @@ namespace Creepy {
     Image::Image(const vk::Device device, uint32_t width, uint32_t height, vk::Format format, vk::ImageUsageFlags imageUsage, vk::ImageAspectFlags aspect)
         : m_width{width}, m_height{height}, m_imageFormat{format}
     {
+        std::println("Call Create Image");
         this->createImage(device, imageUsage, aspect);
-        this->CreateImageView(device, aspect);
+        this->createImageView(device, aspect);
     }
 
     void Image::Destroy(const vk::Device device) const {
@@ -39,11 +40,44 @@ namespace Creepy {
         m_imageFormat = format;
         this->Destroy(device);
         this->createImage(device, imageUsage, aspect);
-        this->CreateImageView(device, aspect);
+        this->createImageView(device, aspect);
         std::println("Image Size: {} - {}", m_width, m_height);
     }
 
-    void Image::CreateImageView(const vk::Device device, vk::ImageAspectFlags aspect) {
+    void Image::createImage(const vk::Device device, vk::ImageUsageFlags imageUsage, vk::ImageAspectFlags aspect) {
+        vk::ImageCreateInfo info{};
+        info.flags = vk::ImageCreateFlags{};
+        info.format = m_imageFormat;
+        info.imageType = vk::ImageType::e2D;
+        info.initialLayout = vk::ImageLayout::eUndefined;
+        info.usage = imageUsage;
+        info.tiling = vk::ImageTiling::eOptimal;
+
+        info.extent.width = m_width;
+        info.extent.height = m_height;
+        info.extent.depth = 1;
+        
+        info.arrayLayers = 1;
+        info.mipLevels = 1;
+        info.sharingMode = vk::SharingMode::eExclusive;
+        info.samples = vk::SampleCountFlagBits::e1;
+        
+
+        vma::AllocationCreateInfo allocInfo{};
+        allocInfo.flags = vma::AllocationCreateFlags{};
+        allocInfo.usage = vma::MemoryUsage::eGpuOnly;
+        allocInfo.requiredFlags = vk::MemoryPropertyFlagBits::eDeviceLocal;
+        
+        auto res = VulkanAllocator::ImageAllocator.createImage(info, allocInfo);
+        
+        if(res.result != vk::Result::eSuccess){
+            std::println("Failed Create Image");
+        }
+
+        std::tie(m_image, m_imageLoc) = res.value;
+    }
+
+    void Image::createImageView(const vk::Device device, vk::ImageAspectFlags aspect) {
          vk::ImageViewCreateInfo imageViewInfo{};
         imageViewInfo.flags = vk::ImageViewCreateFlags{};
         imageViewInfo.format = m_imageFormat;
@@ -67,41 +101,6 @@ namespace Creepy {
         }
 
         m_imageView = imgViewRes.value;
-    }
-
-    void Image::createImage(const vk::Device device, vk::ImageUsageFlags imageUsage, vk::ImageAspectFlags aspect) {
-        vk::ImageCreateInfo info{};
-        info.flags = vk::ImageCreateFlags{};
-        info.imageType = vk::ImageType::e2D;
-        info.extent.width = m_width;
-        info.extent.height = m_height;
-        info.extent.depth = 1;
-
-        info.format = m_imageFormat;
-        info.tiling = vk::ImageTiling::eOptimal;
-        info.arrayLayers = 1;
-        info.mipLevels = 1;
-        info.sharingMode = vk::SharingMode::eExclusive;
-        info.samples = vk::SampleCountFlagBits::e1;
-        info.initialLayout = vk::ImageLayout::eUndefined;
-        info.usage = imageUsage;
-        info.queueFamilyIndexCount = 1;
-
-
-        vma::AllocationCreateInfo allocInfo{};
-        allocInfo.flags = vma::AllocationCreateFlags{};
-        allocInfo.usage = vma::MemoryUsage::eGpuOnly;
-        allocInfo.requiredFlags = vk::MemoryPropertyFlagBits::eDeviceLocal;
-        
-        std::println("Start Alloc");
-        
-        auto res = VulkanAllocator::ImageAllocator.createImage(info, allocInfo);
-        std::println("Done Alloc");
-        if(res.result != vk::Result::eSuccess){
-            std::println("Failed Create Image");
-        }
-
-        std::tie(m_image, m_imageLoc) = res.value;
     }
     
 
