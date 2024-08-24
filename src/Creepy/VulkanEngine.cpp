@@ -525,65 +525,37 @@ namespace Creepy {
             builder.BuildDescriptorLayout(m_logicalDevice);
             m_uniformBufferDescriptorSet = builder.AllocateDescriptorSet(m_logicalDevice, m_descriptorPool);
 
-            vk::DescriptorBufferInfo bufferInfo{};
-            bufferInfo.buffer = m_uniformBuffer.GetBuffer();
-            bufferInfo.offset = m_uniformBuffer.GetBufferOffset();
-            bufferInfo.range = m_uniformBuffer.GetBufferSize();
+            const DescriptorBufferInfoBuilder bufferDescriptorInfo{m_uniformBuffer};
 
-            vk::WriteDescriptorSet writer{};
-            writer.descriptorCount = 1;
-            writer.descriptorType = vk::DescriptorType::eUniformBuffer;
-            writer.dstBinding = 0;
-            writer.dstSet = m_uniformBufferDescriptorSet.DescriptorSet;
-            writer.pBufferInfo = &bufferInfo;
-
-            m_logicalDevice.updateDescriptorSets(writer, nullptr);
-
-            // DescriptorSetWriter writer{};
-            // writer.AddBufferBinding(0, m_uniformBufferDescriptorSet.DescriptorSet, vk::DescriptorType::eUniformBuffer, m_uniformBuffer);
-            // writer.UpdateDescriptorSets(m_logicalDevice);
+            DescriptorSetWriter writer{};
+            writer.AddBufferBinding(m_uniformBufferDescriptorSet.DescriptorSet, bufferDescriptorInfo);
+            writer.UpdateDescriptorSets(m_logicalDevice);
         }
 
         {
-            // if(!m_models.empty()){
-            //     DescriptorSetBuilder builder{};
-            //     builder.AddBinding(0, vk::DescriptorType::eCombinedImageSampler, vk::ShaderStageFlagBits::eFragment);
-            //     m_textureDescriptorSetLayout = builder.BuildDescriptorLayout(m_logicalDevice);
+            if(!m_models.empty()){
+                DescriptorSetBuilder builder{};
+                builder.AddBinding(0, vk::DescriptorType::eCombinedImageSampler, vk::ShaderStageFlagBits::eFragment);
+                m_textureDescriptorSetLayout = builder.BuildDescriptorLayout(m_logicalDevice);
                 
-            //     for(auto& [name, model] : m_models){
+                for(auto& [name, model] : m_models){
 
-            //         for(auto& mesh : model.GetMeshes()){
+                    for(auto& mesh : model.GetMeshes()){
                         
-            //             for(auto& texture : mesh.GetTextures()){
-            //                 auto temp = builder.AllocateDescriptorSet(m_logicalDevice, m_descriptorPool);
-            //                 texture.SetDescriptorSet(temp.DescriptorSet);
-            //                 DescriptorSetWriter writer{};
-            //                 writer.AddImageBinding(0, texture.GetDescriptorSet(), vk::DescriptorType::eCombinedImageSampler, texture);
-            //             }
+                        for(auto& texture : mesh.GetTextures()){
+                            auto temp = builder.AllocateDescriptorSet(m_logicalDevice, m_descriptorPool);
+                            texture.SetDescriptorSet(temp.DescriptorSet);
+                            const DescriptorImageInfoBuilder imageBuilder{texture};
+                            DescriptorSetWriter writer{};
+                            writer.AddImageBinding( texture.GetDescriptorSet(), imageBuilder);
+                            writer.UpdateDescriptorSets(m_logicalDevice);
+                        }
 
-            //         }
+                    }
                     
-            //     }
-            // }
-            
+                }
+            }
 
-        }
-
-        {
-            // DescriptorSetBuilder builder{};
-            // builder.AddBinding(0, vk::DescriptorType::eCombinedImageSampler, vk::ShaderStageFlagBits::eFragment);
-            // m_textureDescriptorSetLayout = builder.BuildDescriptorLayout(m_logicalDevice);
-            // auto temp = builder.AllocateDescriptorSet(m_logicalDevice, m_descriptorPool);
-            // m_testData.ImageDsSet = temp.DescriptorSet;
-
-            // vk::WriteDescriptorSet writer{};
-            // writer.descriptorCount = 1;
-            // writer.descriptorType = vk::DescriptorType::eCombinedImageSampler;
-            // writer.dstSet = m_testData.ImageDsSet;
-            // writer.dstBinding = 0;
-            // writer.pImageInfo = &m_testData.ImageDescriptor;
-
-            // m_logicalDevice.updateDescriptorSets(writer, nullptr);
         }
 
         {
@@ -594,20 +566,11 @@ namespace Creepy {
             
             m_shibaTexture.SetDescriptorSet(temp.DescriptorSet);
 
-
-            vk::DescriptorImageInfo imageInfo{};
-            imageInfo.imageLayout = vk::ImageLayout::eShaderReadOnlyOptimal;
-            imageInfo.imageView = m_shibaTexture.GetImageView();
-            imageInfo.sampler = m_shibaTexture.GetSampler();
-
-            vk::WriteDescriptorSet writer{};
-            writer.descriptorCount = 1;
-            writer.descriptorType = vk::DescriptorType::eCombinedImageSampler;
-            writer.dstSet = m_shibaTexture.GetDescriptorSet();
-            writer.dstBinding = 0;
-            writer.pImageInfo = &imageInfo;
-
-            m_logicalDevice.updateDescriptorSets(writer, nullptr);
+            const DescriptorImageInfoBuilder imageDescriptorBuilder{m_shibaTexture};
+            
+            DescriptorSetWriter writer{};
+            writer.AddImageBinding(m_shibaTexture.GetDescriptorSet(), imageDescriptorBuilder);
+            writer.UpdateDescriptorSets(m_logicalDevice);
         }
 
         m_clearner.AddJob([this]{
@@ -712,7 +675,6 @@ namespace Creepy {
         this->createImageResources();
         this->createBufferResources();
         // this->loadModels();
-        // this->loadTesst();
         m_shibaTexture.LoadTexture("./res/textures/shiba.png", m_logicalDevice, m_cmdPool, m_graphicQueue);
     }
 
@@ -938,7 +900,6 @@ namespace Creepy {
 
         const std::array descriptorSets{
             m_uniformBufferDescriptorSet.DescriptorSet,
-            // m_testData.ImageDsSet
             m_shibaTexture.GetDescriptorSet()
         };
 
@@ -988,119 +949,5 @@ namespace Creepy {
             m_uniformData
         };
         m_uniformBuffer.UploadData(data);
-    }
-
-    void VulkanEngine::loadTesst() {
-        int imW{}, imH{}, chan{};
-        auto imageData = stbi_load("./res/models/shiba.png", &imW, &imH, &chan, STBI_rgb_alpha);
-        
-        std::println("Load: {} - {}", imW, imH);
-        vk::ImageCreateInfo imgInfo{};
-        imgInfo.flags = vk::ImageCreateFlags{};
-        imgInfo.format = vk::Format::eR8G8B8A8Unorm;
-        imgInfo.imageType = vk::ImageType::e2D;
-        imgInfo.initialLayout = vk::ImageLayout::eUndefined;
-        imgInfo.usage = vk::ImageUsageFlagBits::eTransferDst | vk::ImageUsageFlagBits::eSampled;
-        imgInfo.tiling = vk::ImageTiling::eOptimal;
-        imgInfo.sharingMode = vk::SharingMode::eExclusive;
-        imgInfo.extent = vk::Extent3D{imW, imH, 1};
-        imgInfo.mipLevels = 1;
-        imgInfo.arrayLayers = 1;
-        imgInfo.samples = vk::SampleCountFlagBits::e1;
-
-        vma::AllocationCreateInfo allocInfo{};
-        allocInfo.flags = vma::AllocationCreateFlags{};
-        allocInfo.usage = vma::MemoryUsage::eGpuOnly;
-        allocInfo.requiredFlags = vk::MemoryPropertyFlagBits::eDeviceLocal;
-
-
-        std::tie(m_testData.Image, m_testData.AllocInfo) = VulkanAllocator::ImageAllocator.createImage(imgInfo, allocInfo).value;
-
-        vk::ImageViewCreateInfo imgVInfo{};
-        imgVInfo.flags = vk::ImageViewCreateFlags{};
-        imgVInfo.format = vk::Format::eR8G8B8A8Unorm;
-        imgVInfo.image = m_testData.Image;
-        imgVInfo.viewType = vk::ImageViewType::e2D;
-        imgVInfo.components.r = vk::ComponentSwizzle::eIdentity;
-        imgVInfo.components.g = vk::ComponentSwizzle::eIdentity;
-        imgVInfo.components.b = vk::ComponentSwizzle::eIdentity;
-        imgVInfo.components.a = vk::ComponentSwizzle::eIdentity;
-        imgVInfo.subresourceRange.aspectMask = vk::ImageAspectFlagBits::eColor;
-        imgVInfo.subresourceRange.baseArrayLayer = 0;
-        imgVInfo.subresourceRange.baseMipLevel = 0;
-        imgVInfo.subresourceRange.layerCount = 1;
-        imgVInfo.subresourceRange.levelCount = 1;
-        
-        m_testData.ImageView = m_logicalDevice.createImageView(imgVInfo).value;
-
-        vk::SamplerCreateInfo samplerInfo{};
-        samplerInfo.flags = vk::SamplerCreateFlags{};
-        samplerInfo.addressModeU = vk::SamplerAddressMode::eRepeat;
-        samplerInfo.addressModeV = vk::SamplerAddressMode::eRepeat;
-        samplerInfo.addressModeW = vk::SamplerAddressMode::eRepeat;
-        samplerInfo.minFilter = vk::Filter::eNearest;
-        samplerInfo.magFilter = vk::Filter::eNearest;
-        samplerInfo.mipmapMode = vk::SamplerMipmapMode::eLinear;
-        samplerInfo.minLod = 0.0f;
-        samplerInfo.mipLodBias = 0.0f;
-        samplerInfo.compareOp = vk::CompareOp::eNever;
-        samplerInfo.maxLod = 0.0f;
-        samplerInfo.borderColor = vk::BorderColor::eFloatOpaqueWhite;
-        samplerInfo.anisotropyEnable = vk::False;
-        samplerInfo.maxAnisotropy = 1.0f;
-
-        m_testData.ImageSampler = m_logicalDevice.createSampler(samplerInfo).value;
-
-        m_testData.ImageDescriptor.imageLayout = vk::ImageLayout::eShaderReadOnlyOptimal;
-        m_testData.ImageDescriptor.imageView = m_testData.ImageView;
-        m_testData.ImageDescriptor.sampler = m_testData.ImageSampler;
-
-
-        // Start Copy
-        Buffer<BufferType::HOST_VISIBLE> stagingBuffer{m_logicalDevice, 
-            static_cast<uint32_t>(imW) * static_cast<uint32_t>(imH) * sizeof(uint32_t), 
-            vk::BufferUsageFlagBits::eTransferSrc};
-
-        stagingBuffer.UploadData(imageData, static_cast<uint32_t>(imW) * static_cast<uint32_t>(imH) * sizeof(uint32_t));
-
-        // Copy
-        auto tempCommandBuffer = BeginOneTimeCommandBuffer(m_logicalDevice, m_cmdPool);
-
-        imageLayoutTransition(tempCommandBuffer, m_testData.Image, vk::ImageAspectFlagBits::eColor, 
-            vk::ImageLayout::eUndefined, vk::ImageLayout::eTransferDstOptimal, 
-            vk::AccessFlagBits2::eNone, vk::AccessFlagBits2::eTransferWrite,
-             vk::PipelineStageFlagBits2::eHost, vk::PipelineStageFlagBits2::eTransfer);
-
-        vk::BufferImageCopy copyRegion{};
-        copyRegion.bufferOffset = 0;
-        copyRegion.bufferRowLength = 0;
-        copyRegion.bufferImageHeight = 0;
-        copyRegion.imageExtent = vk::Extent3D{{imW, imH}, 1};
-        copyRegion.imageSubresource.aspectMask = vk::ImageAspectFlagBits::eColor;
-        copyRegion.imageSubresource.baseArrayLayer = 0;
-        copyRegion.imageSubresource.mipLevel = 0;
-        copyRegion.imageSubresource.layerCount = 1;
-        copyRegion.imageOffset.x = 0;
-        copyRegion.imageOffset.y = 0;
-        copyRegion.imageOffset.z = 0;
-        
-        tempCommandBuffer.copyBufferToImage(stagingBuffer.GetBuffer(), m_testData.Image, vk::ImageLayout::eTransferDstOptimal, copyRegion);
-
-        imageLayoutTransition(tempCommandBuffer, m_testData.Image, vk::ImageAspectFlagBits::eColor, 
-            vk::ImageLayout::eTransferDstOptimal, vk::ImageLayout::eShaderReadOnlyOptimal, 
-            vk::AccessFlagBits2::eTransferWrite, vk::AccessFlagBits2::eShaderRead,
-             vk::PipelineStageFlagBits2::eTransfer, vk::PipelineStageFlagBits2::eFragmentShader);
-
-        EndOneTimeCommandBuffer(m_logicalDevice, m_cmdPool, tempCommandBuffer, m_graphicQueue);
-        // End Copy
-
-        m_clearner.AddJob([this]{
-            m_logicalDevice.destroySampler(m_testData.ImageSampler);
-            m_logicalDevice.destroyImageView(m_testData.ImageView);
-            VulkanAllocator::ImageAllocator.destroyImage(m_testData.Image, m_testData.AllocInfo);
-        });
-        ////
-        stagingBuffer.Destroy(m_logicalDevice);
-        stbi_image_free(imageData);
     }
 }

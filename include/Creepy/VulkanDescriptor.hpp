@@ -1,8 +1,10 @@
 #pragma once
 
 #include <vector>
+#include <concepts>
 #include <vulkan/vulkan.hpp>
 #include "VulkanBuffer.hpp"
+#include "Texture.hpp"
 
 namespace Creepy {
     
@@ -23,20 +25,46 @@ namespace Creepy {
             vk::DescriptorSetLayout m_descriptorSetLayout{};
     };
 
-    // class DescriptorImage{
-    //     public:
+    template <typename T>
+    concept IsBuffer = std::same_as<UniformBuffer, std::remove_cvref_t<T>>;
 
-    //     private:
-    // };
+    class DescriptorBufferInfoBuilder{
+        public:
+            DescriptorBufferInfoBuilder(IsBuffer auto&&... buffers){
+                m_descriptorBufferInfo.reserve(sizeof...(buffers));
 
-    // class DescriptorSetWriter{
-    //     public:
-    //         void AddBufferBinding();
+                (m_descriptorBufferInfo.emplace_back(buffers.GetBuffer(), buffers.GetBufferOffset(), buffers.GetBufferSize()), ...);
+            }
 
-    //         void AddImageBinding();
+            friend class DescriptorSetWriter;
+        private:
+            std::vector<vk::DescriptorBufferInfo> m_descriptorBufferInfo;
+    };
 
-    //         void UpdateDescriptorSets(const vk::Device device);
-    //     private:
-    //         std::vector<vk::WriteDescriptorSet> m_writers;
-    // };
+    template <typename T>
+    concept IsTexture = std::same_as<Texture, std::remove_cvref_t<T>>;
+
+    class DescriptorImageInfoBuilder{
+        public:
+            DescriptorImageInfoBuilder(IsTexture auto&&... textures){
+                m_descriptorImageInfos.reserve(sizeof...(textures));
+
+                (m_descriptorImageInfos.emplace_back(textures.GetSampler(), textures.GetImageView(), vk::ImageLayout::eShaderReadOnlyOptimal), ...);
+            }
+
+            friend class DescriptorSetWriter;
+        private:
+            std::vector<vk::DescriptorImageInfo> m_descriptorImageInfos;
+    };
+
+    class DescriptorSetWriter{
+        public:
+            void AddBufferBinding(const vk::DescriptorSet descriptorSet, const DescriptorBufferInfoBuilder& bufferInfos);
+
+            void AddImageBinding(const vk::DescriptorSet descriptorSet, const DescriptorImageInfoBuilder& imageInfos);
+
+            void UpdateDescriptorSets(const vk::Device device);
+        private:
+            std::vector<vk::WriteDescriptorSet> m_writers;
+    };
 }

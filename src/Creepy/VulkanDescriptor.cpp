@@ -39,4 +39,31 @@ namespace Creepy{
 
         return {res.value.at(0), m_descriptorSetLayout};
     }
+
+
+    void DescriptorSetWriter::AddBufferBinding(const vk::DescriptorSet descriptorSet, const DescriptorBufferInfoBuilder& bufferInfos) {
+        vk::WriteDescriptorSet writer{};
+        writer.descriptorCount = bufferInfos.m_descriptorBufferInfo.size();
+        writer.pBufferInfo = bufferInfos.m_descriptorBufferInfo.data();
+        writer.descriptorType = vk::DescriptorType::eUniformBuffer;
+        writer.dstBinding = 0;
+        writer.dstSet = descriptorSet;
+    
+        m_writers.push_back(std::move(writer));
+    }
+
+    void DescriptorSetWriter::AddImageBinding(const vk::DescriptorSet descriptorSet, const DescriptorImageInfoBuilder& imageInfos) {
+        vk::WriteDescriptorSet writer{};
+        writer.descriptorCount = imageInfos.m_descriptorImageInfos.size();
+        writer.pImageInfo = imageInfos.m_descriptorImageInfos.data();
+        writer.descriptorType = vk::DescriptorType::eCombinedImageSampler;
+        writer.dstBinding = 0;
+        writer.dstSet = descriptorSet;
+
+        m_writers.push_back(std::move(writer));
+    }
+
+    void DescriptorSetWriter::UpdateDescriptorSets(const vk::Device device) {
+        device.updateDescriptorSets(m_writers, nullptr);
+    }
 }

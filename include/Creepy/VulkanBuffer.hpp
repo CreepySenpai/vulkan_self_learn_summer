@@ -55,17 +55,12 @@ namespace Creepy {
                 return m_bufferInfo.offset;
             }
 
-            vk::DescriptorBufferInfo GetDescriptorBuffer() const{
-                return m_bufferDescriptor;
-            }
-
         private:
             vk::Buffer m_buffer;
             vk::BufferView m_bufferView;
             vma::Allocation m_bufferLoc;
             vma::AllocationInfo m_bufferInfo;
             uint64_t m_bufferSize;
-            vk::DescriptorBufferInfo m_bufferDescriptor;
     };
 
 
@@ -101,16 +96,11 @@ namespace Creepy {
 
             uint64_t GetBufferOffset() const;
 
-            vk::DescriptorBufferInfo GetDescriptorBuffer() const{
-                return m_bufferDescriptor;
-            }
-
         private:
             vk::Buffer m_buffer;
             vk::BufferView m_bufferView;
             vma::Allocation m_bufferLoc;
             uint64_t m_bufferSize;
-            vk::DescriptorBufferInfo m_bufferDescriptor;
     };
 
 
@@ -155,10 +145,6 @@ namespace Creepy {
                 return m_buffer.GetBufferOffset();
             }
 
-            vk::DescriptorBufferInfo GetDescriptorBuffer() const{
-                return m_buffer.GetDescriptorBuffer();
-            }
-
         private:
             Buffer<bufferType> m_buffer;
     };
@@ -198,12 +184,12 @@ namespace Creepy {
                 return m_buffer.GetBufferSize();
             }
 
-            uint32_t GetBufferCount() const {
-                return static_cast<uint32_t>(this->GetBufferSize() / sizeof(T));
+            uint64_t GetBufferOffset() const {
+                return m_buffer.GetBufferOffset();
             }
 
-            vk::DescriptorBufferInfo GetDescriptorBuffer() const{
-                return m_buffer.GetDescriptorBuffer();
+            uint32_t GetBufferCount() const {
+                return static_cast<uint32_t>(this->GetBufferSize() / sizeof(T));
             }
 
         private:

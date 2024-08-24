@@ -53,9 +53,6 @@ namespace Creepy{
         }
         
         std::tie(m_buffer, m_bufferLoc) = res.value;
-
-        // Create Descriptor
-        m_bufferDescriptor = createDescriptorBuffer(m_buffer, VulkanAllocator::BufferAllocator.getAllocationInfo(m_bufferLoc), m_bufferSize);
     }
 
     Buffer<BufferType::DEVICE_LOCAL>::Buffer(const vk::Device device, uint64_t bufferSize, vk::Format bufferFormat, vk::BufferUsageFlags bufferUsage)
@@ -139,8 +136,6 @@ namespace Creepy{
         std::tie(m_buffer, m_bufferLoc) = res.value;
         
         m_bufferInfo = VulkanAllocator::BufferAllocator.getAllocationInfo(m_bufferLoc);
-
-        m_bufferDescriptor = createDescriptorBuffer(m_buffer, m_bufferInfo, m_bufferSize);
     }
 
     template <>
@@ -161,8 +156,6 @@ namespace Creepy{
         std::tie(m_buffer, m_bufferLoc) = res.value;
 
         m_bufferInfo = VulkanAllocator::BufferAllocator.getAllocationInfo(m_bufferLoc);
-
-        m_bufferDescriptor = createDescriptorBuffer(m_buffer, m_bufferInfo, m_bufferSize);
     }
 
     template <>

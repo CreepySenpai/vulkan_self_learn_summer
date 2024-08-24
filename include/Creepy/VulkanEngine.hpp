@@ -16,15 +16,6 @@
 
 struct GLFWwindow;
 
-struct TestData{
-    vk::Image Image;
-    vk::ImageView ImageView;
-    vma::Allocation AllocInfo;
-    vk::Sampler ImageSampler;
-    vk::DescriptorImageInfo ImageDescriptor;
-    vk::DescriptorSet ImageDsSet;
-};
-
 namespace Creepy {
 
     class VulkanEngine
@@ -93,7 +84,6 @@ namespace Creepy {
             vk::DescriptorSetLayout m_textureDescriptorSetLayout;
 
             // Resources
-            TestData m_testData;
             Image m_colorImage, m_depthImage;
 
             VertexBuffer m_triangleVertexBuffer;
