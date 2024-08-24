@@ -51,7 +51,6 @@ namespace Creepy {
             void createImageResources();
             void createBufferResources();
             void loadModels();
-            void loadTesst();
             
             const VulkanFrame& getCurrentRenderFrame() const;
 

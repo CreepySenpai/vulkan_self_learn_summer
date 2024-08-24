@@ -4,6 +4,7 @@
 #include <Creepy/VulkanAllocator.hpp>
 #include <Creepy/VulkanShader.hpp>
 #include <Creepy/Debug.hpp>
+#include <Creepy/Input.hpp>
 
 #include <GLFW/glfw3.h>
 #include <imgui/imgui.hpp>
@@ -11,9 +12,6 @@
 #include <imgui/imgui_impl_vulkan.hpp>
 
 #include <glm/glm.hpp>
-
-#include <Creepy/Model.hpp>
-
 
 #include <stb/stb_image.h>
 
@@ -50,11 +48,15 @@ namespace Creepy {
 
     void VulkanEngine::Run(){
         while(!glfwWindowShouldClose(m_window)){
+            Mouse::PreProcessEveryFrame();
+            KeyBoard::PreProcessEveryFrame();
 
             glfwGetWindowSize(m_window, &m_width, &m_height);
 
             glfwPollEvents();
 
+            // Process Event Here
+            
             this->updateUniformBuffer();
             // Draw Here
             this->draw();
@@ -65,6 +67,9 @@ namespace Creepy {
 
     void VulkanEngine::createWindow() {
         m_window = glfwCreateWindow(m_width, m_height, "Creepy", nullptr, nullptr);
+
+        Mouse::RegisterMouseEvent(m_window);
+        KeyBoard::RegisterKeyEvent(m_window);
         
         m_clearner.AddJob([this]{
             glfwDestroyWindow(m_window);
