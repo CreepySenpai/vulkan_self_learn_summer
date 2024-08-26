@@ -59,9 +59,9 @@ namespace Creepy {
 
     class DescriptorSetWriter{
         public:
-            void AddBufferBinding(const vk::DescriptorSet descriptorSet, const DescriptorBufferInfoBuilder& bufferInfos);
+            void AddBufferBinding(const uint32_t binding, const vk::DescriptorSet descriptorSet, const DescriptorBufferInfoBuilder& bufferInfos);
 
-            void AddImageBinding(const vk::DescriptorSet descriptorSet, const DescriptorImageInfoBuilder& imageInfos);
+            void AddImageBinding(const uint32_t binding, const vk::DescriptorSet descriptorSet, const DescriptorImageInfoBuilder& imageInfos);
 
             void UpdateDescriptorSets(const vk::Device device);
         private:

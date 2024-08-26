@@ -47,7 +47,13 @@ namespace Creepy {
     }
 
     void VulkanEngine::Run(){
+        auto currentTime = glfwGetTime();
+
         while(!glfwWindowShouldClose(m_window)){
+            auto previousTime = currentTime;
+            currentTime = glfwGetTime();
+            auto deltaTime = currentTime - previousTime;
+
             Mouse::PreProcessEveryFrame();
             KeyBoard::PreProcessEveryFrame();
 
@@ -67,6 +73,8 @@ namespace Creepy {
 
     void VulkanEngine::createWindow() {
         m_window = glfwCreateWindow(m_width, m_height, "Creepy", nullptr, nullptr);
+
+        glfwSwapInterval(1);
 
         Mouse::RegisterMouseEvent(m_window);
         KeyBoard::RegisterKeyEvent(m_window);
@@ -533,7 +541,7 @@ namespace Creepy {
             const DescriptorBufferInfoBuilder bufferDescriptorInfo{m_uniformBuffer};
 
             DescriptorSetWriter writer{};
-            writer.AddBufferBinding(m_uniformBufferDescriptorSet.DescriptorSet, bufferDescriptorInfo);
+            writer.AddBufferBinding(0, m_uniformBufferDescriptorSet.DescriptorSet, bufferDescriptorInfo);
             writer.UpdateDescriptorSets(m_logicalDevice);
         }
 
@@ -552,7 +560,7 @@ namespace Creepy {
                             texture.SetDescriptorSet(temp.DescriptorSet);
                             const DescriptorImageInfoBuilder imageBuilder{texture};
                             DescriptorSetWriter writer{};
-                            writer.AddImageBinding( texture.GetDescriptorSet(), imageBuilder);
+                            writer.AddImageBinding( 0, texture.GetDescriptorSet(), imageBuilder);
                             writer.UpdateDescriptorSets(m_logicalDevice);
                         }
 
@@ -572,9 +580,9 @@ namespace Creepy {
             m_shibaTexture.SetDescriptorSet(temp.DescriptorSet);
 
             const DescriptorImageInfoBuilder imageDescriptorBuilder{m_shibaTexture};
-            
+
             DescriptorSetWriter writer{};
-            writer.AddImageBinding(m_shibaTexture.GetDescriptorSet(), imageDescriptorBuilder);
+            writer.AddImageBinding(0, m_shibaTexture.GetDescriptorSet(), imageDescriptorBuilder);
             writer.UpdateDescriptorSets(m_logicalDevice);
         }
 

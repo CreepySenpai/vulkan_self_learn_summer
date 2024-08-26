@@ -22,6 +22,10 @@ namespace Creepy{
 
         m_descriptorSetLayout = res.value;
 
+        auto supportInfo = device.getDescriptorSetLayoutSupport(layoutInfo);
+        std::println("DescriptorSetLayoutInfo: {}", supportInfo.supported);
+        
+
         return m_descriptorSetLayout;
     }
 
@@ -41,23 +45,24 @@ namespace Creepy{
     }
 
 
-    void DescriptorSetWriter::AddBufferBinding(const vk::DescriptorSet descriptorSet, const DescriptorBufferInfoBuilder& bufferInfos) {
+    void DescriptorSetWriter::AddBufferBinding(const uint32_t binding, const vk::DescriptorSet descriptorSet, const DescriptorBufferInfoBuilder& bufferInfos) {
         vk::WriteDescriptorSet writer{};
         writer.descriptorCount = bufferInfos.m_descriptorBufferInfo.size();
         writer.pBufferInfo = bufferInfos.m_descriptorBufferInfo.data();
         writer.descriptorType = vk::DescriptorType::eUniformBuffer;
-        writer.dstBinding = 0;
+        writer.dstBinding = binding;
         writer.dstSet = descriptorSet;
     
         m_writers.push_back(std::move(writer));
     }
 
-    void DescriptorSetWriter::AddImageBinding(const vk::DescriptorSet descriptorSet, const DescriptorImageInfoBuilder& imageInfos) {
+    void DescriptorSetWriter::AddImageBinding(const uint32_t binding, const vk::DescriptorSet descriptorSet, const DescriptorImageInfoBuilder& imageInfos) {
         vk::WriteDescriptorSet writer{};
+        //FIXME: this count for array of resources in shader
         writer.descriptorCount = imageInfos.m_descriptorImageInfos.size();
         writer.pImageInfo = imageInfos.m_descriptorImageInfos.data();
         writer.descriptorType = vk::DescriptorType::eCombinedImageSampler;
-        writer.dstBinding = 0;
+        writer.dstBinding = binding;
         writer.dstSet = descriptorSet;
 
         m_writers.push_back(std::move(writer));

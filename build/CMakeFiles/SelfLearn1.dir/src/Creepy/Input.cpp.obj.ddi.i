@@ -76132,7 +76132,7 @@ namespace Creepy{
     char KeyBoard::GetChar() {
         auto character = std::to_underlying(s_keyBoardData.CurrentKey);
 
-        if(character > 128){
+        if(character > 128u){
             return 0;
         }
         return static_cast<char>(character);
