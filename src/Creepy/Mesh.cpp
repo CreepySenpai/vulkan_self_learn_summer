@@ -1,10 +1,12 @@
+#include <print>
 #include <Creepy/Mesh.hpp>
 
 namespace Creepy{
 
-    Mesh::Mesh(const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue, std::span<const Vertex> vertices, std::span<const uint32_t> indices, std::span<Texture> textures)
+    Mesh::Mesh(const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue, std::span<const Vertex> vertices, std::span<const uint32_t> indices, std::span<Texture> textures, const glm::mat4& currentMeshTransform)
         : m_vertexBuffer{device, vertices.size() * sizeof(Vertex)}, m_indexBuffer{device, indices.size() * sizeof(uint32_t)},
-          m_textures{textures.begin(), textures.end()}
+          m_textures{textures.begin(), textures.end()},
+          m_currentMeshTransform{currentMeshTransform}
     {
         this->UploadData(device, commandPool, queue, vertices, indices);
     }
@@ -13,6 +15,23 @@ namespace Creepy{
         m_vertexBuffer.UploadData(device, commandPool, queue, vertices);
 
         m_indexBuffer.UploadData(device, commandPool, queue, indices);
+    }
+
+    void Mesh::Draw(const vk::CommandBuffer commandBuffer, const vk::PipelineLayout pipelineLayout, const vk::DescriptorSet uniformDescSet) {
+        std::vector<vk::DescriptorSet> totalSets;
+        totalSets.reserve(m_textures.size() + 1);
+        
+        // First Set For Uniform Buffer
+        totalSets.emplace_back(uniformDescSet);
+        for(const auto& texture : m_textures){
+            totalSets.emplace_back(texture.GetDescriptorSet());
+        }
+
+        commandBuffer.bindDescriptorSets(vk::PipelineBindPoint::eGraphics, pipelineLayout, 0, totalSets, nullptr);
+        constexpr std::array<uint64_t, 1> offsets{0};
+        commandBuffer.bindVertexBuffers(0, m_vertexBuffer.GetBuffer(), offsets);
+        commandBuffer.bindIndexBuffer(m_indexBuffer.GetBuffer(), 0, vk::IndexType::eUint32);
+        commandBuffer.drawIndexed(m_indexBuffer.GetBufferCount(), 1, 0, 0, 0);
     }
     
     void Mesh::Destroy(const vk::Device device) const {

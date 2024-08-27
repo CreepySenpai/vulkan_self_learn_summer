@@ -12,8 +12,12 @@
 #include <imgui/imgui_impl_vulkan.hpp>
 
 #include <glm/glm.hpp>
+#include <glm/gtx/string_cast.hpp>
 
 #include <stb/stb_image.h>
+
+// Global Var
+GLFWwindow* nativeWindow{nullptr};
 
 namespace Creepy {
 
@@ -39,6 +43,8 @@ namespace Creepy {
         this->createDescriptorSets();
 
         this->createPipelines();
+
+        this->createCamera();
     }
 
     VulkanEngine::~VulkanEngine(){
@@ -53,7 +59,7 @@ namespace Creepy {
             auto previousTime = currentTime;
             currentTime = glfwGetTime();
             auto deltaTime = currentTime - previousTime;
-
+            
             Mouse::PreProcessEveryFrame();
             KeyBoard::PreProcessEveryFrame();
 
@@ -62,10 +68,11 @@ namespace Creepy {
             glfwPollEvents();
 
             // Process Event Here
+            this->onUpdate(deltaTime);
             
             this->updateUniformBuffer();
             // Draw Here
-            this->draw();
+            this->onDraw();
 
             m_currentFrame = (m_currentFrame + 1) % m_totalFrames;
         }
@@ -74,6 +81,9 @@ namespace Creepy {
     void VulkanEngine::createWindow() {
         m_window = glfwCreateWindow(m_width, m_height, "Creepy", nullptr, nullptr);
 
+        nativeWindow = m_window;
+        
+        // Enable V-sync
         glfwSwapInterval(1);
 
         Mouse::RegisterMouseEvent(m_window);
@@ -81,6 +91,8 @@ namespace Creepy {
         
         m_clearner.AddJob([this]{
             glfwDestroyWindow(m_window);
+            m_window = nullptr;
+            nativeWindow = nullptr;
         });
     }
 
@@ -571,21 +583,6 @@ namespace Creepy {
 
         }
 
-        {
-            DescriptorSetBuilder builder{};
-            builder.AddBinding(0, vk::DescriptorType::eCombinedImageSampler, vk::ShaderStageFlagBits::eFragment);
-            m_textureDescriptorSetLayout = builder.BuildDescriptorLayout(m_logicalDevice);
-            auto temp = builder.AllocateDescriptorSet(m_logicalDevice, m_descriptorPool);
-            
-            m_shibaTexture.SetDescriptorSet(temp.DescriptorSet);
-
-            const DescriptorImageInfoBuilder imageDescriptorBuilder{m_shibaTexture};
-
-            DescriptorSetWriter writer{};
-            writer.AddImageBinding(0, m_shibaTexture.GetDescriptorSet(), imageDescriptorBuilder);
-            writer.UpdateDescriptorSets(m_logicalDevice);
-        }
-
         m_clearner.AddJob([this]{
             m_logicalDevice.destroyDescriptorSetLayout(m_uniformBufferDescriptorSet.DescriptorSetLayout);
             m_logicalDevice.destroyDescriptorSetLayout(m_textureDescriptorSetLayout);
@@ -626,7 +623,7 @@ namespace Creepy {
         backgroundState.InitVertexInputState(vertexBindings, vertexAttributes);
         backgroundState.InitInputAssemblyState(vk::PrimitiveTopology::eTriangleList);
         backgroundState.InitViewportState(static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height));
-        backgroundState.InitRasterizationState(vk::PolygonMode::eFill, vk::CullModeFlagBits::eNone, vk::FrontFace::eClockwise);
+        backgroundState.InitRasterizationState(vk::PolygonMode::eFill, vk::CullModeFlagBits::eNone, vk::FrontFace::eCounterClockwise);
         backgroundState.InitMultiSamplerState();
         backgroundState.InitDepthStencilState(vk::CompareOp::eLess);
         backgroundState.InitColorBlendState();
@@ -681,28 +678,29 @@ namespace Creepy {
 
         m_logicalDevice.waitIdle();
 
+        m_camera.SetViewport(static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height));
+
         m_isSwapchainResizing = false;
     }
 
     void VulkanEngine::createResources() {
         this->createImageResources();
         this->createBufferResources();
-        // this->loadModels();
-        m_shibaTexture.LoadTexture("./res/textures/shiba.png", m_logicalDevice, m_cmdPool, m_graphicQueue);
+        this->loadModels();
     }
 
     void VulkanEngine::createImageResources() {
         
-        m_colorImage = Image{m_logicalDevice, static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height), 
-            vk::Format::eR8G8B8A8Unorm, vk::ImageUsageFlagBits::eColorAttachment | vk::ImageUsageFlagBits::eTransferSrc 
-            | vk::ImageUsageFlagBits::eTransferDst | vk::ImageUsageFlagBits::eStorage
-            , vk::ImageAspectFlagBits::eColor};
+        // m_colorImage = Image{m_logicalDevice, static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height), 
+        //     vk::Format::eR8G8B8A8Unorm, vk::ImageUsageFlagBits::eColorAttachment | vk::ImageUsageFlagBits::eTransferSrc 
+        //     | vk::ImageUsageFlagBits::eTransferDst | vk::ImageUsageFlagBits::eStorage
+        //     , vk::ImageAspectFlagBits::eColor};
 
         m_depthImage = Image{m_logicalDevice, static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height), 
             vk::Format::eD24UnormS8Uint, vk::ImageUsageFlagBits::eDepthStencilAttachment, vk::ImageAspectFlagBits::eDepth};
 
         m_clearner.AddJob([this]{
-            m_colorImage.Destroy(m_logicalDevice);
+            // m_colorImage.Destroy(m_logicalDevice);
             m_depthImage.Destroy(m_logicalDevice);
         });
     }
@@ -733,7 +731,6 @@ namespace Creepy {
         m_clearner.AddJob([this]{
             m_triangleVertexBuffer.Destroy(m_logicalDevice);
             m_triangleIndexBuffer.Destroy(m_logicalDevice);
-            m_shibaTexture.Destroy(m_logicalDevice);
             m_uniformBuffer.Destroy(m_logicalDevice);
         });
     }
@@ -749,12 +746,14 @@ namespace Creepy {
         });
     }
 
-    void VulkanEngine::draw() {
+    void VulkanEngine::onDraw() {
         // Debug call
         Debug::BeginFrame();
 
         Debug::DrawFrame();
-
+        ImGui::Begin("Came");
+        ImGui::DragFloat3("Pos", glm::value_ptr(m_camera.GetPosition()));
+        ImGui::End();
         Debug::DrawUniformData(m_uniformData);
 
         Debug::EndFrame();
@@ -911,22 +910,11 @@ namespace Creepy {
 
         currentCommandBuffer.setScissor(0, scissor);
 
-        const std::array descriptorSets{
-            m_uniformBufferDescriptorSet.DescriptorSet,
-            m_shibaTexture.GetDescriptorSet()
-        };
-
-        currentCommandBuffer.bindDescriptorSets(vk::PipelineBindPoint::eGraphics, m_backgroundPipeline.GetPipelineLayout(), 0, descriptorSets, nullptr);
         currentCommandBuffer.bindPipeline(vk::PipelineBindPoint::eGraphics, m_backgroundPipeline.GetPipeline());
 
-        constexpr std::array<uint64_t, 1> offsets{0};
-
-        currentCommandBuffer.bindVertexBuffers(0, m_triangleVertexBuffer.GetBuffer(), offsets);
-        currentCommandBuffer.bindIndexBuffer(m_triangleIndexBuffer.GetBuffer(), 0, vk::IndexType::eUint32);
-        
-        // currentCommandBuffer.draw(3, 1, 0, 0);
-        
-        currentCommandBuffer.drawIndexed(m_triangleIndexBuffer.GetBufferCount(), 1, 0, 0, 0);
+        for(auto& [name, model] : m_models){
+            model.Draw(currentCommandBuffer, m_backgroundPipeline.GetPipelineLayout(), m_uniformBufferDescriptorSet.DescriptorSet);
+        }
 
         currentCommandBuffer.endRendering();
     }
@@ -957,10 +945,25 @@ namespace Creepy {
         return m_renderFrames.at(m_currentFrame % m_totalFrames);
     }
 
-    void VulkanEngine::updateUniformBuffer() {    
+    void VulkanEngine::updateUniformBuffer() {
+        m_uniformData.viewMatrix = m_camera.GetViewMatrix();
+        m_uniformData.projectionMatrix = m_camera.GetProjectionMatrix();
+        m_uniformData.cameraPosition = glm::vec4{m_camera.GetPosition(), 0.0f};
+
         const std::array data{
             m_uniformData
         };
+
         m_uniformBuffer.UploadData(data);
+    }
+
+    void VulkanEngine::createCamera()
+    {
+        m_camera = Camera{45.0f, static_cast<float>(m_width) / static_cast<float>(m_height), 0.01f, 1000.0f};
+    }
+
+    void VulkanEngine::onUpdate(double deltaTime)
+    {
+        m_camera.OnUpdate(deltaTime);
     }
 }

@@ -13,6 +13,7 @@
 #include "VulkanDescriptor.hpp"
 #include "Texture.hpp"
 #include "Model.hpp"
+#include "Camera.hpp"
 
 struct GLFWwindow;
 
@@ -55,8 +56,13 @@ namespace Creepy {
             const VulkanFrame& getCurrentRenderFrame() const;
 
             void updateUniformBuffer();
+
         private:
-            void draw();
+            void createCamera();
+            void onUpdate(double deltaTime);
+
+        private:
+            void onDraw();
             void drawModels(const vk::CommandBuffer currentCommandBuffer, const vk::Image colorImage, const vk::ImageView colorImageView, const vk::Image depthImage, const vk::ImageView depthImageView);
             void drawImGui(const vk::CommandBuffer currentCommandBuffer, const vk::Image colorImage, const vk::ImageView colorImageView);
         private:
@@ -83,7 +89,8 @@ namespace Creepy {
             vk::DescriptorSetLayout m_textureDescriptorSetLayout;
 
             // Resources
-            Image m_colorImage, m_depthImage;
+            // Image m_colorImage;
+            Image m_depthImage;
 
             VertexBuffer m_triangleVertexBuffer;
             IndexBuffer m_triangleIndexBuffer;
@@ -95,13 +102,12 @@ namespace Creepy {
             VulkanJobSystem m_clearner;
             VulkanCommandBufferSubmitData m_submitter;
 
-            Texture m_shibaTexture{};
-
             UniformBuffer m_uniformBuffer;
             UniformData m_uniformData;
 
             std::unordered_map<std::string, Model> m_models;
 
+            Camera m_camera{};
             //TODO: Use atomic
             bool m_isSwapchainResizing{false};
     };

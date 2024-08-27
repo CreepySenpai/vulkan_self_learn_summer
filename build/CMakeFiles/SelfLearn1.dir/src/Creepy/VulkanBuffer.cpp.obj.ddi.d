@@ -515,13 +515,76 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanBuffer.cpp.obj.ddi: \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtc/type_ptr.inl \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtc/ulp.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtc/ulp.inl \
- D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/Uniform.hpp \
- D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/VulkanUtils.hpp \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/filesystem \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/fs_fwd.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/chrono.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/ratio \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/fs_path.h \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/associated_min_max.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/associated_min_max.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/bit.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/bit.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/closest_point.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/closest_point.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/color_encoding.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/detail/setup.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/color_encoding.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/color_space.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/color_space.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/color_space_YCoCg.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/color_space_YCoCg.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/common.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/common.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/compatibility.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/compatibility.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/component_wise.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/component_wise.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/dual_quaternion.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/dual_quaternion.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/easing.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/easing.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/euler_angles.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/euler_angles.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/extend.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/extend.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/extended_min_max.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/extended_min_max.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/fast_exponential.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/fast_exponential.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/fast_square_root.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/fast_square_root.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/fast_trigonometry.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/fast_trigonometry.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/functions.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/functions.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/gradient_paint.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/optimum_pow.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/optimum_pow.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/gradient_paint.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/handed_coordinate_space.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/handed_coordinate_space.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/hash.hpp \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/functional \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/std_function.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/unordered_map \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/unordered_map.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/hashtable.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/hashtable_policy.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/ext/aligned_buffer.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/node_handle.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/erase_if.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/move_only_function.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/mofunc_impl.h \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/hash.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/integer.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/integer.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/intersect.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/vector_query.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/vector_query.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/intersect.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/io.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/quaternion.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/norm.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/norm.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/quaternion.inl \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/utility \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/stl_relops.h \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/io.inl \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/iomanip \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/quoted_string.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/sstream \
@@ -533,13 +596,81 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanBuffer.cpp.obj.ddi: \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/ostream.tcc \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/istream.tcc \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/sstream.tcc \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/type_trait.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/type_trait.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/log_base.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/log_base.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/matrix_cross_product.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/matrix_cross_product.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/matrix_decompose.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/matrix_decompose.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/transform.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/transform.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/matrix_factorisation.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/matrix_factorisation.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/matrix_interpolation.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/matrix_interpolation.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/matrix_major_storage.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/matrix_major_storage.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/matrix_operation.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/matrix_operation.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/matrix_query.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/matrix_query.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/mixed_product.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/mixed_product.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/normal.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/normal.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/normalize_dot.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/normalize_dot.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/number_precision.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/orthonormalize.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/orthonormalize.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/pca.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/pca.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/perpendicular.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/projection.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/projection.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/perpendicular.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/polar_coordinates.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/polar_coordinates.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/raw_data.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/raw_data.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/rotate_normalized_axis.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/rotate_normalized_axis.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/rotate_vector.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/rotate_vector.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/spline.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/spline.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/std_based_type.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/std_based_type.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/string_cast.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/string_cast.inl \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/cstdarg \
+ D:/Enviroments/mingw64_msvcrt/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stdarg.h \
+ D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/stdarg.h \
+ D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/_mingw_stdarg.h \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/transform2.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/transform2.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/vec_swizzle.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/vector_angle.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/vector_angle.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/wrap.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/wrap.inl \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/scalar_multiplication.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/range.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/Uniform.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/VulkanUtils.hpp \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/filesystem \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/fs_fwd.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/chrono.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/ratio \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/fs_path.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/codecvt \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/ext/concurrence.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/shared_ptr.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/shared_ptr_base.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/allocated_ptr.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/unique_ptr.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/ext/aligned_buffer.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/align.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/fs_dir.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/fs_ops.h \

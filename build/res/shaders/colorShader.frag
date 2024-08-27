@@ -9,7 +9,6 @@ layout(set = 1, binding = 0) uniform sampler2D myTexture;
 layout(location = 0) out vec4 finalColor;
 
 void main(){
-    vec4 texMap = texture(myTexture, inTexCoord * 2.0);
-    // finalColor = vec4(inColor, 1.0);
+    vec4 texMap = texture(myTexture, inTexCoord);
     finalColor = texMap;
 }

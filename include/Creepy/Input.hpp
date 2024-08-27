@@ -16,6 +16,7 @@ namespace Creepy{
             static bool IsMouseHold(MouseButton button);
             static glm::vec2 GetMousePosition();
             static bool IsMouseInWindow();
+            static glm::vec2 GetDeltaMousePosition();
 
         private:
             static void RegisterMouseEvent(GLFWwindow* window);

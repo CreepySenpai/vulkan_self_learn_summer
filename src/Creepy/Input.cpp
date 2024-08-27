@@ -77,7 +77,11 @@ namespace Creepy{
 
     bool Mouse::IsMouseInWindow() {
         return s_mouseData.IsInWindow;
-    }  
+    }
+
+    glm::vec2 Mouse::GetDeltaMousePosition() {
+        return s_mouseData.Position - s_mouseData.OldPosition;
+    }
 
     void KeyBoard::RegisterKeyEvent(GLFWwindow* window) {
         glfwSetKeyCallback(window, [](GLFWwindow* window, int key, int scanCode, int action, int mods){

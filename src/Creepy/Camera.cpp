@@ -1,19 +1,56 @@
+#include <print>
 #include <Creepy/Camera.hpp>
+#include <Creepy/Input.hpp>
+#include <GLFW/glfw3.h>
 
-#define GLM_ENABLE_EXPERIMENTAL
 #include <glm/gtx/quaternion.hpp>
+#include <glm/gtx/rotate_vector.hpp>
 
+
+extern GLFWwindow* nativeWindow;
 
 namespace Creepy {
 
     Camera::Camera(float fov, float aspectRatio, float nearClip, float farClip)
         : m_fov{fov}, m_aspectRatio{aspectRatio}, m_nearClip{nearClip}, m_farClip{farClip}
     {
-
+        this->updateProjectionMatrix();
     }
 
-    void Camera::Update(double deltaTime) {
+    void Camera::OnUpdate(double deltaTime) {
+        
+        constexpr float moveSpeed{10.0f};
 
+        if(KeyBoard::IsKeyHold(KeyCode::KEY_LEFT)){
+            m_position += this->GetLeft() * static_cast<float>(deltaTime) * moveSpeed;
+        }
+        else if(KeyBoard::IsKeyHold(KeyCode::KEY_RIGHT)){
+            m_position += this->GetRight() * static_cast<float>(deltaTime) * moveSpeed;
+        }
+        else if(KeyBoard::IsKeyHold(KeyCode::KEY_UP)){
+            m_position += this->GetForward() * static_cast<float>(deltaTime) * moveSpeed;
+        }
+        else if(KeyBoard::IsKeyHold(KeyCode::KEY_DOWN)){
+            m_position += this->GetBackward() * static_cast<float>(deltaTime) * moveSpeed;
+        }
+        else if(KeyBoard::IsKeyHold(KeyCode::KEY_SPACE)){
+            m_position += this->GetUp() * static_cast<float>(deltaTime) * moveSpeed;
+        }
+        else if(KeyBoard::IsKeyHold(KeyCode::KEY_Z)){
+            m_position += this->GetDown() * static_cast<float>(deltaTime) * moveSpeed;
+        }
+
+        if(Mouse::IsMouseHold(MouseButton::RIGHT)){
+            glfwSetInputMode(nativeWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+            auto deltaMouse = Mouse::GetDeltaMousePosition();
+            m_rotation.x += deltaMouse.y * static_cast<float>(deltaTime);
+            m_rotation.y += deltaMouse.x * static_cast<float>(deltaTime);
+        }
+        else{
+            glfwSetInputMode(nativeWindow, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
+        }
+
+        this->updateViewMatrix();
     }
 
     const glm::vec3& Camera::GetPosition() const
@@ -21,29 +58,37 @@ namespace Creepy {
         return m_position;
     }
 
+    glm::vec3& Camera::GetPosition() {
+        return m_position;
+    }
+
     const glm::quat Camera::GetRotation() const
     {
-        return glm::quat{m_rotation};
+        return glm::quat{-m_rotation};
     }
 
     glm::vec3 Camera::GetUp() const {
-        return glm::rotate(GetRotation(), Camera::Up);
+        return glm::normalize(glm::rotate(GetRotation(), Camera::Up));
+    }
+
+    glm::vec3 Camera::GetDown() const {
+        return glm::normalize(glm::rotate(GetRotation(), Camera::Down));
     }
 
     glm::vec3 Camera::GetRight() const {
-        return glm::rotate(GetRotation(), Camera::Right);
+        return glm::normalize(glm::rotate(GetRotation(), Camera::Right));
     }
 
     glm::vec3 Camera::GetLeft() const {
-        return glm::rotate(GetRotation(), Camera::Left);
+        return glm::normalize(glm::rotate(GetRotation(), Camera::Left));
     }
 
     glm::vec3 Camera::GetForward() const {
-        return glm::rotate(GetRotation(), Camera::Forward);
+        return glm::normalize(glm::rotate(GetRotation(), Camera::Forward));
     }
 
     glm::vec3 Camera::GetBackward() const {
-        return glm::rotate(GetRotation(), Camera::BackWard);
+        return glm::normalize(glm::rotate(GetRotation(), Camera::BackWard));
     }
 
     const glm::mat4& Camera::GetViewMatrix() const {
@@ -74,10 +119,14 @@ namespace Creepy {
     }
 
     void Camera::updateViewMatrix() {
-        m_viewMatrix = glm::lookAt(m_position, m_position, this->GetUp());
+        // Translate to view Coord
+        m_viewMatrix = glm::inverse(glm::translate(glm::mat4{1.0f}, m_position) * glm::toMat4(this->GetRotation()));
     }
 
     void Camera::updateProjectionMatrix() {
-        m_projectionMatrix = glm::perspective(glm::radians(m_fov), m_aspectRatio, m_nearClip, m_farClip);
+        
+        m_projectionMatrix = glm::perspectiveLH(glm::radians(m_fov), m_aspectRatio, m_nearClip, m_farClip);
+
+        // m_projectionMatrix[1][1] *= -1;
     }
 }
