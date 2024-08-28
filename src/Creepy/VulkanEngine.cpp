@@ -12,7 +12,6 @@
 #include <imgui/imgui_impl_vulkan.hpp>
 
 #include <glm/glm.hpp>
-#include <glm/gtx/string_cast.hpp>
 
 #include <stb/stb_image.h>
 
@@ -597,7 +596,7 @@ namespace Creepy {
 
         // Because we use interleave buffer type -> only need 1 binding
         constexpr std::array vertexBindings{
-            vk::VertexInputBindingDescription{0, sizeof(Vertex), vk::VertexInputRate::eVertex}
+            vk::VertexInputBindingDescription{0, sizeof(Vertex), vk::VertexInputRate::eVertex},
         };
         
         //TODO: Maybe change offset
@@ -607,9 +606,9 @@ namespace Creepy {
             vk::VertexInputAttributeDescription{2, vertexBindings.at(0).binding, vk::Format::eR32G32Sfloat, sizeof(glm::vec3) * 2},
         };
 
-        const Shader vertexShader{m_logicalDevice, readShaderSPVFile("./res/shaders/vertexShader.spv"), vk::ShaderStageFlagBits::eVertex};
+        const Shader vertexShader{m_logicalDevice, readShaderSPVFile("./res/shaders/modelVertexShader.spv"), vk::ShaderStageFlagBits::eVertex};
         
-        const Shader fragmentShader{m_logicalDevice, readShaderSPVFile("./res/shaders/fragmentShader.spv"), vk::ShaderStageFlagBits::eFragment};
+        const Shader fragmentShader{m_logicalDevice, readShaderSPVFile("./res/shaders/modelFragmentShader.spv"), vk::ShaderStageFlagBits::eFragment};
 
         // TODO: ADD Texture DescriptorSetLayout
         const std::array descriptorSetLayouts{
@@ -617,8 +616,17 @@ namespace Creepy {
             m_textureDescriptorSetLayout
         };
 
+        // TODO: Currently we only need transform matrix
+        const std::array pushConstants{
+            vk::PushConstantRange{
+                vk::ShaderStageFlagBits::eVertex,
+                0,
+                sizeof(glm::mat4)
+            },
+        };
+
         PipelineState backgroundState{};
-        backgroundState.InitPipelineLayout(descriptorSetLayouts, {});
+        backgroundState.InitPipelineLayout(descriptorSetLayouts, pushConstants);
         backgroundState.InitShaderStates(vertexShader.GetShaderModule(), fragmentShader.GetShaderModule());
         backgroundState.InitVertexInputState(vertexBindings, vertexAttributes);
         backgroundState.InitInputAssemblyState(vk::PrimitiveTopology::eTriangleList);
@@ -698,7 +706,7 @@ namespace Creepy {
 
         m_depthImage = Image{m_logicalDevice, static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height), 
             vk::Format::eD24UnormS8Uint, vk::ImageUsageFlagBits::eDepthStencilAttachment, vk::ImageAspectFlagBits::eDepth};
-
+        
         m_clearner.AddJob([this]{
             // m_colorImage.Destroy(m_logicalDevice);
             m_depthImage.Destroy(m_logicalDevice);
@@ -707,30 +715,30 @@ namespace Creepy {
 
     // Note(Creepy): All device local buffer must be upload data in begin()/end() command buffer block -> recording state
     void VulkanEngine::createBufferResources() {
-        const std::array vertices{
-            Vertex{.Position = glm::vec3{-0.5f, -0.5f, 0.0f}, .Normal = glm::vec3{1.0f, 0.0f, 0.0f}, .TexCoord = glm::vec2{0.0f, 0.0f}},
-            Vertex{.Position = glm::vec3{0.5f, 0.5f, 0.0f}, .Normal = glm::vec3{0.0f, 1.0f, 0.0f}, .TexCoord = glm::vec2{1.0f, 1.0f}},
-            Vertex{.Position = glm::vec3{-0.5f, 0.5f, 0.0f}, .Normal = glm::vec3{0.0f, 0.0f, 1.0f}, .TexCoord = glm::vec2{0.0f, 1.0f}},
-            Vertex{.Position = glm::vec3{0.5f, -0.5f, 0.0f}, .Normal = glm::vec3{1.0f, 0.0f, 0.0f}, .TexCoord = glm::vec2{1.0f, 0.0f}},
-        };
+        // const std::array vertices{
+        //     Vertex{.Position = glm::vec3{-0.5f, -0.5f, 0.0f}, .Normal = glm::vec3{1.0f, 0.0f, 0.0f}, .TexCoord = glm::vec2{0.0f, 0.0f}},
+        //     Vertex{.Position = glm::vec3{0.5f, 0.5f, 0.0f}, .Normal = glm::vec3{0.0f, 1.0f, 0.0f}, .TexCoord = glm::vec2{1.0f, 1.0f}},
+        //     Vertex{.Position = glm::vec3{-0.5f, 0.5f, 0.0f}, .Normal = glm::vec3{0.0f, 0.0f, 1.0f}, .TexCoord = glm::vec2{0.0f, 1.0f}},
+        //     Vertex{.Position = glm::vec3{0.5f, -0.5f, 0.0f}, .Normal = glm::vec3{1.0f, 0.0f, 0.0f}, .TexCoord = glm::vec2{1.0f, 0.0f}},
+        // };
 
-        m_triangleVertexBuffer = VertexBuffer{m_logicalDevice, vertices.size() * sizeof(Vertex)};
+        // m_triangleVertexBuffer = VertexBuffer{m_logicalDevice, vertices.size() * sizeof(Vertex)};
 
-        m_triangleVertexBuffer.UploadData(m_logicalDevice, m_cmdPool, m_graphicQueue, vertices);
+        // m_triangleVertexBuffer.UploadData(m_logicalDevice, m_cmdPool, m_graphicQueue, vertices);
 
-        const std::array indices{0u, 2u, 1u, 0u, 3u, 1u};
+        // const std::array indices{0u, 2u, 1u, 0u, 3u, 1u};
 
-        m_triangleIndexBuffer = IndexBuffer{m_logicalDevice, indices.size() * sizeof(uint32_t)};
+        // m_triangleIndexBuffer = IndexBuffer{m_logicalDevice, indices.size() * sizeof(uint32_t)};
 
-        m_triangleIndexBuffer.UploadData(m_logicalDevice, m_cmdPool, m_graphicQueue, indices);
+        // m_triangleIndexBuffer.UploadData(m_logicalDevice, m_cmdPool, m_graphicQueue, indices);
 
-        std::println("Index COunt: {}", m_triangleIndexBuffer.GetBufferCount());
+        // std::println("Index COunt: {}", m_triangleIndexBuffer.GetBufferCount());
 
         m_uniformBuffer = UniformBuffer{m_logicalDevice, sizeof(UniformData)};
 
         m_clearner.AddJob([this]{
-            m_triangleVertexBuffer.Destroy(m_logicalDevice);
-            m_triangleIndexBuffer.Destroy(m_logicalDevice);
+            // m_triangleVertexBuffer.Destroy(m_logicalDevice);
+            // m_triangleIndexBuffer.Destroy(m_logicalDevice);
             m_uniformBuffer.Destroy(m_logicalDevice);
         });
     }

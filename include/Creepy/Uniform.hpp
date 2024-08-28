@@ -10,5 +10,4 @@ namespace Creepy {
         glm::mat4 projectionMatrix{1.0f};
         glm::vec4 cameraPosition{1.0f};
     };
-    
 }

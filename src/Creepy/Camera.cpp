@@ -127,6 +127,6 @@ namespace Creepy {
         
         m_projectionMatrix = glm::perspectiveLH(glm::radians(m_fov), m_aspectRatio, m_nearClip, m_farClip);
 
-        // m_projectionMatrix[1][1] *= -1;
+        m_projectionMatrix[1][1] *= -1;
     }
 }

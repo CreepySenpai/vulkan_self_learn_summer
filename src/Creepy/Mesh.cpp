@@ -28,6 +28,7 @@ namespace Creepy{
         }
 
         commandBuffer.bindDescriptorSets(vk::PipelineBindPoint::eGraphics, pipelineLayout, 0, totalSets, nullptr);
+        commandBuffer.pushConstants(pipelineLayout, vk::ShaderStageFlagBits::eVertex, 0, sizeof(glm::mat4), &m_currentMeshTransform);
         constexpr std::array<uint64_t, 1> offsets{0};
         commandBuffer.bindVertexBuffers(0, m_vertexBuffer.GetBuffer(), offsets);
         commandBuffer.bindIndexBuffer(m_indexBuffer.GetBuffer(), 0, vk::IndexType::eUint32);

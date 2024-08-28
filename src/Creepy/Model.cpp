@@ -1,6 +1,7 @@
 #include <Creepy/Model.hpp>
 #include <assimp/Importer.hpp>
 #include <assimp/postprocess.h>
+#include <glm/gtx/string_cast.hpp>
 
 // TODO: Remove Hard Code
 const std::filesystem::path modelsDirectory{"./res/models"};
