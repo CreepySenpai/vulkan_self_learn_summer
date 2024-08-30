@@ -42,9 +42,10 @@ namespace Creepy {
 
         if(Mouse::IsMouseHold(MouseButton::RIGHT)){
             glfwSetInputMode(nativeWindow, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
-            auto deltaMouse = Mouse::GetDeltaMousePosition();
-            m_rotation.x += deltaMouse.y * static_cast<float>(deltaTime);
-            m_rotation.y += deltaMouse.x * static_cast<float>(deltaTime);
+            const auto deltaMouse = Mouse::GetDeltaMousePosition();
+            m_rotation.x += deltaMouse.y * static_cast<float>(deltaTime);   // Pitch
+            m_rotation.x = std::clamp(m_rotation.x, -90.0f, 90.0f);
+            m_rotation.y += deltaMouse.x * static_cast<float>(deltaTime);   // Yaw
         }
         else{
             glfwSetInputMode(nativeWindow, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
@@ -64,7 +65,7 @@ namespace Creepy {
 
     const glm::quat Camera::GetRotation() const
     {
-        return glm::quat{-m_rotation};
+        return glm::quat{m_rotation};
     }
 
     glm::vec3 Camera::GetUp() const {

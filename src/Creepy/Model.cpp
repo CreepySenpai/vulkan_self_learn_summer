@@ -2,6 +2,7 @@
 #include <assimp/Importer.hpp>
 #include <assimp/postprocess.h>
 #include <glm/gtx/string_cast.hpp>
+#include <glm/gtx/quaternion.hpp>
 
 // TODO: Remove Hard Code
 const std::filesystem::path modelsDirectory{"./res/models"};
@@ -11,6 +12,10 @@ namespace Creepy{
     //TODO: Move to utils
     // Assimp: Row Major -> GLM: Column Major
     glm::mat4 convertMatrix(const aiMatrix4x4& matrix){
+        // We can do
+        // return glm::transpose(glm::make_mat4(&matrix.a1));
+        
+
         glm::mat4 temp{};
         temp[0][0] = matrix.a1;
         temp[0][1] = matrix.b1;
@@ -40,7 +45,7 @@ namespace Creepy{
 
     void Model::Draw(const vk::CommandBuffer commandBuffer, const vk::PipelineLayout pipelineLayout, const vk::DescriptorSet uniformDescSet) {
         for(auto& mesh : m_meshes){
-            mesh.Draw(commandBuffer, pipelineLayout, uniformDescSet);
+            mesh.Draw(commandBuffer, pipelineLayout, uniformDescSet, this->getTransformMatrix());
         }
     }
             
@@ -48,6 +53,18 @@ namespace Creepy{
         for(auto&& mesh : m_meshes){
             mesh.Destroy(device);
         }
+    }
+
+    glm::vec3& Model::GetPosition() {
+        return m_position;
+    }
+
+    glm::vec3& Model::GetRotation() {
+        return m_rotation;
+    }
+
+    glm::vec3& Model::GetScale() {
+        return m_scale;
     }
 
     std::span<const Mesh> Model::GetMeshes() const {
@@ -70,6 +87,10 @@ namespace Creepy{
         this->processNode(scene->mRootNode, scene, glm::identity<glm::mat4>(), device, commandPool, queue);
 
         std::println("Total Mesh: {}", m_meshes.size());
+    }
+
+    glm::mat4 Model::getTransformMatrix() const {
+        return glm::translate(glm::mat4{1.0f}, m_position) * glm::toMat4(glm::quat{m_rotation}) * glm::scale(glm::mat4{1.0f}, m_scale);
     }
 
     void Model::processNode(aiNode* currentNode, const aiScene* currentScene, const glm::mat4& parentTransformMatrix, const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue){

@@ -15,9 +15,18 @@ namespace Creepy{
         m_vertexBuffer.UploadData(device, commandPool, queue, vertices);
 
         m_indexBuffer.UploadData(device, commandPool, queue, indices);
+
+        // vk::BufferDeviceAddressInfo info{};
+        // info.buffer = m_vertexBuffer.GetBuffer();
+        // auto addr = device.getBufferAddress(info);
+        // std::println("Vertex Addr: {}", addr);
+        // info.buffer = m_indexBuffer.GetBuffer();
+        // addr = device.getBufferAddress(info);
+        // std::println("Index Addr: {}", addr);
     }
 
-    void Mesh::Draw(const vk::CommandBuffer commandBuffer, const vk::PipelineLayout pipelineLayout, const vk::DescriptorSet uniformDescSet) {
+    void Mesh::Draw(const vk::CommandBuffer commandBuffer, const vk::PipelineLayout pipelineLayout, const vk::DescriptorSet uniformDescSet, const glm::mat4& modelTransformMatrix) {
+
         std::vector<vk::DescriptorSet> totalSets;
         totalSets.reserve(m_textures.size() + 1);
         
@@ -28,7 +37,9 @@ namespace Creepy{
         }
 
         commandBuffer.bindDescriptorSets(vk::PipelineBindPoint::eGraphics, pipelineLayout, 0, totalSets, nullptr);
-        commandBuffer.pushConstants(pipelineLayout, vk::ShaderStageFlagBits::eVertex, 0, sizeof(glm::mat4), &m_currentMeshTransform);
+        auto tempTransform = modelTransformMatrix * m_currentMeshTransform;
+        commandBuffer.pushConstants(pipelineLayout, vk::ShaderStageFlagBits::eVertex, 0, sizeof(glm::mat4), &tempTransform);
+        // commandBuffer.pushConstants(pipelineLayout, vk::ShaderStageFlagBits::eVertex, 0, sizeof(glm::mat4), &m_currentMeshTransform);
         constexpr std::array<uint64_t, 1> offsets{0};
         commandBuffer.bindVertexBuffers(0, m_vertexBuffer.GetBuffer(), offsets);
         commandBuffer.bindIndexBuffer(m_indexBuffer.GetBuffer(), 0, vk::IndexType::eUint32);

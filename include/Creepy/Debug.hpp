@@ -9,7 +9,9 @@ namespace Creepy{
 
         static void DrawFrame();
 
-        static void DrawUniformData(struct UniformData& uniformData);
+        static void DrawTransformData(struct TransformData& transformData);
+
+        static void DrawLightData(struct LightData& lightData);
 
         static void EndFrame();
     };

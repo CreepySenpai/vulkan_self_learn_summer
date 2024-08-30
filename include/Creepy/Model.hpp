@@ -5,12 +5,6 @@
 #include <assimp/scene.h>
 #include "Mesh.hpp"
 
-// struct aiScene;
-// struct aiNode;
-// struct aiMesh;
-// struct aiMaterial;
-// enum aiTextureType : int;
-
 namespace Creepy{
 
     class Model{
@@ -27,6 +21,15 @@ namespace Creepy{
 
             void Draw(const vk::CommandBuffer commandBuffer, const vk::PipelineLayout pipelineLayout, const vk::DescriptorSet uniformDescSet);
             
+            glm::vec3& GetPosition();
+
+            glm::vec3& GetRotation();
+
+            glm::vec3& GetScale();
+
+        private:
+            glm::mat4 getTransformMatrix() const;
+
         private:
             void processNode(aiNode* currentNode, const aiScene* currentScene, const glm::mat4& parentTransformMatrix, const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue);
             Mesh processMesh(aiMesh* currentMesh, const aiScene* currentScene, const glm::mat4& parentTransformMatrix, const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue);
@@ -34,6 +37,9 @@ namespace Creepy{
             std::vector<Texture> loadMaterialTextures(aiMaterial* currentMaterial, const aiScene* currentScene, aiTextureType textureType, const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue);
         private:
             std::vector<Mesh> m_meshes;
+            glm::vec3 m_position{};
+            glm::vec3 m_rotation{};
+            glm::vec3 m_scale{1.0f, 1.0f, 1.0f};
     };
     
 }

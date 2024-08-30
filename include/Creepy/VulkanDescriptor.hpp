@@ -26,42 +26,69 @@ namespace Creepy {
     };
 
     template <typename T>
-    concept IsBuffer = std::same_as<UniformBuffer, std::remove_cvref_t<T>>;
-
-    class DescriptorBufferInfoBuilder{
-        public:
-            DescriptorBufferInfoBuilder(IsBuffer auto&&... buffers){
-                m_descriptorBufferInfo.reserve(sizeof...(buffers));
-
-                (m_descriptorBufferInfo.emplace_back(buffers.GetBuffer(), buffers.GetBufferOffset(), buffers.GetBufferSize()), ...);
-            }
-
-            friend class DescriptorSetWriter;
-        private:
-            std::vector<vk::DescriptorBufferInfo> m_descriptorBufferInfo;
-    };
+    concept IsBuffer = std::same_as<UniformBuffer::TransformBuffer, std::remove_cvref_t<T>> || 
+                        std::same_as<UniformBuffer::LightBuffer, std::remove_cvref_t<T>>;
 
     template <typename T>
     concept IsTexture = std::same_as<Texture, std::remove_cvref_t<T>>;
 
-    class DescriptorImageInfoBuilder{
-        public:
-            DescriptorImageInfoBuilder(IsTexture auto&&... textures){
-                m_descriptorImageInfos.reserve(sizeof...(textures));
+    struct DescriptorBufferInfo{
+        constexpr DescriptorBufferInfo() = default;
 
-                (m_descriptorImageInfos.emplace_back(textures.GetSampler(), textures.GetImageView(), vk::ImageLayout::eShaderReadOnlyOptimal), ...);
+        constexpr DescriptorBufferInfo(const uint32_t binding, const uint32_t descriptorCount, const vk::DescriptorType descriptorType, const IsBuffer auto& buffer)
+            : m_binding{binding}, m_descriptorCount{descriptorCount}, m_descriptorType{descriptorType}, m_bufferInfo{buffer.GetBuffer(), buffer.GetBufferOffset(), buffer.GetBufferSize()}
+        {
+            
+        }
+
+        uint32_t m_binding{};
+        uint32_t m_descriptorCount{};
+        vk::DescriptorType m_descriptorType{};
+        vk::DescriptorBufferInfo m_bufferInfo{};
+    };
+
+    struct DescriptorImageInfo{
+        constexpr DescriptorImageInfo() = default;
+
+        constexpr DescriptorImageInfo(const uint32_t binding, const uint32_t descriptorCount, const vk::DescriptorType descriptorType, const IsTexture auto& texture)
+            : m_binding{binding}, m_descriptorCount{descriptorCount}, m_descriptorType{descriptorType}, m_imageInfo{texture.GetSampler(), texture.GetImageView(), vk::ImageLayout::eShaderReadOnlyOptimal}
+        {
+
+        }
+
+        uint32_t m_binding{};
+        uint32_t m_descriptorCount{};
+        vk::DescriptorType m_descriptorType{};
+        vk::DescriptorImageInfo m_imageInfo{};
+    };
+
+    class DescriptorBufferInfoBuilder{
+        public:
+            constexpr void AddBinding(const uint32_t binding, const uint32_t descriptorCount, const vk::DescriptorType descriptorType, const IsBuffer auto& buffer){
+                m_descriptorBufferInfos.emplace_back(binding, descriptorCount, descriptorType, buffer);
             }
 
             friend class DescriptorSetWriter;
         private:
-            std::vector<vk::DescriptorImageInfo> m_descriptorImageInfos;
+            std::vector<DescriptorBufferInfo> m_descriptorBufferInfos;
+    };
+
+    class DescriptorImageInfoBuilder{
+        public:
+            constexpr void AddBinding(const uint32_t binding, const uint32_t descriptorCount, const vk::DescriptorType descriptorType, const IsTexture auto& texture) {
+                m_descriptorImageInfos.emplace_back(binding, descriptorCount, descriptorType, texture);
+            }
+
+            friend class DescriptorSetWriter;
+        private:
+            std::vector<DescriptorImageInfo> m_descriptorImageInfos;
     };
 
     class DescriptorSetWriter{
         public:
-            void AddBufferBinding(const uint32_t binding, const vk::DescriptorSet descriptorSet, const DescriptorBufferInfoBuilder& bufferInfos);
+            void AddBufferBinding(const vk::DescriptorSet descriptorSet, const DescriptorBufferInfoBuilder& bufferInfos);
 
-            void AddImageBinding(const uint32_t binding, const vk::DescriptorSet descriptorSet, const DescriptorImageInfoBuilder& imageInfos);
+            void AddImageBinding(const vk::DescriptorSet descriptorSet, const DescriptorImageInfoBuilder& imageInfos);
 
             void UpdateDescriptorSets(const vk::Device device);
         private:

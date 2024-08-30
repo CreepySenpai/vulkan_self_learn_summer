@@ -198,7 +198,15 @@ namespace Creepy {
 
     using VertexBuffer = BufferWrapperNoView<BufferType::DEVICE_LOCAL, Vertex, vk::BufferUsageFlagBits::eVertexBuffer, vk::BufferUsageFlagBits::eTransferDst>;
     using IndexBuffer = BufferWrapperNoView<BufferType::DEVICE_LOCAL, uint32_t, vk::BufferUsageFlagBits::eIndexBuffer, vk::BufferUsageFlagBits::eTransferDst>;
-    using UniformBuffer = BufferWrapperNoView<BufferType::HOST_COHERENT, UniformData, vk::BufferUsageFlagBits::eUniformBuffer, vk::BufferUsageFlagBits::eTransferDst>;
+    
+    struct UniformBuffer{
+        using TransformBuffer = BufferWrapperNoView<BufferType::HOST_COHERENT, TransformData, vk::BufferUsageFlagBits::eUniformBuffer, vk::BufferUsageFlagBits::eTransferDst>;
+        using LightBuffer = BufferWrapperNoView<BufferType::HOST_COHERENT, LightData, vk::BufferUsageFlagBits::eUniformBuffer, vk::BufferUsageFlagBits::eTransferDst>;
+        
+        
+        TransformBuffer transformBuffer;
+        LightBuffer lightBuffer;
+    };
 }
 
 // Template Instanciation

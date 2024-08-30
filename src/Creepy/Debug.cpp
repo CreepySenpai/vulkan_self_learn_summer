@@ -18,11 +18,15 @@ namespace Creepy{
         ImGui::End();
     }
 
-    void Debug::DrawUniformData(struct UniformData& uniformData) {
+    void Debug::DrawTransformData(struct TransformData& transformData) {
         ImGui::Begin("CamSus");
             ImGui::Text("Cam Pos");
-            ImGui::DragFloat3("Position", &uniformData.cameraPosition[0], 0.1f, 0.0f, 1.0f);
+            ImGui::DragFloat3("Position", glm::value_ptr(transformData.cameraPosition), 0.1f, 0.0f, 1.0f);
         ImGui::End();
+    }
+
+    void Debug::DrawLightData(struct LightData& lightData) {
+
     }
 
     void Debug::EndFrame() {

@@ -546,13 +546,17 @@ namespace Creepy {
         {
             DescriptorSetBuilder builder{};
             builder.AddBinding(0, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eVertex);
+            // builder.AddBinding(1, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eVertex);
+            
             builder.BuildDescriptorLayout(m_logicalDevice);
             m_uniformBufferDescriptorSet = builder.AllocateDescriptorSet(m_logicalDevice, m_descriptorPool);
-
-            const DescriptorBufferInfoBuilder bufferDescriptorInfo{m_uniformBuffer};
+            
+            DescriptorBufferInfoBuilder bufferDescriptorBuilder{};
+            bufferDescriptorBuilder.AddBinding(0, 1, vk::DescriptorType::eUniformBuffer, m_uniformBuffer.transformBuffer);
+            // bufferDescriptorBuilder.AddBinding(1, 1, vk::DescriptorType::eUniformBuffer, m_uniformBuffer.lightBuffer);
 
             DescriptorSetWriter writer{};
-            writer.AddBufferBinding(0, m_uniformBufferDescriptorSet.DescriptorSet, bufferDescriptorInfo);
+            writer.AddBufferBinding(m_uniformBufferDescriptorSet.DescriptorSet, bufferDescriptorBuilder);
             writer.UpdateDescriptorSets(m_logicalDevice);
         }
 
@@ -569,9 +573,11 @@ namespace Creepy {
                         for(auto& texture : mesh.GetTextures()){
                             auto temp = builder.AllocateDescriptorSet(m_logicalDevice, m_descriptorPool);
                             texture.SetDescriptorSet(temp.DescriptorSet);
-                            const DescriptorImageInfoBuilder imageBuilder{texture};
+                            DescriptorImageInfoBuilder imageDescriptorBuilder{};
+                            imageDescriptorBuilder.AddBinding(0, 1, vk::DescriptorType::eCombinedImageSampler, texture);
+
                             DescriptorSetWriter writer{};
-                            writer.AddImageBinding( 0, texture.GetDescriptorSet(), imageBuilder);
+                            writer.AddImageBinding(texture.GetDescriptorSet(), imageDescriptorBuilder);
                             writer.UpdateDescriptorSets(m_logicalDevice);
                         }
 
@@ -734,12 +740,14 @@ namespace Creepy {
 
         // std::println("Index COunt: {}", m_triangleIndexBuffer.GetBufferCount());
 
-        m_uniformBuffer = UniformBuffer{m_logicalDevice, sizeof(UniformData)};
+        m_uniformBuffer.transformBuffer = UniformBuffer::TransformBuffer{m_logicalDevice, sizeof(TransformData)};
+        m_uniformBuffer.lightBuffer = UniformBuffer::LightBuffer{m_logicalDevice, sizeof(LightData)};
 
         m_clearner.AddJob([this]{
             // m_triangleVertexBuffer.Destroy(m_logicalDevice);
             // m_triangleIndexBuffer.Destroy(m_logicalDevice);
-            m_uniformBuffer.Destroy(m_logicalDevice);
+            m_uniformBuffer.transformBuffer.Destroy(m_logicalDevice);
+            m_uniformBuffer.lightBuffer.Destroy(m_logicalDevice);
         });
     }
 
@@ -747,6 +755,8 @@ namespace Creepy {
 
         m_models["Shiba"].LoadModel("./res/models/shiba.gltf", m_logicalDevice, m_cmdPool, m_graphicQueue);
 
+        // m_models["Waifu"].LoadModel("./res/models/waifu.gltf", m_logicalDevice, m_cmdPool, m_graphicQueue);
+        
         m_clearner.AddJob([this]{
             for(auto&& [name, model] : m_models){
                 model.Destroy(m_logicalDevice);
@@ -761,9 +771,16 @@ namespace Creepy {
         Debug::DrawFrame();
         ImGui::Begin("Came");
         ImGui::DragFloat3("Pos", glm::value_ptr(m_camera.GetPosition()));
-        ImGui::End();
-        Debug::DrawUniformData(m_uniformData);
 
+        for(auto& [name, model] : m_models){
+            ImGui::Text("Model %s", name.c_str());
+            ImGui::DragFloat3("Position", glm::value_ptr(model.GetPosition()));
+            ImGui::DragFloat3("Rotation", glm::value_ptr(model.GetRotation()));
+            ImGui::DragFloat3("Scale", glm::value_ptr(model.GetScale()));
+        }
+        ImGui::End();
+        Debug::DrawTransformData(m_transformData);
+        
         Debug::EndFrame();
 
 
@@ -954,15 +971,15 @@ namespace Creepy {
     }
 
     void VulkanEngine::updateUniformBuffer() {
-        m_uniformData.viewMatrix = m_camera.GetViewMatrix();
-        m_uniformData.projectionMatrix = m_camera.GetProjectionMatrix();
-        m_uniformData.cameraPosition = glm::vec4{m_camera.GetPosition(), 0.0f};
+        m_transformData.viewMatrix = m_camera.GetViewMatrix();
+        m_transformData.projectionMatrix = m_camera.GetProjectionMatrix();
+        m_transformData.cameraPosition = glm::vec4{m_camera.GetPosition(), 0.0f};
 
         const std::array data{
-            m_uniformData
+            m_transformData
         };
 
-        m_uniformBuffer.UploadData(data);
+        m_uniformBuffer.transformBuffer.UploadData(data);
     }
 
     void VulkanEngine::createCamera()

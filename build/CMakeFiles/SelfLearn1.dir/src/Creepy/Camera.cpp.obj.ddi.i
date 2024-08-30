@@ -138682,7 +138682,7 @@ namespace Creepy {
 struct GLFWwindow;
 
 namespace Creepy{
-    enum class MouseButton : uint32_t{
+    enum class [[nodiscard("Forget MouseButton?")]] MouseButton : uint32_t{
         LEFT = 0, RIGHT, MIDDLE
     };
 
@@ -138702,7 +138702,7 @@ namespace Creepy{
             friend class VulkanEngine;
     };
 
-    enum class KeyCode : uint32_t{
+    enum class [[nodiscard("Forget KeyCode?")]] KeyCode : uint32_t{
         NONE = 0,
         KEY_SPACE = 32,
         KEY_APOSTROPHE = 39,
@@ -141042,8 +141042,9 @@ namespace Creepy {
 
         if(Mouse::IsMouseHold(MouseButton::RIGHT)){
             glfwSetInputMode(nativeWindow, 0x00033001, 0x00034003);
-            auto deltaMouse = Mouse::GetDeltaMousePosition();
+            const auto deltaMouse = Mouse::GetDeltaMousePosition();
             m_rotation.x += deltaMouse.y * static_cast<float>(deltaTime);
+            m_rotation.x = std::clamp(m_rotation.x, -90.0f, 90.0f);
             m_rotation.y += deltaMouse.x * static_cast<float>(deltaTime);
         }
         else{
@@ -141064,7 +141065,7 @@ namespace Creepy {
 
     const glm::quat Camera::GetRotation() const
     {
-        return glm::quat{-m_rotation};
+        return glm::quat{m_rotation};
     }
 
     glm::vec3 Camera::GetUp() const {

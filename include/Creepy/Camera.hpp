@@ -42,7 +42,7 @@ namespace Creepy {
         private:
             float m_fov{}, m_aspectRatio{}, m_nearClip{}, m_farClip{};
             glm::vec3 m_position{0.0f, 0.0f, -5.0f};
-            // X = Roll, Y = Pitch, Z = Yaw
+            // X = Pitch, Y = Yaw, Z = Roll
             glm::vec3 m_rotation{};
             glm::mat4 m_viewMatrix{1.0f};
             glm::mat4 m_projectionMatrix{1.0f};

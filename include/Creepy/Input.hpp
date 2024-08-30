@@ -6,7 +6,7 @@
 struct GLFWwindow;
 
 namespace Creepy{
-    enum class MouseButton : uint32_t{
+    enum class [[nodiscard("Forget MouseButton?")]] MouseButton : uint32_t{
         LEFT = 0, RIGHT, MIDDLE
     };
     
@@ -26,7 +26,7 @@ namespace Creepy{
             friend class VulkanEngine;
     };
 
-    enum class KeyCode : uint32_t{
+    enum class [[nodiscard("Forget KeyCode?")]] KeyCode : uint32_t{
         NONE                   = 0,
         KEY_SPACE              = 32,
         KEY_APOSTROPHE         = 39,  /* ' */

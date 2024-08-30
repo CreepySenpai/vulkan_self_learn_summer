@@ -66,6 +66,8 @@ build CMakeFiles/SelfLearn1.dir/main.cpp.obj: CXX_COMPILER__SelfLearn1_scanned_R
   INCLUDES = -ID:/Code/VSCode/C++/Vulkan/SelfLearn1/include -ID:/Enviroments/vulkan/Include
   OBJECT_DIR = CMakeFiles\SelfLearn1.dir
   OBJECT_FILE_DIR = CMakeFiles\SelfLearn1.dir
+  TARGET_COMPILE_PDB = CMakeFiles\SelfLearn1.dir\
+  TARGET_PDB = SelfLearn1.pdb
   dyndep = CMakeFiles/SelfLearn1.dir/CXX.dd
 
 build CMakeFiles/SelfLearn1.dir/src/Creepy/Camera.cpp.obj.ddi: CXX_SCAN__SelfLearn1_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/Creepy/Camera.cpp || cmake_object_order_depends_target_SelfLearn1
@@ -85,6 +87,8 @@ build CMakeFiles/SelfLearn1.dir/src/Creepy/Camera.cpp.obj: CXX_COMPILER__SelfLea
   INCLUDES = -ID:/Code/VSCode/C++/Vulkan/SelfLearn1/include -ID:/Enviroments/vulkan/Include
   OBJECT_DIR = CMakeFiles\SelfLearn1.dir
   OBJECT_FILE_DIR = CMakeFiles\SelfLearn1.dir\src\Creepy
+  TARGET_COMPILE_PDB = CMakeFiles\SelfLearn1.dir\
+  TARGET_PDB = SelfLearn1.pdb
   dyndep = CMakeFiles/SelfLearn1.dir/CXX.dd
 
 build CMakeFiles/SelfLearn1.dir/src/Creepy/Debug.cpp.obj.ddi: CXX_SCAN__SelfLearn1_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/Creepy/Debug.cpp || cmake_object_order_depends_target_SelfLearn1
@@ -104,6 +108,8 @@ build CMakeFiles/SelfLearn1.dir/src/Creepy/Debug.cpp.obj: CXX_COMPILER__SelfLear
   INCLUDES = -ID:/Code/VSCode/C++/Vulkan/SelfLearn1/include -ID:/Enviroments/vulkan/Include
   OBJECT_DIR = CMakeFiles\SelfLearn1.dir
   OBJECT_FILE_DIR = CMakeFiles\SelfLearn1.dir\src\Creepy
+  TARGET_COMPILE_PDB = CMakeFiles\SelfLearn1.dir\
+  TARGET_PDB = SelfLearn1.pdb
   dyndep = CMakeFiles/SelfLearn1.dir/CXX.dd
 
 build CMakeFiles/SelfLearn1.dir/src/Creepy/Input.cpp.obj.ddi: CXX_SCAN__SelfLearn1_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/Creepy/Input.cpp || cmake_object_order_depends_target_SelfLearn1
@@ -123,6 +129,8 @@ build CMakeFiles/SelfLearn1.dir/src/Creepy/Input.cpp.obj: CXX_COMPILER__SelfLear
   INCLUDES = -ID:/Code/VSCode/C++/Vulkan/SelfLearn1/include -ID:/Enviroments/vulkan/Include
   OBJECT_DIR = CMakeFiles\SelfLearn1.dir
   OBJECT_FILE_DIR = CMakeFiles\SelfLearn1.dir\src\Creepy
+  TARGET_COMPILE_PDB = CMakeFiles\SelfLearn1.dir\
+  TARGET_PDB = SelfLearn1.pdb
   dyndep = CMakeFiles/SelfLearn1.dir/CXX.dd
 
 build CMakeFiles/SelfLearn1.dir/src/Creepy/Mesh.cpp.obj.ddi: CXX_SCAN__SelfLearn1_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/Creepy/Mesh.cpp || cmake_object_order_depends_target_SelfLearn1
@@ -142,6 +150,8 @@ build CMakeFiles/SelfLearn1.dir/src/Creepy/Mesh.cpp.obj: CXX_COMPILER__SelfLearn
   INCLUDES = -ID:/Code/VSCode/C++/Vulkan/SelfLearn1/include -ID:/Enviroments/vulkan/Include
   OBJECT_DIR = CMakeFiles\SelfLearn1.dir
   OBJECT_FILE_DIR = CMakeFiles\SelfLearn1.dir\src\Creepy
+  TARGET_COMPILE_PDB = CMakeFiles\SelfLearn1.dir\
+  TARGET_PDB = SelfLearn1.pdb
   dyndep = CMakeFiles/SelfLearn1.dir/CXX.dd
 
 build CMakeFiles/SelfLearn1.dir/src/Creepy/Model.cpp.obj.ddi: CXX_SCAN__SelfLearn1_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/Creepy/Model.cpp || cmake_object_order_depends_target_SelfLearn1
@@ -161,6 +171,8 @@ build CMakeFiles/SelfLearn1.dir/src/Creepy/Model.cpp.obj: CXX_COMPILER__SelfLear
   INCLUDES = -ID:/Code/VSCode/C++/Vulkan/SelfLearn1/include -ID:/Enviroments/vulkan/Include
   OBJECT_DIR = CMakeFiles\SelfLearn1.dir
   OBJECT_FILE_DIR = CMakeFiles\SelfLearn1.dir\src\Creepy
+  TARGET_COMPILE_PDB = CMakeFiles\SelfLearn1.dir\
+  TARGET_PDB = SelfLearn1.pdb
   dyndep = CMakeFiles/SelfLearn1.dir/CXX.dd
 
 build CMakeFiles/SelfLearn1.dir/src/Creepy/Texture.cpp.obj.ddi: CXX_SCAN__SelfLearn1_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/Creepy/Texture.cpp || cmake_object_order_depends_target_SelfLearn1
@@ -180,6 +192,8 @@ build CMakeFiles/SelfLearn1.dir/src/Creepy/Texture.cpp.obj: CXX_COMPILER__SelfLe
   INCLUDES = -ID:/Code/VSCode/C++/Vulkan/SelfLearn1/include -ID:/Enviroments/vulkan/Include
   OBJECT_DIR = CMakeFiles\SelfLearn1.dir
   OBJECT_FILE_DIR = CMakeFiles\SelfLearn1.dir\src\Creepy
+  TARGET_COMPILE_PDB = CMakeFiles\SelfLearn1.dir\
+  TARGET_PDB = SelfLearn1.pdb
   dyndep = CMakeFiles/SelfLearn1.dir/CXX.dd
 
 build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanAllocator.cpp.obj.ddi: CXX_SCAN__SelfLearn1_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/Creepy/VulkanAllocator.cpp || cmake_object_order_depends_target_SelfLearn1
@@ -199,6 +213,8 @@ build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanAllocator.cpp.obj: CXX_COMPILER
   INCLUDES = -ID:/Code/VSCode/C++/Vulkan/SelfLearn1/include -ID:/Enviroments/vulkan/Include
   OBJECT_DIR = CMakeFiles\SelfLearn1.dir
   OBJECT_FILE_DIR = CMakeFiles\SelfLearn1.dir\src\Creepy
+  TARGET_COMPILE_PDB = CMakeFiles\SelfLearn1.dir\
+  TARGET_PDB = SelfLearn1.pdb
   dyndep = CMakeFiles/SelfLearn1.dir/CXX.dd
 
 build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanBuffer.cpp.obj.ddi: CXX_SCAN__SelfLearn1_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/Creepy/VulkanBuffer.cpp || cmake_object_order_depends_target_SelfLearn1
@@ -218,6 +234,8 @@ build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanBuffer.cpp.obj: CXX_COMPILER__S
   INCLUDES = -ID:/Code/VSCode/C++/Vulkan/SelfLearn1/include -ID:/Enviroments/vulkan/Include
   OBJECT_DIR = CMakeFiles\SelfLearn1.dir
   OBJECT_FILE_DIR = CMakeFiles\SelfLearn1.dir\src\Creepy
+  TARGET_COMPILE_PDB = CMakeFiles\SelfLearn1.dir\
+  TARGET_PDB = SelfLearn1.pdb
   dyndep = CMakeFiles/SelfLearn1.dir/CXX.dd
 
 build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanDescriptor.cpp.obj.ddi: CXX_SCAN__SelfLearn1_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/Creepy/VulkanDescriptor.cpp || cmake_object_order_depends_target_SelfLearn1
@@ -237,6 +255,8 @@ build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanDescriptor.cpp.obj: CXX_COMPILE
   INCLUDES = -ID:/Code/VSCode/C++/Vulkan/SelfLearn1/include -ID:/Enviroments/vulkan/Include
   OBJECT_DIR = CMakeFiles\SelfLearn1.dir
   OBJECT_FILE_DIR = CMakeFiles\SelfLearn1.dir\src\Creepy
+  TARGET_COMPILE_PDB = CMakeFiles\SelfLearn1.dir\
+  TARGET_PDB = SelfLearn1.pdb
   dyndep = CMakeFiles/SelfLearn1.dir/CXX.dd
 
 build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanEngine.cpp.obj.ddi: CXX_SCAN__SelfLearn1_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/Creepy/VulkanEngine.cpp || cmake_object_order_depends_target_SelfLearn1
@@ -256,6 +276,8 @@ build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanEngine.cpp.obj: CXX_COMPILER__S
   INCLUDES = -ID:/Code/VSCode/C++/Vulkan/SelfLearn1/include -ID:/Enviroments/vulkan/Include
   OBJECT_DIR = CMakeFiles\SelfLearn1.dir
   OBJECT_FILE_DIR = CMakeFiles\SelfLearn1.dir\src\Creepy
+  TARGET_COMPILE_PDB = CMakeFiles\SelfLearn1.dir\
+  TARGET_PDB = SelfLearn1.pdb
   dyndep = CMakeFiles/SelfLearn1.dir/CXX.dd
 
 build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanImage.cpp.obj.ddi: CXX_SCAN__SelfLearn1_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/Creepy/VulkanImage.cpp || cmake_object_order_depends_target_SelfLearn1
@@ -275,6 +297,8 @@ build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanImage.cpp.obj: CXX_COMPILER__Se
   INCLUDES = -ID:/Code/VSCode/C++/Vulkan/SelfLearn1/include -ID:/Enviroments/vulkan/Include
   OBJECT_DIR = CMakeFiles\SelfLearn1.dir
   OBJECT_FILE_DIR = CMakeFiles\SelfLearn1.dir\src\Creepy
+  TARGET_COMPILE_PDB = CMakeFiles\SelfLearn1.dir\
+  TARGET_PDB = SelfLearn1.pdb
   dyndep = CMakeFiles/SelfLearn1.dir/CXX.dd
 
 build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanPipeline.cpp.obj.ddi: CXX_SCAN__SelfLearn1_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/Creepy/VulkanPipeline.cpp || cmake_object_order_depends_target_SelfLearn1
@@ -294,6 +318,8 @@ build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanPipeline.cpp.obj: CXX_COMPILER_
   INCLUDES = -ID:/Code/VSCode/C++/Vulkan/SelfLearn1/include -ID:/Enviroments/vulkan/Include
   OBJECT_DIR = CMakeFiles\SelfLearn1.dir
   OBJECT_FILE_DIR = CMakeFiles\SelfLearn1.dir\src\Creepy
+  TARGET_COMPILE_PDB = CMakeFiles\SelfLearn1.dir\
+  TARGET_PDB = SelfLearn1.pdb
   dyndep = CMakeFiles/SelfLearn1.dir/CXX.dd
 
 build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanShader.cpp.obj.ddi: CXX_SCAN__SelfLearn1_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/Creepy/VulkanShader.cpp || cmake_object_order_depends_target_SelfLearn1
@@ -313,6 +339,8 @@ build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanShader.cpp.obj: CXX_COMPILER__S
   INCLUDES = -ID:/Code/VSCode/C++/Vulkan/SelfLearn1/include -ID:/Enviroments/vulkan/Include
   OBJECT_DIR = CMakeFiles\SelfLearn1.dir
   OBJECT_FILE_DIR = CMakeFiles\SelfLearn1.dir\src\Creepy
+  TARGET_COMPILE_PDB = CMakeFiles\SelfLearn1.dir\
+  TARGET_PDB = SelfLearn1.pdb
   dyndep = CMakeFiles/SelfLearn1.dir/CXX.dd
 
 build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanSwapchain.cpp.obj.ddi: CXX_SCAN__SelfLearn1_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/Creepy/VulkanSwapchain.cpp || cmake_object_order_depends_target_SelfLearn1
@@ -332,6 +360,8 @@ build CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanSwapchain.cpp.obj: CXX_COMPILER
   INCLUDES = -ID:/Code/VSCode/C++/Vulkan/SelfLearn1/include -ID:/Enviroments/vulkan/Include
   OBJECT_DIR = CMakeFiles\SelfLearn1.dir
   OBJECT_FILE_DIR = CMakeFiles\SelfLearn1.dir\src\Creepy
+  TARGET_COMPILE_PDB = CMakeFiles\SelfLearn1.dir\
+  TARGET_PDB = SelfLearn1.pdb
   dyndep = CMakeFiles/SelfLearn1.dir/CXX.dd
 
 build CMakeFiles/SelfLearn1.dir/src/stb/stb_image.cpp.obj.ddi: CXX_SCAN__SelfLearn1_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/stb/stb_image.cpp || cmake_object_order_depends_target_SelfLearn1
@@ -351,6 +381,8 @@ build CMakeFiles/SelfLearn1.dir/src/stb/stb_image.cpp.obj: CXX_COMPILER__SelfLea
   INCLUDES = -ID:/Code/VSCode/C++/Vulkan/SelfLearn1/include -ID:/Enviroments/vulkan/Include
   OBJECT_DIR = CMakeFiles\SelfLearn1.dir
   OBJECT_FILE_DIR = CMakeFiles\SelfLearn1.dir\src\stb
+  TARGET_COMPILE_PDB = CMakeFiles\SelfLearn1.dir\
+  TARGET_PDB = SelfLearn1.pdb
   dyndep = CMakeFiles/SelfLearn1.dir/CXX.dd
 
 build CMakeFiles/SelfLearn1.dir/src/vkmemoryalloc/alloc.cpp.obj.ddi: CXX_SCAN__SelfLearn1_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/vkmemoryalloc/alloc.cpp || cmake_object_order_depends_target_SelfLearn1
@@ -370,6 +402,8 @@ build CMakeFiles/SelfLearn1.dir/src/vkmemoryalloc/alloc.cpp.obj: CXX_COMPILER__S
   INCLUDES = -ID:/Code/VSCode/C++/Vulkan/SelfLearn1/include -ID:/Enviroments/vulkan/Include
   OBJECT_DIR = CMakeFiles\SelfLearn1.dir
   OBJECT_FILE_DIR = CMakeFiles\SelfLearn1.dir\src\vkmemoryalloc
+  TARGET_COMPILE_PDB = CMakeFiles\SelfLearn1.dir\
+  TARGET_PDB = SelfLearn1.pdb
   dyndep = CMakeFiles/SelfLearn1.dir/CXX.dd
 
 build CMakeFiles/SelfLearn1.dir/src/imgui/imgui.cpp.obj.ddi: CXX_SCAN__SelfLearn1_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/imgui/imgui.cpp || cmake_object_order_depends_target_SelfLearn1
@@ -389,6 +423,8 @@ build CMakeFiles/SelfLearn1.dir/src/imgui/imgui.cpp.obj: CXX_COMPILER__SelfLearn
   INCLUDES = -ID:/Code/VSCode/C++/Vulkan/SelfLearn1/include -ID:/Enviroments/vulkan/Include
   OBJECT_DIR = CMakeFiles\SelfLearn1.dir
   OBJECT_FILE_DIR = CMakeFiles\SelfLearn1.dir\src\imgui
+  TARGET_COMPILE_PDB = CMakeFiles\SelfLearn1.dir\
+  TARGET_PDB = SelfLearn1.pdb
   dyndep = CMakeFiles/SelfLearn1.dir/CXX.dd
 
 build CMakeFiles/SelfLearn1.dir/src/imgui/imgui_draw.cpp.obj.ddi: CXX_SCAN__SelfLearn1_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/imgui/imgui_draw.cpp || cmake_object_order_depends_target_SelfLearn1
@@ -408,6 +444,8 @@ build CMakeFiles/SelfLearn1.dir/src/imgui/imgui_draw.cpp.obj: CXX_COMPILER__Self
   INCLUDES = -ID:/Code/VSCode/C++/Vulkan/SelfLearn1/include -ID:/Enviroments/vulkan/Include
   OBJECT_DIR = CMakeFiles\SelfLearn1.dir
   OBJECT_FILE_DIR = CMakeFiles\SelfLearn1.dir\src\imgui
+  TARGET_COMPILE_PDB = CMakeFiles\SelfLearn1.dir\
+  TARGET_PDB = SelfLearn1.pdb
   dyndep = CMakeFiles/SelfLearn1.dir/CXX.dd
 
 build CMakeFiles/SelfLearn1.dir/src/imgui/imgui_impl_glfw.cpp.obj.ddi: CXX_SCAN__SelfLearn1_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/imgui/imgui_impl_glfw.cpp || cmake_object_order_depends_target_SelfLearn1
@@ -427,6 +465,8 @@ build CMakeFiles/SelfLearn1.dir/src/imgui/imgui_impl_glfw.cpp.obj: CXX_COMPILER_
   INCLUDES = -ID:/Code/VSCode/C++/Vulkan/SelfLearn1/include -ID:/Enviroments/vulkan/Include
   OBJECT_DIR = CMakeFiles\SelfLearn1.dir
   OBJECT_FILE_DIR = CMakeFiles\SelfLearn1.dir\src\imgui
+  TARGET_COMPILE_PDB = CMakeFiles\SelfLearn1.dir\
+  TARGET_PDB = SelfLearn1.pdb
   dyndep = CMakeFiles/SelfLearn1.dir/CXX.dd
 
 build CMakeFiles/SelfLearn1.dir/src/imgui/imgui_impl_vulkan.cpp.obj.ddi: CXX_SCAN__SelfLearn1_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/imgui/imgui_impl_vulkan.cpp || cmake_object_order_depends_target_SelfLearn1
@@ -446,6 +486,8 @@ build CMakeFiles/SelfLearn1.dir/src/imgui/imgui_impl_vulkan.cpp.obj: CXX_COMPILE
   INCLUDES = -ID:/Code/VSCode/C++/Vulkan/SelfLearn1/include -ID:/Enviroments/vulkan/Include
   OBJECT_DIR = CMakeFiles\SelfLearn1.dir
   OBJECT_FILE_DIR = CMakeFiles\SelfLearn1.dir\src\imgui
+  TARGET_COMPILE_PDB = CMakeFiles\SelfLearn1.dir\
+  TARGET_PDB = SelfLearn1.pdb
   dyndep = CMakeFiles/SelfLearn1.dir/CXX.dd
 
 build CMakeFiles/SelfLearn1.dir/src/imgui/imgui_tables.cpp.obj.ddi: CXX_SCAN__SelfLearn1_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/imgui/imgui_tables.cpp || cmake_object_order_depends_target_SelfLearn1
@@ -465,6 +507,8 @@ build CMakeFiles/SelfLearn1.dir/src/imgui/imgui_tables.cpp.obj: CXX_COMPILER__Se
   INCLUDES = -ID:/Code/VSCode/C++/Vulkan/SelfLearn1/include -ID:/Enviroments/vulkan/Include
   OBJECT_DIR = CMakeFiles\SelfLearn1.dir
   OBJECT_FILE_DIR = CMakeFiles\SelfLearn1.dir\src\imgui
+  TARGET_COMPILE_PDB = CMakeFiles\SelfLearn1.dir\
+  TARGET_PDB = SelfLearn1.pdb
   dyndep = CMakeFiles/SelfLearn1.dir/CXX.dd
 
 build CMakeFiles/SelfLearn1.dir/src/imgui/imgui_widgets.cpp.obj.ddi: CXX_SCAN__SelfLearn1_Release D$:/Code/VSCode/C++/Vulkan/SelfLearn1/src/imgui/imgui_widgets.cpp || cmake_object_order_depends_target_SelfLearn1
@@ -484,6 +528,8 @@ build CMakeFiles/SelfLearn1.dir/src/imgui/imgui_widgets.cpp.obj: CXX_COMPILER__S
   INCLUDES = -ID:/Code/VSCode/C++/Vulkan/SelfLearn1/include -ID:/Enviroments/vulkan/Include
   OBJECT_DIR = CMakeFiles\SelfLearn1.dir
   OBJECT_FILE_DIR = CMakeFiles\SelfLearn1.dir\src\imgui
+  TARGET_COMPILE_PDB = CMakeFiles\SelfLearn1.dir\
+  TARGET_PDB = SelfLearn1.pdb
   dyndep = CMakeFiles/SelfLearn1.dir/CXX.dd
 
 build CMakeFiles/SelfLearn1.dir/CXX.dd | D$:/Code/VSCode/C++/Vulkan/SelfLearn1/build/CMakeFiles/SelfLearn1.dir/CXXModules.json CMakeFiles/SelfLearn1.dir/main.cpp.obj.modmap CMakeFiles/SelfLearn1.dir/src/Creepy/Camera.cpp.obj.modmap CMakeFiles/SelfLearn1.dir/src/Creepy/Debug.cpp.obj.modmap CMakeFiles/SelfLearn1.dir/src/Creepy/Input.cpp.obj.modmap CMakeFiles/SelfLearn1.dir/src/Creepy/Mesh.cpp.obj.modmap CMakeFiles/SelfLearn1.dir/src/Creepy/Model.cpp.obj.modmap CMakeFiles/SelfLearn1.dir/src/Creepy/Texture.cpp.obj.modmap CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanAllocator.cpp.obj.modmap CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanBuffer.cpp.obj.modmap CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanDescriptor.cpp.obj.modmap CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanEngine.cpp.obj.modmap CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanImage.cpp.obj.modmap CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanPipeline.cpp.obj.modmap CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanShader.cpp.obj.modmap CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanSwapchain.cpp.obj.modmap CMakeFiles/SelfLearn1.dir/src/stb/stb_image.cpp.obj.modmap CMakeFiles/SelfLearn1.dir/src/vkmemoryalloc/alloc.cpp.obj.modmap CMakeFiles/SelfLearn1.dir/src/imgui/imgui.cpp.obj.modmap CMakeFiles/SelfLearn1.dir/src/imgui/imgui_draw.cpp.obj.modmap CMakeFiles/SelfLearn1.dir/src/imgui/imgui_impl_glfw.cpp.obj.modmap CMakeFiles/SelfLearn1.dir/src/imgui/imgui_impl_vulkan.cpp.obj.modmap CMakeFiles/SelfLearn1.dir/src/imgui/imgui_tables.cpp.obj.modmap CMakeFiles/SelfLearn1.dir/src/imgui/imgui_widgets.cpp.obj.modmap: CXX_DYNDEP__SelfLearn1_Release CMakeFiles/SelfLearn1.dir/main.cpp.obj.ddi CMakeFiles/SelfLearn1.dir/src/Creepy/Camera.cpp.obj.ddi CMakeFiles/SelfLearn1.dir/src/Creepy/Debug.cpp.obj.ddi CMakeFiles/SelfLearn1.dir/src/Creepy/Input.cpp.obj.ddi CMakeFiles/SelfLearn1.dir/src/Creepy/Mesh.cpp.obj.ddi CMakeFiles/SelfLearn1.dir/src/Creepy/Model.cpp.obj.ddi CMakeFiles/SelfLearn1.dir/src/Creepy/Texture.cpp.obj.ddi CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanAllocator.cpp.obj.ddi CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanBuffer.cpp.obj.ddi CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanDescriptor.cpp.obj.ddi CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanEngine.cpp.obj.ddi CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanImage.cpp.obj.ddi CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanPipeline.cpp.obj.ddi CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanShader.cpp.obj.ddi CMakeFiles/SelfLearn1.dir/src/Creepy/VulkanSwapchain.cpp.obj.ddi CMakeFiles/SelfLearn1.dir/src/stb/stb_image.cpp.obj.ddi CMakeFiles/SelfLearn1.dir/src/vkmemoryalloc/alloc.cpp.obj.ddi CMakeFiles/SelfLearn1.dir/src/imgui/imgui.cpp.obj.ddi CMakeFiles/SelfLearn1.dir/src/imgui/imgui_draw.cpp.obj.ddi CMakeFiles/SelfLearn1.dir/src/imgui/imgui_impl_glfw.cpp.obj.ddi CMakeFiles/SelfLearn1.dir/src/imgui/imgui_impl_vulkan.cpp.obj.ddi CMakeFiles/SelfLearn1.dir/src/imgui/imgui_tables.cpp.obj.ddi CMakeFiles/SelfLearn1.dir/src/imgui/imgui_widgets.cpp.obj.ddi | D$:/Code/VSCode/C++/Vulkan/SelfLearn1/build/CMakeFiles/SelfLearn1.dir/CXXDependInfo.json
@@ -503,9 +549,10 @@ build SelfLearn1.exe: CXX_EXECUTABLE_LINKER__SelfLearn1_Release CMakeFiles/SelfL
   OBJECT_DIR = CMakeFiles\SelfLearn1.dir
   POST_BUILD = C:\Windows\system32\cmd.exe /C "cd /D D:\Code\VSCode\C++\Vulkan\SelfLearn1\build && C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noprofile -executionpolicy Bypass -file D:/Libraries/C++/vcpkg/scripts/buildsystems/msbuild/applocal.ps1 -targetBinary D:/Code/VSCode/C++/Vulkan/SelfLearn1/build/SelfLearn1.exe -installedDir D:/Libraries/C++/vcpkg/installed/x64-windows/bin -OutVariable out"
   PRE_LINK = cd .
+  TARGET_COMPILE_PDB = CMakeFiles\SelfLearn1.dir\
   TARGET_FILE = SelfLearn1.exe
   TARGET_IMPLIB = libSelfLearn1.dll.a
-  TARGET_PDB = SelfLearn1.exe.dbg
+  TARGET_PDB = SelfLearn1.pdb
 
 
 #############################################
@@ -552,14 +599,14 @@ build all: phony SelfLearn1.exe
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | CMakeCache.txt CMakeFiles/3.30.2/CMakeCCompiler.cmake CMakeFiles/3.30.2/CMakeCXXCompiler.cmake CMakeFiles/3.30.2/CMakeRCCompiler.cmake CMakeFiles/3.30.2/CMakeSystem.cmake D$:/Code/VSCode/C++/Vulkan/SelfLearn1/CMakeLists.txt D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeCInformation.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeCXXInformation.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeCommonLanguageInclude.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeDependentOption.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeGenericSystem.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeInitializeConfigs.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeLanguageInformation.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeRCInformation.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeSystemSpecificInformation.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeSystemSpecificInitialize.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/CMakeCommonCompilerMacros.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/GNU-C.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/GNU-CXX.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/GNU.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/FindPackageHandleStandardArgs.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/FindPackageMessage.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/FindVulkan.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Platform/Windows-GNU-C-ABI.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Platform/Windows-GNU-C.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Platform/Windows-GNU-CXX-ABI.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Platform/Windows-GNU-CXX.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Platform/Windows-GNU.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Platform/Windows-Initialize.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Platform/Windows-windres.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Platform/Windows.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Platform/WindowsPaths.cmake D$:/Libraries/C++/vcpkg/scripts/buildsystems/vcpkg.cmake
+build build.ninja: RERUN_CMAKE | CMakeCache.txt CMakeFiles/3.30.2/CMakeCCompiler.cmake CMakeFiles/3.30.2/CMakeCXXCompiler.cmake CMakeFiles/3.30.2/CMakeRCCompiler.cmake CMakeFiles/3.30.2/CMakeSystem.cmake D$:/Code/VSCode/C++/Vulkan/SelfLearn1/CMakeLists.txt D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeCCompiler.cmake.in D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeCCompilerABI.c D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeCInformation.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeCXXCompiler.cmake.in D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeCXXCompilerABI.cpp D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeCXXInformation.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeCommonLanguageInclude.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeCompilerIdDetection.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeDependentOption.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeDetermineCCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeDetermineCXXCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeDetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeDetermineCompilerABI.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeDetermineCompilerSupport.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeDetermineRCCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeDetermineSystem.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeFindBinUtils.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeGenericSystem.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeInitializeConfigs.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeLanguageInformation.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeNinjaFindMake.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeParseImplicitIncludeInfo.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeParseImplicitLinkInfo.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeParseLibraryArchitecture.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeRCCompiler.cmake.in D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeRCInformation.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeSystem.cmake.in D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeSystemSpecificInformation.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeSystemSpecificInitialize.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeTestCCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeTestCXXCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeTestCompilerCommon.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeTestRCCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/ADSP-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/ARMCC-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/ARMClang-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/AppleClang-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/Borland-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/Bruce-C-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/CMakeCommonCompilerMacros.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/Clang-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/Clang-DetermineCompilerInternal.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/Compaq-C-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/Cray-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/CrayClang-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/Embarcadero-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/Fujitsu-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/GHS-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/GNU-C-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/GNU-C.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/GNU-CXX.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/GNU-FindBinUtils.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/GNU.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/HP-C-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/HP-CXX-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/IAR-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/IBMClang-C-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/IBMClang-CXX-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/Intel-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/LCC-C-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/LCC-CXX-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/MSVC-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/NVHPC-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/NVIDIA-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/OrangeC-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/PGI-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/PathScale-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/SCO-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/SDCC-C-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/SunPro-C-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/TI-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/TIClang-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/Tasking-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/TinyCC-C-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/Watcom-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/XL-C-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/XL-CXX-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/XLClang-C-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/zOS-C-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/FindPackageHandleStandardArgs.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/FindPackageMessage.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/FindVulkan.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Internal/CMakeDetermineLinkerId.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Internal/FeatureTesting.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Platform/Windows-Determine-CXX.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Platform/Windows-GNU-C-ABI.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Platform/Windows-GNU-C.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Platform/Windows-GNU-CXX-ABI.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Platform/Windows-GNU-CXX.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Platform/Windows-GNU.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Platform/Windows-Initialize.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Platform/Windows-windres.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Platform/Windows.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Platform/WindowsPaths.cmake D$:/Libraries/C++/vcpkg/scripts/buildsystems/vcpkg.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build CMakeCache.txt CMakeFiles/3.30.2/CMakeCCompiler.cmake CMakeFiles/3.30.2/CMakeCXXCompiler.cmake CMakeFiles/3.30.2/CMakeRCCompiler.cmake CMakeFiles/3.30.2/CMakeSystem.cmake D$:/Code/VSCode/C++/Vulkan/SelfLearn1/CMakeLists.txt D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeCInformation.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeCXXInformation.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeCommonLanguageInclude.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeDependentOption.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeGenericSystem.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeInitializeConfigs.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeLanguageInformation.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeRCInformation.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeSystemSpecificInformation.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeSystemSpecificInitialize.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/CMakeCommonCompilerMacros.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/GNU-C.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/GNU-CXX.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/GNU.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/FindPackageHandleStandardArgs.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/FindPackageMessage.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/FindVulkan.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Platform/Windows-GNU-C-ABI.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Platform/Windows-GNU-C.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Platform/Windows-GNU-CXX-ABI.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Platform/Windows-GNU-CXX.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Platform/Windows-GNU.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Platform/Windows-Initialize.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Platform/Windows-windres.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Platform/Windows.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Platform/WindowsPaths.cmake D$:/Libraries/C++/vcpkg/scripts/buildsystems/vcpkg.cmake: phony
+build CMakeCache.txt CMakeFiles/3.30.2/CMakeCCompiler.cmake CMakeFiles/3.30.2/CMakeCXXCompiler.cmake CMakeFiles/3.30.2/CMakeRCCompiler.cmake CMakeFiles/3.30.2/CMakeSystem.cmake D$:/Code/VSCode/C++/Vulkan/SelfLearn1/CMakeLists.txt D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeCCompiler.cmake.in D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeCCompilerABI.c D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeCInformation.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeCXXCompiler.cmake.in D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeCXXCompilerABI.cpp D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeCXXInformation.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeCommonLanguageInclude.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeCompilerIdDetection.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeDependentOption.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeDetermineCCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeDetermineCXXCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeDetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeDetermineCompilerABI.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeDetermineCompilerId.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeDetermineCompilerSupport.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeDetermineRCCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeDetermineSystem.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeFindBinUtils.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeGenericSystem.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeInitializeConfigs.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeLanguageInformation.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeNinjaFindMake.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeParseImplicitIncludeInfo.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeParseImplicitLinkInfo.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeParseLibraryArchitecture.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeRCCompiler.cmake.in D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeRCInformation.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeSystem.cmake.in D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeSystemSpecificInformation.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeSystemSpecificInitialize.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeTestCCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeTestCXXCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeTestCompilerCommon.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/CMakeTestRCCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/ADSP-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/ARMCC-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/ARMClang-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/AppleClang-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/Borland-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/Bruce-C-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/CMakeCommonCompilerMacros.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/Clang-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/Clang-DetermineCompilerInternal.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/Compaq-C-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/Compaq-CXX-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/Cray-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/CrayClang-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/Embarcadero-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/Fujitsu-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/FujitsuClang-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/GHS-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/GNU-C-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/GNU-C.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/GNU-CXX-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/GNU-CXX.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/GNU-FindBinUtils.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/GNU.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/HP-C-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/HP-CXX-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/IAR-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/IBMCPP-C-DetermineVersionInternal.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/IBMCPP-CXX-DetermineVersionInternal.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/IBMClang-C-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/IBMClang-CXX-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/Intel-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/IntelLLVM-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/LCC-C-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/LCC-CXX-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/MSVC-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/NVHPC-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/NVIDIA-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/OpenWatcom-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/OrangeC-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/PGI-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/PathScale-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/SCO-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/SDCC-C-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/SunPro-C-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/SunPro-CXX-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/TI-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/TIClang-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/Tasking-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/TinyCC-C-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/VisualAge-C-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/VisualAge-CXX-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/Watcom-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/XL-C-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/XL-CXX-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/XLClang-C-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/XLClang-CXX-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/zOS-C-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Compiler/zOS-CXX-DetermineCompiler.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/FindPackageHandleStandardArgs.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/FindPackageMessage.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/FindVulkan.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Internal/CMakeDetermineLinkerId.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Internal/FeatureTesting.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Platform/Windows-Determine-CXX.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Platform/Windows-GNU-C-ABI.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Platform/Windows-GNU-C.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Platform/Windows-GNU-CXX-ABI.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Platform/Windows-GNU-CXX.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Platform/Windows-GNU.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Platform/Windows-Initialize.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Platform/Windows-windres.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Platform/Windows.cmake D$:/Enviroments/mingw64_msvcrt/share/cmake-3.30/Modules/Platform/WindowsPaths.cmake D$:/Libraries/C++/vcpkg/scripts/buildsystems/vcpkg.cmake: phony
 
 
 #############################################

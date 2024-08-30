@@ -103,7 +103,8 @@ namespace Creepy {
             VulkanCommandBufferSubmitData m_submitter;
 
             UniformBuffer m_uniformBuffer;
-            UniformData m_uniformData;
+            TransformData m_transformData;
+            LightData m_lightData;
 
             std::unordered_map<std::string, Model> m_models;
 
