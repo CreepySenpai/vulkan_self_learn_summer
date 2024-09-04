@@ -729,5 +729,4 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanEngine.cpp.obj.ddi: \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/imgui/imgui.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/imgui/imconfig.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/imgui/imgui_impl_glfw.hpp \
- D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/imgui/imgui_impl_vulkan.hpp \
- D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/imgui/imgui_impl_vulkan.hpp

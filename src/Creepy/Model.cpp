@@ -43,9 +43,9 @@ namespace Creepy{
         this->LoadModel(filePath, device, commandPool, queue);
     }
 
-    void Model::Draw(const vk::CommandBuffer commandBuffer, const vk::PipelineLayout pipelineLayout, const vk::DescriptorSet uniformDescSet) {
+    void Model::Draw(const vk::CommandBuffer commandBuffer, const vk::PipelineLayout pipelineLayout, const vk::DescriptorSet uniformDescSet, const vk::DeviceAddress lightBufferAddress) {
         for(auto& mesh : m_meshes){
-            mesh.Draw(commandBuffer, pipelineLayout, uniformDescSet, this->getTransformMatrix());
+            mesh.Draw(commandBuffer, pipelineLayout, uniformDescSet, this->getTransformMatrix(), lightBufferAddress);
         }
     }
             
@@ -90,7 +90,7 @@ namespace Creepy{
     }
 
     glm::mat4 Model::getTransformMatrix() const {
-        return glm::translate(glm::mat4{1.0f}, m_position) * glm::toMat4(glm::quat{m_rotation}) * glm::scale(glm::mat4{1.0f}, m_scale);
+        return glm::translate(glm::identity<glm::mat4>(), m_position) * glm::toMat4(glm::quat{m_rotation}) * glm::scale(glm::identity<glm::mat4>(), m_scale);
     }
 
     void Model::processNode(aiNode* currentNode, const aiScene* currentScene, const glm::mat4& parentTransformMatrix, const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue){

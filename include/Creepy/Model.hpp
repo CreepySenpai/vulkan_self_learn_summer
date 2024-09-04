@@ -19,7 +19,7 @@ namespace Creepy{
 
             void LoadModel(const std::filesystem::path& filePath, const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue);
 
-            void Draw(const vk::CommandBuffer commandBuffer, const vk::PipelineLayout pipelineLayout, const vk::DescriptorSet uniformDescSet);
+            void Draw(const vk::CommandBuffer commandBuffer, const vk::PipelineLayout pipelineLayout, const vk::DescriptorSet uniformDescSet, const vk::DeviceAddress lightBufferAddress);
             
             glm::vec3& GetPosition();
 

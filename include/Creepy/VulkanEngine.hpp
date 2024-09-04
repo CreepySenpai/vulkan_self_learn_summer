@@ -107,7 +107,7 @@ namespace Creepy {
             LightData m_lightData;
 
             std::unordered_map<std::string, Model> m_models;
-
+            
             Camera m_camera{};
             //TODO: Use atomic
             bool m_isSwapchainResizing{false};

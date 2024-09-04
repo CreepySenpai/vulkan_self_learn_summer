@@ -201,11 +201,10 @@ namespace Creepy {
     
     struct UniformBuffer{
         using TransformBuffer = BufferWrapperNoView<BufferType::HOST_COHERENT, TransformData, vk::BufferUsageFlagBits::eUniformBuffer, vk::BufferUsageFlagBits::eTransferDst>;
-        using LightBuffer = BufferWrapperNoView<BufferType::HOST_COHERENT, LightData, vk::BufferUsageFlagBits::eUniformBuffer, vk::BufferUsageFlagBits::eTransferDst>;
-        
-        
+        using LightBuffer = BufferWrapperNoView<BufferType::HOST_COHERENT, LightData, vk::BufferUsageFlagBits::eShaderDeviceAddress>;
         TransformBuffer transformBuffer;
         LightBuffer lightBuffer;
+        vk::DeviceAddress lightBufferAddress;
     };
 }
 

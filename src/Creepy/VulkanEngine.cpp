@@ -13,8 +13,6 @@
 
 #include <glm/glm.hpp>
 
-#include <stb/stb_image.h>
-
 // Global Var
 GLFWwindow* nativeWindow{nullptr};
 
@@ -200,7 +198,7 @@ namespace Creepy {
 
     void VulkanEngine::createDevice() {
         auto physicalDevs = m_instance.enumeratePhysicalDevices().value;
-
+        
         for(auto physicalDev : physicalDevs){
             auto properties = physicalDev.getProperties();
             std::println("apiVersion: {}", properties.apiVersion);
@@ -218,12 +216,19 @@ namespace Creepy {
             }
         }
 
+        auto memoryProperties = m_physicalDevice.getMemoryProperties();
+
+        for(auto memType : memoryProperties.memoryTypes){
+            
+        }
+
         constexpr std::array layers{
            "VK_LAYER_KHRONOS_validation"
         };
 
         constexpr std::array extensions{
-            vk::KHRSwapchainExtensionName
+            vk::KHRSwapchainExtensionName,
+            vk::EXTDescriptorBufferExtensionName
         };
         
         std::println("Graphic Queue: {}", findQueueFamilyIndex(m_physicalDevice, vk::QueueFlagBits::eGraphics));
@@ -245,7 +250,7 @@ namespace Creepy {
         queueInfo.queueFamilyIndex = 0;
         queueInfo.pQueuePriorities = queuePriorities;
         
-        vk::StructureChain<vk::DeviceCreateInfo, vk::PhysicalDeviceFeatures2, vk::PhysicalDeviceVulkan12Features, vk::PhysicalDeviceVulkan13Features> deviceChain;
+        vk::StructureChain<vk::DeviceCreateInfo, vk::PhysicalDeviceFeatures2, vk::PhysicalDeviceVulkan12Features, vk::PhysicalDeviceVulkan13Features, vk::PhysicalDeviceDescriptorBufferFeaturesEXT> deviceChain;
         
         auto& deviceInfo = deviceChain.get<vk::DeviceCreateInfo>();
         deviceInfo.flags = vk::DeviceCreateFlags{};
@@ -260,11 +265,17 @@ namespace Creepy {
         auto& vulkanCoreFeatures = deviceChain.get<vk::PhysicalDeviceFeatures2>();
         vulkanCoreFeatures.features.samplerAnisotropy = vk::True;
         
+        
         auto& vulkan12Features = deviceChain.get<vk::PhysicalDeviceVulkan12Features>();
         vulkan12Features.bufferDeviceAddress = vk::True;
+        vulkan12Features.descriptorIndexing = vk::True;
+
         auto& vulkan13Features = deviceChain.get<vk::PhysicalDeviceVulkan13Features>();
         vulkan13Features.dynamicRendering = vk::True;
         vulkan13Features.synchronization2 = vk::True;
+        
+        auto& descriptorBuffer = deviceChain.get<vk::PhysicalDeviceDescriptorBufferFeaturesEXT>();
+        descriptorBuffer.descriptorBuffer = vk::True;
 
         auto res = m_physicalDevice.createDevice(deviceInfo);
 
@@ -566,7 +577,7 @@ namespace Creepy {
                 builder.AddBinding(0, vk::DescriptorType::eCombinedImageSampler, vk::ShaderStageFlagBits::eFragment);
                 m_textureDescriptorSetLayout = builder.BuildDescriptorLayout(m_logicalDevice);
                 
-                for(auto& [name, model] : m_models){
+                for(auto& [_, model] : m_models){
 
                     for(auto& mesh : model.GetMeshes()){
                         
@@ -622,12 +633,12 @@ namespace Creepy {
             m_textureDescriptorSetLayout
         };
 
-        // TODO: Currently we only need transform matrix
+        // TODO: Transform matrix + Buffer Address
         const std::array pushConstants{
             vk::PushConstantRange{
                 vk::ShaderStageFlagBits::eVertex,
                 0,
-                sizeof(glm::mat4)
+                sizeof(glm::mat4) + sizeof(vk::DeviceAddress)
             },
         };
 
@@ -657,7 +668,6 @@ namespace Creepy {
         m_clearner.AddJob([this]{
             m_backgroundPipeline.Destroy(m_logicalDevice);
         });
-        
 
         vertexShader.Destroy(m_logicalDevice);
         fragmentShader.Destroy(m_logicalDevice);
@@ -704,7 +714,7 @@ namespace Creepy {
     }
 
     void VulkanEngine::createImageResources() {
-        
+
         // m_colorImage = Image{m_logicalDevice, static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height), 
         //     vk::Format::eR8G8B8A8Unorm, vk::ImageUsageFlagBits::eColorAttachment | vk::ImageUsageFlagBits::eTransferSrc 
         //     | vk::ImageUsageFlagBits::eTransferDst | vk::ImageUsageFlagBits::eStorage
@@ -742,6 +752,11 @@ namespace Creepy {
 
         m_uniformBuffer.transformBuffer = UniformBuffer::TransformBuffer{m_logicalDevice, sizeof(TransformData)};
         m_uniformBuffer.lightBuffer = UniformBuffer::LightBuffer{m_logicalDevice, sizeof(LightData)};
+
+        vk::BufferDeviceAddressInfo lightAddressInfo{};
+        lightAddressInfo.buffer = m_uniformBuffer.lightBuffer.GetBuffer();
+        m_uniformBuffer.lightBufferAddress = m_logicalDevice.getBufferAddress(lightAddressInfo);
+        std::println("Light Address: {}", m_uniformBuffer.lightBufferAddress);
 
         m_clearner.AddJob([this]{
             // m_triangleVertexBuffer.Destroy(m_logicalDevice);
@@ -938,7 +953,7 @@ namespace Creepy {
         currentCommandBuffer.bindPipeline(vk::PipelineBindPoint::eGraphics, m_backgroundPipeline.GetPipeline());
 
         for(auto& [name, model] : m_models){
-            model.Draw(currentCommandBuffer, m_backgroundPipeline.GetPipelineLayout(), m_uniformBufferDescriptorSet.DescriptorSet);
+            model.Draw(currentCommandBuffer, m_backgroundPipeline.GetPipelineLayout(), m_uniformBufferDescriptorSet.DescriptorSet, m_uniformBuffer.lightBufferAddress);
         }
 
         currentCommandBuffer.endRendering();
@@ -975,11 +990,11 @@ namespace Creepy {
         m_transformData.projectionMatrix = m_camera.GetProjectionMatrix();
         m_transformData.cameraPosition = glm::vec4{m_camera.GetPosition(), 0.0f};
 
-        const std::array data{
+        const std::array transformData{
             m_transformData
         };
 
-        m_uniformBuffer.transformBuffer.UploadData(data);
+        m_uniformBuffer.transformBuffer.UploadData(transformData);
     }
 
     void VulkanEngine::createCamera()
