@@ -473,81 +473,16 @@ namespace Creepy {
     }
 
     void VulkanEngine::initImGUI() {
-        ImGui::CreateContext();
 
-        auto& io = ImGui::GetIO();
-        io.ConfigFlags = ImGuiConfigFlags_DockingEnable;
+        Debug::Init(m_window, m_instance, m_physicalDevice, 
+            m_logicalDevice, m_graphicQueue, 
+            findQueueFamilyIndex(m_physicalDevice, vk::QueueFlagBits::eGraphics), 
+            m_swapchain.GetSwapchainImages().size(), m_swapchain.GetSwapchainImageFormat());
 
-        ImGui::StyleColorsDark();
-        
-        // Note(Creepy): Enable Callback unless u suck
-        ImGui_ImplGlfw_InitForVulkan(m_window, true);
-
-        // Big Pool For ImGui
-        constexpr std::array imguiDescriptorPoolSizes{
-            vk::DescriptorPoolSize{vk::DescriptorType::eCombinedImageSampler, 1000},
-            vk::DescriptorPoolSize{vk::DescriptorType::eSampledImage, 1000},
-            vk::DescriptorPoolSize{vk::DescriptorType::eStorageImage, 1000},
-            vk::DescriptorPoolSize{vk::DescriptorType::eUniformTexelBuffer, 1000},
-            vk::DescriptorPoolSize{vk::DescriptorType::eStorageTexelBuffer, 1000},
-            vk::DescriptorPoolSize{vk::DescriptorType::eUniformBuffer, 1000},
-            vk::DescriptorPoolSize{vk::DescriptorType::eUniformBufferDynamic, 1000},
-            vk::DescriptorPoolSize{vk::DescriptorType::eStorageBufferDynamic, 1000},
-            vk::DescriptorPoolSize{vk::DescriptorType::eInputAttachment, 1000},
-        };
-
-        constexpr uint32_t imguiMaxSets{1000u};
-
-        vk::DescriptorPoolCreateInfo imguiDescPoolInfo{};
-        imguiDescPoolInfo.flags = vk::DescriptorPoolCreateFlagBits::eFreeDescriptorSet;
-        imguiDescPoolInfo.maxSets = imguiMaxSets;
-        imguiDescPoolInfo.poolSizeCount = static_cast<uint32_t>(imguiDescriptorPoolSizes.size());
-        imguiDescPoolInfo.pPoolSizes = imguiDescriptorPoolSizes.data();
-
-        auto res = m_logicalDevice.createDescriptorPool(imguiDescPoolInfo);
-
-        if(res.result != vk::Result::eSuccess){
-            std::println("Failed Create ImGui Descriptor Pool");
-        }
-
-        ImGui_ImplVulkan_InitInfo imguiInfo{};
-        imguiInfo.Instance = m_instance;
-        imguiInfo.PhysicalDevice = m_physicalDevice;
-        imguiInfo.Device = m_logicalDevice;
-        imguiInfo.Queue = m_graphicQueue;
-        //TODO: Store Queue Family Index
-        imguiInfo.QueueFamily = findQueueFamilyIndex(m_physicalDevice, vk::QueueFlagBits::eGraphics);
-        imguiInfo.MinImageCount = static_cast<uint32_t>(m_swapchain.GetSwapchainImages().size());
-        imguiInfo.ImageCount = static_cast<uint32_t>(m_swapchain.GetSwapchainImages().size());
-        imguiInfo.DescriptorPool = res.value;
-        imguiInfo.UseDynamicRendering = true;
-
-
-        const std::array swapchainImageFormat{
-            m_swapchain.GetSwapchainImageFormat()
-        };
-        
-        vk::PipelineRenderingCreateInfo renderingInfo{};
-        renderingInfo.colorAttachmentCount = static_cast<uint32_t>(swapchainImageFormat.size());
-        
-        renderingInfo.pColorAttachmentFormats = swapchainImageFormat.data();
-
-        imguiInfo.PipelineRenderingCreateInfo = renderingInfo;
-
-        imguiInfo.MSAASamples = VkSampleCountFlagBits::VK_SAMPLE_COUNT_1_BIT;
-
-        ImGui_ImplVulkan_Init(&imguiInfo);
-        ImGui_ImplVulkan_CreateFontsTexture();
-
-        m_clearner.AddJob([this, imguiDescPool = res.value]{
-            ImGui_ImplVulkan_Shutdown();
-            
-            ImGui_ImplGlfw_Shutdown();
-
-            ImGui::DestroyContext();
-
-            m_logicalDevice.destroyDescriptorPool(imguiDescPool);
+        m_clearner.AddJob([this]{
+            Debug::ShutDown(m_logicalDevice);
         });
+        
     }
 
     void VulkanEngine::createDescriptorSets() {
@@ -995,6 +930,12 @@ namespace Creepy {
         };
 
         m_uniformBuffer.transformBuffer.UploadData(transformData);
+
+        const std::array lightData{
+            m_lightData
+        };
+
+        m_uniformBuffer.lightBuffer.UploadData(lightData);
     }
 
     void VulkanEngine::createCamera()

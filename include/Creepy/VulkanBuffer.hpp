@@ -36,7 +36,7 @@ namespace Creepy {
 
             void Destroy(const vk::Device device) const {
                 // device.destroyBufferView(m_bufferView);
-                VulkanAllocator::ImageAllocator.destroyBuffer(m_buffer, m_bufferLoc);
+                VulkanAllocator::BufferAllocator.destroyBuffer(m_buffer, m_bufferLoc);
             }
 
             vk::Buffer GetBuffer() const {
@@ -53,6 +53,11 @@ namespace Creepy {
 
             uint64_t GetBufferOffset() const{
                 return m_bufferInfo.offset;
+            }
+
+            // Note(Creepy): Total Size
+            uint64_t GetBufferCapacity() const {
+                return m_bufferInfo.size;
             }
 
         private:
@@ -95,6 +100,8 @@ namespace Creepy {
             }
 
             uint64_t GetBufferOffset() const;
+
+            uint64_t GetBufferCapacity() const;
 
         private:
             vk::Buffer m_buffer;
@@ -195,6 +202,9 @@ namespace Creepy {
         private:
             Buffer<BufferType::DEVICE_LOCAL> m_buffer;
     };
+
+    template <typename T>
+    using StagingBuffer = BufferWrapperNoView<BufferType::HOST_VISIBLE, T, vk::BufferUsageFlagBits::eTransferSrc>;
 
     using VertexBuffer = BufferWrapperNoView<BufferType::DEVICE_LOCAL, Vertex, vk::BufferUsageFlagBits::eVertexBuffer, vk::BufferUsageFlagBits::eTransferDst>;
     using IndexBuffer = BufferWrapperNoView<BufferType::DEVICE_LOCAL, uint32_t, vk::BufferUsageFlagBits::eIndexBuffer, vk::BufferUsageFlagBits::eTransferDst>;

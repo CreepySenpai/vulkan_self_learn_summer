@@ -108,11 +108,15 @@ namespace Creepy{
     void Buffer<BufferType::DEVICE_LOCAL>::Destroy(const vk::Device device) const
     {
         // device.destroyBufferView(m_bufferView);
-        VulkanAllocator::ImageAllocator.destroyBuffer(m_buffer, m_bufferLoc);
+        VulkanAllocator::BufferAllocator.destroyBuffer(m_buffer, m_bufferLoc);
     }
 
     uint64_t Buffer<BufferType::DEVICE_LOCAL>::GetBufferOffset() const {
         return VulkanAllocator::BufferAllocator.getAllocationInfo(m_bufferLoc).offset;
+    }
+
+    uint64_t Buffer<BufferType::DEVICE_LOCAL>::GetBufferCapacity() const {
+        return VulkanAllocator::BufferAllocator.getAllocationInfo(m_bufferLoc).size;
     }
 
     ////////////////////////////////////////////////////////////////
@@ -222,8 +226,5 @@ namespace Creepy{
 
         std::memcpy(m_bufferInfo.pMappedData, data, dataSizeInByte);
     }
-
-    ///////////////////////////////////////////////////////////
-
     
 }
