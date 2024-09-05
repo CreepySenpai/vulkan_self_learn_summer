@@ -14,6 +14,13 @@ namespace Creepy {
     struct LightData{
         glm::vec4 lightPosition{0.0f};
         glm::vec4 ambientColor{1.0f};
+        glm::vec4 diffuseIntensity{0.0f};
         glm::vec4 lightIntensity{0.0f};
+    };
+
+    struct MaterialData{
+        glm::vec4 materialAmbient{0.0f};
+        glm::vec4 materialDiffuse{0.0f};
+        glm::vec4 materialSpecular{};
     };
 }

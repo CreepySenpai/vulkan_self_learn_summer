@@ -492,14 +492,12 @@ namespace Creepy {
         {
             DescriptorSetBuilder builder{};
             builder.AddBinding(0, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eVertex);
-            // builder.AddBinding(1, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eVertex);
             
             builder.BuildDescriptorLayout(m_logicalDevice);
             m_uniformBufferDescriptorSet = builder.AllocateDescriptorSet(m_logicalDevice, m_descriptorPool);
             
             DescriptorBufferInfoBuilder bufferDescriptorBuilder{};
             bufferDescriptorBuilder.AddBinding(0, 1, vk::DescriptorType::eUniformBuffer, m_uniformBuffer.transformBuffer);
-            // bufferDescriptorBuilder.AddBinding(1, 1, vk::DescriptorType::eUniformBuffer, m_uniformBuffer.lightBuffer);
 
             DescriptorSetWriter writer{};
             writer.AddBufferBinding(m_uniformBufferDescriptorSet.DescriptorSet, bufferDescriptorBuilder);
@@ -573,7 +571,12 @@ namespace Creepy {
             vk::PushConstantRange{
                 vk::ShaderStageFlagBits::eVertex,
                 0,
-                sizeof(glm::mat4) + sizeof(vk::DeviceAddress)
+                sizeof(glm::mat4)
+            },
+            vk::PushConstantRange{
+                vk::ShaderStageFlagBits::eFragment,
+                sizeof(glm::mat4),
+                sizeof(vk::DeviceAddress) * 2
             },
         };
 
@@ -705,12 +708,16 @@ namespace Creepy {
 
         m_models["Shiba"].LoadModel("./res/models/shiba.gltf", m_logicalDevice, m_cmdPool, m_graphicQueue);
 
+        m_models["Shiba"].SetMaterialIndex(m_materialManager.AddMaterial(m_logicalDevice));
+
         // m_models["Waifu"].LoadModel("./res/models/waifu.gltf", m_logicalDevice, m_cmdPool, m_graphicQueue);
         
         m_clearner.AddJob([this]{
             for(auto&& [name, model] : m_models){
                 model.Destroy(m_logicalDevice);
             }
+
+            m_materialManager.Destroy(m_logicalDevice);
         });
     }
 
@@ -719,20 +726,15 @@ namespace Creepy {
         Debug::BeginFrame();
 
         Debug::DrawFrame();
-        ImGui::Begin("Came");
-        ImGui::DragFloat3("Pos", glm::value_ptr(m_camera.GetPosition()));
 
-        for(auto& [name, model] : m_models){
-            ImGui::Text("Model %s", name.c_str());
-            ImGui::DragFloat3("Position", glm::value_ptr(model.GetPosition()));
-            ImGui::DragFloat3("Rotation", glm::value_ptr(model.GetRotation()));
-            ImGui::DragFloat3("Scale", glm::value_ptr(model.GetScale()));
-        }
+        ImGui::Begin("Came");
+        ImGui::DragFloat3("Camera Position", glm::value_ptr(m_camera.GetPosition()));
         ImGui::End();
+
+        Debug::DrawModelInfo(m_models, m_materialManager);
         Debug::DrawTransformData(m_transformData);
         
         Debug::EndFrame();
-
 
         auto currentCommandBuffer = getCurrentRenderFrame().m_commandBuffer;
         auto currentFence = getCurrentRenderFrame().m_renderCompleteFence;
@@ -888,7 +890,12 @@ namespace Creepy {
         currentCommandBuffer.bindPipeline(vk::PipelineBindPoint::eGraphics, m_backgroundPipeline.GetPipeline());
 
         for(auto& [name, model] : m_models){
-            model.Draw(currentCommandBuffer, m_backgroundPipeline.GetPipelineLayout(), m_uniformBufferDescriptorSet.DescriptorSet, m_uniformBuffer.lightBufferAddress);
+            const std::array bufferAddresses{
+                m_uniformBuffer.lightBufferAddress,
+                m_materialManager.GetBufferAddress(model.GetMaterialIndex())
+            };
+            
+            model.Draw(currentCommandBuffer, m_backgroundPipeline.GetPipelineLayout(), m_uniformBufferDescriptorSet.DescriptorSet, bufferAddresses);
         }
 
         currentCommandBuffer.endRendering();
@@ -925,17 +932,11 @@ namespace Creepy {
         m_transformData.projectionMatrix = m_camera.GetProjectionMatrix();
         m_transformData.cameraPosition = glm::vec4{m_camera.GetPosition(), 0.0f};
 
-        const std::array transformData{
-            m_transformData
-        };
+        m_uniformBuffer.transformBuffer.UploadData(m_transformData);
 
-        m_uniformBuffer.transformBuffer.UploadData(transformData);
+        m_uniformBuffer.lightBuffer.UploadData(m_lightData);
 
-        const std::array lightData{
-            m_lightData
-        };
-
-        m_uniformBuffer.lightBuffer.UploadData(lightData);
+        m_materialManager.UploadMaterialData();
     }
 
     void VulkanEngine::createCamera()

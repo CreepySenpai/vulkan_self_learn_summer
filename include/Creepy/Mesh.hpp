@@ -15,7 +15,7 @@ namespace Creepy{
             
             void UploadData(const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue, std::span<const Vertex> vertices, std::span<const uint32_t> indices) const;
 
-            void Draw(const vk::CommandBuffer commandBuffer, const vk::PipelineLayout pipelineLayout, const vk::DescriptorSet uniformDescSet, const glm::mat4& modelTransformMatrix, const vk::DeviceAddress lightBufferAddress);
+            void Draw(const vk::CommandBuffer commandBuffer, const vk::PipelineLayout pipelineLayout, const vk::DescriptorSet uniformDescSet, const glm::mat4& modelTransformMatrix, std::span<const vk::DeviceAddress> bufferAddresses);
 
             void Destroy(const vk::Device device) const;
 

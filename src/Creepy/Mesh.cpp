@@ -25,7 +25,7 @@ namespace Creepy{
         // std::println("Index Addr: {}", addr);
     }
 
-    void Mesh::Draw(const vk::CommandBuffer commandBuffer, const vk::PipelineLayout pipelineLayout, const vk::DescriptorSet uniformDescSet, const glm::mat4& modelTransformMatrix, const vk::DeviceAddress lightBufferAddress) {
+    void Mesh::Draw(const vk::CommandBuffer commandBuffer, const vk::PipelineLayout pipelineLayout, const vk::DescriptorSet uniformDescSet, const glm::mat4& modelTransformMatrix, std::span<const vk::DeviceAddress> bufferAddresses) {
 
         std::vector<vk::DescriptorSet> totalSets;
         totalSets.reserve(m_textures.size() + 1);
@@ -38,14 +38,11 @@ namespace Creepy{
 
         commandBuffer.bindDescriptorSets(vk::PipelineBindPoint::eGraphics, pipelineLayout, 0, totalSets, nullptr);
 
-        struct TempUniformData{
-            glm::mat4 modelMatrix;
-            vk::DeviceAddress lightBufferAdd;
-        };
+        const glm::mat4 modelMatrix = modelTransformMatrix * m_currentMeshTransform;
 
-        const TempUniformData tempData{modelTransformMatrix * m_currentMeshTransform, lightBufferAddress};
-
-        commandBuffer.pushConstants(pipelineLayout, vk::ShaderStageFlagBits::eVertex, 0, sizeof(TempUniformData), &tempData);
+        commandBuffer.pushConstants(pipelineLayout, vk::ShaderStageFlagBits::eVertex, 0, sizeof(glm::mat4), glm::value_ptr(modelMatrix));
+        commandBuffer.pushConstants(pipelineLayout, vk::ShaderStageFlagBits::eFragment, sizeof(glm::mat4), bufferAddresses.size() * sizeof(vk::DeviceAddress), bufferAddresses.data());
+        
         constexpr std::array<uint64_t, 1> offsets{0};
         commandBuffer.bindVertexBuffers(0, m_vertexBuffer.GetBuffer(), offsets);
         commandBuffer.bindIndexBuffer(m_indexBuffer.GetBuffer(), 0, vk::IndexType::eUint32);

@@ -1,6 +1,8 @@
 #pragma once
 
+#include <unordered_map>
 #include <vulkan/vulkan.hpp>
+#include "Model.hpp"
 struct GLFWwindow;
 
 namespace Creepy{
@@ -18,6 +20,8 @@ namespace Creepy{
         static void DrawTransformData(struct TransformData& transformData);
 
         static void DrawLightData(struct LightData& lightData);
+
+        static void DrawModelInfo(std::unordered_map<std::string, Model>& models, struct MaterialManager& materialManager);
 
         static void EndFrame();
     };

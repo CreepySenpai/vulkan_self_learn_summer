@@ -131,9 +131,15 @@ namespace Creepy {
             {
                 m_buffer.UploadData(data.data(), data.size() * sizeof(T));
             }
-
+            
+            // For Upload Array Of Buffer Data
             void UploadData(std::span<const T> data) const {
                 m_buffer.UploadData(data.data(), data.size() * sizeof(T));
+            }
+
+            // For Upload Single Data Object
+            void UploadData(const T& data) const {
+                m_buffer.UploadData(&data, sizeof(T));
             }
 
             void Destroy(const vk::Device device) const {
@@ -175,8 +181,16 @@ namespace Creepy {
                 m_buffer.UploadData(device, commandBuffer, data.data(), data.size() * sizeof(T));
             }
 
+            void UploadData(const vk::Device device, const vk::CommandBuffer commandBuffer, const T& data) const {
+                m_buffer.UploadData(device, commandBuffer, &data, sizeof(T));
+            }
+
             void UploadData(const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue, std::span<const T> data) const {
                 m_buffer.UploadData(device, commandPool, queue, data.data(), data.size() * sizeof(T));
+            }
+
+            void UploadData(const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue, const T& data) const {
+                m_buffer.UploadData(device, commandPool, queue, &data, sizeof(T));
             }
 
             void Destroy(const vk::Device device) const {
@@ -214,8 +228,10 @@ namespace Creepy {
         using LightBuffer = BufferWrapperNoView<BufferType::HOST_COHERENT, LightData, vk::BufferUsageFlagBits::eShaderDeviceAddress>;
         TransformBuffer transformBuffer;
         LightBuffer lightBuffer;
-        vk::DeviceAddress lightBufferAddress;
+        vk::DeviceAddress lightBufferAddress{0};
     };
+
+    using MaterialBuffer = BufferWrapperNoView<BufferType::HOST_COHERENT, MaterialData, vk::BufferUsageFlagBits::eShaderDeviceAddress>;
 }
 
 // Template Instanciation

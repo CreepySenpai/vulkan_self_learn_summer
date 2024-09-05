@@ -1,6 +1,7 @@
 #include <print>
 #include <Creepy/Debug.hpp>
 #include <Creepy/Uniform.hpp>
+#include <Creepy/Material.hpp>
 
 #include <GLFW/glfw3.h>
 #include <imgui/imgui.hpp>
@@ -113,6 +114,24 @@ namespace Creepy{
 
     void Debug::DrawLightData(struct LightData& lightData) {
 
+    }
+
+    void Debug::DrawModelInfo(std::unordered_map<std::string, Model>& models, MaterialManager& materialManager) {
+        ImGui::Begin("Models");
+
+        for(auto& [modelName, model] : models){
+            ImGui::Separator();
+            ImGui::Text("Name: %s", modelName.c_str());
+            ImGui::DragFloat3("Position", glm::value_ptr(model.GetPosition()), 0.2f);
+            ImGui::DragFloat3("Rotation", glm::value_ptr(model.GetRotation()), 0.2f);
+            ImGui::DragFloat3("Scale", glm::value_ptr(model.GetScale()), 0.2f);
+            auto& materialInfo =  materialManager.GetMaterialData(model.GetMaterialIndex());
+            ImGui::DragFloat3("Material Ambient", glm::value_ptr(materialInfo.materialAmbient), 0.2f);
+            ImGui::DragFloat3("Material Diffuse", glm::value_ptr(materialInfo.materialDiffuse), 0.2f);
+            ImGui::DragFloat3("Material Specular", glm::value_ptr(materialInfo.materialSpecular), 0.2f);
+        }
+
+        ImGui::End();
     }
 
     void Debug::EndFrame() {

@@ -717,4 +717,5 @@ CMakeFiles\SelfLearn1.dir\main.cpp.obj.ddi: \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/assimp/anim.h \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/assimp/metadata.h \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/Mesh.hpp \
- D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/Camera.hpp
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/Camera.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/Material.hpp

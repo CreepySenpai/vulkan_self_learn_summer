@@ -6,7 +6,7 @@ namespace Creepy {
     void InitAllocator(const vk::Instance instance, const vk::Device device, const vk::PhysicalDevice physicalDev) {
 
         vma::AllocatorCreateInfo info{};
-        info.flags = vma::AllocatorCreateFlagBits::eBufferDeviceAddress;
+        info.flags = vma::AllocatorCreateFlags{};
         info.device = device;
         info.physicalDevice = physicalDev;
         info.vulkanApiVersion = vk::ApiVersion13;
@@ -28,6 +28,7 @@ namespace Creepy {
         
         VulkanAllocator::ImageAllocator = imageAllocRes.value;
         
+        info.flags = vma::AllocatorCreateFlagBits::eBufferDeviceAddress;
         auto bufferAllocRes = vma::createAllocator(info);
 
         if(bufferAllocRes.result != vk::Result::eSuccess){

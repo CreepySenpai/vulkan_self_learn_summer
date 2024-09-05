@@ -716,6 +716,7 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanEngine.cpp.obj.ddi: \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/assimp/metadata.h \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/Mesh.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/Camera.hpp \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/Material.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/VulkanUtils.hpp \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/fstream \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/x86_64-w64-mingw32/bits/basic_file.h \

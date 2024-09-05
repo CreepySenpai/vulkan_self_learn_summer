@@ -43,9 +43,9 @@ namespace Creepy{
         this->LoadModel(filePath, device, commandPool, queue);
     }
 
-    void Model::Draw(const vk::CommandBuffer commandBuffer, const vk::PipelineLayout pipelineLayout, const vk::DescriptorSet uniformDescSet, const vk::DeviceAddress lightBufferAddress) {
+    void Model::Draw(const vk::CommandBuffer commandBuffer, const vk::PipelineLayout pipelineLayout, const vk::DescriptorSet uniformDescSet, std::span<const vk::DeviceAddress> bufferAddresses) {
         for(auto& mesh : m_meshes){
-            mesh.Draw(commandBuffer, pipelineLayout, uniformDescSet, this->getTransformMatrix(), lightBufferAddress);
+            mesh.Draw(commandBuffer, pipelineLayout, uniformDescSet, this->getTransformMatrix(), bufferAddresses);
         }
     }
             
@@ -87,6 +87,16 @@ namespace Creepy{
         this->processNode(scene->mRootNode, scene, glm::identity<glm::mat4>(), device, commandPool, queue);
 
         std::println("Total Mesh: {}", m_meshes.size());
+    }
+
+    void Model::SetMaterialIndex(uint32_t materialIndex)
+    {
+        m_materialIndex = materialIndex;
+    }
+
+    uint32_t Model::GetMaterialIndex() const
+    {
+        return m_materialIndex;
     }
 
     glm::mat4 Model::getTransformMatrix() const {

@@ -11,9 +11,9 @@
 #include "VulkanFrame.hpp"
 #include "VulkanSwapchain.hpp"
 #include "VulkanDescriptor.hpp"
-#include "Texture.hpp"
 #include "Model.hpp"
 #include "Camera.hpp"
+#include "Material.hpp"
 
 struct GLFWwindow;
 
@@ -109,6 +109,8 @@ namespace Creepy {
             std::unordered_map<std::string, Model> m_models;
             
             Camera m_camera{};
+
+            MaterialManager m_materialManager{};
             //TODO: Use atomic
             bool m_isSwapchainResizing{false};
     };

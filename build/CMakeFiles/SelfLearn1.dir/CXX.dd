@@ -7,6 +7,8 @@ build CMakeFiles/SelfLearn1.dir/src/Creepy/Debug.cpp.obj: dyndep
 
 build CMakeFiles/SelfLearn1.dir/src/Creepy/Input.cpp.obj: dyndep
 
+build CMakeFiles/SelfLearn1.dir/src/Creepy/Material.cpp.obj: dyndep
+
 build CMakeFiles/SelfLearn1.dir/src/Creepy/Mesh.cpp.obj: dyndep
 
 build CMakeFiles/SelfLearn1.dir/src/Creepy/Model.cpp.obj: dyndep
