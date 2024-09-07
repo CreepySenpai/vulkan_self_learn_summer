@@ -142,7 +142,6 @@ namespace Creepy {
         debugInfo.messageSeverity = vk::DebugUtilsMessageSeverityFlagBitsEXT::eError | vk::DebugUtilsMessageSeverityFlagBitsEXT::eWarning;
         debugInfo.messageType = vk::DebugUtilsMessageTypeFlagBitsEXT::eValidation | vk::DebugUtilsMessageTypeFlagBitsEXT::eGeneral | vk::DebugUtilsMessageTypeFlagBitsEXT::ePerformance;
         debugInfo.pfnUserCallback = debugMessageCallback;
-        
 
         auto res = m_instance.createDebugUtilsMessengerEXT(debugInfo, nullptr, m_dispatcher);
 
@@ -269,6 +268,9 @@ namespace Creepy {
         auto& vulkan12Features = deviceChain.get<vk::PhysicalDeviceVulkan12Features>();
         vulkan12Features.bufferDeviceAddress = vk::True;
         vulkan12Features.descriptorIndexing = vk::True;
+        vulkan12Features.runtimeDescriptorArray = vk::True;
+        vulkan12Features.shaderSampledImageArrayNonUniformIndexing = vk::True;
+        vulkan12Features.descriptorBindingVariableDescriptorCount = vk::True;
 
         auto& vulkan13Features = deviceChain.get<vk::PhysicalDeviceVulkan13Features>();
         vulkan13Features.dynamicRendering = vk::True;
@@ -725,14 +727,12 @@ namespace Creepy {
         // Debug call
         Debug::BeginFrame();
 
-        Debug::DrawFrame();
-
-        ImGui::Begin("Came");
+        ImGui::Begin("Camera");
         ImGui::DragFloat3("Camera Position", glm::value_ptr(m_camera.GetPosition()));
         ImGui::End();
-
+        
+        Debug::DrawLightData(m_lightData);
         Debug::DrawModelInfo(m_models, m_materialManager);
-        Debug::DrawTransformData(m_transformData);
         
         Debug::EndFrame();
 

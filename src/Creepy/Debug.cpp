@@ -99,21 +99,15 @@ namespace Creepy{
         ImGui::NewFrame();
     }
 
-    void Debug::DrawFrame() {
-        ImGui::Begin("Anh Ne");
-            ImGui::Text("Suss");
+    void Debug::DrawLightData(LightData& lightData) {
+        ImGui::Begin("Light");
+
+        ImGui::DragFloat3("Position", glm::value_ptr(lightData.lightPosition));
+        ImGui::DragFloat3("Ambient", glm::value_ptr(lightData.ambientColor), 0.1f, 0.0f, 1.0f);
+        ImGui::DragFloat3("Diffuse", glm::value_ptr(lightData.diffuseIntensity), 0.1f, 0.0f, 1.0f);
+        ImGui::DragFloat3("Intensity", glm::value_ptr(lightData.lightIntensity), 0.1f, 0.0f, 1.0f);
+
         ImGui::End();
-    }
-
-    void Debug::DrawTransformData(struct TransformData& transformData) {
-        ImGui::Begin("CamSus");
-            ImGui::Text("Cam Pos");
-            ImGui::DragFloat3("Position", glm::value_ptr(transformData.cameraPosition), 0.1f, 0.0f, 1.0f);
-        ImGui::End();
-    }
-
-    void Debug::DrawLightData(struct LightData& lightData) {
-
     }
 
     void Debug::DrawModelInfo(std::unordered_map<std::string, Model>& models, MaterialManager& materialManager) {
@@ -126,9 +120,9 @@ namespace Creepy{
             ImGui::DragFloat3("Rotation", glm::value_ptr(model.GetRotation()), 0.2f);
             ImGui::DragFloat3("Scale", glm::value_ptr(model.GetScale()), 0.2f);
             auto& materialInfo =  materialManager.GetMaterialData(model.GetMaterialIndex());
-            ImGui::DragFloat3("Material Ambient", glm::value_ptr(materialInfo.materialAmbient), 0.2f);
-            ImGui::DragFloat3("Material Diffuse", glm::value_ptr(materialInfo.materialDiffuse), 0.2f);
-            ImGui::DragFloat3("Material Specular", glm::value_ptr(materialInfo.materialSpecular), 0.2f);
+            ImGui::DragFloat3("Material Ambient", glm::value_ptr(materialInfo.materialAmbient), 0.1f, 0.0f, 1.0f);
+            ImGui::DragFloat3("Material Diffuse", glm::value_ptr(materialInfo.materialDiffuse), 0.1f, 0.0f, 1.0f);
+            ImGui::DragFloat3("Material Specular", glm::value_ptr(materialInfo.materialSpecular), 0.1f, 0.0f, 1.0f);
         }
 
         ImGui::End();
