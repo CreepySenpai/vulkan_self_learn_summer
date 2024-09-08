@@ -638,7 +638,7 @@ namespace Creepy {
          m_physicalDevice.getSurfaceCapabilitiesKHR(m_surface).value);
 
         m_depthImage.ReCreate(m_logicalDevice, static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height), 
-        vk::Format::eD24UnormS8Uint, vk::ImageUsageFlagBits::eDepthStencilAttachment, vk::ImageAspectFlagBits::eDepth);
+        vk::Format::eD24UnormS8Uint, vk::ImageUsageFlagBits::eDepthStencilAttachment, vk::ImageAspectFlagBits::eDepth, vk::ImageViewType::e2D);
 
         m_logicalDevice.waitIdle();
 
@@ -661,7 +661,7 @@ namespace Creepy {
         //     , vk::ImageAspectFlagBits::eColor};
 
         m_depthImage = Image{m_logicalDevice, static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height), 
-            vk::Format::eD24UnormS8Uint, vk::ImageUsageFlagBits::eDepthStencilAttachment, vk::ImageAspectFlagBits::eDepth};
+            vk::Format::eD24UnormS8Uint, vk::ImageUsageFlagBits::eDepthStencilAttachment, vk::ImageAspectFlagBits::eDepth, vk::ImageViewType::e2D};
         
         m_clearner.AddJob([this]{
             // m_colorImage.Destroy(m_logicalDevice);
@@ -713,9 +713,25 @@ namespace Creepy {
         m_models["Shiba"].SetMaterialIndex(m_materialManager.AddMaterial(m_logicalDevice));
 
         // m_models["Waifu"].LoadModel("./res/models/waifu.gltf", m_logicalDevice, m_cmdPool, m_graphicQueue);
+
+        // m_models["Waifu"].SetMaterialIndex(m_materialManager.AddMaterial(m_logicalDevice));
+
+        // std::array<std::filesystem::path, 6> cubePaths{
+        //     "./res/textures/skybox/front.jpg",
+        //     "./res/textures/skybox/back.jpg",
+        //     "./res/textures/skybox/top.jpg",
+        //     "./res/textures/skybox/bottom.jpg",
+        //     "./res/textures/skybox/right.jpg",
+        //     "./res/textures/skybox/left.jpg",
+        // };
+
+        // TextureCubeMap cubeTexture{};
+        // cubeTexture.LoadCubeMapTexture(cubePaths, m_logicalDevice, m_cmdPool, m_graphicQueue);
+        
+        // cubeTexture.Destroy(m_logicalDevice);
         
         m_clearner.AddJob([this]{
-            for(auto&& [name, model] : m_models){
+            for(auto&& [_, model] : m_models){
                 model.Destroy(m_logicalDevice);
             }
 

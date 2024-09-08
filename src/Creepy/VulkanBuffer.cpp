@@ -213,6 +213,7 @@ namespace Creepy{
             return;
         }
 
+        // std::println("Buffer Address: {}", (uint64_t)m_bufferInfo.pMappedData);
         std::memcpy(m_bufferInfo.pMappedData, data, dataSizeInByte);
     }
 
@@ -223,8 +224,30 @@ namespace Creepy{
             std::println("Data too big");
             return;
         }
-
+        // std::println("Buffer Address: {}", (uint64_t)m_bufferInfo.pMappedData);
         std::memcpy(m_bufferInfo.pMappedData, data, dataSizeInByte);
+    }
+
+    template <>
+    void Buffer<BufferType::HOST_VISIBLE>::UploadData(const void* data, size_t dataSizeInByte, uint64_t offset) const {
+        if(dataSizeInByte > static_cast<size_t>(m_bufferInfo.size)){
+            std::println("Data too big");
+            return;
+        }
+        
+        auto newMapped = static_cast<uint8_t*>(m_bufferInfo.pMappedData) + offset;
+        std::memcpy(static_cast<void*>(newMapped), data, dataSizeInByte);
+    }
+
+    template <>
+    void Buffer<BufferType::HOST_COHERENT>::UploadData(const void* data, size_t dataSizeInByte, uint64_t offset) const {
+        if(dataSizeInByte > static_cast<size_t>(m_bufferInfo.size)){
+            std::println("Data too big");
+            return;
+        }
+
+        auto newMapped = static_cast<uint8_t*>(m_bufferInfo.pMappedData) + offset;
+        std::memcpy(static_cast<void*>(newMapped), data, dataSizeInByte);
     }
     
 }

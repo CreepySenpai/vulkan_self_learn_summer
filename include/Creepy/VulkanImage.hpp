@@ -8,7 +8,7 @@ namespace Creepy {
     {
         public:
             Image() = default;
-            Image(const vk::Device device, uint32_t width, uint32_t height, vk::Format format, vk::ImageUsageFlags imageUsage, vk::ImageAspectFlags aspect);
+            Image(const vk::Device device, uint32_t width, uint32_t height, vk::Format format, vk::ImageUsageFlags imageUsage, vk::ImageAspectFlags aspect, vk::ImageViewType imageViewType);
 
             void Destroy(const vk::Device device) const;
 
@@ -20,15 +20,13 @@ namespace Creepy {
 
             vk::Extent2D GetImageExtent() const;
 
-            void ReCreate(const vk::Device device, uint32_t width, uint32_t height, vk::Format format, vk::ImageUsageFlags imageUsage, vk::ImageAspectFlags aspect);
-            
-            
+            void ReCreate(const vk::Device device, uint32_t width, uint32_t height, vk::Format format, vk::ImageUsageFlags imageUsage, vk::ImageAspectFlags aspect, vk::ImageViewType imageViewType);
         public:
             static void CopyImage(const vk::CommandBuffer commandBuffer, const vk::Image srcImage, const vk::Image dstImage, const vk::Extent2D srcSize, const vk::Extent2D dstSize);
             
         private:
-            void createImage(const vk::Device device, vk::ImageUsageFlags imageUsage, vk::ImageAspectFlags aspect);
-            void createImageView(const vk::Device device, vk::ImageAspectFlags aspect);
+            void createImage(const vk::Device device, vk::ImageUsageFlags imageUsage, vk::ImageAspectFlags aspect, uint32_t imageArrayLayerCount);
+            void createImageView(const vk::Device device, vk::ImageAspectFlags aspect, vk::ImageViewType imageViewType);
         private:
             vk::Image m_image;
             vk::ImageView m_imageView;

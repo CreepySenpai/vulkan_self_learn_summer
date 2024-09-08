@@ -73,7 +73,7 @@ namespace Creepy{
         return {std::istreambuf_iterator<char>{fileIn}, std::istreambuf_iterator<char>{}};
     }
 
-    static void imageLayoutTransition(const vk::CommandBuffer commandBuffer, vk::Image image, vk::ImageAspectFlags imageAspect, vk::ImageLayout currentLayout, vk::ImageLayout newLayout, vk::AccessFlags2 srcAccess, vk::AccessFlags2 dstAccess, vk::PipelineStageFlags2 srcStage, vk::PipelineStageFlags2 dstStage){
+    static void imageLayoutTransition(const vk::CommandBuffer commandBuffer, vk::Image image, vk::ImageAspectFlags imageAspect, vk::ImageLayout currentLayout, vk::ImageLayout newLayout, vk::AccessFlags2 srcAccess, vk::AccessFlags2 dstAccess, vk::PipelineStageFlags2 srcStage, vk::PipelineStageFlags2 dstStage, uint32_t layerCount = 1u){
         
         vk::ImageMemoryBarrier2 imageBarrier{};
         imageBarrier.image = image;
@@ -91,7 +91,7 @@ namespace Creepy{
         imageBarrier.subresourceRange.baseMipLevel = 0;
         imageBarrier.subresourceRange.baseArrayLayer = 0;
         imageBarrier.subresourceRange.levelCount = 1;
-        imageBarrier.subresourceRange.layerCount = 1;
+        imageBarrier.subresourceRange.layerCount = layerCount;
 
         vk::DependencyInfo depenInfo{};
         depenInfo.dependencyFlags = vk::DependencyFlags{};

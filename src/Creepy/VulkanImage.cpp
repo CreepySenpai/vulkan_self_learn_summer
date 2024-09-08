@@ -4,12 +4,22 @@
 
 namespace Creepy {
 
-    Image::Image(const vk::Device device, uint32_t width, uint32_t height, vk::Format format, vk::ImageUsageFlags imageUsage, vk::ImageAspectFlags aspect)
+    Image::Image(const vk::Device device, uint32_t width, uint32_t height, vk::Format format, vk::ImageUsageFlags imageUsage, vk::ImageAspectFlags aspect, vk::ImageViewType imageViewType)
         : m_width{width}, m_height{height}, m_imageFormat{format}
     {
-        std::println("Call Create Image");
-        this->createImage(device, imageUsage, aspect);
-        this->createImageView(device, aspect);
+        if(imageViewType == vk::ImageViewType::e2D){
+            std::println("Call Create Image2D");
+            this->createImage(device, imageUsage, aspect, 1u);
+        }
+        else if(imageViewType == vk::ImageViewType::eCube){
+            std::println("Call Create ImageCube");
+            this->createImage(device, imageUsage, aspect, 6u);
+        }
+        else{
+            std::println("ImageType Not Support");
+        }
+        
+        this->createImageView(device, aspect, imageViewType);
     }
 
     void Image::Destroy(const vk::Device device) const {
@@ -33,18 +43,27 @@ namespace Creepy {
         return {static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height)};
     }
 
-    void Image::ReCreate(const vk::Device device, uint32_t width, uint32_t height, vk::Format format, vk::ImageUsageFlags imageUsage, vk::ImageAspectFlags aspect) {
+    void Image::ReCreate(const vk::Device device, uint32_t width, uint32_t height, vk::Format format, vk::ImageUsageFlags imageUsage, vk::ImageAspectFlags aspect, vk::ImageViewType imageViewType) {
         std::println("Call Re Image: {} - {}", width, height);
         m_width = width;
         m_height = height;
         m_imageFormat = format;
         this->Destroy(device);
-        this->createImage(device, imageUsage, aspect);
-        this->createImageView(device, aspect);
+
+        if(imageViewType == vk::ImageViewType::e2D){
+            this->createImage(device, imageUsage, aspect, 1u);
+        }
+        else if(imageViewType == vk::ImageViewType::eCube){
+            this->createImage(device, imageUsage, aspect, 6u);
+        }
+        else{
+            std::println("ImageType Not Support");
+        }
+        this->createImageView(device, aspect, imageViewType);
         std::println("Image Size: {} - {}", m_width, m_height);
     }
 
-    void Image::createImage(const vk::Device device, vk::ImageUsageFlags imageUsage, vk::ImageAspectFlags aspect) {
+    void Image::createImage(const vk::Device device, vk::ImageUsageFlags imageUsage, vk::ImageAspectFlags aspect, uint32_t imageArrayLayerCount) {
         vk::ImageCreateInfo info{};
         info.flags = vk::ImageCreateFlags{};
         info.format = m_imageFormat;
@@ -52,16 +71,20 @@ namespace Creepy {
         info.initialLayout = vk::ImageLayout::eUndefined;
         info.usage = imageUsage;
         info.tiling = vk::ImageTiling::eOptimal;
-
+        
         info.extent.width = m_width;
         info.extent.height = m_height;
         info.extent.depth = 1;
         
-        info.arrayLayers = 1;
+        info.arrayLayers = imageArrayLayerCount;
+        // Only for cube map
+        if(imageArrayLayerCount == 6u){
+            info.flags = vk::ImageCreateFlagBits::eCubeCompatible;
+        }
+
         info.mipLevels = 1;
         info.sharingMode = vk::SharingMode::eExclusive;
         info.samples = vk::SampleCountFlagBits::e1;
-        
 
         vma::AllocationCreateInfo allocInfo{};
         allocInfo.flags = vma::AllocationCreateFlags{};
@@ -77,22 +100,27 @@ namespace Creepy {
         std::tie(m_image, m_imageLoc) = res.value;
     }
 
-    void Image::createImageView(const vk::Device device, vk::ImageAspectFlags aspect) {
+    void Image::createImageView(const vk::Device device, vk::ImageAspectFlags aspect, vk::ImageViewType imageViewType) {
          vk::ImageViewCreateInfo imageViewInfo{};
         imageViewInfo.flags = vk::ImageViewCreateFlags{};
         imageViewInfo.format = m_imageFormat;
         imageViewInfo.image = m_image;
-        imageViewInfo.viewType = vk::ImageViewType::e2D;
+        // imageViewInfo.viewType = vk::ImageViewType::e2D;
+        imageViewInfo.viewType = imageViewType;
         imageViewInfo.subresourceRange.aspectMask = aspect;
         imageViewInfo.subresourceRange.baseMipLevel = 0;
         imageViewInfo.subresourceRange.baseArrayLayer = 0;
         imageViewInfo.subresourceRange.levelCount = 1;
         imageViewInfo.subresourceRange.layerCount = 1;
+        
+        if(imageViewType == vk::ImageViewType::eCube){
+            imageViewInfo.subresourceRange.layerCount = 6;
+        }
+        
         imageViewInfo.components.a = vk::ComponentSwizzle::eIdentity;
         imageViewInfo.components.g = vk::ComponentSwizzle::eIdentity;
         imageViewInfo.components.b = vk::ComponentSwizzle::eIdentity;
         imageViewInfo.components.r = vk::ComponentSwizzle::eIdentity;
-
 
         auto imgViewRes = device.createImageView(imageViewInfo);
 

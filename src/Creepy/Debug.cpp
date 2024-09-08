@@ -115,6 +115,8 @@ namespace Creepy{
 
         for(auto& [modelName, model] : models){
             ImGui::Separator();
+            ImGui::PushID(modelName.c_str());
+
             ImGui::Text("Name: %s", modelName.c_str());
             ImGui::DragFloat3("Position", glm::value_ptr(model.GetPosition()), 0.2f);
             ImGui::DragFloat3("Rotation", glm::value_ptr(model.GetRotation()), 0.2f);
@@ -123,6 +125,8 @@ namespace Creepy{
             ImGui::DragFloat3("Material Ambient", glm::value_ptr(materialInfo.materialAmbient), 0.1f, 0.0f, 1.0f);
             ImGui::DragFloat3("Material Diffuse", glm::value_ptr(materialInfo.materialDiffuse), 0.1f, 0.0f, 1.0f);
             ImGui::DragFloat3("Material Specular", glm::value_ptr(materialInfo.materialSpecular), 0.1f, 0.0f, 1.0f);
+            
+            ImGui::PopID();
         }
 
         ImGui::End();

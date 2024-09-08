@@ -92,9 +92,6 @@ namespace Creepy {
             // Image m_colorImage;
             Image m_depthImage;
 
-            // VertexBuffer m_triangleVertexBuffer;
-            // IndexBuffer m_triangleIndexBuffer;
-
             // Pipeline
             Pipeline m_backgroundPipeline{};
 
