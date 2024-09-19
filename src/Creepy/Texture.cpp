@@ -6,6 +6,7 @@
 namespace Creepy{
 
     void Texture::LoadTexture(const std::filesystem::path& filePath, const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue) {
+        
         int width{}, height{}, channel{};
         
         auto textureData = stbi_load(filePath.string().c_str(), &width, &height, &channel, STBI_rgb_alpha);
@@ -61,31 +62,6 @@ namespace Creepy{
         stagingBuffer.Destroy(device);
 
         stbi_image_free(textureData);
-    }
-    
-    vk::Image Texture::GetImage() const {
-        return m_image.GetImage();
-    }
-
-    vk::ImageView Texture::GetImageView() const {
-        return m_image.GetImageView();
-    }
-
-    vk::Sampler Texture::GetSampler() const {
-        return m_sampler;
-    }
-
-    vk::DescriptorSet Texture::GetDescriptorSet() const {
-        return m_imageDescriptorSet;
-    }
-
-    void Texture::SetDescriptorSet(const vk::DescriptorSet descriptorSet) {
-        m_imageDescriptorSet = descriptorSet;
-    }
-
-    void Texture::Destroy(const vk::Device device) const {
-        device.destroySampler(m_sampler);
-        m_image.Destroy(device);
     }
 
     void Texture::createSampler(const vk::Device device) {
@@ -178,31 +154,6 @@ namespace Creepy{
         for(auto data : cubeMapTextureData){
             stbi_image_free(data);
         }
-    }
-
-    vk::Image TextureCubeMap::GetImage() const {
-        return m_image.GetImage();
-    }
-
-    vk::ImageView TextureCubeMap::GetImageView() const {
-        return m_image.GetImageView();
-    }
-
-    vk::Sampler TextureCubeMap::GetSampler() const {
-        return m_sampler;
-    }
-            
-    vk::DescriptorSet TextureCubeMap::GetDescriptorSet() const {
-        return m_imageDescriptorSet;
-    }
-
-    void TextureCubeMap::SetDescriptorSet(const vk::DescriptorSet descriptorSet) {
-
-    }
-
-    void TextureCubeMap::Destroy(const vk::Device device) const {
-        device.destroySampler(m_sampler);
-        m_image.Destroy(device);
     }
 
     void TextureCubeMap::createSampler(const vk::Device device) {

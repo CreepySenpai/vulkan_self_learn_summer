@@ -24,13 +24,14 @@ namespace Creepy {
             std::vector<vk::DescriptorSetLayoutBinding> m_bindings;
             vk::DescriptorSetLayout m_descriptorSetLayout{};
     };
-
+    
+    
     template <typename T>
-    concept IsBuffer = std::same_as<UniformBuffer::TransformBuffer, std::remove_cvref_t<T>> || 
-                        std::same_as<UniformBuffer::LightBuffer, std::remove_cvref_t<T>>;
-
-    template <typename T>
-    concept IsTexture = std::same_as<Texture, std::remove_cvref_t<T>>;
+    concept IsBuffer = requires(T buffer){
+        {buffer.GetBuffer()} -> std::same_as<vk::Buffer>;
+        {buffer.GetBufferSize()} -> std::same_as<uint64_t>;
+        {buffer.GetBufferOffset()} -> std::same_as<uint64_t>;
+    };
 
     struct DescriptorBufferInfo{
         constexpr DescriptorBufferInfo() = default;
@@ -46,6 +47,12 @@ namespace Creepy {
         uint32_t m_descriptorCount{};
         vk::DescriptorType m_descriptorType{};
         vk::DescriptorBufferInfo m_bufferInfo{};
+    };
+
+    template <typename T>
+    concept IsTexture = requires(T texture){
+        {texture.GetSampler()} -> std::same_as<vk::Sampler>;
+        {texture.GetImageView()} -> std::same_as<vk::ImageView>;
     };
 
     struct DescriptorImageInfo{

@@ -19,7 +19,9 @@ namespace Creepy{
 
             void LoadModel(const std::filesystem::path& filePath, const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue);
 
-            void Draw(const vk::CommandBuffer commandBuffer, const vk::PipelineLayout pipelineLayout, const vk::DescriptorSet uniformDescSet, std::span<const vk::DeviceAddress> bufferAddresses);
+            void Draw(const vk::CommandBuffer commandBuffer, const vk::PipelineLayout pipelineLayout, std::span<const vk::DescriptorSet> descriptorSets);
+            
+            void Draw(const vk::CommandBuffer commandBuffer, const vk::PipelineLayout pipelineLayout, std::span<const vk::DescriptorSet> descriptorSets, std::span<const vk::DeviceAddress> bufferAddresses);
             
             glm::vec3& GetPosition();
 
@@ -29,7 +31,6 @@ namespace Creepy{
 
             void SetMaterialIndex(uint32_t materialIndex);
             uint32_t GetMaterialIndex() const;
-            
         private:
             glm::mat4 getTransformMatrix() const;
 

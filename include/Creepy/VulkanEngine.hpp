@@ -65,6 +65,8 @@ namespace Creepy {
             void onDraw();
             void drawModels(const vk::CommandBuffer currentCommandBuffer, const vk::Image colorImage, const vk::ImageView colorImageView, const vk::Image depthImage, const vk::ImageView depthImageView);
             void drawImGui(const vk::CommandBuffer currentCommandBuffer, const vk::Image colorImage, const vk::ImageView colorImageView);
+            void drawSkyBox(const vk::CommandBuffer currentCommandBuffer);
+            
         private:
             int m_width{}, m_height{};
             GLFWwindow* m_window{nullptr};
@@ -93,7 +95,9 @@ namespace Creepy {
             Image m_depthImage;
 
             // Pipeline
+            Pipeline m_skyBoxPipeline{};
             Pipeline m_backgroundPipeline{};
+            TextureCubeMap m_skyBoxTexture{};
 
             vma::Allocator m_allocator;
             VulkanJobSystem m_clearner;

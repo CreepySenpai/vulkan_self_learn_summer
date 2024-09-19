@@ -215,12 +215,6 @@ namespace Creepy {
             }
         }
 
-        auto memoryProperties = m_physicalDevice.getMemoryProperties();
-
-        for(auto memType : memoryProperties.memoryTypes){
-            
-        }
-
         constexpr std::array layers{
            "VK_LAYER_KHRONOS_validation"
         };
@@ -508,6 +502,7 @@ namespace Creepy {
 
         {
             if(!m_models.empty()){
+
                 DescriptorSetBuilder builder{};
                 builder.AddBinding(0, vk::DescriptorType::eCombinedImageSampler, vk::ShaderStageFlagBits::eFragment);
                 m_textureDescriptorSetLayout = builder.BuildDescriptorLayout(m_logicalDevice);
@@ -530,9 +525,24 @@ namespace Creepy {
                     }
                     
                 }
+
+                {   
+                    auto temp = builder.AllocateDescriptorSet(m_logicalDevice, m_descriptorPool);
+                    m_skyBoxTexture.SetDescriptorSet(temp.DescriptorSet);
+                    // For SkyBox
+                    DescriptorImageInfoBuilder skyBoxDescriptorBuilder{};
+                    skyBoxDescriptorBuilder.AddBinding(0, 1, vk::DescriptorType::eCombinedImageSampler, m_skyBoxTexture);
+                    
+                    DescriptorSetWriter writer{};
+                    writer.AddImageBinding(m_skyBoxTexture.GetDescriptorSet(), skyBoxDescriptorBuilder);
+                    writer.UpdateDescriptorSets(m_logicalDevice);
+                }
+
             }
 
         }
+
+        
 
         m_clearner.AddJob([this]{
             m_logicalDevice.destroyDescriptorSetLayout(m_uniformBufferDescriptorSet.DescriptorSetLayout);
@@ -582,35 +592,49 @@ namespace Creepy {
             },
         };
 
-        PipelineState backgroundState{};
-        backgroundState.InitPipelineLayout(descriptorSetLayouts, pushConstants);
-        backgroundState.InitShaderStates(vertexShader.GetShaderModule(), fragmentShader.GetShaderModule());
-        backgroundState.InitVertexInputState(vertexBindings, vertexAttributes);
-        backgroundState.InitInputAssemblyState(vk::PrimitiveTopology::eTriangleList);
-        backgroundState.InitViewportState(static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height));
-        backgroundState.InitRasterizationState(vk::PolygonMode::eFill, vk::CullModeFlagBits::eNone, vk::FrontFace::eCounterClockwise);
-        backgroundState.InitMultiSamplerState();
-        backgroundState.InitDepthStencilState(vk::CompareOp::eLess);
-        backgroundState.InitColorBlendState();
-        backgroundState.InitDynamicState(dynamicStates);
-        backgroundState.DisableBlending();
-        backgroundState.EnableDepthTest();
+        PipelineState pipelineState{};
+        pipelineState.InitPipelineLayout(descriptorSetLayouts, pushConstants);
+        pipelineState.InitShaderStates(vertexShader.GetShaderModule(), fragmentShader.GetShaderModule());
+        pipelineState.InitVertexInputState(vertexBindings, vertexAttributes);
+        pipelineState.InitInputAssemblyState(vk::PrimitiveTopology::eTriangleList);
+        pipelineState.InitViewportState(static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height));
+        pipelineState.InitRasterizationState(vk::PolygonMode::eFill, vk::CullModeFlagBits::eNone, vk::FrontFace::eCounterClockwise);
+        pipelineState.InitMultiSamplerState();
+        pipelineState.InitDepthStencilState(vk::CompareOp::eLess);
+        pipelineState.InitColorBlendState();
+        pipelineState.InitDynamicState(dynamicStates);
+        pipelineState.DisableBlending();
+        pipelineState.EnableDepthTest();
 
         const std::array colorAttachmentFormats{
              m_swapchain.GetSwapchainImageFormat()
         };
 
         //TODO: use images and depth format
-        backgroundState.InitRenderingInfo(colorAttachmentFormats, m_depthImage.GetImageFormat());
+        pipelineState.InitRenderingInfo(colorAttachmentFormats, m_depthImage.GetImageFormat());
 
-        m_backgroundPipeline.Build(m_logicalDevice, backgroundState);
-
-        m_clearner.AddJob([this]{
-            m_backgroundPipeline.Destroy(m_logicalDevice);
-        });
+        m_backgroundPipeline.Build(m_logicalDevice, pipelineState);
 
         vertexShader.Destroy(m_logicalDevice);
         fragmentShader.Destroy(m_logicalDevice);
+
+        pipelineState.Clear();
+
+        //////////////////////////////////////////////////////////////////////
+        const Shader skyBoxVertexShader{m_logicalDevice, readShaderSPVFile("./res/shaders/skyBoxVert.spv"), vk::ShaderStageFlagBits::eVertex};
+        const Shader skyBoxFragmentShader{m_logicalDevice, readShaderSPVFile("./res/shaders/skyBoxFrag.spv"), vk::ShaderStageFlagBits::eFragment};
+
+        pipelineState.InitPipelineLayout(descriptorSetLayouts, {});
+        pipelineState.InitShaderStates(skyBoxVertexShader.GetShaderModule(), skyBoxFragmentShader.GetShaderModule());
+        m_skyBoxPipeline.Build(m_logicalDevice, pipelineState);
+
+        m_clearner.AddJob([this]{
+            m_backgroundPipeline.Destroy(m_logicalDevice);
+            m_skyBoxPipeline.Destroy(m_logicalDevice);
+        });
+
+        skyBoxVertexShader.Destroy(m_logicalDevice);
+        skyBoxFragmentShader.Destroy(m_logicalDevice);
     }
     
     void VulkanEngine::recreateSwapchain() {
@@ -712,23 +736,22 @@ namespace Creepy {
 
         m_models["Shiba"].SetMaterialIndex(m_materialManager.AddMaterial(m_logicalDevice));
 
+        m_models["SkyBox"].LoadModel("./res/models/cube.gltf", m_logicalDevice, m_cmdPool, m_graphicQueue);
+
         // m_models["Waifu"].LoadModel("./res/models/waifu.gltf", m_logicalDevice, m_cmdPool, m_graphicQueue);
 
         // m_models["Waifu"].SetMaterialIndex(m_materialManager.AddMaterial(m_logicalDevice));
 
-        // std::array<std::filesystem::path, 6> cubePaths{
-        //     "./res/textures/skybox/front.jpg",
-        //     "./res/textures/skybox/back.jpg",
-        //     "./res/textures/skybox/top.jpg",
-        //     "./res/textures/skybox/bottom.jpg",
-        //     "./res/textures/skybox/right.jpg",
-        //     "./res/textures/skybox/left.jpg",
-        // };
+        std::array<std::filesystem::path, 6> cubePaths{
+            "./res/textures/skybox/right.jpg",
+            "./res/textures/skybox/left.jpg",
+            "./res/textures/skybox/top.jpg",
+            "./res/textures/skybox/bottom.jpg",
+            "./res/textures/skybox/front.jpg",
+            "./res/textures/skybox/back.jpg",
+        };
 
-        // TextureCubeMap cubeTexture{};
-        // cubeTexture.LoadCubeMapTexture(cubePaths, m_logicalDevice, m_cmdPool, m_graphicQueue);
-        
-        // cubeTexture.Destroy(m_logicalDevice);
+        m_skyBoxTexture.LoadCubeMapTexture(cubePaths, m_logicalDevice, m_cmdPool, m_graphicQueue);
         
         m_clearner.AddJob([this]{
             for(auto&& [_, model] : m_models){
@@ -736,6 +759,8 @@ namespace Creepy {
             }
 
             m_materialManager.Destroy(m_logicalDevice);
+
+            m_skyBoxTexture.Destroy(m_logicalDevice);
         });
     }
 
@@ -865,7 +890,6 @@ namespace Creepy {
                 this->recreateSwapchain();
             }
         }
-
     }
 
     void VulkanEngine::drawModels(const vk::CommandBuffer currentCommandBuffer, const vk::Image colorImage, const vk::ImageView colorImageView, const vk::Image depthImage, const vk::ImageView depthImageView) {
@@ -903,15 +927,24 @@ namespace Creepy {
 
         currentCommandBuffer.setScissor(0, scissor);
 
+        this->drawSkyBox(currentCommandBuffer);
+
         currentCommandBuffer.bindPipeline(vk::PipelineBindPoint::eGraphics, m_backgroundPipeline.GetPipeline());
 
         for(auto& [name, model] : m_models){
+            if(name == "SkyBox"){
+                continue;
+            }
             const std::array bufferAddresses{
                 m_uniformBuffer.lightBufferAddress,
                 m_materialManager.GetBufferAddress(model.GetMaterialIndex())
             };
             
-            model.Draw(currentCommandBuffer, m_backgroundPipeline.GetPipelineLayout(), m_uniformBufferDescriptorSet.DescriptorSet, bufferAddresses);
+            // First Set For Uniform Buffer
+            const std::array descriptorSets{
+                m_uniformBufferDescriptorSet.DescriptorSet
+            };
+            model.Draw(currentCommandBuffer, m_backgroundPipeline.GetPipelineLayout(), descriptorSets, bufferAddresses);
         }
 
         currentCommandBuffer.endRendering();
@@ -937,6 +970,17 @@ namespace Creepy {
         ImGui_ImplVulkan_RenderDrawData(ImGui::GetDrawData(), currentCommandBuffer);
 
         currentCommandBuffer.endRendering();
+    }
+
+    void VulkanEngine::drawSkyBox(const vk::CommandBuffer currentCommandBuffer) {
+        currentCommandBuffer.bindPipeline(vk::PipelineBindPoint::eGraphics, m_skyBoxPipeline.GetPipeline());
+
+        const std::array descriptorSets{
+            m_uniformBufferDescriptorSet.DescriptorSet,
+            m_skyBoxTexture.GetDescriptorSet()
+        };
+        m_models["SkyBox"].Draw(currentCommandBuffer, m_skyBoxPipeline.GetPipelineLayout(), descriptorSets);
+
     }
 
     const VulkanFrame& VulkanEngine::getCurrentRenderFrame() const {

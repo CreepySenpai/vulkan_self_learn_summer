@@ -17,6 +17,7 @@ namespace Creepy{
             void InitDynamicState(std::span<const vk::DynamicState> dynamicStates);
             void InitRenderingInfo(std::span<const vk::Format> colorAttachmentFormats, vk::Format depthAttachmentFormat);
 
+            void Clear();
         public:
             void DisableMultiSampling();
             void DisableBlending();

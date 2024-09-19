@@ -159,6 +159,10 @@ namespace Creepy{
         m_depthStencilState.maxDepthBounds = 1.0f;
     }
 
+    void PipelineState::Clear() {
+        m_shaderStates.clear();
+    }
+
     void Pipeline::Build(const vk::Device device, const PipelineState& pipelineState) {
 
         auto pipelineLayoutRes = device.createPipelineLayout(pipelineState.m_pipelineLayoutInfo);

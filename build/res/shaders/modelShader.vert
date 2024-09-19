@@ -9,19 +9,6 @@ layout(set = 0, binding = 0) uniform _transformData{
     vec4 cameraPosition;
 } TransFormData;
 
-// layout(buffer_reference, std430, buffer_reference_align = 16) readonly buffer LightBuffer{
-//     vec4 lightPosition;
-//     vec4 ambientColor;
-//     vec4 diffuseIntensity;
-//     vec4 lightIntensity;
-// };
-
-// layout(buffer_reference, std430, buffer_reference_align = 16) readonly buffer MaterialBuffer{
-//     vec4 materialAmbient;
-//     vec4 materialDiffuse;
-//     vec4 materialSpecular;
-// };
-
 layout(push_constant) uniform _vertexPushConstantData{
     mat4 modelTransformData;
 } VertexPushConstantData;

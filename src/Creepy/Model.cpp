@@ -43,9 +43,15 @@ namespace Creepy{
         this->LoadModel(filePath, device, commandPool, queue);
     }
 
-    void Model::Draw(const vk::CommandBuffer commandBuffer, const vk::PipelineLayout pipelineLayout, const vk::DescriptorSet uniformDescSet, std::span<const vk::DeviceAddress> bufferAddresses) {
+    void Model::Draw(const vk::CommandBuffer commandBuffer, const vk::PipelineLayout pipelineLayout, std::span<const vk::DescriptorSet> descriptorSets) {
         for(auto& mesh : m_meshes){
-            mesh.Draw(commandBuffer, pipelineLayout, uniformDescSet, this->getTransformMatrix(), bufferAddresses);
+            mesh.Draw(commandBuffer, pipelineLayout, descriptorSets);
+        }
+    }
+
+    void Model::Draw(const vk::CommandBuffer commandBuffer, const vk::PipelineLayout pipelineLayout, std::span<const vk::DescriptorSet> descriptorSets, std::span<const vk::DeviceAddress> bufferAddresses) {
+        for(auto& mesh : m_meshes){
+            mesh.Draw(commandBuffer, pipelineLayout, descriptorSets, this->getTransformMatrix(), bufferAddresses);
         }
     }
             

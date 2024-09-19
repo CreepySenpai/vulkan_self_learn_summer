@@ -114,6 +114,9 @@ namespace Creepy{
         ImGui::Begin("Models");
 
         for(auto& [modelName, model] : models){
+            if(modelName == "SkyBox"){
+                continue;
+            }
             ImGui::Separator();
             ImGui::PushID(modelName.c_str());
 
