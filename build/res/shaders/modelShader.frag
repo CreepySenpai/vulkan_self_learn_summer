@@ -23,28 +23,51 @@ layout(push_constant) uniform _fragmentPushConstant{
 layout(location = 0) in vec3 inPosition;
 layout(location = 1) in vec3 inNormal;
 layout(location = 2) in vec2 inTexCoord;
+layout(location = 3) in vec3 inCameraPosition;
 
 // Uniform Var
 layout(set = 1, binding = 0) uniform sampler2D myTexture;
 
 layout(location = 0) out vec4 finalColor;
 
-vec3 phongLightModel(vec3 position, vec3 normal){
+vec3 phongLightModel(vec3 vertexPosition, vec3 normal, vec3 cameraPosition){
     const vec3 ambient = vec3(FragmentPushConstantData.lightBuffer.lightAmbientColor * FragmentPushConstantData.materialBuffer.materialAmbient);
 
-    const vec3 lightDir = normalize(FragmentPushConstantData.lightBuffer.lightPosition.xyz - position);
+    const vec3 lightDir = normalize(FragmentPushConstantData.lightBuffer.lightPosition.xyz - vertexPosition);
 
-    const float lDotN = max(dot(lightDir, normal), 0.0);
+    const float lambertian = max(dot(lightDir, normal), 0.0);
 
-    const vec3 diffuse = vec3(FragmentPushConstantData.lightBuffer.lightDiffuseIntensity * FragmentPushConstantData.materialBuffer.materialDiffuse * lDotN);
+    const vec3 diffuse = vec3(FragmentPushConstantData.lightBuffer.lightDiffuseIntensity * FragmentPushConstantData.materialBuffer.materialDiffuse * lambertian);
 
     vec3 specular = vec3(0.0, 0.0, 0.0);
-    if(lDotN > 0.0){
-        const vec3 eyeDir = -position;
+
+    if(lambertian > 0.0){
+        const vec3 viewVec = normalize(cameraPosition - vertexPosition);
         
         const vec3 reflectVec = reflect(-lightDir, normal);
 
-        specular = vec3(FragmentPushConstantData.lightBuffer.lightIntensity * FragmentPushConstantData.materialBuffer.materialSpecular * pow(max(dot(eyeDir, reflectVec), 0.0), 80));
+        specular = vec3(FragmentPushConstantData.lightBuffer.lightIntensity * FragmentPushConstantData.materialBuffer.materialSpecular * pow(max(dot(viewVec, reflectVec), 0.0), 80));
+    }
+
+    return ambient + diffuse + specular;
+}
+
+vec3 blindPhongLighModel(vec3 vertexPosition, vec3 normal, vec3 cameraPosition){
+    const vec3 ambient = vec3(FragmentPushConstantData.lightBuffer.lightAmbientColor * FragmentPushConstantData.materialBuffer.materialAmbient);
+
+    const vec3 lightDir = normalize(FragmentPushConstantData.lightBuffer.lightPosition.xyz - vertexPosition);
+
+    const float lambertian = max(dot(lightDir, normal), 0.0);
+
+    const vec3 diffuse = vec3(FragmentPushConstantData.lightBuffer.lightDiffuseIntensity * FragmentPushConstantData.materialBuffer.materialDiffuse * lambertian);
+
+    vec3 specular = vec3(0.0, 0.0, 0.0);
+
+    if(lambertian > 0.0){
+        const vec3 viewVec = normalize(cameraPosition - vertexPosition);
+        const vec3 halfVec = normalize(lightDir + viewVec);
+
+        specular = vec3(FragmentPushConstantData.lightBuffer.lightIntensity * FragmentPushConstantData.materialBuffer.materialSpecular * pow(max(dot(halfVec, normal), 0.0), 80));
     }
 
     return ambient + diffuse + specular;
@@ -53,7 +76,9 @@ vec3 phongLightModel(vec3 position, vec3 normal){
 void main(){
     const vec4 texMap = texture(myTexture, inTexCoord);
 
-    const vec3 lightInCome = phongLightModel(inPosition, inNormal);
+    // const vec3 lightInCome = phongLightModel(inPosition, normalize(inNormal), inCameraPosition);
+
+     const vec3 lightInCome = blindPhongLighModel(inPosition, normalize(inNormal), inCameraPosition);
 
     finalColor = texMap * vec4(lightInCome, 1.0);
 
