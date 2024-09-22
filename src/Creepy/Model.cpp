@@ -155,28 +155,38 @@ namespace Creepy{
 
         }
 
-        auto&& textures = this->loadMaterialTextures(currentScene->mMaterials[currentMesh->mMaterialIndex], currentScene, aiTextureType_DIFFUSE, device, commandPool, queue);
-        return {device, commandPool, queue, vertices, indices, textures, parentTransformMatrix};
+        auto&& texturesPtr = this->loadMaterialTextures(currentScene->mMaterials[currentMesh->mMaterialIndex], currentScene, aiTextureType_DIFFUSE, device, commandPool, queue);
+        return {device, commandPool, queue, vertices, indices, texturesPtr, parentTransformMatrix};
     }
 
-    std::vector<Texture> Model::loadMaterialTextures(aiMaterial* currentMaterial, const aiScene* currentScene, aiTextureType textureType, const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue) {
-        std::vector<Texture> textures;
+    std::vector<Texture*> Model::loadMaterialTextures(aiMaterial* currentMaterial, const aiScene* currentScene, aiTextureType textureType, const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue){
+        std::vector<Texture*> textures;
         const uint32_t diffuseTextureCount{currentMaterial->GetTextureCount(textureType)};
         
         std::println("Total diffuse texture: {}", diffuseTextureCount);
 
+        //TODO: If we have more texture then need enable it
+        // textures.reserve(diffuseTextureCount);
         for(uint32_t i{}; i < diffuseTextureCount; ++i){
             aiString filePath{};
             auto res = currentMaterial->GetTexture(textureType, i, &filePath);
             
             if(res == aiReturn_SUCCESS){
-                std::println("Get Texture: {}", filePath.C_Str());
-                Texture texture{};
-                texture.LoadTexture(modelsDirectory / filePath.C_Str(), device, commandPool, queue);
-                textures.push_back(std::move(texture));
+                auto&& pathToTexture = modelsDirectory / filePath.C_Str();
+                if(!TextureManager::IsContainTexture(pathToTexture)){
+                    TextureManager::LoadTexture2D(pathToTexture, device, commandPool, queue);
+                    std::println("Load Texture: {}", filePath.C_Str());
+                }
+                else{
+                    std::println("Exit Texture: {}", filePath.C_Str());
+                }
+
+                textures.push_back(TextureManager::GetTexture<Texture>(pathToTexture));
+
             }
         }
 
+        
         return textures;
     }
 

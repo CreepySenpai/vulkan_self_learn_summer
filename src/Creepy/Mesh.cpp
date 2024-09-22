@@ -3,7 +3,7 @@
 
 namespace Creepy{
 
-    Mesh::Mesh(const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue, std::span<const Vertex> vertices, std::span<const uint32_t> indices, std::span<Texture> textures, const glm::mat4& currentMeshTransform)
+    Mesh::Mesh(const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue, std::span<const Vertex> vertices, std::span<const uint32_t> indices, std::span<Texture*> textures, const glm::mat4& currentMeshTransform)
         : m_vertexBuffer{device, vertices.size() * sizeof(Vertex)}, m_indexBuffer{device, indices.size() * sizeof(uint32_t)},
           m_textures{textures.begin(), textures.end()},
           m_currentMeshTransform{currentMeshTransform}
@@ -25,9 +25,9 @@ namespace Creepy{
         for(auto&& desc : descriptorSets){
             totalSets.emplace_back(desc);
         }
-        
+
         for(const auto& texture : m_textures){
-            totalSets.emplace_back(texture.GetDescriptorSet());
+            totalSets.emplace_back(texture->GetDescriptorSet());
         }
 
         commandBuffer.bindDescriptorSets(vk::PipelineBindPoint::eGraphics, pipelineLayout, 0, totalSets, nullptr);
@@ -47,9 +47,9 @@ namespace Creepy{
         for(auto&& desc : descriptorSets){
             totalSets.emplace_back(desc);
         }
-        
+
         for(const auto& texture : m_textures){
-            totalSets.emplace_back(texture.GetDescriptorSet());
+            totalSets.emplace_back(texture->GetDescriptorSet());
         }
 
         commandBuffer.bindDescriptorSets(vk::PipelineBindPoint::eGraphics, pipelineLayout, 0, totalSets, nullptr);
@@ -68,17 +68,13 @@ namespace Creepy{
     void Mesh::Destroy(const vk::Device device) const {
         m_vertexBuffer.Destroy(device);
         m_indexBuffer.Destroy(device);
-
-        for(auto& texture : m_textures){
-            texture.Destroy(device);
-        }
     }
 
-    std::span<const Texture> Mesh::GetTextures() const {
+    std::span<const Texture* const> Mesh::GetTextures() const {
         return m_textures;
     }
 
-    std::span<Texture> Mesh::GetTextures() {
+    std::span<Texture*> Mesh::GetTextures() {
         return m_textures;
     }
 

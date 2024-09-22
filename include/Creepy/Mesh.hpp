@@ -11,8 +11,9 @@ namespace Creepy{
     struct Mesh{
         public:
             Mesh() = default;
-            Mesh(const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue, std::span<const Vertex> vertices, std::span<const uint32_t> indices, std::span<Texture> textures, const glm::mat4& currentMeshTransform);
+            Mesh(const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue, std::span<const Vertex> vertices, std::span<const uint32_t> indices, std::span<Texture*> textures, const glm::mat4& currentMeshTransform);
             
+
             void UploadData(const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue, std::span<const Vertex> vertices, std::span<const uint32_t> indices) const;
 
             void Draw(const vk::CommandBuffer commandBuffer, const vk::PipelineLayout pipelineLayout, std::span<const vk::DescriptorSet> descriptorSets);
@@ -20,13 +21,13 @@ namespace Creepy{
 
             void Destroy(const vk::Device device) const;
 
-            std::span<const Texture> GetTextures() const;
+            std::span<const Texture* const> GetTextures() const;
 
-            std::span<Texture> GetTextures();
+            std::span<Texture*> GetTextures();
         private:
             VertexBuffer m_vertexBuffer;
             IndexBuffer m_indexBuffer;
-            std::vector<Texture> m_textures;
+            std::vector<Texture*> m_textures;
             glm::mat4 m_currentMeshTransform;
     };
 

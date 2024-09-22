@@ -12,10 +12,12 @@ namespace Creepy{
             vk::DeviceAddress GetBufferAddress(uint32_t materialIndex) const;
 
             void UploadMaterialData() const;
+            void RemoveMaterial(uint32_t materialIndex);
             void Destroy(const vk::Device device);
         private:
             std::vector<MaterialBuffer> m_buffers;
             std::vector<vk::DeviceAddress> m_bufferAddresses;
             std::vector<MaterialData> m_bufferData;
+            std::vector<uint32_t> m_removedIndexes;
     };
 }

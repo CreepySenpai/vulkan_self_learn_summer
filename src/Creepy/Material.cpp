@@ -4,6 +4,14 @@
 namespace Creepy{
 
     uint32_t MaterialManager::AddMaterial(const vk::Device device) {
+        // Note: We reuse lasted remove index
+        if(!m_removedIndexes.empty()){
+            auto lastIndex = m_removedIndexes.back();
+            m_removedIndexes.pop_back();
+            m_bufferData.at(lastIndex) = MaterialData{};
+            return lastIndex;
+        }
+
         auto& createdBuffer = m_buffers.emplace_back(device, sizeof(MaterialData));
 
         vk::BufferDeviceAddressInfo bufferAddressInfo{};
@@ -28,6 +36,10 @@ namespace Creepy{
             buffer.UploadData(m_bufferData.at(i));
             ++i;
         }
+    }
+
+    void MaterialManager::RemoveMaterial(uint32_t materialIndex) {
+        m_removedIndexes.push_back(materialIndex);
     }
 
     void MaterialManager::Destroy(const vk::Device device) {

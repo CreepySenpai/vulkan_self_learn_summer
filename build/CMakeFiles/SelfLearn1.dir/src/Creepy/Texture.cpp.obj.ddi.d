@@ -1,18 +1,69 @@
 CMakeFiles\SelfLearn1.dir\src\Creepy\Texture.cpp.obj.ddi: \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/src/Creepy/Texture.cpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/Texture.hpp \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/filesystem \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/unordered_map \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/requires_hosted.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/x86_64-w64-mingw32/bits/c++config.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/x86_64-w64-mingw32/bits/os_defines.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/x86_64-w64-mingw32/bits/cpu_defines.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/pstl/pstl_config.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/initializer_list \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/unordered_map.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/hashtable.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/hashtable_policy.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/tuple \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/stl_pair.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/type_traits \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/version.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/fs_fwd.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/system_error \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/x86_64-w64-mingw32/bits/error_constants.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/cerrno \
- D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/errno.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/move.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/utility.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/compare \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/concepts \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/uses_allocator.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/invoke.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/ranges_util.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/ranges_base.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/stl_iterator.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/cpp_type_traits.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/stl_iterator_base_types.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/iterator_concepts.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/ptr_traits.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/ranges_cmp.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/ext/type_traits.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/new \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/exception.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/exception_defines.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/stl_construct.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/stl_iterator_base_funcs.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/concept_check.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/debug/assertions.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/ext/numeric_traits.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/max_size_type.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/numbers \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/functional_hash.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/hash_bytes.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/stl_algobase.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/functexcept.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/debug/debug.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/predefined_ops.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bit \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/ext/aligned_buffer.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/ext/alloc_traits.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/alloc_traits.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/memoryfwd.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/allocator.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/x86_64-w64-mingw32/bits/c++allocator.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/new_allocator.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/enable_special_members.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/stl_function.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/backward/binders.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/node_handle.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/range_access.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/erase_if.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/memory_resource.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/cstddef \
+ D:/Enviroments/mingw64_msvcrt/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stddef.h \
+ D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/stddef.h \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/crtdefs.h \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/corecrt.h \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/_mingw.h \
@@ -20,9 +71,17 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\Texture.cpp.obj.ddi: \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/_mingw_secapi.h \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/vadefs.h \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/sdks/_mingw_ddk.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/uses_allocator_args.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/variant \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/parse_numbers.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/filesystem \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/fs_fwd.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/system_error \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/x86_64-w64-mingw32/bits/error_constants.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/cerrno \
+ D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/errno.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/iosfwd \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/stringfwd.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/memoryfwd.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/postypes.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/cwchar \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/wchar.h \
@@ -34,35 +93,12 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\Texture.cpp.obj.ddi: \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/sec_api/wchar_s.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/stdexcept \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/exception \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/exception.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/exception_ptr.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/exception_defines.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/cxxabi_init_exception.h \
- D:/Enviroments/mingw64_msvcrt/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stddef.h \
- D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/stddef.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/typeinfo \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/hash_bytes.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/new \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/move.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/type_traits \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/nested_exception.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/string \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/char_traits.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/compare \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/concepts \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/stl_construct.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/stl_iterator_base_types.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/iterator_concepts.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/ptr_traits.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/ranges_cmp.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/stl_iterator_base_funcs.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/concept_check.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/debug/assertions.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/allocator.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/x86_64-w64-mingw32/bits/c++allocator.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/new_allocator.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/functexcept.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/cpp_type_traits.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/localefwd.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/x86_64-w64-mingw32/bits/c++locale.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/clocale \
@@ -73,29 +109,9 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\Texture.cpp.obj.ddi: \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/ctype.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/ostream_insert.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/cxxabi_forced.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/stl_iterator.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/ext/type_traits.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/utility.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/stl_function.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/backward/binders.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/ext/numeric_traits.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/stl_algobase.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/stl_pair.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/debug/debug.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/predefined_ops.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bit \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/refwrap.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/invoke.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/range_access.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/initializer_list \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/basic_string.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/ext/alloc_traits.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/alloc_traits.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/string_view \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/functional_hash.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/ranges_base.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/max_size_type.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/numbers \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/string_view.tcc \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/charconv \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/charconv.h \
@@ -112,12 +128,6 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\Texture.cpp.obj.ddi: \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/std_abs.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/cstdio \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/basic_string.tcc \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/memory_resource.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/cstddef \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/uses_allocator.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/uses_allocator_args.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/tuple \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/ranges_util.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/cstdint \
  D:/Enviroments/mingw64_msvcrt/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stdint.h \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/stdint.h \
@@ -130,7 +140,6 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\Texture.cpp.obj.ddi: \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/sec_api/sys/timeb_s.h \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/_timeval.h \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/pthread_time.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/parse_numbers.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/fs_path.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/locale \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/locale_classes.h \
@@ -174,9 +183,7 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\Texture.cpp.obj.ddi: \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/format \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/array \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/optional \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/enable_special_members.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/span \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/variant \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/ranges_algobase.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/unicode.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/stl_algo.h \
@@ -194,7 +201,6 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\Texture.cpp.obj.ddi: \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/shared_ptr_base.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/allocated_ptr.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/unique_ptr.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/ext/aligned_buffer.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/align.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/stl_uninitialized.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/fs_dir.h \
@@ -594,12 +600,6 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\Texture.cpp.obj.ddi: \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/hash.hpp \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/functional \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/std_function.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/unordered_map \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/unordered_map.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/hashtable.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/hashtable_policy.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/node_handle.h \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/erase_if.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/move_only_function.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/mofunc_impl.h \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/hash.inl \

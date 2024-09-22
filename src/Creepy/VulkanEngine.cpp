@@ -508,18 +508,27 @@ namespace Creepy {
                 m_textureDescriptorSetLayout = builder.BuildDescriptorLayout(m_logicalDevice);
                 
                 for(auto& [_, model] : m_models){
-
+                    
                     for(auto& mesh : model.GetMeshes()){
-                        
+
                         for(auto& texture : mesh.GetTextures()){
+                            // Note: If Texture Already Update Descriptor Set Then We Don't Need Repeat
+                            if(texture->IsUpdateDescriptorSet()){
+                                continue;
+                            }
+
+                            static int suckCount{};
+                            std::println("Total update: {}", ++suckCount);
                             auto temp = builder.AllocateDescriptorSet(m_logicalDevice, m_descriptorPool);
-                            texture.SetDescriptorSet(temp.DescriptorSet);
+                            texture->SetDescriptorSet(temp.DescriptorSet);
                             DescriptorImageInfoBuilder imageDescriptorBuilder{};
-                            imageDescriptorBuilder.AddBinding(0, 1, vk::DescriptorType::eCombinedImageSampler, texture);
+                            imageDescriptorBuilder.AddBinding(0, 1, vk::DescriptorType::eCombinedImageSampler, *texture);
 
                             DescriptorSetWriter writer{};
-                            writer.AddImageBinding(texture.GetDescriptorSet(), imageDescriptorBuilder);
+                            writer.AddImageBinding(texture->GetDescriptorSet(), imageDescriptorBuilder);
                             writer.UpdateDescriptorSets(m_logicalDevice);
+
+                            texture->UpdateDescriptorSet();
                         }
 
                     }
@@ -751,7 +760,7 @@ namespace Creepy {
             "./res/textures/skybox/back.jpg",
         };
 
-        m_skyBoxTexture.LoadCubeMapTexture(cubePaths, m_logicalDevice, m_cmdPool, m_graphicQueue);
+        m_skyBoxTexture.LoadTextureCubeMap(cubePaths, m_logicalDevice, m_cmdPool, m_graphicQueue);
         
         m_clearner.AddJob([this]{
             for(auto&& [_, model] : m_models){
@@ -761,6 +770,8 @@ namespace Creepy {
             m_materialManager.Destroy(m_logicalDevice);
 
             m_skyBoxTexture.Destroy(m_logicalDevice);
+
+            TextureManager::Destroy(m_logicalDevice);
         });
     }
 
@@ -890,6 +901,7 @@ namespace Creepy {
                 this->recreateSwapchain();
             }
         }
+        
     }
 
     void VulkanEngine::drawModels(const vk::CommandBuffer currentCommandBuffer, const vk::Image colorImage, const vk::ImageView colorImageView, const vk::Image depthImage, const vk::ImageView depthImageView) {

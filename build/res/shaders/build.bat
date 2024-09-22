@@ -1,5 +1,5 @@
-glslc modelShader.vert --target-spv=spv1.6 -o modelVertexShader.spv
-glslc modelShader.frag  --target-spv=spv1.6 -o  modelFragmentShader.spv
+glslc modelShader.vert -O --target-env=vulkan1.3 --target-spv=spv1.6 -o modelVertexShader.spv
+glslc modelShader.frag -O --target-env=vulkan1.3 --target-spv=spv1.6 -o  modelFragmentShader.spv
 
-glslc skybox.vert --target-spv=spv1.6 -o skyBoxVert.spv
-glslc skybox.frag --target-spv=spv1.6 -o skyBoxFrag.spv
+glslc skybox.vert -O --target-env=vulkan1.3 --target-spv=spv1.6 -o skyBoxVert.spv
+glslc skybox.frag -O --target-env=vulkan1.3 --target-spv=spv1.6 -o skyBoxFrag.spv

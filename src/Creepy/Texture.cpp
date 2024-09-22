@@ -86,11 +86,11 @@ namespace Creepy{
 
     ////////////////////////////////////////////////////////////////
 
-    void TextureCubeMap::LoadCubeMapTexture(std::span<const std::filesystem::path> cubeMapPaths, const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue) {
+    void TextureCubeMap::LoadTextureCubeMap(std::span<const std::filesystem::path> filePaths, const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue) {
         int width{}, height{}, channel{};
 
         std::array<stbi_uc*, 6> cubeMapTextureData;
-        for(size_t i{}; auto&& filePath : cubeMapPaths){
+        for(size_t i{}; auto&& filePath : filePaths){
             cubeMapTextureData.at(i) = stbi_load(filePath.string().c_str(), &width, &height, &channel, STBI_rgb_alpha);
             ++i;
         }
@@ -174,5 +174,36 @@ namespace Creepy{
         samplerInfo.maxAnisotropy = 1.0f;
 
         m_sampler = device.createSampler(samplerInfo).value;
+    }
+
+
+    void TextureManager::LoadTexture2D(const std::filesystem::path& filePath, const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue) {
+        auto&& textureName = filePath.stem().string();
+        s_texturesMap[textureName] = Texture{};
+        std::get<Texture>(s_texturesMap[textureName]).LoadTexture(filePath, device, commandPool, queue);
+    }
+
+    void TextureManager::LoadTextureCubeMap(const std::string& textureName, std::span<const std::filesystem::path> filePaths, const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue) {
+        s_texturesMap[textureName] = TextureCubeMap{};
+        std::get<TextureCubeMap>(s_texturesMap[textureName]).LoadTextureCubeMap(filePaths, device, commandPool, queue);
+    }
+
+    bool TextureManager::IsContainTexture(const std::string& textureName) {
+        return s_texturesMap.contains(textureName);
+    }
+
+    bool TextureManager::IsContainTexture(const std::filesystem::path& texturePath) {
+        auto&& textureName = texturePath.stem().string();
+        return s_texturesMap.contains(textureName);
+    }
+
+    void TextureManager::Destroy(const vk::Device device) {
+
+        for(auto&& [_, texture] : s_texturesMap){
+            std::visit([&](const auto& tex){
+                tex.Destroy(device);
+            }, texture);
+        }
+
     }
 }
