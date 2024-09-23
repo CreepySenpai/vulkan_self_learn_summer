@@ -30,7 +30,7 @@ layout(set = 1, binding = 0) uniform sampler2D myTexture;
 
 layout(location = 0) out vec4 finalColor;
 
-vec3 phongLightModel(vec3 vertexPosition, vec3 normal, vec3 cameraPosition){
+vec3 phongLightModel(in vec3 vertexPosition, in vec3 normal, in vec3 cameraPosition){
     const vec3 ambient = vec3(FragmentPushConstantData.lightBuffer.lightAmbientColor * FragmentPushConstantData.materialBuffer.materialAmbient);
 
     const vec3 lightDir = normalize(FragmentPushConstantData.lightBuffer.lightPosition.xyz - vertexPosition);
@@ -52,7 +52,7 @@ vec3 phongLightModel(vec3 vertexPosition, vec3 normal, vec3 cameraPosition){
     return ambient + diffuse + specular;
 }
 
-vec3 blindPhongLighModel(vec3 vertexPosition, vec3 normal, vec3 cameraPosition){
+vec3 blindPhongLighModel(in vec3 vertexPosition, in vec3 normal, in vec3 cameraPosition){
     const vec3 ambient = vec3(FragmentPushConstantData.lightBuffer.lightAmbientColor * FragmentPushConstantData.materialBuffer.materialAmbient);
 
     const vec3 lightDir = normalize(FragmentPushConstantData.lightBuffer.lightPosition.xyz - vertexPosition);
@@ -73,12 +73,27 @@ vec3 blindPhongLighModel(vec3 vertexPosition, vec3 normal, vec3 cameraPosition){
     return ambient + diffuse + specular;
 }
 
+vec3 toonShader(in vec3 vertexPosition, in vec3 normal, in vec3 cameraPosition){
+    const vec3 lightDir = normalize(FragmentPushConstantData.lightBuffer.lightPosition.xyz - vertexPosition);
+    const vec3 ambient = vec3(FragmentPushConstantData.lightBuffer.lightAmbientColor * FragmentPushConstantData.materialBuffer.materialAmbient);
+    const float lambertian = max(dot(lightDir, normal), 0.0);
+
+    const int levels = 4;
+    const float scaleFactor = 1.0 / levels;
+    
+    const vec3 diffuse = vec3(FragmentPushConstantData.lightBuffer.lightDiffuseIntensity * FragmentPushConstantData.materialBuffer.materialDiffuse * floor(lambertian * levels) * scaleFactor);
+
+    return ambient + (FragmentPushConstantData.lightBuffer.lightIntensity.xyz * diffuse);
+}
+
 void main(){
     const vec4 texMap = texture(myTexture, inTexCoord);
 
     // const vec3 lightInCome = phongLightModel(inPosition, normalize(inNormal), inCameraPosition);
 
-     const vec3 lightInCome = blindPhongLighModel(inPosition, normalize(inNormal), inCameraPosition);
+    // const vec3 lightInCome = blindPhongLighModel(inPosition, normalize(inNormal), inCameraPosition);
+
+    const vec3 lightInCome = toonShader(inPosition, normalize(inNormal), inCameraPosition);
 
     finalColor = texMap * vec4(lightInCome, 1.0);
 
