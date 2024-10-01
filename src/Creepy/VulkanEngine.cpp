@@ -258,7 +258,7 @@ namespace Creepy {
         // Enable Features
         auto& vulkanCoreFeatures = deviceChain.get<vk::PhysicalDeviceFeatures2>();
         vulkanCoreFeatures.features.samplerAnisotropy = vk::True;
-        
+        vulkanCoreFeatures.features.independentBlend = vk::True;
         
         auto& vulkan12Features = deviceChain.get<vk::PhysicalDeviceVulkan12Features>();
         vulkan12Features.bufferDeviceAddress = vk::True;
@@ -592,13 +592,7 @@ namespace Creepy {
             m_uniformBufferDescriptorSet.DescriptorSetLayout,
             m_descriptorIndexingDescriptorSet.DescriptorSetLayout,
         };
-
-        // NOTE: Just use to cal size
-        struct Dummy{
-            vk::DeviceAddress a;
-            vk::DeviceAddress b;
-            uint32_t c;
-        };
+        
         // TODO: Transform matrix + Buffer Address
         const std::array pushConstants{
             vk::PushConstantRange{
@@ -609,9 +603,15 @@ namespace Creepy {
             vk::PushConstantRange{
                 vk::ShaderStageFlagBits::eFragment,
                 sizeof(glm::mat4),
-                sizeof(Dummy)
+                sizeof(FragmentPushConstantData)
             },
         };
+
+        std::array<vk::PipelineColorBlendAttachmentState, 2> blendAttachments;
+        blendAttachments[0].colorWriteMask = vk::ColorComponentFlagBits::eR | vk::ColorComponentFlagBits::eG | vk::ColorComponentFlagBits::eB | vk::ColorComponentFlagBits::eA;
+        blendAttachments[0].blendEnable = vk::False;
+        blendAttachments[1].colorWriteMask = vk::ColorComponentFlagBits::eR;
+        blendAttachments[1].blendEnable = vk::False;
 
         PipelineState pipelineState{};
         pipelineState.InitPipelineLayout(descriptorSetLayouts, pushConstants);
@@ -622,16 +622,20 @@ namespace Creepy {
         pipelineState.InitRasterizationState(vk::PolygonMode::eFill, vk::CullModeFlagBits::eNone, vk::FrontFace::eCounterClockwise);
         pipelineState.InitMultiSamplerState();
         pipelineState.InitDepthStencilState(vk::CompareOp::eLess);
-        pipelineState.InitColorBlendState();
+        pipelineState.InitColorBlendState(blendAttachments);
         pipelineState.InitDynamicState(dynamicStates);
-        pipelineState.DisableBlending();
+
+        // Disable Blending
+        
+        // pipelineState.DisableBlending();
         pipelineState.EnableDepthTest();
 
+        //TODO: use images and depth format
         const std::array colorAttachmentFormats{
-             m_swapchain.GetSwapchainImageFormat()
+            m_swapchain.GetSwapchainImageFormat(),
+            m_entityImage.GetImageFormat()
         };
 
-        //TODO: use images and depth format
         pipelineState.InitRenderingInfo(colorAttachmentFormats, m_depthImage.GetImageFormat());
 
         m_backgroundPipeline.Build(m_logicalDevice, pipelineState);
@@ -652,6 +656,19 @@ namespace Creepy {
 
         pipelineState.InitPipelineLayout(descriptorSetLayouts2, {});
         pipelineState.InitShaderStates(skyBoxVertexShader.GetShaderModule(), skyBoxFragmentShader.GetShaderModule());
+        
+        const std::array skyBoxColorAttachmentFormats{
+            colorAttachmentFormats[0]
+        };
+
+        pipelineState.InitRenderingInfo(skyBoxColorAttachmentFormats, m_depthImage.GetImageFormat());
+
+        const std::array blendAttachments2{
+            blendAttachments[0]
+        };
+
+        pipelineState.InitColorBlendState(blendAttachments2);
+
         m_skyBoxPipeline.Build(m_logicalDevice, pipelineState);
 
         m_clearner.AddJob([this]{
@@ -690,6 +707,9 @@ namespace Creepy {
         m_depthImage.ReCreate(m_logicalDevice, static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height), 
         vk::Format::eD24UnormS8Uint, vk::ImageUsageFlagBits::eDepthStencilAttachment, vk::ImageAspectFlagBits::eDepth, vk::ImageViewType::e2D);
 
+        m_entityImage.ReCreate(m_logicalDevice, static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height), 
+        vk::Format::eR32Uint, vk::ImageUsageFlagBits::eColorAttachment, vk::ImageAspectFlagBits::eColor, vk::ImageViewType::e2D);
+
         m_logicalDevice.waitIdle();
 
         m_camera.SetViewport(static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height));
@@ -704,18 +724,14 @@ namespace Creepy {
     }
 
     void VulkanEngine::createImageResources() {
-
-        // m_colorImage = Image{m_logicalDevice, static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height), 
-        //     vk::Format::eR8G8B8A8Unorm, vk::ImageUsageFlagBits::eColorAttachment | vk::ImageUsageFlagBits::eTransferSrc 
-        //     | vk::ImageUsageFlagBits::eTransferDst | vk::ImageUsageFlagBits::eStorage
-        //     , vk::ImageAspectFlagBits::eColor};
-
         m_depthImage = Image{m_logicalDevice, static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height), 
             vk::Format::eD24UnormS8Uint, vk::ImageUsageFlagBits::eDepthStencilAttachment, vk::ImageAspectFlagBits::eDepth, vk::ImageViewType::e2D};
         
+        m_entityImage = Image{m_logicalDevice, static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height), vk::Format::eR32Uint, vk::ImageUsageFlagBits::eColorAttachment, vk::ImageAspectFlagBits::eColor, vk::ImageViewType::e2D};
+
         m_clearner.AddJob([this]{
-            // m_colorImage.Destroy(m_logicalDevice);
             m_depthImage.Destroy(m_logicalDevice);
+            m_entityImage.Destroy(m_logicalDevice);
         });
     }
 
@@ -847,21 +863,31 @@ namespace Creepy {
             vk::AccessFlagBits2::eMemoryWrite, vk::AccessFlagBits2::eMemoryRead | vk::AccessFlagBits2::eMemoryWrite,
             vk::PipelineStageFlagBits2::eColorAttachmentOutput, vk::PipelineStageFlagBits2::eColorAttachmentOutput);
         
+        imageLayoutTransition(currentCommandBuffer, m_entityImage.GetImage(), vk::ImageAspectFlagBits::eColor, 
+            vk::ImageLayout::eUndefined, vk::ImageLayout::eColorAttachmentOptimal, vk::AccessFlagBits2::eMemoryRead,
+            vk::AccessFlagBits2::eMemoryRead | vk::AccessFlagBits2::eMemoryWrite, vk::PipelineStageFlagBits2::eColorAttachmentOutput, vk::PipelineStageFlagBits2::eColorAttachmentOutput);
+
         imageLayoutTransition(currentCommandBuffer, m_depthImage.GetImage(), vk::ImageAspectFlagBits::eDepth | vk::ImageAspectFlagBits::eStencil, 
             vk::ImageLayout::eUndefined, vk::ImageLayout::eDepthStencilAttachmentOptimal, 
             vk::AccessFlagBits2::eMemoryWrite, vk::AccessFlagBits2::eMemoryWrite | vk::AccessFlagBits2::eMemoryRead, 
             vk::PipelineStageFlagBits2::eEarlyFragmentTests | vk::PipelineStageFlagBits2::eLateFragmentTests,
             vk::PipelineStageFlagBits2::eEarlyFragmentTests | vk::PipelineStageFlagBits2::eLateFragmentTests);
 
+        this->drawSkyBox(currentCommandBuffer, currentSwapchainImageView);
         // auto sus = m_depthImage.GetImageExtent();
         // vk::Extent2D renderArea{std::min((uint32_t)m_width, sus.width), std::min((uint32_t)m_height, sus.height)};
-        this->drawModels(currentCommandBuffer, currentSwapchainImage, currentSwapchainImageView, m_depthImage.GetImage(), m_depthImage.GetImageView());
+        this->drawModels(currentCommandBuffer, currentSwapchainImageView, m_depthImage.GetImageView());
 
-        this->drawImGui(currentCommandBuffer, currentSwapchainImage, currentSwapchainImageView);
+        this->drawImGui(currentCommandBuffer, currentSwapchainImageView);
         // We cannot call image layout transition in here
 
          // End Draw Call
         imageLayoutTransition(currentCommandBuffer, currentSwapchainImage, 
+            vk::ImageAspectFlagBits::eColor, vk::ImageLayout::eColorAttachmentOptimal, vk::ImageLayout::ePresentSrcKHR, 
+            vk::AccessFlagBits2::eMemoryRead, vk::AccessFlagBits2::eMemoryRead | vk::AccessFlagBits2::eMemoryWrite,
+            vk::PipelineStageFlagBits2::eColorAttachmentOutput, vk::PipelineStageFlagBits2::eBottomOfPipe);
+        
+        imageLayoutTransition(currentCommandBuffer, m_entityImage.GetImage(), 
             vk::ImageAspectFlagBits::eColor, vk::ImageLayout::eColorAttachmentOptimal, vk::ImageLayout::ePresentSrcKHR, 
             vk::AccessFlagBits2::eMemoryRead, vk::AccessFlagBits2::eMemoryRead | vk::AccessFlagBits2::eMemoryWrite,
             vk::PipelineStageFlagBits2::eColorAttachmentOutput, vk::PipelineStageFlagBits2::eBottomOfPipe);
@@ -921,13 +947,21 @@ namespace Creepy {
         
     }
 
-    void VulkanEngine::drawModels(const vk::CommandBuffer currentCommandBuffer, const vk::Image colorImage, const vk::ImageView colorImageView, const vk::Image depthImage, const vk::ImageView depthImageView) {
-        vk::RenderingAttachmentInfo colorAttachmentInfo{};
-        colorAttachmentInfo.clearValue.color = {0.0f, 1.0f, 0.0f, 1.0f};
-        colorAttachmentInfo.imageLayout = vk::ImageLayout::eColorAttachmentOptimal;
-        colorAttachmentInfo.imageView = colorImageView;
-        colorAttachmentInfo.loadOp = vk::AttachmentLoadOp::eClear;
-        colorAttachmentInfo.storeOp = vk::AttachmentStoreOp::eStore;
+    void VulkanEngine::drawModels(const vk::CommandBuffer currentCommandBuffer, const vk::ImageView colorImageView, const vk::ImageView depthImageView) {
+        std::array<vk::RenderingAttachmentInfo, 2> colorAttachmentInfos;
+
+        colorAttachmentInfos[0].clearValue.color = {0.0f, 0.0f, 0.0f, 0.0f};
+        colorAttachmentInfos[0].imageLayout = vk::ImageLayout::eColorAttachmentOptimal;
+        colorAttachmentInfos[0].imageView = colorImageView;
+        colorAttachmentInfos[0].loadOp = vk::AttachmentLoadOp::eLoad;
+        colorAttachmentInfos[0].storeOp = vk::AttachmentStoreOp::eStore;
+
+        colorAttachmentInfos[1].clearValue.color = {0u, 0u, 0u, 0u};
+        colorAttachmentInfos[1].imageLayout = vk::ImageLayout::eColorAttachmentOptimal;
+        colorAttachmentInfos[1].imageView = m_entityImage.GetImageView();
+        colorAttachmentInfos[1].loadOp = vk::AttachmentLoadOp::eClear;
+        colorAttachmentInfos[1].storeOp = vk::AttachmentStoreOp::eStore;
+        
 
         vk::RenderingAttachmentInfo depthAttachmentInfo{};
         depthAttachmentInfo.clearValue.depthStencil.depth = 1.0f;
@@ -940,23 +974,14 @@ namespace Creepy {
         vk::RenderingInfo dynamicRenderInfo{};
         dynamicRenderInfo.flags = vk::RenderingFlags{};
         dynamicRenderInfo.layerCount = 1;
-        dynamicRenderInfo.colorAttachmentCount = 1;
-        dynamicRenderInfo.pColorAttachments = &colorAttachmentInfo;
+        dynamicRenderInfo.colorAttachmentCount = static_cast<uint32_t>(colorAttachmentInfos.size());
+        dynamicRenderInfo.pColorAttachments = colorAttachmentInfos.data();
         dynamicRenderInfo.pDepthAttachment = &depthAttachmentInfo;
         dynamicRenderInfo.renderArea = vk::Rect2D{{0, 0}, {static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height)}};
 
         currentCommandBuffer.beginRendering(dynamicRenderInfo);
 
         // Draw Call
-
-        const vk::Viewport viewPort{0.0f, 0.0f, static_cast<float>(m_width), static_cast<float>(m_height), 0.0f, 1.0f};
-        currentCommandBuffer.setViewport(0, viewPort);
-
-        const vk::Rect2D scissor{{0, 0}, {static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height)}};
-
-        currentCommandBuffer.setScissor(0, scissor);
-
-        this->drawSkyBox(currentCommandBuffer);
 
         currentCommandBuffer.bindPipeline(vk::PipelineBindPoint::eGraphics, m_backgroundPipeline.GetPipeline());
 
@@ -983,7 +1008,7 @@ namespace Creepy {
         currentCommandBuffer.endRendering();
     }
 
-    void VulkanEngine::drawImGui(const vk::CommandBuffer currentCommandBuffer, const vk::Image colorImage, const vk::ImageView colorImageView) {
+    void VulkanEngine::drawImGui(const vk::CommandBuffer currentCommandBuffer, const vk::ImageView colorImageView) {
         vk::RenderingAttachmentInfo colorAttachmentInfo{};
         colorAttachmentInfo.loadOp = vk::AttachmentLoadOp::eLoad;
         colorAttachmentInfo.storeOp = vk::AttachmentStoreOp::eStore;
@@ -1005,7 +1030,30 @@ namespace Creepy {
         currentCommandBuffer.endRendering();
     }
 
-    void VulkanEngine::drawSkyBox(const vk::CommandBuffer currentCommandBuffer) {
+    void VulkanEngine::drawSkyBox(const vk::CommandBuffer currentCommandBuffer, const vk::ImageView colorImageView) {
+        vk::RenderingAttachmentInfo colorAttachmentInfo{};
+        colorAttachmentInfo.clearValue.color = {0.0f, 1.0f, 0.0f, 1.0f};
+        colorAttachmentInfo.imageLayout = vk::ImageLayout::eColorAttachmentOptimal;
+        colorAttachmentInfo.imageView = colorImageView;
+        colorAttachmentInfo.loadOp = vk::AttachmentLoadOp::eClear;
+        colorAttachmentInfo.storeOp = vk::AttachmentStoreOp::eStore;
+
+        vk::RenderingInfo dynamicRenderInfo{};
+        dynamicRenderInfo.flags = vk::RenderingFlags{};
+        dynamicRenderInfo.layerCount = 1;
+        dynamicRenderInfo.colorAttachmentCount = 1;
+        dynamicRenderInfo.pColorAttachments = &colorAttachmentInfo;
+        dynamicRenderInfo.renderArea = vk::Rect2D{{0u, 0u}, {static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height)}};
+        
+        const vk::Viewport viewPort{0.0f, 0.0f, static_cast<float>(m_width), static_cast<float>(m_height), 0.0f, 1.0f};
+        currentCommandBuffer.setViewport(0, viewPort);
+
+        const vk::Rect2D scissor{{0, 0}, {static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height)}};
+
+        currentCommandBuffer.setScissor(0, scissor);
+
+        currentCommandBuffer.beginRendering(dynamicRenderInfo);
+
         currentCommandBuffer.bindPipeline(vk::PipelineBindPoint::eGraphics, m_skyBoxPipeline.GetPipeline());
 
         const std::array descriptorSets{
@@ -1014,6 +1062,8 @@ namespace Creepy {
         };
 
         m_models["SkyBox"].Draw(currentCommandBuffer, m_skyBoxPipeline.GetPipelineLayout(), descriptorSets);
+    
+        currentCommandBuffer.endRendering();
     }
 
     const VulkanFrame& VulkanEngine::getCurrentRenderFrame() const {

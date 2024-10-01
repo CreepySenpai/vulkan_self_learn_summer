@@ -10,7 +10,6 @@ namespace Creepy{
         m_pipelineLayoutInfo.pSetLayouts = descriptorSetLayouts.data();
         m_pipelineLayoutInfo.pushConstantRangeCount = static_cast<uint32_t>(pushConstants.size());
         m_pipelineLayoutInfo.pPushConstantRanges = pushConstants.data();
-
     }
 
     void PipelineState::InitShaderStates(vk::ShaderModule vertexShader, vk::ShaderModule fragmentShader){
@@ -93,7 +92,7 @@ namespace Creepy{
         m_depthStencilState.maxDepthBounds = 1.0f;
     }
 
-    void PipelineState::InitColorBlendState() {
+    void PipelineState::InitColorBlendState(std::span<const vk::PipelineColorBlendAttachmentState> colorBlendAttachments) {
         
         // m_colorAttachment.colorWriteMask = vk::ColorComponentFlagBits::eR | vk::ColorComponentFlagBits::eG | vk::ColorComponentFlagBits::eB | vk::ColorComponentFlagBits::eA;
         // m_colorAttachment.blendEnable = vk::True;
@@ -110,8 +109,8 @@ namespace Creepy{
         m_colorBlendState.flags = vk::PipelineColorBlendStateCreateFlags{};
         m_colorBlendState.logicOpEnable = vk::False;
         m_colorBlendState.logicOp = vk::LogicOp::eCopy;
-        m_colorBlendState.attachmentCount = 1;
-        m_colorBlendState.pAttachments = &m_colorAttachment;
+        m_colorBlendState.attachmentCount = static_cast<uint32_t>(colorBlendAttachments.size());
+        m_colorBlendState.pAttachments = colorBlendAttachments.data();
     }
 
     void PipelineState::InitDynamicState(std::span<const vk::DynamicState> dynamicStates) {
@@ -133,8 +132,8 @@ namespace Creepy{
     }
 
     void PipelineState::DisableBlending() {
-        m_colorAttachment.colorWriteMask = vk::ColorComponentFlagBits::eR | vk::ColorComponentFlagBits::eG | vk::ColorComponentFlagBits::eB | vk::ColorComponentFlagBits::eA;
-        m_colorAttachment.blendEnable = vk::False;
+        // m_colorAttachment.colorWriteMask = vk::ColorComponentFlagBits::eR | vk::ColorComponentFlagBits::eG | vk::ColorComponentFlagBits::eB | vk::ColorComponentFlagBits::eA;
+        // m_colorAttachment.blendEnable = vk::False;
     }
 
     void PipelineState::DisableDepthTest() {

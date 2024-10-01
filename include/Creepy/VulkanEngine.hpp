@@ -63,9 +63,9 @@ namespace Creepy {
 
         private:
             void onDraw();
-            void drawModels(const vk::CommandBuffer currentCommandBuffer, const vk::Image colorImage, const vk::ImageView colorImageView, const vk::Image depthImage, const vk::ImageView depthImageView);
-            void drawImGui(const vk::CommandBuffer currentCommandBuffer, const vk::Image colorImage, const vk::ImageView colorImageView);
-            void drawSkyBox(const vk::CommandBuffer currentCommandBuffer);
+            void drawModels(const vk::CommandBuffer currentCommandBuffer, const vk::ImageView colorImageView, const vk::ImageView depthImageView);
+            void drawImGui(const vk::CommandBuffer currentCommandBuffer, const vk::ImageView colorImageView);
+            void drawSkyBox(const vk::CommandBuffer currentCommandBuffer, const vk::ImageView colorImageView);
             
         private:
             int m_width{}, m_height{};
@@ -92,7 +92,7 @@ namespace Creepy {
             DescriptorSet m_skyBoxDescriptorSet;
 
             // Resources
-            // Image m_colorImage;
+            Image m_entityImage;
             Image m_depthImage;
 
             // Pipeline

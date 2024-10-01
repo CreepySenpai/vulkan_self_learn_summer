@@ -26,12 +26,14 @@ layout(location = 0) in vec3 inPosition;
 layout(location = 1) in vec3 inNormal;
 layout(location = 2) in vec2 inTexCoord;
 layout(location = 3) flat in vec3 inCameraPosition;
+layout(location = 4) flat in uint inEntityID;
 
 // Uniform Var
 
 layout(set = 1, binding = 0) uniform sampler2D myTextures[];
 
 layout(location = 0) out vec4 finalColor;
+layout(location = 1) out uint finalEntityID;
 
 vec3 phongLightModel(in vec3 vertexPosition, in vec3 normal, in vec3 cameraPosition){
     const vec3 ambient = vec3(FragmentPushConstantData.lightBuffer.lightAmbientColor * FragmentPushConstantData.materialBuffer.materialAmbient);
@@ -90,7 +92,6 @@ vec3 toonShader(in vec3 vertexPosition, in vec3 normal, in vec3 cameraPosition){
 }
 
 void main(){
-    // const vec4 texMap = texture(myTexture, inTexCoord);
     const vec4 texMap = texture(myTextures[FragmentPushConstantData.diffuseTextureID], inTexCoord);
 
     // const vec3 lightInCome = phongLightModel(inPosition, normalize(inNormal), inCameraPosition);
@@ -101,4 +102,5 @@ void main(){
 
     finalColor = texMap * vec4(lightInCome, 1.0);
 
+    finalEntityID = inEntityID;
 }

@@ -13,7 +13,7 @@ namespace Creepy{
             void InitRasterizationState(vk::PolygonMode polygonMode, vk::CullModeFlags cullMode, vk::FrontFace frontFace);
             void InitMultiSamplerState();
             void InitDepthStencilState(vk::CompareOp depthCompareOp);
-            void InitColorBlendState();
+            void InitColorBlendState(std::span<const vk::PipelineColorBlendAttachmentState> colorBlendAttachments);
             void InitDynamicState(std::span<const vk::DynamicState> dynamicStates);
             void InitRenderingInfo(std::span<const vk::Format> colorAttachmentFormats, vk::Format depthAttachmentFormat);
 
@@ -23,6 +23,7 @@ namespace Creepy{
             void DisableBlending();
             void DisableDepthTest();
             void EnableDepthTest();
+
         private:
             friend class Pipeline;
             std::vector<vk::PipelineShaderStageCreateInfo> m_shaderStates;
@@ -36,7 +37,6 @@ namespace Creepy{
             vk::PipelineColorBlendStateCreateInfo m_colorBlendState{};
             vk::PipelineDynamicStateCreateInfo m_dynamicState{};
             vk::PipelineRenderingCreateInfo m_renderingInfo{};
-            vk::PipelineColorBlendAttachmentState m_colorAttachment{};
     };
 
     class Pipeline{
