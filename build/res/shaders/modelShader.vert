@@ -20,7 +20,7 @@ layout(location = 2) in vec2 inTexCoord;
 layout(location = 0) out vec3 outPosition;
 layout(location = 1) out vec3 outNormal;
 layout(location = 2) out vec2 outTexCoord;
-layout(location = 3) out vec3 outCameraPosition;
+layout(location = 3) flat out vec3 outCameraPosition;
 
 void main(){
     mat4 mvpMatrix = TransFormData.projectionMatrix * TransFormData.viewMatrix * TransFormData.modelMatrix;
@@ -35,5 +35,7 @@ void main(){
     outNormal = mat3(TransFormData.modelMatrix) * inNormal;
     outTexCoord = inTexCoord;
     
+    // TODO: Change to view space
+    // outCameraPosition = TransFormData.viewMatrix * TransFormData.modelMatrix * TransFormData.cameraPosition.xyz;
     outCameraPosition = TransFormData.cameraPosition.xyz;
 }

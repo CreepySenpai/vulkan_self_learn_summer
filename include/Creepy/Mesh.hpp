@@ -4,6 +4,7 @@
 #include "Vertex.hpp"
 #include "Texture.hpp"
 #include "VulkanBuffer.hpp"
+#include "PushConstant.hpp"
 #include <glm/glm.hpp>
 
 namespace Creepy{
@@ -17,7 +18,11 @@ namespace Creepy{
             void UploadData(const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue, std::span<const Vertex> vertices, std::span<const uint32_t> indices) const;
 
             void Draw(const vk::CommandBuffer commandBuffer, const vk::PipelineLayout pipelineLayout, std::span<const vk::DescriptorSet> descriptorSets);
-            void Draw(const vk::CommandBuffer commandBuffer, const vk::PipelineLayout pipelineLayout, std::span<const vk::DescriptorSet> descriptorSets, const glm::mat4& modelTransformMatrix, std::span<const vk::DeviceAddress> bufferAddresses);
+            void Draw(const vk::CommandBuffer commandBuffer, const vk::PipelineLayout pipelineLayout, std::span<const vk::DescriptorSet> descriptorSets, const glm::mat4& modelTransformMatrix);
+
+            void Draw(const vk::CommandBuffer commandBuffer, const vk::PipelineLayout pipelineLayout, std::span<const vk::DescriptorSet> descriptorSets, const glm::mat4& modelTransformMatrix, FragmentPushConstantData fragmentPushConstantData);
+
+            void Draw(const vk::CommandBuffer commandBuffer, const vk::PipelineLayout pipelineLayout, const glm::mat4& modelTransformMatrix, FragmentPushConstantData fragmentPushConstantData);
 
             void Destroy(const vk::Device device) const;
 

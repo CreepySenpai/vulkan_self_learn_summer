@@ -88,7 +88,8 @@ namespace Creepy {
 
             vk::DescriptorPool m_descriptorPool;
             DescriptorSet m_uniformBufferDescriptorSet;
-            vk::DescriptorSetLayout m_textureDescriptorSetLayout;
+            DescriptorSet m_descriptorIndexingDescriptorSet;
+            DescriptorSet m_skyBoxDescriptorSet;
 
             // Resources
             // Image m_colorImage;

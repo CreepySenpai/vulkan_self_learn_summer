@@ -38,6 +38,14 @@ namespace Creepy{
                 m_isUpdateDescriptorSet = true;
             }
 
+            uint32_t GetTextureIndex() const {
+                return m_textureIndex;
+            }
+
+            void SetTextureIndex(uint32_t textureIndex){
+                m_textureIndex = textureIndex;
+            }
+
             void Destroy(const vk::Device device) const {
                 device.destroySampler(m_sampler); 
                 m_image.Destroy(device);
@@ -47,12 +55,14 @@ namespace Creepy{
             Image m_image;
             vk::Sampler m_sampler;
             vk::DescriptorSet m_imageDescriptorSet;
+            uint32_t m_textureIndex;
             bool m_isUpdateDescriptorSet{false};
     };
 
     class Texture : public BaseTexture {
         public:
             void LoadTexture(const std::filesystem::path& filePath, const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue);
+        
         private:
             void createSampler(const vk::Device device);
     };
@@ -98,7 +108,13 @@ namespace Creepy{
                 return TextureManager::GetTexture<T>(textureName);
             }
 
+            static uint32_t GetTotalTexture2D();
+
+            static uint32_t GetTotalTextureCubeMap();
+
         private:
             static inline std::unordered_map<std::string, TextureType> s_texturesMap;
+            static inline uint32_t s_totalTexture2D{};
+            static inline uint32_t s_totalTextureCubeMap{};
     };
 }

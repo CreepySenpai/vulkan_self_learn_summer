@@ -15,13 +15,21 @@ namespace Creepy {
 
     class DescriptorSetBuilder{
         public:
-            void AddBinding(const uint32_t binding, vk::DescriptorType type, vk::ShaderStageFlags shaderStage);
+            void AddBinding(const uint32_t binding, const uint32_t descriptorCount, vk::DescriptorType type, vk::ShaderStageFlags shaderStage);
             
+            void AddBindingWithFlag(const uint32_t binding, const uint32_t descriptorCount, vk::DescriptorType type, vk::ShaderStageFlags shaderStage, vk::DescriptorBindingFlags bindingFlags);
+
             vk::DescriptorSetLayout BuildDescriptorLayout(const vk::Device device);
 
+            //TODO: Change name
+            vk::DescriptorSetLayout BuildDescriptorLayoutWithFlags(const vk::Device device);
+
             DescriptorSet AllocateDescriptorSet(const vk::Device device, const vk::DescriptorPool descriptorPool);
+            
+            DescriptorSet AllocateDescriptorSetWithFlags(const vk::Device device, const vk::DescriptorPool descriptorPool);
         private:
             std::vector<vk::DescriptorSetLayoutBinding> m_bindings;
+            std::vector<vk::DescriptorBindingFlags> m_bindingFlags;
             vk::DescriptorSetLayout m_descriptorSetLayout{};
     };
     
@@ -53,19 +61,21 @@ namespace Creepy {
     concept IsTexture = requires(T texture){
         {texture.GetSampler()} -> std::same_as<vk::Sampler>;
         {texture.GetImageView()} -> std::same_as<vk::ImageView>;
+        {texture.GetTextureIndex()} -> std::same_as<uint32_t>;
     };
 
     struct DescriptorImageInfo{
         constexpr DescriptorImageInfo() = default;
 
         constexpr DescriptorImageInfo(const uint32_t binding, const uint32_t descriptorCount, const vk::DescriptorType descriptorType, const IsTexture auto& texture)
-            : m_binding{binding}, m_descriptorCount{descriptorCount}, m_descriptorType{descriptorType}, m_imageInfo{texture.GetSampler(), texture.GetImageView(), vk::ImageLayout::eShaderReadOnlyOptimal}
+            : m_binding{binding}, m_descriptorCount{descriptorCount}, m_descriptorArrayIndex{texture.GetTextureIndex()}, m_descriptorType{descriptorType}, m_imageInfo{texture.GetSampler(), texture.GetImageView(), vk::ImageLayout::eShaderReadOnlyOptimal}
         {
-
+            std::println("Update Texture Index: {}", m_descriptorArrayIndex);
         }
 
         uint32_t m_binding{};
         uint32_t m_descriptorCount{};
+        uint32_t m_descriptorArrayIndex{};
         vk::DescriptorType m_descriptorType{};
         vk::DescriptorImageInfo m_imageInfo{};
     };

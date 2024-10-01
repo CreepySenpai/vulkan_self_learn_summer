@@ -5,6 +5,7 @@
 #include <Creepy/VulkanShader.hpp>
 #include <Creepy/Debug.hpp>
 #include <Creepy/Input.hpp>
+#include <Creepy/PushConstant.hpp>
 
 #include <GLFW/glfw3.h>
 #include <imgui/imgui.hpp>
@@ -243,7 +244,7 @@ namespace Creepy {
         queueInfo.queueFamilyIndex = 0;
         queueInfo.pQueuePriorities = queuePriorities;
         
-        vk::StructureChain<vk::DeviceCreateInfo, vk::PhysicalDeviceFeatures2, vk::PhysicalDeviceVulkan12Features, vk::PhysicalDeviceVulkan13Features, vk::PhysicalDeviceDescriptorBufferFeaturesEXT> deviceChain;
+        vk::StructureChain<vk::DeviceCreateInfo, vk::PhysicalDeviceFeatures2, vk::PhysicalDeviceVulkan12Features, vk::PhysicalDeviceVulkan13Features, vk::PhysicalDeviceShaderObjectFeaturesEXT, vk::PhysicalDeviceDescriptorBufferFeaturesEXT> deviceChain;
         
         auto& deviceInfo = deviceChain.get<vk::DeviceCreateInfo>();
         deviceInfo.flags = vk::DeviceCreateFlags{};
@@ -265,13 +266,17 @@ namespace Creepy {
         vulkan12Features.runtimeDescriptorArray = vk::True;
         vulkan12Features.shaderSampledImageArrayNonUniformIndexing = vk::True;
         vulkan12Features.descriptorBindingVariableDescriptorCount = vk::True;
+        vulkan12Features.descriptorBindingPartiallyBound = vk::True;
 
         auto& vulkan13Features = deviceChain.get<vk::PhysicalDeviceVulkan13Features>();
         vulkan13Features.dynamicRendering = vk::True;
         vulkan13Features.synchronization2 = vk::True;
         
+        auto& shaderObj = deviceChain.get<vk::PhysicalDeviceShaderObjectFeaturesEXT>();
+        shaderObj.shaderObject = vk::False;
+
         auto& descriptorBuffer = deviceChain.get<vk::PhysicalDeviceDescriptorBufferFeaturesEXT>();
-        descriptorBuffer.descriptorBuffer = vk::True;
+        descriptorBuffer.descriptorBuffer = vk::False;
 
         auto res = m_physicalDevice.createDevice(deviceInfo);
 
@@ -450,7 +455,8 @@ namespace Creepy {
         };
 
         vk::DescriptorPoolCreateInfo descInfo{};
-        descInfo.flags = vk::DescriptorPoolCreateFlagBits::eFreeDescriptorSet;
+        // descInfo.flags = vk::DescriptorPoolCreateFlagBits::eFreeDescriptorSet;
+        descInfo.flags = vk::DescriptorPoolCreateFlagBits::eFreeDescriptorSet | vk::DescriptorPoolCreateFlagBits::eUpdateAfterBind;
         descInfo.maxSets = maxSets;
         descInfo.poolSizeCount = static_cast<uint32_t>(descSizes.size());
         descInfo.pPoolSizes = descSizes.data();
@@ -487,7 +493,7 @@ namespace Creepy {
         // Set Up DescriptorSet For Uniform Buffer - Set 1
         {
             DescriptorSetBuilder builder{};
-            builder.AddBinding(0, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eVertex);
+            builder.AddBinding(0, 1, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eVertex);
             
             builder.BuildDescriptorLayout(m_logicalDevice);
             m_uniformBufferDescriptorSet = builder.AllocateDescriptorSet(m_logicalDevice, m_descriptorPool);
@@ -500,62 +506,62 @@ namespace Creepy {
             writer.UpdateDescriptorSets(m_logicalDevice);
         }
 
-        {
+        {   // TODO: Descriptor Indexing
+            DescriptorSetBuilder builder{};
+            // We use big pool for descriptor
+            builder.AddBindingWithFlag(0, 100, vk::DescriptorType::eCombinedImageSampler, vk::ShaderStageFlagBits::eFragment, vk::DescriptorBindingFlagBits::ePartiallyBound);
+
+            builder.BuildDescriptorLayoutWithFlags(m_logicalDevice);
+        
+            m_descriptorIndexingDescriptorSet = builder.AllocateDescriptorSetWithFlags(m_logicalDevice, m_descriptorPool);
+
+            
             if(!m_models.empty()){
-
-                DescriptorSetBuilder builder{};
-                builder.AddBinding(0, vk::DescriptorType::eCombinedImageSampler, vk::ShaderStageFlagBits::eFragment);
-                m_textureDescriptorSetLayout = builder.BuildDescriptorLayout(m_logicalDevice);
                 
-                for(auto& [_, model] : m_models){
-                    
-                    for(auto& mesh : model.GetMeshes()){
+                DescriptorImageInfoBuilder imgBuilder{};
 
-                        for(auto& texture : mesh.GetTextures()){
-                            // Note: If Texture Already Update Descriptor Set Then We Don't Need Repeat
+                for(auto&& [_, model] : m_models){
+                    for(auto&& mesh : model.GetMeshes()){
+                        for(const auto texture : mesh.GetTextures()){
                             if(texture->IsUpdateDescriptorSet()){
                                 continue;
                             }
-
-                            static int suckCount{};
-                            std::println("Total update: {}", ++suckCount);
-                            auto temp = builder.AllocateDescriptorSet(m_logicalDevice, m_descriptorPool);
-                            texture->SetDescriptorSet(temp.DescriptorSet);
-                            DescriptorImageInfoBuilder imageDescriptorBuilder{};
-                            imageDescriptorBuilder.AddBinding(0, 1, vk::DescriptorType::eCombinedImageSampler, *texture);
-
-                            DescriptorSetWriter writer{};
-                            writer.AddImageBinding(texture->GetDescriptorSet(), imageDescriptorBuilder);
-                            writer.UpdateDescriptorSets(m_logicalDevice);
+                            
+                            imgBuilder.AddBinding(0, 1, vk::DescriptorType::eCombinedImageSampler, *texture);
 
                             texture->UpdateDescriptorSet();
                         }
-
                     }
-                    
                 }
 
-                {   
-                    auto temp = builder.AllocateDescriptorSet(m_logicalDevice, m_descriptorPool);
-                    m_skyBoxTexture.SetDescriptorSet(temp.DescriptorSet);
-                    // For SkyBox
-                    DescriptorImageInfoBuilder skyBoxDescriptorBuilder{};
-                    skyBoxDescriptorBuilder.AddBinding(0, 1, vk::DescriptorType::eCombinedImageSampler, m_skyBoxTexture);
-                    
-                    DescriptorSetWriter writer{};
-                    writer.AddImageBinding(m_skyBoxTexture.GetDescriptorSet(), skyBoxDescriptorBuilder);
-                    writer.UpdateDescriptorSets(m_logicalDevice);
-                }
+                DescriptorSetWriter writer{};
 
+                writer.AddImageBinding(m_descriptorIndexingDescriptorSet.DescriptorSet, imgBuilder);
+                writer.UpdateDescriptorSets(m_logicalDevice);
             }
-
         }
 
-        
+
+        {
+            DescriptorSetBuilder builder{};
+            builder.AddBinding(0, 1, vk::DescriptorType::eCombinedImageSampler, vk::ShaderStageFlagBits::eFragment);
+            builder.BuildDescriptorLayout(m_logicalDevice);
+
+            m_skyBoxDescriptorSet = builder.AllocateDescriptorSet(m_logicalDevice, m_descriptorPool);
+            m_skyBoxTexture.SetDescriptorSet(m_skyBoxDescriptorSet.DescriptorSet);
+            // For SkyBox
+            DescriptorImageInfoBuilder skyBoxDescriptorBuilder{};
+            skyBoxDescriptorBuilder.AddBinding(0, 1, vk::DescriptorType::eCombinedImageSampler, m_skyBoxTexture);
+            
+            DescriptorSetWriter writer{};
+            writer.AddImageBinding(m_skyBoxTexture.GetDescriptorSet(), skyBoxDescriptorBuilder);
+            writer.UpdateDescriptorSets(m_logicalDevice);
+        }
 
         m_clearner.AddJob([this]{
             m_logicalDevice.destroyDescriptorSetLayout(m_uniformBufferDescriptorSet.DescriptorSetLayout);
-            m_logicalDevice.destroyDescriptorSetLayout(m_textureDescriptorSetLayout);
+            m_logicalDevice.destroyDescriptorSetLayout(m_descriptorIndexingDescriptorSet.DescriptorSetLayout);
+            m_logicalDevice.destroyDescriptorSetLayout(m_skyBoxDescriptorSet.DescriptorSetLayout);
         });
     }
 
@@ -584,9 +590,15 @@ namespace Creepy {
         // TODO: ADD Texture DescriptorSetLayout
         const std::array descriptorSetLayouts{
             m_uniformBufferDescriptorSet.DescriptorSetLayout,
-            m_textureDescriptorSetLayout
+            m_descriptorIndexingDescriptorSet.DescriptorSetLayout,
         };
 
+        // NOTE: Just use to cal size
+        struct Dummy{
+            vk::DeviceAddress a;
+            vk::DeviceAddress b;
+            uint32_t c;
+        };
         // TODO: Transform matrix + Buffer Address
         const std::array pushConstants{
             vk::PushConstantRange{
@@ -597,7 +609,7 @@ namespace Creepy {
             vk::PushConstantRange{
                 vk::ShaderStageFlagBits::eFragment,
                 sizeof(glm::mat4),
-                sizeof(vk::DeviceAddress) * 2
+                sizeof(Dummy)
             },
         };
 
@@ -632,8 +644,13 @@ namespace Creepy {
         //////////////////////////////////////////////////////////////////////
         const Shader skyBoxVertexShader{m_logicalDevice, readShaderSPVFile("./res/shaders/skyBoxVert.spv"), vk::ShaderStageFlagBits::eVertex};
         const Shader skyBoxFragmentShader{m_logicalDevice, readShaderSPVFile("./res/shaders/skyBoxFrag.spv"), vk::ShaderStageFlagBits::eFragment};
+        
+        const std::array descriptorSetLayouts2{
+            m_uniformBufferDescriptorSet.DescriptorSetLayout,
+            m_skyBoxDescriptorSet.DescriptorSetLayout
+        };
 
-        pipelineState.InitPipelineLayout(descriptorSetLayouts, {});
+        pipelineState.InitPipelineLayout(descriptorSetLayouts2, {});
         pipelineState.InitShaderStates(skyBoxVertexShader.GetShaderModule(), skyBoxFragmentShader.GetShaderModule());
         m_skyBoxPipeline.Build(m_logicalDevice, pipelineState);
 
@@ -747,9 +764,9 @@ namespace Creepy {
 
         m_models["SkyBox"].LoadModel("./res/models/cube.gltf", m_logicalDevice, m_cmdPool, m_graphicQueue);
 
-        // m_models["Waifu"].LoadModel("./res/models/waifu.gltf", m_logicalDevice, m_cmdPool, m_graphicQueue);
+        m_models["Waifu"].LoadModel("./res/models/waifu.gltf", m_logicalDevice, m_cmdPool, m_graphicQueue);
 
-        // m_models["Waifu"].SetMaterialIndex(m_materialManager.AddMaterial(m_logicalDevice));
+        m_models["Waifu"].SetMaterialIndex(m_materialManager.AddMaterial(m_logicalDevice));
 
         std::array<std::filesystem::path, 6> cubePaths{
             "./res/textures/skybox/right.jpg",
@@ -943,20 +960,24 @@ namespace Creepy {
 
         currentCommandBuffer.bindPipeline(vk::PipelineBindPoint::eGraphics, m_backgroundPipeline.GetPipeline());
 
+        const std::array descriptorSets2{
+            m_uniformBufferDescriptorSet.DescriptorSet,
+            m_descriptorIndexingDescriptorSet.DescriptorSet
+        };
+
+        currentCommandBuffer.bindDescriptorSets(vk::PipelineBindPoint::eGraphics, m_backgroundPipeline.GetPipelineLayout(), 0, descriptorSets2, nullptr);
+
         for(auto& [name, model] : m_models){
             if(name == "SkyBox"){
                 continue;
             }
-            const std::array bufferAddresses{
-                m_uniformBuffer.lightBufferAddress,
-                m_materialManager.GetBufferAddress(model.GetMaterialIndex())
+
+            FragmentPushConstantData fragmentPushConstantData{
+                .lightBufferPtr = m_uniformBuffer.lightBufferAddress,
+                .materialBufferPtr = m_materialManager.GetBufferAddress(model.GetMaterialIndex()),
             };
-            
-            // First Set For Uniform Buffer
-            const std::array descriptorSets{
-                m_uniformBufferDescriptorSet.DescriptorSet
-            };
-            model.Draw(currentCommandBuffer, m_backgroundPipeline.GetPipelineLayout(), descriptorSets, bufferAddresses);
+
+            model.Draw(currentCommandBuffer, m_backgroundPipeline.GetPipelineLayout(), fragmentPushConstantData);
         }
 
         currentCommandBuffer.endRendering();
@@ -989,10 +1010,10 @@ namespace Creepy {
 
         const std::array descriptorSets{
             m_uniformBufferDescriptorSet.DescriptorSet,
-            m_skyBoxTexture.GetDescriptorSet()
+            m_skyBoxDescriptorSet.DescriptorSet
         };
-        m_models["SkyBox"].Draw(currentCommandBuffer, m_skyBoxPipeline.GetPipelineLayout(), descriptorSets);
 
+        m_models["SkyBox"].Draw(currentCommandBuffer, m_skyBoxPipeline.GetPipelineLayout(), descriptorSets);
     }
 
     const VulkanFrame& VulkanEngine::getCurrentRenderFrame() const {

@@ -180,12 +180,18 @@ namespace Creepy{
     void TextureManager::LoadTexture2D(const std::filesystem::path& filePath, const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue) {
         auto&& textureName = filePath.stem().string();
         s_texturesMap[textureName] = Texture{};
-        std::get<Texture>(s_texturesMap[textureName]).LoadTexture(filePath, device, commandPool, queue);
+
+        auto&& texture2D = std::get<Texture>(s_texturesMap[textureName]);
+        texture2D.LoadTexture(filePath, device, commandPool, queue);
+        texture2D.SetTextureIndex(s_totalTexture2D++);
     }
 
     void TextureManager::LoadTextureCubeMap(const std::string& textureName, std::span<const std::filesystem::path> filePaths, const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue) {
         s_texturesMap[textureName] = TextureCubeMap{};
-        std::get<TextureCubeMap>(s_texturesMap[textureName]).LoadTextureCubeMap(filePaths, device, commandPool, queue);
+        
+        auto&& textureCubeMap = std::get<TextureCubeMap>(s_texturesMap[textureName]);
+        textureCubeMap.LoadTextureCubeMap(filePaths, device, commandPool, queue);
+        textureCubeMap.SetTextureIndex(s_totalTextureCubeMap++);
     }
 
     bool TextureManager::IsContainTexture(const std::string& textureName) {
@@ -205,5 +211,13 @@ namespace Creepy{
             }, texture);
         }
 
+    }
+
+    uint32_t TextureManager::GetTotalTexture2D() {
+        return s_totalTexture2D;
+    }
+
+    uint32_t TextureManager::GetTotalTextureCubeMap() {
+        return s_totalTextureCubeMap;
     }
 }

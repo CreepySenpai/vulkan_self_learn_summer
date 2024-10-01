@@ -1,6 +1,7 @@
 #version 460 core
 
 #extension GL_EXT_buffer_reference : require
+#extension GL_EXT_nonuniform_qualifier : require
 
 layout(buffer_reference, std430, buffer_reference_align = 16) readonly buffer LightBuffer{
     vec4 lightPosition;
@@ -18,15 +19,17 @@ layout(buffer_reference, std430, buffer_reference_align = 16) readonly buffer Ma
 layout(push_constant) uniform _fragmentPushConstant{
     layout(offset = 64) LightBuffer lightBuffer;
     layout(offset = 72) MaterialBuffer materialBuffer;
+    layout(offset = 80) uint diffuseTextureID;
 } FragmentPushConstantData;
 
 layout(location = 0) in vec3 inPosition;
 layout(location = 1) in vec3 inNormal;
 layout(location = 2) in vec2 inTexCoord;
-layout(location = 3) in vec3 inCameraPosition;
+layout(location = 3) flat in vec3 inCameraPosition;
 
 // Uniform Var
-layout(set = 1, binding = 0) uniform sampler2D myTexture;
+
+layout(set = 1, binding = 0) uniform sampler2D myTextures[];
 
 layout(location = 0) out vec4 finalColor;
 
@@ -87,7 +90,8 @@ vec3 toonShader(in vec3 vertexPosition, in vec3 normal, in vec3 cameraPosition){
 }
 
 void main(){
-    const vec4 texMap = texture(myTexture, inTexCoord);
+    // const vec4 texMap = texture(myTexture, inTexCoord);
+    const vec4 texMap = texture(myTextures[FragmentPushConstantData.diffuseTextureID], inTexCoord);
 
     // const vec3 lightInCome = phongLightModel(inPosition, normalize(inNormal), inCameraPosition);
 

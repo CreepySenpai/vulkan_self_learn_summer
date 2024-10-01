@@ -21,8 +21,10 @@ namespace Creepy{
 
             void Draw(const vk::CommandBuffer commandBuffer, const vk::PipelineLayout pipelineLayout, std::span<const vk::DescriptorSet> descriptorSets);
             
-            void Draw(const vk::CommandBuffer commandBuffer, const vk::PipelineLayout pipelineLayout, std::span<const vk::DescriptorSet> descriptorSets, std::span<const vk::DeviceAddress> bufferAddresses);
+            void Draw(const vk::CommandBuffer commandBuffer, const vk::PipelineLayout pipelineLayout, std::span<const vk::DescriptorSet> descriptorSets, FragmentPushConstantData fragmentPushConstantData);
             
+            void Draw(const vk::CommandBuffer commandBuffer, const vk::PipelineLayout pipelineLayout, FragmentPushConstantData fragmentPushConstantData);
+
             glm::vec3& GetPosition();
 
             glm::vec3& GetRotation();
