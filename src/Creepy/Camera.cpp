@@ -115,7 +115,7 @@ namespace Creepy {
     void Camera::SetViewFrustum(float nearClip, float farClip) {
         m_nearClip = nearClip;
         m_farClip = farClip;
-
+        
         this->updateProjectionMatrix();
     }
 

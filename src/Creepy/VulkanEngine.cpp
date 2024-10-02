@@ -244,7 +244,7 @@ namespace Creepy {
         queueInfo.queueFamilyIndex = 0;
         queueInfo.pQueuePriorities = queuePriorities;
         
-        vk::StructureChain<vk::DeviceCreateInfo, vk::PhysicalDeviceFeatures2, vk::PhysicalDeviceVulkan12Features, vk::PhysicalDeviceVulkan13Features, vk::PhysicalDeviceShaderObjectFeaturesEXT, vk::PhysicalDeviceDescriptorBufferFeaturesEXT> deviceChain;
+        vk::StructureChain<vk::DeviceCreateInfo, vk::PhysicalDeviceFeatures2, vk::PhysicalDeviceVulkan12Features, vk::PhysicalDeviceVulkan13Features> deviceChain;
         
         auto& deviceInfo = deviceChain.get<vk::DeviceCreateInfo>();
         deviceInfo.flags = vk::DeviceCreateFlags{};
@@ -271,12 +271,6 @@ namespace Creepy {
         auto& vulkan13Features = deviceChain.get<vk::PhysicalDeviceVulkan13Features>();
         vulkan13Features.dynamicRendering = vk::True;
         vulkan13Features.synchronization2 = vk::True;
-        
-        auto& shaderObj = deviceChain.get<vk::PhysicalDeviceShaderObjectFeaturesEXT>();
-        shaderObj.shaderObject = vk::False;
-
-        auto& descriptorBuffer = deviceChain.get<vk::PhysicalDeviceDescriptorBufferFeaturesEXT>();
-        descriptorBuffer.descriptorBuffer = vk::False;
 
         auto res = m_physicalDevice.createDevice(deviceInfo);
 
@@ -573,7 +567,7 @@ namespace Creepy {
 
         // Because we use interleave buffer type -> only need 1 binding
         constexpr std::array vertexBindings{
-            vk::VertexInputBindingDescription{0, sizeof(Vertex), vk::VertexInputRate::eVertex},
+            vk::VertexInputBindingDescription{0, sizeof(VertexInterLeave), vk::VertexInputRate::eVertex},
         };
         
         //TODO: Maybe change offset
@@ -744,7 +738,7 @@ namespace Creepy {
         //     Vertex{.Position = glm::vec3{0.5f, -0.5f, 0.0f}, .Normal = glm::vec3{1.0f, 0.0f, 0.0f}, .TexCoord = glm::vec2{1.0f, 0.0f}},
         // };
 
-        // m_triangleVertexBuffer = VertexBuffer{m_logicalDevice, vertices.size() * sizeof(Vertex)};
+        // m_triangleVertexBuffer = VertexBuffer{m_logicalDevice, vertices.size() * sizeof(VertexInterLeave)};
 
         // m_triangleVertexBuffer.UploadData(m_logicalDevice, m_cmdPool, m_graphicQueue, vertices);
 

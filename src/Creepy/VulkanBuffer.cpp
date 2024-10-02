@@ -250,4 +250,20 @@ namespace Creepy{
         std::memcpy(static_cast<void*>(newMapped), data, dataSizeInByte);
     }
     
+
+    /////////////////////////////////////////////////////////////////////////////////////////////
+
+    SeparateVertexBuffer::SeparateVertexBuffer(const vk::Device device, const VertexSeparate& vertexSeparate)
+        : PositionBuffer{device, vertexSeparate.Positions.size() * sizeof(glm::vec3)},
+          NormalBuffer{device, vertexSeparate.Normals.size() * sizeof(glm::vec3)},
+          TexCoordBuffer{device, vertexSeparate.TexCoords.size() * sizeof(glm::vec2)}
+    {
+        
+    }
+
+    void SeparateVertexBuffer::UploadData(const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue, const VertexSeparate& vertexSeparate) {
+        PositionBuffer.UploadData(device, commandPool, queue, vertexSeparate.Positions);
+        NormalBuffer.UploadData(device, commandPool, queue, vertexSeparate.Normals);
+        TexCoordBuffer.UploadData(device, commandPool, queue, vertexSeparate.TexCoords);
+    }
 }

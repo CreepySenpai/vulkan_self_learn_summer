@@ -66,6 +66,8 @@ namespace Creepy {
             vk::Buffer m_buffer;
             vk::BufferView m_bufferView;
             vma::Allocation m_bufferLoc;
+
+            // TODO: Maybe use another way to reduce buffer size
             vma::AllocationInfo m_bufferInfo;
             uint64_t m_bufferSize;
     };
@@ -222,7 +224,7 @@ namespace Creepy {
     template <typename T>
     using StagingBuffer = BufferWrapperNoView<BufferType::HOST_VISIBLE, T, vk::BufferUsageFlagBits::eTransferSrc>;
 
-    using VertexBuffer = BufferWrapperNoView<BufferType::DEVICE_LOCAL, Vertex, vk::BufferUsageFlagBits::eVertexBuffer, vk::BufferUsageFlagBits::eTransferDst>;
+    using InterLeaveVertexBuffer = BufferWrapperNoView<BufferType::DEVICE_LOCAL, VertexInterLeave, vk::BufferUsageFlagBits::eVertexBuffer, vk::BufferUsageFlagBits::eTransferDst>;
     using IndexBuffer = BufferWrapperNoView<BufferType::DEVICE_LOCAL, uint32_t, vk::BufferUsageFlagBits::eIndexBuffer, vk::BufferUsageFlagBits::eTransferDst>;
     
     struct UniformBuffer{
@@ -234,6 +236,26 @@ namespace Creepy {
     };
 
     using MaterialBuffer = BufferWrapperNoView<BufferType::HOST_COHERENT, MaterialData, vk::BufferUsageFlagBits::eShaderDeviceAddress>;
+
+
+    struct SeparateVertexBuffer{
+        private:
+            using Vec3fBuffer = BufferWrapperNoView<BufferType::DEVICE_LOCAL, glm::vec3, vk::BufferUsageFlagBits::eVertexBuffer, vk::BufferUsageFlagBits::eTransferDst>;
+            using Vec2fBuffer = BufferWrapperNoView<BufferType::DEVICE_LOCAL, glm::vec2, vk::BufferUsageFlagBits::eVertexBuffer, vk::BufferUsageFlagBits::eTransferDst>;
+            using Vec1uiBuffer = BufferWrapperNoView<BufferType::DEVICE_LOCAL, uint32_t, vk::BufferUsageFlagBits::eVertexBuffer, vk::BufferUsageFlagBits::eTransferDst>;
+        
+        public:
+            SeparateVertexBuffer() = default;
+
+            SeparateVertexBuffer(const vk::Device device, const VertexSeparate& vertexSeparate);
+
+            void UploadData(const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue, const VertexSeparate& vertexSeparate);
+            
+        public:
+            Vec3fBuffer PositionBuffer;
+            Vec3fBuffer NormalBuffer;
+            Vec2fBuffer TexCoordBuffer;
+    };
 }
 
 // Template Instanciation

@@ -3,15 +3,23 @@
 
 namespace Creepy{
 
-    Mesh::Mesh(const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue, std::span<const Vertex> vertices, std::span<const uint32_t> indices, std::span<Texture*> textures, const glm::mat4& currentMeshTransform)
-        : m_vertexBuffer{device, vertices.size() * sizeof(Vertex)}, m_indexBuffer{device, indices.size() * sizeof(uint32_t)},
+    Mesh::Mesh(const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue, std::span<const VertexInterLeave> vertices, std::span<const uint32_t> indices, std::span<Texture*> textures, const glm::mat4& currentMeshTransform)
+        : m_vertexBuffer{device, vertices.size() * sizeof(VertexInterLeave)}, m_indexBuffer{device, indices.size() * sizeof(uint32_t)},
           m_textures{textures.begin(), textures.end()},
           m_currentMeshTransform{currentMeshTransform}
     {
         this->UploadData(device, commandPool, queue, vertices, indices);
     }
 
-    void Mesh::UploadData(const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue, std::span<const Vertex> vertices, std::span<const uint32_t> indices) const {
+    Mesh::Mesh(const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue, const VertexSeparate& vertexSeparate, std::span<const uint32_t> indices, std::span<Texture*> textures, const glm::mat4& currentMeshTransform)
+        : m_vertexBuffer2{SeparateVertexBuffer{device, vertexSeparate}}, m_indexBuffer{device, indices.size() * sizeof(uint32_t)},
+          m_textures{textures.begin(), textures.end()},
+          m_currentMeshTransform{currentMeshTransform}
+    {
+        std::get<SeparateVertexBuffer>(m_vertexBuffer2).UploadData(device, commandPool, queue, vertexSeparate);
+    }
+
+    void Mesh::UploadData(const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue, std::span<const VertexInterLeave> vertices, std::span<const uint32_t> indices) const {
         m_vertexBuffer.UploadData(device, commandPool, queue, vertices);
 
         m_indexBuffer.UploadData(device, commandPool, queue, indices);

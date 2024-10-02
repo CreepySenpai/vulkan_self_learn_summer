@@ -122,7 +122,7 @@ namespace Creepy{
         // Check Mesh Current Node
         for(uint32_t i{}; i < currentNode->mNumMeshes; ++i){
             auto currentMesh = currentScene->mMeshes[currentNode->mMeshes[i]];
-            m_meshes.push_back(this->processMesh(currentMesh, currentScene, currentNodeTransformMatrix, device, commandPool, queue));
+            m_meshes.push_back(this->processMeshInterLeaved(currentMesh, currentScene, currentNodeTransformMatrix, device, commandPool, queue));
         }
 
         // Check Child Node
@@ -131,8 +131,8 @@ namespace Creepy{
         }
     }
 
-    Mesh Model::processMesh(aiMesh* currentMesh, const aiScene* currentScene, const glm::mat4& parentTransformMatrix, const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue){
-        std::vector<Vertex> vertices(currentMesh->mNumVertices);
+    Mesh Model::processMeshInterLeaved(aiMesh* currentMesh, const aiScene* currentScene, const glm::mat4& parentTransformMatrix, const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue){
+        std::vector<VertexInterLeave> vertices(currentMesh->mNumVertices);
 
         for(uint32_t i{}; i < currentMesh->mNumVertices; ++i){
             vertices[i].Position.x = currentMesh->mVertices[i].x;
@@ -164,6 +164,42 @@ namespace Creepy{
 
         auto&& texturesPtr = this->loadMaterialTextures(currentScene->mMaterials[currentMesh->mMaterialIndex], currentScene, aiTextureType_DIFFUSE, device, commandPool, queue);
         return {device, commandPool, queue, vertices, indices, texturesPtr, parentTransformMatrix};
+    }
+
+    Mesh Model::processMeshSeparate(aiMesh* currentMesh, const aiScene* currentScene, const glm::mat4& parentTransformMatrix, const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue) {
+        VertexSeparate vertex{};
+        
+        if(currentMesh->HasPositions() && currentMesh->HasNormals() && currentMesh->HasTextureCoords(0)){
+            vertex.Positions.reserve(currentMesh->mNumVertices);
+            vertex.Normals.reserve(currentMesh->mNumVertices);
+            vertex.TexCoords.reserve(currentMesh->mNumVertices);
+            
+            for(uint32_t i{}; i < currentMesh->mNumVertices; ++i){
+                vertex.Positions.emplace_back(currentMesh->mVertices[i].x, currentMesh->mVertices[i].y, currentMesh->mVertices[i].z);
+
+                vertex.Normals.emplace_back(currentMesh->mNormals[i].x, currentMesh->mNormals[i].y, currentMesh->mNormals[i].z);
+
+                vertex.TexCoords.emplace_back(currentMesh->mTextureCoords[0][i].x, currentMesh->mTextureCoords[0][i].y);
+            }
+        }
+        else{
+            std::println("Process Mesh Error!!!");
+        }
+
+        std::vector<uint32_t> indices;
+
+        for(uint32_t i{}; i < currentMesh->mNumFaces; ++i){
+            
+            auto currentFace = currentMesh->mFaces[i];
+
+            for(uint32_t j{}; j < currentFace.mNumIndices; ++j){
+                indices.emplace_back(currentFace.mIndices[j]);
+            }
+
+        }
+
+        auto&& texturesPtr = this->loadMaterialTextures(currentScene->mMaterials[currentMesh->mMaterialIndex], currentScene, aiTextureType_DIFFUSE, device, commandPool, queue);
+        return {device, commandPool, queue, vertex, indices, texturesPtr, parentTransformMatrix};
     }
 
     std::vector<Texture*> Model::loadMaterialTextures(aiMaterial* currentMaterial, const aiScene* currentScene, aiTextureType textureType, const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue){
