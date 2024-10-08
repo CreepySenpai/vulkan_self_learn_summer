@@ -96,8 +96,8 @@ namespace Creepy {
             Image m_depthImage;
 
             // Pipeline
-            Pipeline m_skyBoxPipeline{};
-            Pipeline m_backgroundPipeline{};
+            std::unordered_map<std::string, Pipeline> m_pipelines;
+
             TextureCubeMap m_skyBoxTexture{};
 
             vma::Allocator m_allocator;

@@ -2,45 +2,38 @@
 
 #extension GL_EXT_buffer_reference : require
 
-layout(set = 0, binding = 0) uniform _transformData{
-    mat4 modelMatrix;
+layout(set = 0, binding = 0) uniform _uniformData{
     mat4 viewMatrix;
     mat4 projectionMatrix;
     vec4 cameraPosition;
-} TransFormData;
+} UniformData;
 
 layout(push_constant) uniform _vertexPushConstantData{
-    mat4 modelTransformData;
+    mat4 modelMatrix;
 } VertexPushConstantData;
 
 layout(location = 0) in vec3 inPosition;
 layout(location = 1) in vec3 inNormal;
 layout(location = 2) in vec2 inTexCoord;
-// layout(location = 3) in uint inEntityID;
+layout(location = 3) in uint inEntityID;
 
 layout(location = 0) out vec3 outPosition;
 layout(location = 1) out vec3 outNormal;
 layout(location = 2) out vec2 outTexCoord;
-layout(location = 3) flat out vec3 outCameraPosition;
-layout(location = 4) flat out uint outEntityID;
+layout(location = 3) flat out uint outEntityID;
 
 void main(){
-    mat4 mvpMatrix = TransFormData.projectionMatrix * TransFormData.viewMatrix * TransFormData.modelMatrix;
+    mat4 mvpMatrix = UniformData.projectionMatrix * UniformData.viewMatrix * VertexPushConstantData.modelMatrix;
 
-    vec4 loc = mvpMatrix * VertexPushConstantData.modelTransformData * vec4(inPosition, 1.0);
-    gl_Position = loc;
+    gl_Position = mvpMatrix * vec4(inPosition, 1.0);
 
-    // Position In World Space
-    outPosition = (TransFormData.modelMatrix * vec4(inPosition, 1.0)).xyz;
+    // Position In Eye Space
+    outPosition = (UniformData.viewMatrix * VertexPushConstantData.modelMatrix * vec4(inPosition, 1.0)).xyz;
 
-    // Normal In World Space
-    outNormal = mat3(TransFormData.modelMatrix) * inNormal;
+    // Normal In Eye Space
+    outNormal = (UniformData.viewMatrix * VertexPushConstantData.modelMatrix * vec4(inNormal, 0.0)).xyz;
+
     outTexCoord = inTexCoord;
-    
-    // TODO: Change to view space
-    // outCameraPosition = TransFormData.viewMatrix * TransFormData.modelMatrix * TransFormData.cameraPosition.xyz;
-    outCameraPosition = TransFormData.cameraPosition.xyz;
 
-    // outEntityID = inEntityID;
-    outEntityID = 1;
+    outEntityID = inEntityID;
 }

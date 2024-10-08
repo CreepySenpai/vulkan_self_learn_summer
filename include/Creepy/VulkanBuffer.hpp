@@ -243,7 +243,7 @@ namespace Creepy {
             using Vec3fBuffer = BufferWrapperNoView<BufferType::DEVICE_LOCAL, glm::vec3, vk::BufferUsageFlagBits::eVertexBuffer, vk::BufferUsageFlagBits::eTransferDst>;
             using Vec2fBuffer = BufferWrapperNoView<BufferType::DEVICE_LOCAL, glm::vec2, vk::BufferUsageFlagBits::eVertexBuffer, vk::BufferUsageFlagBits::eTransferDst>;
             using Vec1uiBuffer = BufferWrapperNoView<BufferType::DEVICE_LOCAL, uint32_t, vk::BufferUsageFlagBits::eVertexBuffer, vk::BufferUsageFlagBits::eTransferDst>;
-        
+
         public:
             SeparateVertexBuffer() = default;
 
@@ -255,6 +255,7 @@ namespace Creepy {
             Vec3fBuffer PositionBuffer;
             Vec3fBuffer NormalBuffer;
             Vec2fBuffer TexCoordBuffer;
+            Vec1uiBuffer EntityIDBuffer;
     };
 }
 

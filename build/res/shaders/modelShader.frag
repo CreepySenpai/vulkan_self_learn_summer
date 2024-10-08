@@ -22,66 +22,61 @@ layout(push_constant) uniform _fragmentPushConstant{
     layout(offset = 80) uint diffuseTextureID;
 } FragmentPushConstantData;
 
-layout(location = 0) in vec3 inPosition;
-layout(location = 1) in vec3 inNormal;
+layout(location = 0) in vec3 inPosition;    // Position Eye Space
+layout(location = 1) in vec3 inNormal;      // Normal Eye Space
 layout(location = 2) in vec2 inTexCoord;
-layout(location = 3) flat in vec3 inCameraPosition;
-layout(location = 4) flat in uint inEntityID;
+layout(location = 3) flat in uint inEntityID;
 
 // Uniform Var
+
+layout(set = 0, binding = 0) uniform _uniformData{
+    mat4 viewMatrix;
+    mat4 projectionMatrix;
+    vec4 cameraPosition;
+} UniformData;
 
 layout(set = 1, binding = 0) uniform sampler2D myTextures[];
 
 layout(location = 0) out vec4 finalColor;
 layout(location = 1) out uint finalEntityID;
 
-vec3 phongLightModel(in vec3 vertexPosition, in vec3 normal, in vec3 cameraPosition){
+const uint specularExponent = 100; 
+
+vec3 phongLightModel(in vec3 vertexPosition, in vec3 normal, in vec3 lightVec){
     const vec3 ambient = vec3(FragmentPushConstantData.lightBuffer.lightAmbientColor * FragmentPushConstantData.materialBuffer.materialAmbient);
 
-    const vec3 lightDir = normalize(FragmentPushConstantData.lightBuffer.lightPosition.xyz - vertexPosition);
-
-    const float lambertian = max(dot(lightDir, normal), 0.0);
+    const float lambertian = max(dot(lightVec, normal), 0.0);
 
     const vec3 diffuse = vec3(FragmentPushConstantData.lightBuffer.lightDiffuseIntensity * FragmentPushConstantData.materialBuffer.materialDiffuse * lambertian);
 
-    vec3 specular = vec3(0.0, 0.0, 0.0);
+    const vec3 reflectVec = reflect(-lightVec, normal);
 
-    if(lambertian > 0.0){
-        const vec3 viewVec = normalize(cameraPosition - vertexPosition);
-        
-        const vec3 reflectVec = reflect(-lightDir, normal);
-
-        specular = vec3(FragmentPushConstantData.lightBuffer.lightIntensity * FragmentPushConstantData.materialBuffer.materialSpecular * pow(max(dot(viewVec, reflectVec), 0.0), 80));
-    }
+    const float specularFactor = pow(max(dot(reflectVec, normalize(-vertexPosition)), 0.0), specularExponent);
+    
+    const vec3 specular = (FragmentPushConstantData.lightBuffer.lightIntensity * FragmentPushConstantData.materialBuffer.materialSpecular * specularFactor).xyz;
 
     return ambient + diffuse + specular;
 }
 
-vec3 blindPhongLighModel(in vec3 vertexPosition, in vec3 normal, in vec3 cameraPosition){
+vec3 blindPhongLighModel(in vec3 vertexPosition, in vec3 normal, in vec3 lightVec){
     const vec3 ambient = vec3(FragmentPushConstantData.lightBuffer.lightAmbientColor * FragmentPushConstantData.materialBuffer.materialAmbient);
 
-    const vec3 lightDir = normalize(FragmentPushConstantData.lightBuffer.lightPosition.xyz - vertexPosition);
-
-    const float lambertian = max(dot(lightDir, normal), 0.0);
+    const float lambertian = max(dot(lightVec, normal), 0.0);
 
     const vec3 diffuse = vec3(FragmentPushConstantData.lightBuffer.lightDiffuseIntensity * FragmentPushConstantData.materialBuffer.materialDiffuse * lambertian);
+    
+    const vec3 halfVec = normalize(normalize(-vertexPosition) + lightVec);
 
-    vec3 specular = vec3(0.0, 0.0, 0.0);
+    const float specularFactor = pow(max(dot(halfVec, normal), 0.0), specularExponent);
 
-    if(lambertian > 0.0){
-        const vec3 viewVec = normalize(cameraPosition - vertexPosition);
-        const vec3 halfVec = normalize(lightDir + viewVec);
-
-        specular = vec3(FragmentPushConstantData.lightBuffer.lightIntensity * FragmentPushConstantData.materialBuffer.materialSpecular * pow(max(dot(halfVec, normal), 0.0), 80));
-    }
+    const vec3 specular = (FragmentPushConstantData.lightBuffer.lightIntensity * FragmentPushConstantData.materialBuffer.materialSpecular * specularFactor).xyz;
 
     return ambient + diffuse + specular;
 }
 
-vec3 toonShader(in vec3 vertexPosition, in vec3 normal, in vec3 cameraPosition){
-    const vec3 lightDir = normalize(FragmentPushConstantData.lightBuffer.lightPosition.xyz - vertexPosition);
+vec3 toonShader(in vec3 vertexPosition, in vec3 normal, in vec3 lightVec){
     const vec3 ambient = vec3(FragmentPushConstantData.lightBuffer.lightAmbientColor * FragmentPushConstantData.materialBuffer.materialAmbient);
-    const float lambertian = max(dot(lightDir, normal), 0.0);
+    const float lambertian = max(dot(lightVec, normal), 0.0);
 
     const int levels = 4;
     const float scaleFactor = 1.0 / levels;
@@ -93,12 +88,14 @@ vec3 toonShader(in vec3 vertexPosition, in vec3 normal, in vec3 cameraPosition){
 
 void main(){
     const vec4 texMap = texture(myTextures[FragmentPushConstantData.diffuseTextureID], inTexCoord);
+    const vec3 lightInEyeSpace = (UniformData.viewMatrix * vec4(FragmentPushConstantData.lightBuffer.lightPosition.xyz, 1.0)).xyz;
+    const vec3 lightVec = normalize(lightInEyeSpace - inPosition);
 
-    // const vec3 lightInCome = phongLightModel(inPosition, normalize(inNormal), inCameraPosition);
+    // const vec3 lightInCome = phongLightModel(inPosition, normalize(inNormal),lightVec);
 
-    // const vec3 lightInCome = blindPhongLighModel(inPosition, normalize(inNormal), inCameraPosition);
+    const vec3 lightInCome = blindPhongLighModel(inPosition, normalize(inNormal), lightVec);
 
-    const vec3 lightInCome = toonShader(inPosition, normalize(inNormal), inCameraPosition);
+    // const vec3 lightInCome = toonShader(inPosition, normalize(inNormal), lightVec);
 
     finalColor = texMap * vec4(lightInCome, 1.0);
 

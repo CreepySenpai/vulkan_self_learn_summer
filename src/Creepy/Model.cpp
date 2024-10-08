@@ -131,8 +131,12 @@ namespace Creepy{
         }
     }
 
+    static constinit uint32_t globalEntityID{1};
+
     Mesh Model::processMeshInterLeaved(aiMesh* currentMesh, const aiScene* currentScene, const glm::mat4& parentTransformMatrix, const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue){
         std::vector<VertexInterLeave> vertices(currentMesh->mNumVertices);
+
+        const uint32_t currentEntityID{globalEntityID++};
 
         for(uint32_t i{}; i < currentMesh->mNumVertices; ++i){
             vertices[i].Position.x = currentMesh->mVertices[i].x;
@@ -144,10 +148,13 @@ namespace Creepy{
             vertices[i].Normal.z = currentMesh->mNormals[i].z;
             
             
-            if(currentMesh->mTextureCoords[0]){
+            if(currentMesh->HasTextureCoords(0)){
                 vertices[i].TexCoord.x = currentMesh->mTextureCoords[0][i].x;
                 vertices[i].TexCoord.y = currentMesh->mTextureCoords[0][i].y;
             }
+
+            // Very Expensive
+            vertices[i].EntityID = currentEntityID;
         }
 
         std::vector<uint32_t> indices;
@@ -173,6 +180,7 @@ namespace Creepy{
             vertex.Positions.reserve(currentMesh->mNumVertices);
             vertex.Normals.reserve(currentMesh->mNumVertices);
             vertex.TexCoords.reserve(currentMesh->mNumVertices);
+            vertex.EntityID = globalEntityID++;
             
             for(uint32_t i{}; i < currentMesh->mNumVertices; ++i){
                 vertex.Positions.emplace_back(currentMesh->mVertices[i].x, currentMesh->mVertices[i].y, currentMesh->mVertices[i].z);

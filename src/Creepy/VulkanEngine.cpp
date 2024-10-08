@@ -487,7 +487,7 @@ namespace Creepy {
         // Set Up DescriptorSet For Uniform Buffer - Set 1
         {
             DescriptorSetBuilder builder{};
-            builder.AddBinding(0, 1, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eVertex);
+            builder.AddBinding(0, 1, vk::DescriptorType::eUniformBuffer, vk::ShaderStageFlagBits::eVertex | vk::ShaderStageFlagBits::eFragment);
             
             builder.BuildDescriptorLayout(m_logicalDevice);
             m_uniformBufferDescriptorSet = builder.AllocateDescriptorSet(m_logicalDevice, m_descriptorPool);
@@ -564,17 +564,18 @@ namespace Creepy {
         constexpr std::array dynamicStates{
             vk::DynamicState::eViewport, vk::DynamicState::eScissor
         };
-
+        
         // Because we use interleave buffer type -> only need 1 binding
-        constexpr std::array vertexBindings{
+        constexpr std::array interleavedVertexBindings{
             vk::VertexInputBindingDescription{0, sizeof(VertexInterLeave), vk::VertexInputRate::eVertex},
         };
         
         //TODO: Maybe change offset
-        constexpr std::array vertexAttributes{
-            vk::VertexInputAttributeDescription{0, vertexBindings.at(0).binding, vk::Format::eR32G32B32Sfloat, 0},
-            vk::VertexInputAttributeDescription{1, vertexBindings.at(0).binding, vk::Format::eR32G32B32Sfloat, sizeof(glm::vec3)},
-            vk::VertexInputAttributeDescription{2, vertexBindings.at(0).binding, vk::Format::eR32G32Sfloat, sizeof(glm::vec3) * 2},
+        constexpr std::array interleavedVertexAttributes{
+            vk::VertexInputAttributeDescription{0, interleavedVertexBindings.at(0).binding, vk::Format::eR32G32B32Sfloat, 0},
+            vk::VertexInputAttributeDescription{1, interleavedVertexBindings.at(0).binding, vk::Format::eR32G32B32Sfloat, sizeof(glm::vec3)},
+            vk::VertexInputAttributeDescription{2, interleavedVertexBindings.at(0).binding, vk::Format::eR32G32Sfloat, sizeof(glm::vec3) * 2},
+            vk::VertexInputAttributeDescription{3, interleavedVertexBindings.at(0).binding, vk::Format::eR32Uint, sizeof(glm::vec3) * 2 + sizeof(glm::vec2)}
         };
 
         const Shader vertexShader{m_logicalDevice, readShaderSPVFile("./res/shaders/modelVertexShader.spv"), vk::ShaderStageFlagBits::eVertex};
@@ -610,7 +611,7 @@ namespace Creepy {
         PipelineState pipelineState{};
         pipelineState.InitPipelineLayout(descriptorSetLayouts, pushConstants);
         pipelineState.InitShaderStates(vertexShader.GetShaderModule(), fragmentShader.GetShaderModule());
-        pipelineState.InitVertexInputState(vertexBindings, vertexAttributes);
+        pipelineState.InitVertexInputState(interleavedVertexBindings, interleavedVertexAttributes);
         pipelineState.InitInputAssemblyState(vk::PrimitiveTopology::eTriangleList);
         pipelineState.InitViewportState(static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height));
         pipelineState.InitRasterizationState(vk::PolygonMode::eFill, vk::CullModeFlagBits::eNone, vk::FrontFace::eCounterClockwise);
@@ -632,7 +633,27 @@ namespace Creepy {
 
         pipelineState.InitRenderingInfo(colorAttachmentFormats, m_depthImage.GetImageFormat());
 
-        m_backgroundPipeline.Build(m_logicalDevice, pipelineState);
+        m_pipelines["Interleaved"].Build(m_logicalDevice, pipelineState);
+
+        ////////////////////////////////////////////////////////////////
+        
+        constexpr std::array separateVertexBindings{
+            vk::VertexInputBindingDescription{0, sizeof(glm::vec3), vk::VertexInputRate::eVertex},
+            vk::VertexInputBindingDescription{1, sizeof(glm::vec3), vk::VertexInputRate::eVertex},
+            vk::VertexInputBindingDescription{2, sizeof(glm::vec2), vk::VertexInputRate::eVertex},
+            vk::VertexInputBindingDescription{3, sizeof(uint32_t), vk::VertexInputRate::eVertex},
+        };
+
+        constexpr std::array separateVertexAttributes{
+            vk::VertexInputAttributeDescription{0, separateVertexBindings[0].binding, vk::Format::eR32G32B32Sfloat, 0},
+            vk::VertexInputAttributeDescription{1, separateVertexBindings[1].binding, vk::Format::eR32G32B32Sfloat, 0},
+            vk::VertexInputAttributeDescription{2, separateVertexBindings[2].binding, vk::Format::eR32G32Sfloat, 0},
+            vk::VertexInputAttributeDescription{3, separateVertexBindings[3].binding, vk::Format::eR32Uint, 0},
+        };
+
+        pipelineState.InitVertexInputState(separateVertexBindings, separateVertexAttributes);
+
+        m_pipelines["Separate"].Build(m_logicalDevice, pipelineState);
 
         vertexShader.Destroy(m_logicalDevice);
         fragmentShader.Destroy(m_logicalDevice);
@@ -648,6 +669,17 @@ namespace Creepy {
             m_skyBoxDescriptorSet.DescriptorSetLayout
         };
 
+        constexpr std::array skyBoxVertexBindings{
+            vk::VertexInputBindingDescription{0, sizeof(VertexInterLeave), vk::VertexInputRate::eVertex},
+        };
+
+        constexpr std::array skyBoxVertexAttributes{
+            vk::VertexInputAttributeDescription{0, skyBoxVertexBindings.at(0).binding, vk::Format::eR32G32B32Sfloat, 0},
+            vk::VertexInputAttributeDescription{1, skyBoxVertexBindings.at(0).binding, vk::Format::eR32G32B32Sfloat, sizeof(glm::vec3)},
+            vk::VertexInputAttributeDescription{2, skyBoxVertexBindings.at(0).binding, vk::Format::eR32G32Sfloat, sizeof(glm::vec3) * 2},
+        };
+
+        pipelineState.InitVertexInputState(skyBoxVertexBindings, skyBoxVertexAttributes);
         pipelineState.InitPipelineLayout(descriptorSetLayouts2, {});
         pipelineState.InitShaderStates(skyBoxVertexShader.GetShaderModule(), skyBoxFragmentShader.GetShaderModule());
         
@@ -663,11 +695,13 @@ namespace Creepy {
 
         pipelineState.InitColorBlendState(blendAttachments2);
 
-        m_skyBoxPipeline.Build(m_logicalDevice, pipelineState);
+        m_pipelines["SkyBox"].Build(m_logicalDevice, pipelineState);
 
         m_clearner.AddJob([this]{
-            m_backgroundPipeline.Destroy(m_logicalDevice);
-            m_skyBoxPipeline.Destroy(m_logicalDevice);
+            for(auto&& [_, pipeline] : m_pipelines){
+                pipeline.Destroy(m_logicalDevice);
+            }
+
         });
 
         skyBoxVertexShader.Destroy(m_logicalDevice);
@@ -977,14 +1011,14 @@ namespace Creepy {
 
         // Draw Call
 
-        currentCommandBuffer.bindPipeline(vk::PipelineBindPoint::eGraphics, m_backgroundPipeline.GetPipeline());
+        currentCommandBuffer.bindPipeline(vk::PipelineBindPoint::eGraphics,  m_pipelines["Interleaved"].GetPipeline());
 
         const std::array descriptorSets2{
             m_uniformBufferDescriptorSet.DescriptorSet,
             m_descriptorIndexingDescriptorSet.DescriptorSet
         };
 
-        currentCommandBuffer.bindDescriptorSets(vk::PipelineBindPoint::eGraphics, m_backgroundPipeline.GetPipelineLayout(), 0, descriptorSets2, nullptr);
+        currentCommandBuffer.bindDescriptorSets(vk::PipelineBindPoint::eGraphics, m_pipelines["Interleaved"].GetPipelineLayout(), 0, descriptorSets2, nullptr);
 
         for(auto& [name, model] : m_models){
             if(name == "SkyBox"){
@@ -996,7 +1030,7 @@ namespace Creepy {
                 .materialBufferPtr = m_materialManager.GetBufferAddress(model.GetMaterialIndex()),
             };
 
-            model.Draw(currentCommandBuffer, m_backgroundPipeline.GetPipelineLayout(), fragmentPushConstantData);
+            model.Draw(currentCommandBuffer, m_pipelines["Interleaved"].GetPipelineLayout(), fragmentPushConstantData);
         }
 
         currentCommandBuffer.endRendering();
@@ -1048,14 +1082,14 @@ namespace Creepy {
 
         currentCommandBuffer.beginRendering(dynamicRenderInfo);
 
-        currentCommandBuffer.bindPipeline(vk::PipelineBindPoint::eGraphics, m_skyBoxPipeline.GetPipeline());
+        currentCommandBuffer.bindPipeline(vk::PipelineBindPoint::eGraphics, m_pipelines["SkyBox"].GetPipeline());
 
         const std::array descriptorSets{
             m_uniformBufferDescriptorSet.DescriptorSet,
             m_skyBoxDescriptorSet.DescriptorSet
         };
 
-        m_models["SkyBox"].Draw(currentCommandBuffer, m_skyBoxPipeline.GetPipelineLayout(), descriptorSets);
+        m_models["SkyBox"].Draw(currentCommandBuffer, m_pipelines["SkyBox"].GetPipelineLayout(), descriptorSets);
     
         currentCommandBuffer.endRendering();
     }
