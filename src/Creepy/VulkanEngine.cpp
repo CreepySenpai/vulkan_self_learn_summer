@@ -13,13 +13,14 @@
 #include <imgui/imgui_impl_vulkan.hpp>
 
 #include <glm/glm.hpp>
+#include <thread>
 
 // Global Var
 GLFWwindow* nativeWindow{nullptr};
 
 namespace Creepy {
 
-    VulkanEngine::VulkanEngine() : m_width{600}, m_height{600}{
+    VulkanEngine::VulkanEngine() : m_windowWidth{600}, m_windowHeight{600}{
         this->createWindow();
         this->createInstance();
         this->createDebugMessage();
@@ -61,7 +62,7 @@ namespace Creepy {
             Mouse::PreProcessEveryFrame();
             KeyBoard::PreProcessEveryFrame();
 
-            glfwGetWindowSize(m_window, &m_width, &m_height);
+            glfwGetWindowSize(m_window, &m_windowWidth, &m_windowHeight);
 
             glfwPollEvents();
 
@@ -77,7 +78,7 @@ namespace Creepy {
     }
 
     void VulkanEngine::createWindow() {
-        m_window = glfwCreateWindow(m_width, m_height, "Creepy", nullptr, nullptr);
+        m_window = glfwCreateWindow(m_windowWidth, m_windowHeight, "Creepy", nullptr, nullptr);
 
         nativeWindow = m_window;
         
@@ -370,7 +371,7 @@ namespace Creepy {
         auto&& surfaceFormat = chooseSurfaceFormat(m_physicalDevice, m_surface);
 
         m_swapchain = Swapchain{m_logicalDevice, m_surface, 
-            surfaceFormat.format, surfaceFormat.colorSpace, {static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height)}, 
+            surfaceFormat.format, surfaceFormat.colorSpace, {static_cast<uint32_t>(m_windowWidth), static_cast<uint32_t>(m_windowHeight)}, 
             choosePresentMode(m_physicalDevice, m_surface), surfaceCap};
         
         m_clearner.AddJob([this]{
@@ -613,7 +614,7 @@ namespace Creepy {
         pipelineState.InitShaderStates(vertexShader.GetShaderModule(), fragmentShader.GetShaderModule());
         pipelineState.InitVertexInputState(interleavedVertexBindings, interleavedVertexAttributes);
         pipelineState.InitInputAssemblyState(vk::PrimitiveTopology::eTriangleList);
-        pipelineState.InitViewportState(static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height));
+        pipelineState.InitViewportState(static_cast<uint32_t>(m_windowWidth), static_cast<uint32_t>(m_windowHeight));
         pipelineState.InitRasterizationState(vk::PolygonMode::eFill, vk::CullModeFlagBits::eNone, vk::FrontFace::eCounterClockwise);
         pipelineState.InitMultiSamplerState();
         pipelineState.InitDepthStencilState(vk::CompareOp::eLess);
@@ -717,10 +718,10 @@ namespace Creepy {
         
         m_isSwapchainResizing = true;
 
-        glfwGetWindowSize(m_window, &m_width, &m_height);
+        glfwGetWindowSize(m_window, &m_windowWidth, &m_windowHeight);
 
-        while(m_width == 0 || m_height == 0){
-            glfwGetWindowSize(m_window, &m_width, &m_height);
+        while(m_windowWidth == 0 || m_windowHeight == 0){
+            glfwGetWindowSize(m_window, &m_windowWidth, &m_windowHeight);
             glfwWaitEvents();
         }
 
@@ -728,19 +729,27 @@ namespace Creepy {
 
         m_swapchain.Recreate(m_logicalDevice, m_surface, 
         surfaceFormat.format, surfaceFormat.colorSpace, 
-        {static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height)}, 
+        {static_cast<uint32_t>(m_windowWidth), static_cast<uint32_t>(m_windowHeight)}, 
         choosePresentMode(m_physicalDevice, m_surface), 
          m_physicalDevice.getSurfaceCapabilitiesKHR(m_surface).value);
 
-        m_depthImage.ReCreate(m_logicalDevice, static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height), 
+        m_depthImage.ReCreate(m_logicalDevice, static_cast<uint32_t>(m_windowWidth), static_cast<uint32_t>(m_windowHeight), 
         vk::Format::eD24UnormS8Uint, vk::ImageUsageFlagBits::eDepthStencilAttachment, vk::ImageAspectFlagBits::eDepth, vk::ImageViewType::e2D);
 
-        m_entityImage.ReCreate(m_logicalDevice, static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height), 
-        vk::Format::eR32Uint, vk::ImageUsageFlagBits::eColorAttachment, vk::ImageAspectFlagBits::eColor, vk::ImageViewType::e2D);
+        m_entityImage.ReCreate(m_logicalDevice, static_cast<uint32_t>(m_windowWidth), static_cast<uint32_t>(m_windowHeight), 
+        vk::Format::eR32Uint, vk::ImageUsageFlagBits::eColorAttachment | vk::ImageUsageFlagBits::eTransferSrc, vk::ImageAspectFlagBits::eColor, vk::ImageViewType::e2D);
+
+        m_objectsPickingBuffer.Destroy(m_logicalDevice);
+
+        m_objectsPickingBuffer = Buffer<BufferType::HOST_COHERENT>{m_logicalDevice, m_windowWidth * m_windowHeight * sizeof(uint32_t), vk::Format::eR32Uint, vk::BufferUsageFlagBits::eTransferDst};
+
+        m_screenShotBuffer.Destroy(m_logicalDevice);
+
+        m_screenShotBuffer = Buffer<BufferType::HOST_COHERENT>{m_logicalDevice, m_windowWidth * m_windowHeight * 4, vk::Format::eR32G32B32A32Sfloat, vk::BufferUsageFlagBits::eTransferDst};
 
         m_logicalDevice.waitIdle();
 
-        m_camera.SetViewport(static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height));
+        m_camera.SetViewport(static_cast<uint32_t>(m_windowWidth), static_cast<uint32_t>(m_windowHeight));
 
         m_isSwapchainResizing = false;
     }
@@ -752,10 +761,10 @@ namespace Creepy {
     }
 
     void VulkanEngine::createImageResources() {
-        m_depthImage = Image{m_logicalDevice, static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height), 
+        m_depthImage = Image{m_logicalDevice, static_cast<uint32_t>(m_windowWidth), static_cast<uint32_t>(m_windowHeight), 
             vk::Format::eD24UnormS8Uint, vk::ImageUsageFlagBits::eDepthStencilAttachment, vk::ImageAspectFlagBits::eDepth, vk::ImageViewType::e2D};
         
-        m_entityImage = Image{m_logicalDevice, static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height), vk::Format::eR32Uint, vk::ImageUsageFlagBits::eColorAttachment, vk::ImageAspectFlagBits::eColor, vk::ImageViewType::e2D};
+        m_entityImage = Image{m_logicalDevice, static_cast<uint32_t>(m_windowWidth), static_cast<uint32_t>(m_windowHeight), vk::Format::eR32Uint, vk::ImageUsageFlagBits::eColorAttachment | vk::ImageUsageFlagBits::eTransferSrc, vk::ImageAspectFlagBits::eColor, vk::ImageViewType::e2D};
 
         m_clearner.AddJob([this]{
             m_depthImage.Destroy(m_logicalDevice);
@@ -784,6 +793,10 @@ namespace Creepy {
 
         // std::println("Index COunt: {}", m_triangleIndexBuffer.GetBufferCount());
 
+        m_objectsPickingBuffer = Buffer<BufferType::HOST_COHERENT>{m_logicalDevice, m_windowWidth * m_windowHeight * sizeof(uint32_t), vk::Format::eR32Uint, vk::BufferUsageFlagBits::eTransferDst};
+
+        m_screenShotBuffer = Buffer<BufferType::HOST_COHERENT>{m_logicalDevice, m_windowWidth * m_windowHeight * 4, vk::Format::eR32G32B32A32Sfloat, vk::BufferUsageFlagBits::eTransferDst};
+
         m_uniformBuffer.transformBuffer = UniformBuffer::TransformBuffer{m_logicalDevice, sizeof(TransformData)};
         m_uniformBuffer.lightBuffer = UniformBuffer::LightBuffer{m_logicalDevice, sizeof(LightData)};
 
@@ -793,24 +806,24 @@ namespace Creepy {
         std::println("Light Address: {}", m_uniformBuffer.lightBufferAddress);
 
         m_clearner.AddJob([this]{
-            // m_triangleVertexBuffer.Destroy(m_logicalDevice);
-            // m_triangleIndexBuffer.Destroy(m_logicalDevice);
             m_uniformBuffer.transformBuffer.Destroy(m_logicalDevice);
             m_uniformBuffer.lightBuffer.Destroy(m_logicalDevice);
+            m_objectsPickingBuffer.Destroy(m_logicalDevice);
+            m_screenShotBuffer.Destroy(m_logicalDevice);
         });
     }
 
     void VulkanEngine::loadModels() {
+        
+        m_models["SkyBox"].LoadModel("./res/models/cube.gltf", m_logicalDevice, m_cmdPool, m_graphicQueue);
 
         m_models["Shiba"].LoadModel("./res/models/shiba.gltf", m_logicalDevice, m_cmdPool, m_graphicQueue);
 
-        m_models["Shiba"].SetMaterialIndex(m_materialManager.AddMaterial(m_logicalDevice));
-
-        m_models["SkyBox"].LoadModel("./res/models/cube.gltf", m_logicalDevice, m_cmdPool, m_graphicQueue);
+        m_models["Shiba"].SetMaterialIndex(MaterialManager::AddMaterial(m_logicalDevice));
 
         m_models["Waifu"].LoadModel("./res/models/waifu.gltf", m_logicalDevice, m_cmdPool, m_graphicQueue);
 
-        m_models["Waifu"].SetMaterialIndex(m_materialManager.AddMaterial(m_logicalDevice));
+        m_models["Waifu"].SetMaterialIndex(MaterialManager::AddMaterial(m_logicalDevice));
 
         std::array<std::filesystem::path, 6> cubePaths{
             "./res/textures/skybox/right.jpg",
@@ -828,7 +841,7 @@ namespace Creepy {
                 model.Destroy(m_logicalDevice);
             }
 
-            m_materialManager.Destroy(m_logicalDevice);
+            MaterialManager::Destroy(m_logicalDevice);
 
             m_skyBoxTexture.Destroy(m_logicalDevice);
 
@@ -842,10 +855,20 @@ namespace Creepy {
 
         ImGui::Begin("Camera");
         ImGui::DragFloat3("Camera Position", glm::value_ptr(m_camera.GetPosition()));
+        ImGui::Checkbox("Enable Mouse Pick", &m_isEnableMousePicking);
+
+        if(ImGui::Button("Screen Shot", {100, 100})){
+            std::println("Click");
+            m_isEnableScreenShot = true;
+        }
+        else{
+            m_isEnableScreenShot = false;
+        }
+
         ImGui::End();
         
         Debug::DrawLightData(m_lightData);
-        Debug::DrawModelInfo(m_models, m_materialManager);
+        Debug::DrawModelInfo(m_models);
         
         Debug::EndFrame();
 
@@ -853,7 +876,6 @@ namespace Creepy {
         auto currentFence = getCurrentRenderFrame().m_renderCompleteFence;
         auto currentImageAvailableSemaphore = getCurrentRenderFrame().m_imageAvailableSemaphore;
         auto currentImageRenderedSemaphore = getCurrentRenderFrame().m_imageRenderedSemaphore;
-        
 
         auto waitPreFrameDone = m_logicalDevice.waitForFences(currentFence, vk::True, std::numeric_limits<uint64_t>::max());
 
@@ -903,22 +925,56 @@ namespace Creepy {
 
         this->drawSkyBox(currentCommandBuffer, currentSwapchainImageView);
         // auto sus = m_depthImage.GetImageExtent();
-        // vk::Extent2D renderArea{std::min((uint32_t)m_width, sus.width), std::min((uint32_t)m_height, sus.height)};
+        // vk::Extent2D renderArea{std::min((uint32_t)m_windowWidth, sus.width), std::min((uint32_t)m_windowHeight, sus.height)};
         this->drawModels(currentCommandBuffer, currentSwapchainImageView, m_depthImage.GetImageView());
 
         this->drawImGui(currentCommandBuffer, currentSwapchainImageView);
         // We cannot call image layout transition in here
 
-         // End Draw Call
-        imageLayoutTransition(currentCommandBuffer, currentSwapchainImage, 
+        // End Draw Call
+
+        if(m_isEnableScreenShot){
+            imageLayoutTransition(currentCommandBuffer, currentSwapchainImage, 
+            vk::ImageAspectFlagBits::eColor, vk::ImageLayout::eColorAttachmentOptimal, vk::ImageLayout::eTransferSrcOptimal, 
+            vk::AccessFlagBits2::eMemoryRead, vk::AccessFlagBits2::eMemoryRead | vk::AccessFlagBits2::eMemoryWrite,
+            vk::PipelineStageFlagBits2::eColorAttachmentOutput, vk::PipelineStageFlagBits2::eTransfer);
+
+            // Screen Shot Here
+            CopyImageToBuffer(currentCommandBuffer, currentSwapchainImage, m_screenShotBuffer.GetBuffer(), m_windowWidth, m_windowHeight, vk::ImageAspectFlagBits::eColor);
+
+            imageLayoutTransition(currentCommandBuffer, currentSwapchainImage, 
+            vk::ImageAspectFlagBits::eColor, vk::ImageLayout::eTransferSrcOptimal, vk::ImageLayout::ePresentSrcKHR, 
+            vk::AccessFlagBits2::eMemoryRead, vk::AccessFlagBits2::eMemoryRead | vk::AccessFlagBits2::eMemoryWrite,
+            vk::PipelineStageFlagBits2::eTransfer, vk::PipelineStageFlagBits2::eBottomOfPipe);
+
+        }
+
+        else{
+            imageLayoutTransition(currentCommandBuffer, currentSwapchainImage, 
             vk::ImageAspectFlagBits::eColor, vk::ImageLayout::eColorAttachmentOptimal, vk::ImageLayout::ePresentSrcKHR, 
             vk::AccessFlagBits2::eMemoryRead, vk::AccessFlagBits2::eMemoryRead | vk::AccessFlagBits2::eMemoryWrite,
             vk::PipelineStageFlagBits2::eColorAttachmentOutput, vk::PipelineStageFlagBits2::eBottomOfPipe);
-        
-        imageLayoutTransition(currentCommandBuffer, m_entityImage.GetImage(), 
+        }
+
+        if(m_isEnableMousePicking){
+            imageLayoutTransition(currentCommandBuffer, m_entityImage.GetImage(), 
+            vk::ImageAspectFlagBits::eColor, vk::ImageLayout::eColorAttachmentOptimal, vk::ImageLayout::eTransferSrcOptimal, 
+            vk::AccessFlagBits2::eMemoryRead, vk::AccessFlagBits2::eMemoryRead | vk::AccessFlagBits2::eMemoryWrite,
+            vk::PipelineStageFlagBits2::eColorAttachmentOutput, vk::PipelineStageFlagBits2::eTransfer);
+            // Copy Image To Buffer Here
+            CopyImageToBuffer(currentCommandBuffer, m_entityImage.GetImage(), m_objectsPickingBuffer.GetBuffer(), m_windowWidth, m_windowHeight, vk::ImageAspectFlagBits::eColor);
+
+            imageLayoutTransition(currentCommandBuffer, m_entityImage.GetImage(), 
+                vk::ImageAspectFlagBits::eColor, vk::ImageLayout::eTransferSrcOptimal, vk::ImageLayout::ePresentSrcKHR, 
+                vk::AccessFlagBits2::eMemoryRead, vk::AccessFlagBits2::eMemoryRead | vk::AccessFlagBits2::eMemoryWrite,
+                vk::PipelineStageFlagBits2::eTransfer, vk::PipelineStageFlagBits2::eBottomOfPipe);
+        }
+        else{
+            imageLayoutTransition(currentCommandBuffer, m_entityImage.GetImage(), 
             vk::ImageAspectFlagBits::eColor, vk::ImageLayout::eColorAttachmentOptimal, vk::ImageLayout::ePresentSrcKHR, 
             vk::AccessFlagBits2::eMemoryRead, vk::AccessFlagBits2::eMemoryRead | vk::AccessFlagBits2::eMemoryWrite,
             vk::PipelineStageFlagBits2::eColorAttachmentOutput, vk::PipelineStageFlagBits2::eBottomOfPipe);
+        }
 
         currentCommandBuffer.end();
 
@@ -989,7 +1045,6 @@ namespace Creepy {
         colorAttachmentInfos[1].imageView = m_entityImage.GetImageView();
         colorAttachmentInfos[1].loadOp = vk::AttachmentLoadOp::eClear;
         colorAttachmentInfos[1].storeOp = vk::AttachmentStoreOp::eStore;
-        
 
         vk::RenderingAttachmentInfo depthAttachmentInfo{};
         depthAttachmentInfo.clearValue.depthStencil.depth = 1.0f;
@@ -1005,7 +1060,7 @@ namespace Creepy {
         dynamicRenderInfo.colorAttachmentCount = static_cast<uint32_t>(colorAttachmentInfos.size());
         dynamicRenderInfo.pColorAttachments = colorAttachmentInfos.data();
         dynamicRenderInfo.pDepthAttachment = &depthAttachmentInfo;
-        dynamicRenderInfo.renderArea = vk::Rect2D{{0, 0}, {static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height)}};
+        dynamicRenderInfo.renderArea = vk::Rect2D{{0, 0}, {static_cast<uint32_t>(m_windowWidth), static_cast<uint32_t>(m_windowHeight)}};
 
         currentCommandBuffer.beginRendering(dynamicRenderInfo);
 
@@ -1027,7 +1082,7 @@ namespace Creepy {
 
             FragmentPushConstantData fragmentPushConstantData{
                 .lightBufferPtr = m_uniformBuffer.lightBufferAddress,
-                .materialBufferPtr = m_materialManager.GetBufferAddress(model.GetMaterialIndex()),
+                .materialBufferPtr = MaterialManager::GetBufferAddress(model.GetMaterialIndex()),
             };
 
             model.Draw(currentCommandBuffer, m_pipelines["Interleaved"].GetPipelineLayout(), fragmentPushConstantData);
@@ -1049,7 +1104,7 @@ namespace Creepy {
         dynamicRenderInfo.layerCount = 1;
         dynamicRenderInfo.colorAttachmentCount = 1;
         dynamicRenderInfo.pColorAttachments = &colorAttachmentInfo;
-        dynamicRenderInfo.renderArea = vk::Rect2D{{0u, 0u}, {static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height)}};
+        dynamicRenderInfo.renderArea = vk::Rect2D{{0u, 0u}, {static_cast<uint32_t>(m_windowWidth), static_cast<uint32_t>(m_windowHeight)}};
 
         currentCommandBuffer.beginRendering(dynamicRenderInfo);
 
@@ -1071,12 +1126,12 @@ namespace Creepy {
         dynamicRenderInfo.layerCount = 1;
         dynamicRenderInfo.colorAttachmentCount = 1;
         dynamicRenderInfo.pColorAttachments = &colorAttachmentInfo;
-        dynamicRenderInfo.renderArea = vk::Rect2D{{0u, 0u}, {static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height)}};
+        dynamicRenderInfo.renderArea = vk::Rect2D{{0u, 0u}, {static_cast<uint32_t>(m_windowWidth), static_cast<uint32_t>(m_windowHeight)}};
         
-        const vk::Viewport viewPort{0.0f, 0.0f, static_cast<float>(m_width), static_cast<float>(m_height), 0.0f, 1.0f};
+        const vk::Viewport viewPort{0.0f, 0.0f, static_cast<float>(m_windowWidth), static_cast<float>(m_windowHeight), 0.0f, 1.0f};
         currentCommandBuffer.setViewport(0, viewPort);
 
-        const vk::Rect2D scissor{{0, 0}, {static_cast<uint32_t>(m_width), static_cast<uint32_t>(m_height)}};
+        const vk::Rect2D scissor{{0, 0}, {static_cast<uint32_t>(m_windowWidth), static_cast<uint32_t>(m_windowHeight)}};
 
         currentCommandBuffer.setScissor(0, scissor);
 
@@ -1107,16 +1162,34 @@ namespace Creepy {
 
         m_uniformBuffer.lightBuffer.UploadData(m_lightData);
 
-        m_materialManager.UploadMaterialData();
+        MaterialManager::UploadMaterialData();
     }
 
     void VulkanEngine::createCamera()
     {
-        m_camera = Camera{45.0f, static_cast<float>(m_width) / static_cast<float>(m_height), 0.01f, 1000.0f};
+        m_camera = Camera{45.0f, static_cast<float>(m_windowWidth) / static_cast<float>(m_windowHeight), 0.01f, 1000.0f};
     }
 
     void VulkanEngine::onUpdate(double deltaTime)
     {
         m_camera.OnUpdate(deltaTime);
+
+        if(m_isEnableMousePicking && Mouse::IsMousePress(MouseButton::LEFT)){
+            auto mouseClickPos = Mouse::GetMousePosition();
+            std::println("{} - {} - {}", mouseClickPos.x, mouseClickPos.y, this->getEntityAtPixel(mouseClickPos.x, mouseClickPos.y));
+        }
+
+        if(m_isEnableScreenShot){
+            // NOTE: Danger maybe memleak or race cond
+            std::thread copyThread{SaveImageToFile, m_screenShotBuffer.GetMappedMemory(), m_windowWidth, m_windowHeight};
+            copyThread.detach();
+            // SaveImageToFile(m_screenShotBuffer.GetMappedMemory(), m_windowWidth, m_windowHeight);
+        }
+    }
+
+    uint32_t VulkanEngine::getEntityAtPixel(uint32_t x, uint32_t y) {
+        auto bufferMapped = static_cast<const uint32_t*>(m_objectsPickingBuffer.GetMappedMemory());
+        const uint32_t index = y * m_windowWidth + x;
+        return bufferMapped[index];
     }
 }

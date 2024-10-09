@@ -48,6 +48,7 @@ namespace Creepy{
             glm::vec3 m_rotation{};
             glm::vec3 m_scale{1.0f, 1.0f, 1.0f};
             uint32_t m_materialIndex{};
+            uint32_t m_entityID{};
     };
     
 }

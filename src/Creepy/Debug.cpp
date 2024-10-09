@@ -110,7 +110,7 @@ namespace Creepy{
         ImGui::End();
     }
 
-    void Debug::DrawModelInfo(std::unordered_map<std::string, Model>& models, MaterialManager& materialManager) {
+    void Debug::DrawModelInfo(std::unordered_map<std::string, Model>& models) {
         ImGui::Begin("Models");
 
         for(auto& [modelName, model] : models){
@@ -124,7 +124,7 @@ namespace Creepy{
             ImGui::DragFloat3("Position", glm::value_ptr(model.GetPosition()), 0.2f);
             ImGui::DragFloat3("Rotation", glm::value_ptr(model.GetRotation()), 0.2f);
             ImGui::DragFloat3("Scale", glm::value_ptr(model.GetScale()), 0.2f);
-            auto& materialInfo =  materialManager.GetMaterialData(model.GetMaterialIndex());
+            auto& materialInfo = MaterialManager::GetMaterialData(model.GetMaterialIndex());
             ImGui::DragFloat3("Material Ambient", glm::value_ptr(materialInfo.materialAmbient), 0.1f, 0.0f, 1.0f);
             ImGui::DragFloat3("Material Diffuse", glm::value_ptr(materialInfo.materialDiffuse), 0.1f, 0.0f, 1.0f);
             ImGui::DragFloat3("Material Specular", glm::value_ptr(materialInfo.materialSpecular), 0.1f, 0.0f, 1.0f);

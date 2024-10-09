@@ -39,6 +39,8 @@ namespace Creepy{
         return temp;
     }
 
+    static constinit uint32_t s_globalEntityID{1};
+
     Model::Model(const std::filesystem::path& filePath, const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue) {
         this->LoadModel(filePath, device, commandPool, queue);
     }
@@ -88,7 +90,11 @@ namespace Creepy{
         return m_meshes;
     }
 
+    
+
     void Model::LoadModel(const std::filesystem::path& filePath, const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue){
+        m_entityID = s_globalEntityID++;
+        
         Assimp::Importer importer{};
 
         auto scene = importer.ReadFile(filePath.string(), aiProcess_Triangulate | aiProcess_ConvertToLeftHanded | aiProcess_JoinIdenticalVertices);
@@ -100,6 +106,8 @@ namespace Creepy{
         this->processNode(scene->mRootNode, scene, glm::identity<glm::mat4>(), device, commandPool, queue);
 
         std::println("Total Mesh: {}", m_meshes.size());
+
+        std::println("Total Loaded En: {}", s_globalEntityID);
     }
 
     void Model::SetMaterialIndex(uint32_t materialIndex)
@@ -131,12 +139,8 @@ namespace Creepy{
         }
     }
 
-    static constinit uint32_t globalEntityID{1};
-
     Mesh Model::processMeshInterLeaved(aiMesh* currentMesh, const aiScene* currentScene, const glm::mat4& parentTransformMatrix, const vk::Device device, const vk::CommandPool commandPool, const vk::Queue queue){
         std::vector<VertexInterLeave> vertices(currentMesh->mNumVertices);
-
-        const uint32_t currentEntityID{globalEntityID++};
 
         for(uint32_t i{}; i < currentMesh->mNumVertices; ++i){
             vertices[i].Position.x = currentMesh->mVertices[i].x;
@@ -154,7 +158,7 @@ namespace Creepy{
             }
 
             // Very Expensive
-            vertices[i].EntityID = currentEntityID;
+            vertices[i].EntityID = m_entityID;
         }
 
         std::vector<uint32_t> indices;
@@ -180,7 +184,7 @@ namespace Creepy{
             vertex.Positions.reserve(currentMesh->mNumVertices);
             vertex.Normals.reserve(currentMesh->mNumVertices);
             vertex.TexCoords.reserve(currentMesh->mNumVertices);
-            vertex.EntityID = globalEntityID++;
+            vertex.EntityID = m_entityID;
             
             for(uint32_t i{}; i < currentMesh->mNumVertices; ++i){
                 vertex.Positions.emplace_back(currentMesh->mVertices[i].x, currentMesh->mVertices[i].y, currentMesh->mVertices[i].z);

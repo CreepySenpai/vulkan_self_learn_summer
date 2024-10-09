@@ -1,6 +1,6 @@
 CMakeFiles\SelfLearn1.dir\src\stb\stb_image.cpp.obj.ddi: \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/src/stb/stb_image.cpp \
- D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/stdio.h \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/corecrt_stdio_config.h \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/corecrt.h \
@@ -86,4 +86,5 @@ CMakeFiles\SelfLearn1.dir\src\stb\stb_image.cpp.obj.ddi: \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/stdint.h \
  D:/Enviroments/mingw64_msvcrt/lib/gcc/x86_64-w64-mingw32/14.2.0/include/emmintrin.h \
  D:/Enviroments/mingw64_msvcrt/lib/gcc/x86_64-w64-mingw32/14.2.0/include/xmmintrin.h \
- D:/Enviroments/mingw64_msvcrt/lib/gcc/x86_64-w64-mingw32/14.2.0/include/mmintrin.h
+ D:/Enviroments/mingw64_msvcrt/lib/gcc/x86_64-w64-mingw32/14.2.0/include/mmintrin.h \
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp

@@ -66,9 +66,10 @@ namespace Creepy {
             void drawModels(const vk::CommandBuffer currentCommandBuffer, const vk::ImageView colorImageView, const vk::ImageView depthImageView);
             void drawImGui(const vk::CommandBuffer currentCommandBuffer, const vk::ImageView colorImageView);
             void drawSkyBox(const vk::CommandBuffer currentCommandBuffer, const vk::ImageView colorImageView);
-            
+            uint32_t getEntityAtPixel(uint32_t x, uint32_t y);
+
         private:
-            int m_width{}, m_height{};
+            int m_windowWidth{}, m_windowHeight{};
             GLFWwindow* m_window{nullptr};
             vk::Instance m_instance;
             vk::DispatchLoaderDynamic m_dispatcher;
@@ -82,6 +83,9 @@ namespace Creepy {
 
             Swapchain m_swapchain;
             //TODO: List of cmdBuffer
+
+            Buffer<BufferType::HOST_COHERENT> m_objectsPickingBuffer;
+            Buffer<BufferType::HOST_COHERENT> m_screenShotBuffer;
 
             size_t m_totalFrames{}, m_currentFrame{};
             std::vector<VulkanFrame> m_renderFrames;
@@ -111,9 +115,9 @@ namespace Creepy {
             std::unordered_map<std::string, Model> m_models;
             
             Camera m_camera{};
-
-            MaterialManager m_materialManager{};
             //TODO: Use atomic
             bool m_isSwapchainResizing{false};
+            bool m_isEnableMousePicking{false};
+            bool m_isEnableScreenShot{false};
     };
 }

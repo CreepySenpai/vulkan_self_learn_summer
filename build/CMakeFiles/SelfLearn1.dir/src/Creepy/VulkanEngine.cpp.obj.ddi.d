@@ -733,4 +733,17 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanEngine.cpp.obj.ddi: \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/imgui/imgui.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/imgui/imconfig.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/imgui/imgui_impl_glfw.hpp \
- D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/imgui/imgui_impl_vulkan.hpp
+ D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/imgui/imgui_impl_vulkan.hpp \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/thread \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/stop_token \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/atomic \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/atomic_base.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/atomic_lockfree_defines.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/atomic_wait.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/std_mutex.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/std_thread.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/semaphore \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/semaphore_base.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/atomic_timed_wait.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/this_thread_sleep.h \
+ D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/semaphore.h

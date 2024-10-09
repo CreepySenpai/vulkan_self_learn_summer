@@ -36,6 +36,10 @@ namespace Creepy {
 
             void UploadData(const void* data, size_t dataSizeInByte, uint64_t offset) const;
 
+            void* GetMappedMemory(){
+                return m_bufferInfo.pMappedData;
+            }
+
             void Destroy(const vk::Device device) const {
                 // device.destroyBufferView(m_bufferView);
                 VulkanAllocator::BufferAllocator.destroyBuffer(m_buffer, m_bufferLoc);

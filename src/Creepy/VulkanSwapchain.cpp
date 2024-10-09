@@ -50,7 +50,7 @@ namespace Creepy{
     void Swapchain::createSwapchain(const vk::Device device, const vk::SurfaceKHR surface, vk::ColorSpaceKHR swapchainColorSpace, vk::PresentModeKHR presentMode, const vk::SurfaceCapabilitiesKHR &surfaceCap)
     {
         // Note(Creepy): If we usage swapchain image for another layout -> we need add to here
-        constexpr vk::ImageUsageFlags swapchainImageUsages = vk::ImageUsageFlagBits::eColorAttachment | vk::ImageUsageFlagBits::eTransferDst;
+        constexpr vk::ImageUsageFlags swapchainImageUsages = vk::ImageUsageFlagBits::eColorAttachment | vk::ImageUsageFlagBits::eTransferDst | vk::ImageUsageFlagBits::eTransferSrc;
 
         vk::SwapchainCreateInfoKHR info{};
         info.flags = vk::SwapchainCreateFlagsKHR{};

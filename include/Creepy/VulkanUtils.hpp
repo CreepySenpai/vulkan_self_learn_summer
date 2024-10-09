@@ -144,4 +144,21 @@ namespace Creepy{
         device.destroyFence(submitDoneFence);
         device.freeCommandBuffers(commandPool, commandBuffer);
     }
+
+    static void CopyImageToBuffer(const vk::CommandBuffer commandBuffer, const vk::Image srcImage, const vk::Buffer dstBuffer, uint32_t width, uint32_t height, vk::ImageAspectFlags imageAspect){
+        vk::BufferImageCopy copyInfo{};
+        copyInfo.imageExtent = vk::Extent3D{width, height, 1};
+        copyInfo.imageOffset = vk::Offset3D{0, 0, 0};
+        copyInfo.bufferOffset = 0;
+        copyInfo.bufferImageHeight = 0;
+        copyInfo.bufferRowLength = 0;
+        copyInfo.imageSubresource.aspectMask = imageAspect;
+        copyInfo.imageSubresource.layerCount = 1;
+        copyInfo.imageSubresource.baseArrayLayer = 0;
+        copyInfo.imageSubresource.mipLevel = 0;
+
+        commandBuffer.copyImageToBuffer(srcImage, vk::ImageLayout::eTransferSrcOptimal, dstBuffer, copyInfo);
+    }
+
+    void SaveImageToFile(const void* data, const uint32_t width, const uint32_t height);
 }

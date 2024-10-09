@@ -6,18 +6,19 @@ namespace Creepy{
 
     class MaterialManager{
         public:
-            uint32_t AddMaterial(const vk::Device device);
+            static uint32_t AddMaterial(const vk::Device device);
             
-            MaterialData& GetMaterialData(uint32_t materialIndex);
-            vk::DeviceAddress GetBufferAddress(uint32_t materialIndex) const;
+            static MaterialData& GetMaterialData(uint32_t materialIndex);
+            static vk::DeviceAddress GetBufferAddress(uint32_t materialIndex);
 
-            void UploadMaterialData() const;
-            void RemoveMaterial(uint32_t materialIndex);
-            void Destroy(const vk::Device device);
+            static void UploadMaterialData();
+            static void RemoveMaterial(uint32_t materialIndex);
+            static void Destroy(const vk::Device device);
+
         private:
-            std::vector<MaterialBuffer> m_buffers;
-            std::vector<vk::DeviceAddress> m_bufferAddresses;
-            std::vector<MaterialData> m_bufferData;
-            std::vector<uint32_t> m_removedIndexes;
+            static inline std::vector<MaterialBuffer> s_buffers;
+            static inline std::vector<vk::DeviceAddress> s_bufferAddresses;
+            static inline std::vector<MaterialData> s_bufferData;
+            static inline std::vector<uint32_t> s_removedIndexes;
     };
 }

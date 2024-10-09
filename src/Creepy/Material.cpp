@@ -5,45 +5,45 @@ namespace Creepy{
 
     uint32_t MaterialManager::AddMaterial(const vk::Device device) {
         // Note: We reuse lasted remove index
-        if(!m_removedIndexes.empty()){
-            auto lastIndex = m_removedIndexes.back();
-            m_removedIndexes.pop_back();
-            m_bufferData.at(lastIndex) = MaterialData{};
+        if(!s_removedIndexes.empty()){
+            auto lastIndex = s_removedIndexes.back();
+            s_removedIndexes.pop_back();
+            s_bufferData.at(lastIndex) = MaterialData{};
             return lastIndex;
         }
 
-        auto& createdBuffer = m_buffers.emplace_back(device, sizeof(MaterialData));
+        auto& createdBuffer = s_buffers.emplace_back(device, sizeof(MaterialData));
 
         vk::BufferDeviceAddressInfo bufferAddressInfo{};
         bufferAddressInfo.buffer = createdBuffer.GetBuffer();
 
-        m_bufferAddresses.emplace_back(device.getBufferAddress(bufferAddressInfo));
-        m_bufferData.push_back({});
+        s_bufferAddresses.emplace_back(device.getBufferAddress(bufferAddressInfo));
+        s_bufferData.push_back({});
 
-        return m_buffers.size() - 1;    // return current material index
+        return s_buffers.size() - 1;    // return current material index
     }
 
     MaterialData& MaterialManager::GetMaterialData(uint32_t materialIndex) {
-        return m_bufferData.at(materialIndex);
+        return s_bufferData.at(materialIndex);
     }
 
-    vk::DeviceAddress MaterialManager::GetBufferAddress(uint32_t materialIndex) const {
-        return m_bufferAddresses.at(materialIndex);
+    vk::DeviceAddress MaterialManager::GetBufferAddress(uint32_t materialIndex) {
+        return s_bufferAddresses.at(materialIndex);
     }
 
-    void MaterialManager::UploadMaterialData() const {
-        for(size_t i{}; const auto& buffer : m_buffers){
-            buffer.UploadData(m_bufferData.at(i));
+    void MaterialManager::UploadMaterialData() {
+        for(size_t i{}; const auto& buffer : s_buffers){
+            buffer.UploadData(s_bufferData.at(i));
             ++i;
         }
     }
 
     void MaterialManager::RemoveMaterial(uint32_t materialIndex) {
-        m_removedIndexes.push_back(materialIndex);
+        s_removedIndexes.push_back(materialIndex);
     }
 
     void MaterialManager::Destroy(const vk::Device device) {
-        for(auto& buffer : m_buffers){
+        for(auto& buffer : s_buffers){
             buffer.Destroy(device);
         }
     }

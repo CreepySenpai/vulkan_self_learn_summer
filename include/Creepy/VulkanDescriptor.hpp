@@ -38,17 +38,15 @@ namespace Creepy {
     concept IsBuffer = requires(T buffer){
         {buffer.GetBuffer()} -> std::same_as<vk::Buffer>;
         {buffer.GetBufferSize()} -> std::same_as<uint64_t>;
-        {buffer.GetBufferOffset()} -> std::same_as<uint64_t>;
     };
 
     struct DescriptorBufferInfo{
         constexpr DescriptorBufferInfo() = default;
 
         constexpr DescriptorBufferInfo(const uint32_t binding, const uint32_t descriptorCount, const vk::DescriptorType descriptorType, const IsBuffer auto& buffer)
-            : m_binding{binding}, m_descriptorCount{descriptorCount}, m_descriptorType{descriptorType}, m_bufferInfo{buffer.GetBuffer(), buffer.GetBufferOffset(), buffer.GetBufferSize() + buffer.GetBufferOffset()}
+            : m_binding{binding}, m_descriptorCount{descriptorCount}, m_descriptorType{descriptorType}, m_bufferInfo{buffer.GetBuffer(), 0, buffer.GetBufferSize()}
         {
-            
-            std::println("Size {} - Off - {}", buffer.GetBufferSize() + buffer.GetBufferOffset(), buffer.GetBufferOffset());
+            std::println("DescriptorBufferInfoSize {}", buffer.GetBufferSize());
         }
 
         uint32_t m_binding{};

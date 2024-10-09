@@ -17,7 +17,7 @@ namespace Creepy{
 
         static void DrawLightData(struct LightData& lightData);
 
-        static void DrawModelInfo(std::unordered_map<std::string, Model>& models, struct MaterialManager& materialManager);
+        static void DrawModelInfo(std::unordered_map<std::string, Model>& models);
 
         static void EndFrame();
     };

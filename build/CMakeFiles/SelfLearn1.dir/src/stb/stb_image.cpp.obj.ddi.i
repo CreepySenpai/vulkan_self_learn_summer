@@ -3,8 +3,8 @@
 # 0 "<command-line>"
 # 1 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/src/stb/stb_image.cpp"
 
-# 1 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 1
-# 371 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 1
+# 371 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
 # 1 "D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/stdio.h" 1 3
 # 9 "D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/stdio.h" 3
 # 1 "D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/corecrt_stdio_config.h" 1 3
@@ -1132,13 +1132,13 @@ extern "C" {
 # 916 "D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/sec_api/stdio_s.h" 3
 }
 # 1605 "D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/stdio.h" 2 3
-# 372 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 2
+# 372 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 2
 
 
 
 
 
-# 376 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 376 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
 enum
 {
    STBI_default = 0,
@@ -2252,15 +2252,15 @@ using std::system;
 
 using std::wcstombs;
 using std::wctomb;
-# 387 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 2
+# 387 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 2
 
-# 387 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 387 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
 typedef unsigned char stbi_uc;
 typedef unsigned short stbi_us;
 
 
 extern "C" {
-# 411 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 411 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
 typedef struct
 {
    int (*read) (void *user,char *data,int size);
@@ -2284,7 +2284,7 @@ extern stbi_uc *stbi_load_from_file (FILE *f, int *x, int *y, int *channels_in_f
 
 
 extern stbi_uc *stbi_load_gif_from_memory(stbi_uc const *buffer, int len, int **delays, int *x, int *y, int *z, int *comp, int req_comp);
-# 445 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 445 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
 extern stbi_us *stbi_load_16_from_memory (stbi_uc const *buffer, int len, int *x, int *y, int *channels_in_file, int desired_channels);
 extern stbi_us *stbi_load_16_from_callbacks(stbi_io_callbacks const *clbk, void *user, int *x, int *y, int *channels_in_file, int desired_channels);
 
@@ -2380,14 +2380,14 @@ extern int stbi_zlib_decode_noheader_buffer(char *obuffer, int olen, const char 
 
 
 }
-# 587 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 587 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
 # 1 "D:/Enviroments/mingw64_msvcrt/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stdarg.h" 1 3 4
 # 1 "D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/stdarg.h" 1 3 4
 # 140 "D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/stdarg.h" 3 4
 # 1 "D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/_mingw_stdarg.h" 1 3 4
 # 141 "D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/stdarg.h" 2 3 4
 # 2 "D:/Enviroments/mingw64_msvcrt/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stdarg.h" 2 3 4
-# 588 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 2
+# 588 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 2
 # 1 "D:/Enviroments/mingw64_msvcrt/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stddef.h" 1 3 4
 # 1 "D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/stddef.h" 1 3 4
 # 13 "D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/stddef.h" 3 4
@@ -2407,9 +2407,9 @@ typedef struct {
   long double __max_align_ld __attribute__((__aligned__(__alignof__(long double))));
 } max_align_t;
 # 2 "D:/Enviroments/mingw64_msvcrt/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stddef.h" 2 3 4
-# 589 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 2
+# 589 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 2
 # 1 "D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/stdlib.h" 1 3
-# 590 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 2
+# 590 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 2
 # 1 "D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/string.h" 1 3
 # 21 "D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/string.h" 3
 extern "C" {
@@ -2652,9 +2652,9 @@ extern "C" {
 
 }
 # 195 "D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/string.h" 2 3
-# 591 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 2
+# 591 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 2
 # 1 "D:/Enviroments/mingw64_msvcrt/lib/gcc/x86_64-w64-mingw32/14.2.0/include/limits.h" 1 3 4
-# 592 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 2
+# 592 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 2
 
 
 # 1 "D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/math.h" 1 3
@@ -26008,7 +26008,7 @@ using std::tgamma;
 using std::trunc;
 # 183 "D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/math.h" 3
 using std::lerp;
-# 595 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 2
+# 595 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 2
 
 
 
@@ -26031,8 +26031,8 @@ __attribute__ ((__dllimport__)) void __attribute__((__cdecl__)) __attribute__ ((
 
 
 }
-# 603 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 2
-# 647 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 603 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 2
+# 647 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
 # 1 "D:/Enviroments/mingw64_msvcrt/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stdint.h" 1 3 4
 # 9 "D:/Enviroments/mingw64_msvcrt/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stdint.h" 3 4
 # 1 "D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/stdint.h" 1 3 4
@@ -26079,9 +26079,9 @@ __extension__ typedef unsigned long long uint_fast64_t;
 __extension__ typedef long long intmax_t;
 __extension__ typedef unsigned long long uintmax_t;
 # 10 "D:/Enviroments/mingw64_msvcrt/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stdint.h" 2 3 4
-# 648 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 2
+# 648 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 2
 
-# 648 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 648 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
 typedef uint16_t stbi__uint16;
 typedef int16_t stbi__int16;
 typedef uint32_t stbi__uint32;
@@ -26090,7 +26090,7 @@ typedef int32_t stbi__int32;
 
 
 typedef unsigned char validate_uint32[sizeof(stbi__uint32)==4 ? 1 : -1];
-# 726 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 726 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
 # 1 "D:/Enviroments/mingw64_msvcrt/lib/gcc/x86_64-w64-mingw32/14.2.0/include/emmintrin.h" 1 3 4
 # 31 "D:/Enviroments/mingw64_msvcrt/lib/gcc/x86_64-w64-mingw32/14.2.0/include/emmintrin.h" 3 4
 # 1 "D:/Enviroments/mingw64_msvcrt/lib/gcc/x86_64-w64-mingw32/14.2.0/include/xmmintrin.h" 1 3 4
@@ -29746,10 +29746,10 @@ _mm_castsi128_pd(__m128i __A)
 {
   return (__m128d) __A;
 }
-# 727 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 2
-# 765 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 727 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 2
+# 765 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
 
-# 765 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 765 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
 static int stbi__sse2_available(void)
 {
 
@@ -29757,7 +29757,7 @@ static int stbi__sse2_available(void)
 
    return 1;
 }
-# 805 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 805 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
 typedef struct
 {
    stbi__uint32 img_x, img_y;
@@ -29782,9 +29782,9 @@ static void stbi__refill_buffer(stbi__context *s);
 static void stbi__start_mem(stbi__context *s, stbi_uc const *buffer, int len)
 {
    s->io.read = 
-# 828 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 828 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                __null
-# 828 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 828 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                    ;
    s->read_from_callbacks = 0;
    s->callback_already_read = 0;
@@ -29816,15 +29816,15 @@ static void stbi__stdio_skip(void *user, int n)
 {
    int ch;
    fseek((FILE*) user, n, 
-# 858 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3
+# 858 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3
                          1
-# 858 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 858 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                  );
    ch = fgetc((FILE*) user);
    if (ch != 
-# 860 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3
+# 860 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3
             (-1)
-# 860 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 860 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                ) {
       ungetc(ch, (FILE *) user);
    }
@@ -29954,7 +29954,7 @@ static void *stbi__malloc(size_t size)
 {
     return malloc(size);
 }
-# 1002 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1002 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
 static int stbi__addsizes_valid(int a, int b)
 {
    if (b < 0) return 0;
@@ -29963,7 +29963,7 @@ static int stbi__addsizes_valid(int a, int b)
 
 
    return a <= 0x7fffffff 
-# 1009 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1009 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                       - b;
 }
 
@@ -29975,7 +29975,7 @@ static int stbi__mul2sizes_valid(int a, int b)
    if (b == 0) return 1;
 
    return a <= 0x7fffffff
-# 1019 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1019 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                      /b;
 }
 
@@ -30008,9 +30008,9 @@ static int stbi__mad4sizes_valid(int a, int b, int c, int d, int add)
 static void *stbi__malloc_mad2(int a, int b, int add)
 {
    if (!stbi__mad2sizes_valid(a, b, add)) return 
-# 1050 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 1050 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                 __null
-# 1050 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1050 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                     ;
    return stbi__malloc(a*b + add);
 }
@@ -30019,9 +30019,9 @@ static void *stbi__malloc_mad2(int a, int b, int add)
 static void *stbi__malloc_mad3(int a, int b, int c, int add)
 {
    if (!stbi__mad3sizes_valid(a, b, c, add)) return 
-# 1057 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 1057 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                    __null
-# 1057 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1057 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                        ;
    return stbi__malloc(a*b*c + add);
 }
@@ -30030,9 +30030,9 @@ static void *stbi__malloc_mad3(int a, int b, int c, int add)
 static void *stbi__malloc_mad4(int a, int b, int c, int d, int add)
 {
    if (!stbi__mad4sizes_valid(a, b, c, d, add)) return 
-# 1064 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 1064 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                       __null
-# 1064 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1064 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                           ;
    return stbi__malloc(a*b*c*d + add);
 }
@@ -30043,12 +30043,12 @@ static int stbi__addints_valid(int a, int b)
 {
    if ((a >= 0) != (b >= 0)) return 1;
    if (a < 0 && b < 0) return a >= 
-# 1073 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 1073 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                   (-0x7fffffff - 1) 
-# 1073 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1073 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                           - b;
    return a <= 0x7fffffff 
-# 1074 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1074 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                       - b;
 }
 
@@ -30057,20 +30057,20 @@ static int stbi__mul2shorts_valid(int a, int b)
 {
    if (b == 0 || b == -1) return 1;
    if ((a >= 0) == (b >= 0)) return a <= 0x7fff
-# 1081 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1081 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                 /b;
    if (b < 0) return a <= 
-# 1082 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 1082 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                          (-0x7fff - 1) 
-# 1082 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1082 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                   / b;
    return a >= 
-# 1083 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 1083 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
               (-0x7fff - 1) 
-# 1083 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1083 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                        / b;
 }
-# 1101 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1101 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
 extern void stbi_image_free(void *retval_from_stbi_load)
 {
    free(retval_from_stbi_load);
@@ -30158,13 +30158,13 @@ static void *stbi__load_main(stbi__context *s, int *x, int *y, int *comp, int re
 
 
    return ((unsigned char *)(size_t) (stbi__err("unknown image type")?
-# 1187 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 1187 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
          __null
-# 1187 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1187 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
          :
-# 1187 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 1187 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
          __null
-# 1187 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1187 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
          ));
 }
 
@@ -30176,17 +30176,17 @@ static stbi_uc *stbi__convert_16_to_8(stbi__uint16 *orig, int w, int h, int chan
 
    reduced = (stbi_uc *) stbi__malloc(img_len);
    if (reduced == 
-# 1197 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 1197 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                  __null
-# 1197 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1197 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                      ) return ((unsigned char *)(size_t) (stbi__err("outofmem")?
-# 1197 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 1197 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                               __null
-# 1197 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1197 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                               :
-# 1197 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 1197 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                               __null
-# 1197 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1197 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                               ));
 
    for (i = 0; i < img_len; ++i)
@@ -30204,17 +30204,17 @@ static stbi__uint16 *stbi__convert_8_to_16(stbi_uc *orig, int w, int h, int chan
 
    enlarged = (stbi__uint16 *) stbi__malloc(img_len*2);
    if (enlarged == 
-# 1213 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 1213 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                   __null
-# 1213 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1213 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                       ) return (stbi__uint16 *) ((unsigned char *)(size_t) (stbi__err("outofmem")?
-# 1213 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 1213 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                 __null
-# 1213 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1213 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                 :
-# 1213 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 1213 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                 __null
-# 1213 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1213 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                 ));
 
    for (i = 0; i < img_len; ++i)
@@ -30268,21 +30268,21 @@ static unsigned char *stbi__load_and_postprocess_8bit(stbi__context *s, int *x, 
    void *result = stbi__load_main(s, x, y, comp, req_comp, &ri, 8);
 
    if (result == 
-# 1265 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 1265 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                 __null
-# 1265 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1265 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                     )
       return 
-# 1266 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 1266 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
             __null
-# 1266 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1266 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                 ;
 
 
    
-# 1269 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3
+# 1269 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3
   ((void)0)
-# 1269 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1269 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                                     ;
 
    if (ri.bits_per_channel != 8) {
@@ -30306,21 +30306,21 @@ static stbi__uint16 *stbi__load_and_postprocess_16bit(stbi__context *s, int *x, 
    void *result = stbi__load_main(s, x, y, comp, req_comp, &ri, 16);
 
    if (result == 
-# 1291 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 1291 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                 __null
-# 1291 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1291 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                     )
       return 
-# 1292 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 1292 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
             __null
-# 1292 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1292 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                 ;
 
 
    
-# 1295 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3
+# 1295 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3
   ((void)0)
-# 1295 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1295 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                                     ;
 
    if (ri.bits_per_channel != 16) {
@@ -30343,19 +30343,19 @@ static stbi__uint16 *stbi__load_and_postprocess_16bit(stbi__context *s, int *x, 
 static void stbi__float_postprocess(float *result, int *x, int *y, int *comp, int req_comp)
 {
    if ((stbi__vertically_flip_on_load_set ? stbi__vertically_flip_on_load_local : stbi__vertically_flip_on_load_global) && result != 
-# 1316 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 1316 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                  __null
-# 1316 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1316 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                      ) {
       int channels = req_comp ? req_comp : *comp;
       stbi__vertical_flip(result, *x, *y, channels * sizeof(float));
    }
 }
-# 1337 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1337 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
 static FILE *stbi__fopen(char const *filename, char const *mode)
 {
    FILE *f;
-# 1360 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1360 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
    f = fopen(filename, mode);
 
    return f;
@@ -30367,13 +30367,13 @@ extern stbi_uc *stbi_load(char const *filename, int *x, int *y, int *comp, int r
    FILE *f = stbi__fopen(filename, "rb");
    unsigned char *result;
    if (!f) return ((unsigned char *)(size_t) (stbi__err("can't fopen")?
-# 1370 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 1370 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                  __null
-# 1370 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1370 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                  :
-# 1370 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 1370 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                  __null
-# 1370 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1370 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                  ));
    result = stbi_load_from_file(f,x,y,comp,req_comp);
    fclose(f);
@@ -30389,9 +30389,9 @@ extern stbi_uc *stbi_load_from_file(FILE *f, int *x, int *y, int *comp, int req_
    if (result) {
 
       fseek(f, - (int) (s.img_buffer_end - s.img_buffer), 
-# 1384 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3
+# 1384 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3
                                                          1
-# 1384 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1384 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                                  );
    }
    return result;
@@ -30406,9 +30406,9 @@ extern stbi__uint16 *stbi_load_from_file_16(FILE *f, int *x, int *y, int *comp, 
    if (result) {
 
       fseek(f, - (int) (s.img_buffer_end - s.img_buffer), 
-# 1397 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3
+# 1397 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3
                                                          1
-# 1397 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1397 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                                  );
    }
    return result;
@@ -30419,13 +30419,13 @@ extern stbi_us *stbi_load_16(char const *filename, int *x, int *y, int *comp, in
    FILE *f = stbi__fopen(filename, "rb");
    stbi__uint16 *result;
    if (!f) return (stbi_us *) ((unsigned char *)(size_t) (stbi__err("can't fopen")?
-# 1406 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 1406 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                              __null
-# 1406 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1406 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                              :
-# 1406 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 1406 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                              __null
-# 1406 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1406 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                              ));
    result = stbi_load_from_file_16(f,x,y,comp,req_comp);
    fclose(f);
@@ -30496,13 +30496,13 @@ static float *stbi__loadf_main(stbi__context *s, int *x, int *y, int *comp, int 
    if (data)
       return stbi__ldr_to_hdr(data, *x, *y, req_comp ? req_comp : *comp);
    return ((float *)(size_t) (stbi__err("unknown image type")?
-# 1475 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 1475 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
          __null
-# 1475 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1475 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
          :
-# 1475 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 1475 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
          __null
-# 1475 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1475 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
          ));
 }
 
@@ -30526,13 +30526,13 @@ extern float *stbi_loadf(char const *filename, int *x, int *y, int *comp, int re
    float *result;
    FILE *f = stbi__fopen(filename, "rb");
    if (!f) return ((float *)(size_t) (stbi__err("can't fopen")?
-# 1497 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 1497 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                  __null
-# 1497 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1497 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                  :
-# 1497 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 1497 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                  __null
-# 1497 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1497 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                  ));
    result = stbi_loadf_from_file(f,x,y,comp,req_comp);
    fclose(f);
@@ -30545,7 +30545,7 @@ extern float *stbi_loadf_from_file(FILE *f, int *x, int *y, int *comp, int req_c
    stbi__start_file(&s,f);
    return stbi__loadf_main(&s,x,y,comp,req_comp);
 }
-# 1517 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1517 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
 extern int stbi_is_hdr_from_memory(stbi_uc const *buffer, int len)
 {
 
@@ -30580,9 +30580,9 @@ extern int stbi_is_hdr_from_file(FILE *f)
    stbi__start_file(&s,f);
    res = stbi__hdr_test(&s);
    fseek(f, pos, 
-# 1550 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3
+# 1550 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3
                 0
-# 1550 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1550 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                         );
    return res;
 
@@ -30761,7 +30761,7 @@ static stbi__uint32 stbi__get32le(stbi__context *s)
    z += (stbi__uint32)stbi__get16le(s) << 16;
    return z;
 }
-# 1746 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1746 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
 static stbi_uc stbi__compute_y(int r, int g, int b)
 {
    return (stbi_uc) (((r*77) + (g*150) + (29*b)) >> 8);
@@ -30778,26 +30778,26 @@ static unsigned char *stbi__convert_format(unsigned char *data, int img_n, int r
 
    if (req_comp == img_n) return data;
    
-# 1761 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3
+# 1761 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3
   ((void)0)
-# 1761 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1761 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                              ;
 
    good = (unsigned char *) stbi__malloc_mad3(req_comp, x, y, 0);
    if (good == 
-# 1764 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 1764 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
               __null
-# 1764 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1764 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                   ) {
       free(data);
       return ((unsigned char *)(size_t) (stbi__err("outofmem")?
-# 1766 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 1766 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
             __null
-# 1766 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1766 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
             :
-# 1766 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 1766 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
             __null
-# 1766 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1766 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
             ));
    }
 
@@ -30823,17 +30823,17 @@ static unsigned char *stbi__convert_format(unsigned char *data, int img_n, int r
          case ((4)*8+(2)): for(i=x-1; i >= 0; --i, src += 4, dest += 2) { dest[0]=stbi__compute_y(src[0],src[1],src[2]); dest[1] = src[3]; } break;
          case ((4)*8+(3)): for(i=x-1; i >= 0; --i, src += 4, dest += 3) { dest[0]=src[0];dest[1]=src[1];dest[2]=src[2]; } break;
          default: 
-# 1790 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3
+# 1790 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3
                  ((void)0)
-# 1790 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1790 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                ; free(data); free(good); return ((unsigned char *)(size_t) (stbi__err("unsupported")?
-# 1790 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 1790 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                                           __null
-# 1790 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1790 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                                           :
-# 1790 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 1790 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                                           __null
-# 1790 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1790 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                                           ));
       }
 
@@ -30863,26 +30863,26 @@ static stbi__uint16 *stbi__convert_format16(stbi__uint16 *data, int img_n, int r
 
    if (req_comp == img_n) return data;
    
-# 1818 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3
+# 1818 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3
   ((void)0)
-# 1818 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1818 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                              ;
 
    good = (stbi__uint16 *) stbi__malloc(req_comp * x * y * 2);
    if (good == 
-# 1821 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 1821 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
               __null
-# 1821 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1821 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                   ) {
       free(data);
       return (stbi__uint16 *) ((unsigned char *)(size_t) (stbi__err("outofmem")?
-# 1823 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 1823 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                              __null
-# 1823 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1823 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                              :
-# 1823 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 1823 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                              __null
-# 1823 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1823 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                              ));
    }
 
@@ -30908,17 +30908,17 @@ static stbi__uint16 *stbi__convert_format16(stbi__uint16 *data, int img_n, int r
          case ((4)*8+(2)): for(i=x-1; i >= 0; --i, src += 4, dest += 2) { dest[0]=stbi__compute_y_16(src[0],src[1],src[2]); dest[1] = src[3]; } break;
          case ((4)*8+(3)): for(i=x-1; i >= 0; --i, src += 4, dest += 3) { dest[0]=src[0];dest[1]=src[1];dest[2]=src[2]; } break;
          default: 
-# 1847 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3
+# 1847 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3
                  ((void)0)
-# 1847 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1847 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                ; free(data); free(good); return (stbi__uint16*) ((unsigned char *)(size_t) (stbi__err("unsupported")?
-# 1847 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 1847 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                                                           __null
-# 1847 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1847 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                                                           :
-# 1847 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 1847 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                                                           __null
-# 1847 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1847 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                                                           ));
       }
 
@@ -30935,23 +30935,23 @@ static float *stbi__ldr_to_hdr(stbi_uc *data, int x, int y, int comp)
    int i,k,n;
    float *output;
    if (!data) return 
-# 1862 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 1862 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                     __null
-# 1862 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1862 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                         ;
    output = (float *) stbi__malloc_mad4(x, y, comp, sizeof(float), 0);
    if (output == 
-# 1864 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 1864 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                 __null
-# 1864 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1864 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                     ) { free(data); return ((float *)(size_t) (stbi__err("outofmem")?
-# 1864 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 1864 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                 __null
-# 1864 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1864 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                 :
-# 1864 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 1864 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                 __null
-# 1864 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1864 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                 )); }
 
    if (comp & 1) n = comp; else n = comp-1;
@@ -30977,23 +30977,23 @@ static stbi_uc *stbi__hdr_to_ldr(float *data, int x, int y, int comp)
    int i,k,n;
    stbi_uc *output;
    if (!data) return 
-# 1888 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 1888 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                     __null
-# 1888 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1888 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                         ;
    output = (stbi_uc *) stbi__malloc_mad3(x, y, comp, 0);
    if (output == 
-# 1890 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 1890 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                 __null
-# 1890 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1890 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                     ) { free(data); return ((unsigned char *)(size_t) (stbi__err("outofmem")?
-# 1890 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 1890 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                 __null
-# 1890 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1890 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                 :
-# 1890 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 1890 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                 __null
-# 1890 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1890 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                 )); }
 
    if (comp & 1) n = comp; else n = comp-1;
@@ -31014,7 +31014,7 @@ static stbi_uc *stbi__hdr_to_ldr(float *data, int x, int y, int comp)
    free(data);
    return output;
 }
-# 1938 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 1938 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
 typedef struct
 {
    stbi_uc fast[1 << 9];
@@ -31218,9 +31218,9 @@ inline static int stbi__jpeg_huff_decode(stbi__jpeg *j, stbi__huffman *h)
    if(c < 0 || c >= 256)
        return -1;
    
-# 2140 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3
+# 2140 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3
   ((void)0)
-# 2140 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 2140 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                                                                 ;
 
 
@@ -31506,7 +31506,7 @@ inline static stbi_uc stbi__clamp(int x)
    }
    return (stbi_uc) x;
 }
-# 2467 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 2467 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
 static void stbi__idct_block(stbi_uc *out, int out_stride, short data[64])
 {
    int i,val[64],*v=val;
@@ -31575,7 +31575,7 @@ static void stbi__idct_simd(stbi_uc *out, int out_stride, short data[64])
 
    __m128i row0, row1, row2, row3, row4, row5, row6, row7;
    __m128i tmp;
-# 2615 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 2615 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
    __m128i rot0_0 = _mm_setr_epi16((((int) (((0.5411961f) * 4096 + 0.5)))),(((int) (((0.5411961f) * 4096 + 0.5))) + ((int) (((-1.847759065f) * 4096 + 0.5)))),(((int) (((0.5411961f) * 4096 + 0.5)))),(((int) (((0.5411961f) * 4096 + 0.5))) + ((int) (((-1.847759065f) * 4096 + 0.5)))),(((int) (((0.5411961f) * 4096 + 0.5)))),(((int) (((0.5411961f) * 4096 + 0.5))) + ((int) (((-1.847759065f) * 4096 + 0.5)))),(((int) (((0.5411961f) * 4096 + 0.5)))),(((int) (((0.5411961f) * 4096 + 0.5))) + ((int) (((-1.847759065f) * 4096 + 0.5)))));
    __m128i rot0_1 = _mm_setr_epi16((((int) (((0.5411961f) * 4096 + 0.5))) + ((int) (((0.765366865f) * 4096 + 0.5)))),(((int) (((0.5411961f) * 4096 + 0.5)))),(((int) (((0.5411961f) * 4096 + 0.5))) + ((int) (((0.765366865f) * 4096 + 0.5)))),(((int) (((0.5411961f) * 4096 + 0.5)))),(((int) (((0.5411961f) * 4096 + 0.5))) + ((int) (((0.765366865f) * 4096 + 0.5)))),(((int) (((0.5411961f) * 4096 + 0.5)))),(((int) (((0.5411961f) * 4096 + 0.5))) + ((int) (((0.765366865f) * 4096 + 0.5)))),(((int) (((0.5411961f) * 4096 + 0.5)))));
    __m128i rot1_0 = _mm_setr_epi16((((int) (((1.175875602f) * 4096 + 0.5))) + ((int) (((-0.899976223f) * 4096 + 0.5)))),(((int) (((1.175875602f) * 4096 + 0.5)))),(((int) (((1.175875602f) * 4096 + 0.5))) + ((int) (((-0.899976223f) * 4096 + 0.5)))),(((int) (((1.175875602f) * 4096 + 0.5)))),(((int) (((1.175875602f) * 4096 + 0.5))) + ((int) (((-0.899976223f) * 4096 + 0.5)))),(((int) (((1.175875602f) * 4096 + 0.5)))),(((int) (((1.175875602f) * 4096 + 0.5))) + ((int) (((-0.899976223f) * 4096 + 0.5)))),(((int) (((1.175875602f) * 4096 + 0.5)))));
@@ -31654,9 +31654,9 @@ static void stbi__idct_simd(stbi_uc *out, int out_stride, short data[64])
       _mm_storel_epi64((__m128i *) out, p3); out += out_stride;
       _mm_storel_epi64((__m128i *) out, _mm_shuffle_epi32(p3, 0x4e));
    }
-# 2703 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 2703 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
 }
-# 2919 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 2919 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
 static stbi_uc stbi__get_marker(stbi__jpeg *j)
 {
    stbi_uc x;
@@ -31987,14 +31987,14 @@ static int stbi__free_jpeg_components(stbi__jpeg *z, int ncomp, int why)
       if (z->img_comp[i].raw_data) {
          free(z->img_comp[i].raw_data);
          z->img_comp[i].raw_data = 
-# 3248 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 3248 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                   __null
-# 3248 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 3248 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                       ;
          z->img_comp[i].data = 
-# 3249 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 3249 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                               __null
-# 3249 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 3249 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                   ;
       }
       if (z->img_comp[i].raw_coeff) {
@@ -32005,9 +32005,9 @@ static int stbi__free_jpeg_components(stbi__jpeg *z, int ncomp, int why)
       if (z->img_comp[i].linebuf) {
          free(z->img_comp[i].linebuf);
          z->img_comp[i].linebuf = 
-# 3258 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 3258 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                  __null
-# 3258 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 3258 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                      ;
       }
    }
@@ -32029,14 +32029,14 @@ static int stbi__process_frame_header(stbi__jpeg *z, int scan)
    s->img_n = c;
    for (i=0; i < c; ++i) {
       z->img_comp[i].data = 
-# 3278 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 3278 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                            __null
-# 3278 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 3278 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                ;
       z->img_comp[i].linebuf = 
-# 3279 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 3279 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                               __null
-# 3279 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 3279 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                   ;
    }
 
@@ -32095,15 +32095,15 @@ static int stbi__process_frame_header(stbi__jpeg *z, int scan)
       z->img_comp[i].coeff = 0;
       z->img_comp[i].raw_coeff = 0;
       z->img_comp[i].linebuf = 
-# 3336 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 3336 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                               __null
-# 3336 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 3336 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                   ;
       z->img_comp[i].raw_data = stbi__malloc_mad2(z->img_comp[i].w2, z->img_comp[i].h2, 15);
       if (z->img_comp[i].raw_data == 
-# 3338 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 3338 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                     __null
-# 3338 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 3338 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                         )
          return stbi__free_jpeg_components(z, i+1, stbi__err("outofmem"));
 
@@ -32114,9 +32114,9 @@ static int stbi__process_frame_header(stbi__jpeg *z, int scan)
          z->img_comp[i].coeff_h = z->img_comp[i].h2 / 8;
          z->img_comp[i].raw_coeff = stbi__malloc_mad3(z->img_comp[i].w2, z->img_comp[i].h2, sizeof(short), 15);
          if (z->img_comp[i].raw_coeff == 
-# 3347 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 3347 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                         __null
-# 3347 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 3347 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                             )
             return stbi__free_jpeg_components(z, i+1, stbi__err("outofmem"));
          z->img_comp[i].coeff = (short*) (((size_t) z->img_comp[i].raw_coeff + 15) & ~15);
@@ -32125,7 +32125,7 @@ static int stbi__process_frame_header(stbi__jpeg *z, int scan)
 
    return 1;
 }
-# 3365 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 3365 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
 static int stbi__decode_jpeg_header(stbi__jpeg *z, int scan)
 {
    int m;
@@ -32178,14 +32178,14 @@ static int stbi__decode_jpeg_image(stbi__jpeg *j)
    int m;
    for (m = 0; m < 4; m++) {
       j->img_comp[m].raw_data = 
-# 3416 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 3416 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                __null
-# 3416 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 3416 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                    ;
       j->img_comp[m].raw_coeff = 
-# 3417 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 3417 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                 __null
-# 3417 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 3417 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                     ;
    }
    j->restart_interval = 0;
@@ -32357,7 +32357,7 @@ static stbi_uc *stbi__resample_row_hv_2_simd(stbi_uc *out, stbi_uc *in_near, stb
 
       __m128i outv = _mm_packus_epi16(de0, de1);
       _mm_storeu_si128((__m128i *) (out + i*2), outv);
-# 3625 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 3625 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
       t1 = 3*in_near[i+7] + in_far[i+7];
    }
 
@@ -32482,7 +32482,7 @@ static void stbi__YCbCr_to_RGB_simd(stbi_uc *out, stbi_uc const *y, stbi_uc cons
          out += 32;
       }
    }
-# 3797 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 3797 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
    for (; i < count; ++i) {
       int y_fixed = (y[i] << 20) + (1<<19);
       int r,g,b;
@@ -32558,20 +32558,20 @@ static stbi_uc *load_jpeg_image(stbi__jpeg *z, int *out_x, int *out_y, int *comp
 
 
    if (req_comp < 0 || req_comp > 4) return ((unsigned char *)(size_t) (stbi__err("bad req_comp")?
-# 3871 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 3871 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                            __null
-# 3871 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 3871 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                            :
-# 3871 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 3871 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                            __null
-# 3871 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 3871 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                            ));
 
 
    if (!stbi__decode_jpeg_image(z)) { stbi__cleanup_jpeg(z); return 
-# 3874 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 3874 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                                    __null
-# 3874 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 3874 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                                        ; }
 
 
@@ -32587,9 +32587,9 @@ static stbi_uc *load_jpeg_image(stbi__jpeg *z, int *out_x, int *out_y, int *comp
 
 
    if (decode_n <= 0) { stbi__cleanup_jpeg(z); return 
-# 3888 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 3888 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                      __null
-# 3888 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 3888 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                          ; }
 
 
@@ -32598,21 +32598,21 @@ static stbi_uc *load_jpeg_image(stbi__jpeg *z, int *out_x, int *out_y, int *comp
       unsigned int i,j;
       stbi_uc *output;
       stbi_uc *coutput[4] = { 
-# 3895 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 3895 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                              __null
-# 3895 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 3895 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                  , 
-# 3895 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 3895 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                    __null
-# 3895 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 3895 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                        , 
-# 3895 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 3895 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                          __null
-# 3895 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 3895 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                              , 
-# 3895 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 3895 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                __null 
-# 3895 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 3895 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                     };
 
       stbi__resample res_comp[4];
@@ -32624,13 +32624,13 @@ static stbi_uc *load_jpeg_image(stbi__jpeg *z, int *out_x, int *out_y, int *comp
 
          z->img_comp[k].linebuf = (stbi_uc *) stbi__malloc(z->s->img_x + 3);
          if (!z->img_comp[k].linebuf) { stbi__cleanup_jpeg(z); return ((unsigned char *)(size_t) (stbi__err("outofmem")?
-# 3905 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 3905 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                                      __null
-# 3905 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 3905 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                                      :
-# 3905 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 3905 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                                      __null
-# 3905 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 3905 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                                      )); }
 
          r->hs = z->img_h_max / z->img_comp[k].h;
@@ -32650,13 +32650,13 @@ static stbi_uc *load_jpeg_image(stbi__jpeg *z, int *out_x, int *out_y, int *comp
 
       output = (stbi_uc *) stbi__malloc_mad3(n, z->s->img_x, z->s->img_y, 1);
       if (!output) { stbi__cleanup_jpeg(z); return ((unsigned char *)(size_t) (stbi__err("outofmem")?
-# 3923 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 3923 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                   __null
-# 3923 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 3923 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                   :
-# 3923 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 3923 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                   __null
-# 3923 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 3923 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                   )); }
 
 
@@ -32767,13 +32767,13 @@ static void *stbi__jpeg_load(stbi__context *s, int *x, int *y, int *comp, int re
    unsigned char* result;
    stbi__jpeg* j = (stbi__jpeg*) stbi__malloc(sizeof(stbi__jpeg));
    if (!j) return ((unsigned char *)(size_t) (stbi__err("outofmem")?
-# 4032 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 4032 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                  __null
-# 4032 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 4032 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                  :
-# 4032 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 4032 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                  __null
-# 4032 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 4032 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                  ));
    memset(j, 0, sizeof(stbi__jpeg));
    (void)sizeof(ri);
@@ -32821,7 +32821,7 @@ static int stbi__jpeg_info(stbi__context *s, int *x, int *y, int *comp)
    free(j);
    return result;
 }
-# 4097 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 4097 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
 typedef struct
 {
    stbi__uint16 fast[1 << 9];
@@ -32844,9 +32844,9 @@ inline static int stbi__bitreverse16(int n)
 inline static int stbi__bit_reverse(int v, int bits)
 {
    
-# 4118 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3
+# 4118 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3
   ((void)0)
-# 4118 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 4118 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                          ;
 
 
@@ -33011,24 +33011,24 @@ static int stbi__zexpand(stbi__zbuf *z, char *zout, int n)
    cur = (unsigned int) (z->zout - z->zout_start);
    limit = old_limit = (unsigned) (z->zout_end - z->zout_start);
    if (
-# 4281 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 4281 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
       (0x7fffffff * 2U + 1U) 
-# 4281 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 4281 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                - cur < (unsigned) n) return stbi__err("outofmem");
    while (cur + n > limit) {
       if(limit > 
-# 4283 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 4283 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                 (0x7fffffff * 2U + 1U) 
-# 4283 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 4283 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                          / 2) return stbi__err("outofmem");
       limit *= 2;
    }
    q = (char *) realloc(z->zout_start,limit);
    (void)sizeof(old_limit);
    if (q == 
-# 4288 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 4288 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
            __null
-# 4288 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 4288 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                ) return stbi__err("outofmem");
    z->zout_start = q;
    z->zout = q + cur;
@@ -33209,7 +33209,7 @@ static const stbi_uc stbi__zdefault_distance[32] =
 {
    5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5,5
 };
-# 4481 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 4481 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
 static int stbi__parse_zlib(stbi__zbuf *a, int parse_header)
 {
    int final, type;
@@ -33254,13 +33254,13 @@ extern char *stbi_zlib_decode_malloc_guesssize(const char *buffer, int len, int 
    stbi__zbuf a;
    char *p = (char *) stbi__malloc(initial_size);
    if (p == 
-# 4524 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 4524 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
            __null
-# 4524 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 4524 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                ) return 
-# 4524 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 4524 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                         __null
-# 4524 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 4524 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                             ;
    a.zbuffer = (stbi_uc *) buffer;
    a.zbuffer_end = (stbi_uc *) buffer + len;
@@ -33270,9 +33270,9 @@ extern char *stbi_zlib_decode_malloc_guesssize(const char *buffer, int len, int 
    } else {
       free(a.zout_start);
       return 
-# 4532 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 4532 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
             __null
-# 4532 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 4532 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                 ;
    }
 }
@@ -33287,13 +33287,13 @@ extern char *stbi_zlib_decode_malloc_guesssize_headerflag(const char *buffer, in
    stbi__zbuf a;
    char *p = (char *) stbi__malloc(initial_size);
    if (p == 
-# 4545 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 4545 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
            __null
-# 4545 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 4545 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                ) return 
-# 4545 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 4545 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                         __null
-# 4545 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 4545 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                             ;
    a.zbuffer = (stbi_uc *) buffer;
    a.zbuffer_end = (stbi_uc *) buffer + len;
@@ -33303,9 +33303,9 @@ extern char *stbi_zlib_decode_malloc_guesssize_headerflag(const char *buffer, in
    } else {
       free(a.zout_start);
       return 
-# 4553 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 4553 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
             __null
-# 4553 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 4553 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                 ;
    }
 }
@@ -33326,13 +33326,13 @@ extern char *stbi_zlib_decode_noheader_malloc(char const *buffer, int len, int *
    stbi__zbuf a;
    char *p = (char *) stbi__malloc(16384);
    if (p == 
-# 4572 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 4572 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
            __null
-# 4572 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 4572 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                ) return 
-# 4572 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 4572 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                         __null
-# 4572 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 4572 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                             ;
    a.zbuffer = (stbi_uc *) buffer;
    a.zbuffer_end = (stbi_uc *) buffer+len;
@@ -33342,9 +33342,9 @@ extern char *stbi_zlib_decode_noheader_malloc(char const *buffer, int len, int *
    } else {
       free(a.zout_start);
       return 
-# 4580 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 4580 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
             __null
-# 4580 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 4580 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                 ;
    }
 }
@@ -33359,7 +33359,7 @@ extern int stbi_zlib_decode_noheader_buffer(char *obuffer, int olen, const char 
    else
       return -1;
 }
-# 4607 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 4607 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
 typedef struct
 {
    stbi__uint32 length;
@@ -33439,9 +33439,9 @@ static void stbi__create_png_alpha_expand8(stbi_uc *dest, stbi_uc *src, stbi__ui
       }
    } else {
       
-# 4685 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3
+# 4685 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3
      ((void)0)
-# 4685 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 4685 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                             ;
       for (i=x-1; i >= 0; --i) {
          dest[i*4+3] = 255;
@@ -33469,9 +33469,9 @@ static int stbi__create_png_image_raw(stbi__png *a, stbi_uc *raw, stbi__uint32 r
    int width = x;
 
    
-# 4711 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3
+# 4711 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3
   ((void)0)
-# 4711 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 4711 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                        ;
    a->out = (stbi_uc *) stbi__malloc_mad3(x, y, output_bytes, 0);
    if (!a->out) return stbi__err("outofmem");
@@ -33573,9 +33573,9 @@ static int stbi__create_png_image_raw(stbi__png *a, stbi_uc *raw, stbi__uint32 r
             }
          } else {
             
-# 4811 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3
+# 4811 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3
            ((void)0)
-# 4811 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 4811 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                   ;
             for (i=0; i < nsmp; ++i) {
                if ((i & 7) == 0) inb = *in++;
@@ -33602,9 +33602,9 @@ static int stbi__create_png_image_raw(stbi__png *a, stbi_uc *raw, stbi__uint32 r
                *dest16 = (cur[0] << 8) | cur[1];
          } else {
             
-# 4836 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3
+# 4836 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3
            ((void)0)
-# 4836 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 4836 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                         ;
             if (img_n == 1) {
                for (i = 0; i < x; ++i, dest16 += 2, cur += 2) {
@@ -33613,9 +33613,9 @@ static int stbi__create_png_image_raw(stbi__png *a, stbi_uc *raw, stbi__uint32 r
                }
             } else {
                
-# 4843 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3
+# 4843 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3
               ((void)0)
-# 4843 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 4843 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                      ;
                for (i = 0; i < x; ++i, dest16 += 4, cur += 6) {
                   dest16[0] = (cur[0] << 8) | cur[1];
@@ -33688,9 +33688,9 @@ static int stbi__compute_transparency(stbi__png *z, stbi_uc tc[3], int out_n)
 
 
    
-# 4914 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3
+# 4914 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3
   ((void)0)
-# 4914 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 4914 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                        ;
 
    if (out_n == 2) {
@@ -33717,9 +33717,9 @@ static int stbi__compute_transparency16(stbi__png *z, stbi__uint16 tc[3], int ou
 
 
    
-# 4939 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3
+# 4939 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3
   ((void)0)
-# 4939 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 4939 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                        ;
 
    if (out_n == 2) {
@@ -33744,9 +33744,9 @@ static int stbi__expand_png_palette(stbi__png *a, stbi_uc *palette, int len, int
 
    p = (stbi_uc *) stbi__malloc_mad2(pixel_count, pal_img_n, 0);
    if (p == 
-# 4962 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 4962 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
            __null
-# 4962 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 4962 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                ) return stbi__err("outofmem");
 
 
@@ -33809,7 +33809,7 @@ extern void stbi_convert_iphone_png_to_rgb_thread(int flag_true_if_should_conver
    stbi__de_iphone_flag_local = flag_true_if_should_convert;
    stbi__de_iphone_flag_set = 1;
 }
-# 5033 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5033 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
 static void stbi__de_iphone(stbi__png *z)
 {
    stbi__context *s = z->s;
@@ -33825,9 +33825,9 @@ static void stbi__de_iphone(stbi__png *z)
       }
    } else {
       
-# 5047 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3
+# 5047 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3
      ((void)0)
-# 5047 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5047 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                    ;
       if ((stbi__unpremultiply_on_load_set ? stbi__unpremultiply_on_load_local : stbi__unpremultiply_on_load_global)) {
 
@@ -33869,19 +33869,19 @@ static int stbi__parse_png_file(stbi__png *z, int scan, int req_comp)
    stbi__context *s = z->s;
 
    z->expanded = 
-# 5087 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5087 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                 __null
-# 5087 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5087 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                     ;
    z->idata = 
-# 5088 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5088 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
              __null
-# 5088 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5088 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                  ;
    z->out = 
-# 5089 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5089 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
            __null
-# 5089 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5089 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                ;
 
    if (!stbi__check_png_header(s)) return 0;
@@ -33985,9 +33985,9 @@ static int stbi__parse_png_file(stbi__png *z, int scan, int req_comp)
                   idata_limit *= 2;
                (void)sizeof(idata_limit_old);
                p = (stbi_uc *) realloc(z->idata,idata_limit); if (p == 
-# 5191 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5191 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                                                                    __null
-# 5191 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5191 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                                                                        ) return stbi__err("outofmem");
                z->idata = p;
             }
@@ -34001,23 +34001,23 @@ static int stbi__parse_png_file(stbi__png *z, int scan, int req_comp)
             if (first) return stbi__err("first not IHDR");
             if (scan != STBI__SCAN_load) return 1;
             if (z->idata == 
-# 5203 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5203 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                            __null
-# 5203 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5203 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                ) return stbi__err("no IDAT");
 
             bpl = (s->img_x * z->depth + 7) / 8;
             raw_len = bpl * s->img_y * s->img_n + s->img_y ;
             z->expanded = (stbi_uc *) stbi_zlib_decode_malloc_guesssize_headerflag((char *) z->idata, ioff, raw_len, (int *) &raw_len, !is_iphone);
             if (z->expanded == 
-# 5208 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5208 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                               __null
-# 5208 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5208 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                   ) return 0;
             free(z->idata); z->idata = 
-# 5209 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5209 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                            __null
-# 5209 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5209 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                ;
             if ((req_comp == s->img_n+1 && req_comp != 3 && !pal_img_n) || has_trans)
                s->img_out_n = s->img_n+1;
@@ -34045,9 +34045,9 @@ static int stbi__parse_png_file(stbi__png *z, int scan, int req_comp)
                ++s->img_n;
             }
             free(z->expanded); z->expanded = 
-# 5235 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5235 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                  __null
-# 5235 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5235 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                      ;
 
             stbi__get32be(s);
@@ -34079,18 +34079,18 @@ static int stbi__parse_png_file(stbi__png *z, int scan, int req_comp)
 static void *stbi__do_png(stbi__png *p, int *x, int *y, int *n, int req_comp, stbi__result_info *ri)
 {
    void *result=
-# 5265 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5265 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                __null
-# 5265 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5265 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                    ;
    if (req_comp < 0 || req_comp > 4) return ((unsigned char *)(size_t) (stbi__err("bad req_comp")?
-# 5266 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5266 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                            __null
-# 5266 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5266 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                            :
-# 5266 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5266 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                            __null
-# 5266 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5266 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                            ));
    if (stbi__parse_png_file(p, STBI__SCAN_load, req_comp)) {
       if (p->depth <= 8)
@@ -34099,19 +34099,19 @@ static void *stbi__do_png(stbi__png *p, int *x, int *y, int *n, int req_comp, st
          ri->bits_per_channel = 16;
       else
          return ((unsigned char *)(size_t) (stbi__err("bad bits_per_channel")?
-# 5273 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5273 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                __null
-# 5273 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5273 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                :
-# 5273 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5273 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                __null
-# 5273 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5273 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                ));
       result = p->out;
       p->out = 
-# 5275 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5275 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
               __null
-# 5275 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5275 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                   ;
       if (req_comp && req_comp != p->s->img_out_n) {
          if (ri->bits_per_channel == 8)
@@ -34120,9 +34120,9 @@ static void *stbi__do_png(stbi__png *p, int *x, int *y, int *n, int req_comp, st
             result = stbi__convert_format16((stbi__uint16 *) result, p->s->img_out_n, req_comp, p->s->img_x, p->s->img_y);
          p->s->img_out_n = req_comp;
          if (result == 
-# 5282 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5282 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                       __null
-# 5282 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5282 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                           ) return result;
       }
       *x = p->s->img_x;
@@ -34130,19 +34130,19 @@ static void *stbi__do_png(stbi__png *p, int *x, int *y, int *n, int req_comp, st
       if (n) *n = p->s->img_n;
    }
    free(p->out); p->out = 
-# 5288 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5288 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                         __null
-# 5288 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5288 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                             ;
    free(p->expanded); p->expanded = 
-# 5289 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5289 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                         __null
-# 5289 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5289 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                             ;
    free(p->idata); p->idata = 
-# 5290 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5290 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                         __null
-# 5290 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5290 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                             ;
 
    return result;
@@ -34187,17 +34187,17 @@ static int stbi__png_is16(stbi__context *s)
    stbi__png p;
    p.s = s;
    if (!stbi__png_info_raw(&p, 
-# 5333 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5333 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                               __null
-# 5333 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5333 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                   , 
-# 5333 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5333 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                     __null
-# 5333 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5333 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                         , 
-# 5333 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5333 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                           __null
-# 5333 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5333 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                               ))
     return 0;
    if (p.depth != 16) {
@@ -34275,15 +34275,15 @@ static int stbi__shiftsigned(unsigned int v, int shift, int bits)
    else
       v >>= shift;
    
-# 5409 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3
+# 5409 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3
   ((void)0)
-# 5409 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5409 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                       ;
    v >>= (8-bits);
    
-# 5411 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3
+# 5411 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3
   ((void)0)
-# 5411 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5411 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                      ;
    return (int) ((unsigned) v * mul_table[bits]) >> shift_table[bits];
 }
@@ -34325,13 +34325,13 @@ static void *stbi__bmp_parse_header(stbi__context *s, stbi__bmp_data *info)
 {
    int hsz;
    if (stbi__get8(s) != 'B' || stbi__get8(s) != 'M') return ((unsigned char *)(size_t) (stbi__err("not BMP")?
-# 5451 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5451 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                            __null
-# 5451 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5451 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                            :
-# 5451 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5451 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                            __null
-# 5451 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5451 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                            ));
    stbi__get32le(s);
    stbi__get16le(s);
@@ -34342,23 +34342,23 @@ static void *stbi__bmp_parse_header(stbi__context *s, stbi__bmp_data *info)
    info->extra_read = 14;
 
    if (info->offset < 0) return ((unsigned char *)(size_t) (stbi__err("bad BMP")?
-# 5460 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5460 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                __null
-# 5460 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5460 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                :
-# 5460 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5460 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                __null
-# 5460 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5460 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                ));
 
    if (hsz != 12 && hsz != 40 && hsz != 56 && hsz != 108 && hsz != 124) return ((unsigned char *)(size_t) (stbi__err("unknown BMP")?
-# 5462 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5462 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                                               __null
-# 5462 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5462 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                                               :
-# 5462 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5462 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                                               __null
-# 5462 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5462 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                                               ));
    if (hsz == 12) {
       s->img_x = stbi__get16le(s);
@@ -34368,43 +34368,43 @@ static void *stbi__bmp_parse_header(stbi__context *s, stbi__bmp_data *info)
       s->img_y = stbi__get32le(s);
    }
    if (stbi__get16le(s) != 1) return ((unsigned char *)(size_t) (stbi__err("bad BMP")?
-# 5470 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5470 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                     __null
-# 5470 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5470 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                     :
-# 5470 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5470 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                     __null
-# 5470 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5470 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                     ));
    info->bpp = stbi__get16le(s);
    if (hsz != 12) {
       int compress = stbi__get32le(s);
       if (compress == 1 || compress == 2) return ((unsigned char *)(size_t) (stbi__err("BMP RLE")?
-# 5474 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5474 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                 __null
-# 5474 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5474 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                 :
-# 5474 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5474 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                 __null
-# 5474 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5474 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                 ));
       if (compress >= 4) return ((unsigned char *)(size_t) (stbi__err("BMP JPEG/PNG")?
-# 5475 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5475 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                __null
-# 5475 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5475 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                :
-# 5475 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5475 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                __null
-# 5475 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5475 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                ));
       if (compress == 3 && info->bpp != 16 && info->bpp != 32) return ((unsigned char *)(size_t) (stbi__err("bad BMP")?
-# 5476 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5476 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                                      __null
-# 5476 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5476 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                                      :
-# 5476 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5476 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                                      __null
-# 5476 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5476 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                                      ));
       stbi__get32le(s);
       stbi__get32le(s);
@@ -34430,24 +34430,24 @@ static void *stbi__bmp_parse_header(stbi__context *s, stbi__bmp_data *info)
                if (info->mr == info->mg && info->mg == info->mb) {
 
                   return ((unsigned char *)(size_t) (stbi__err("bad BMP")?
-# 5500 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5500 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                         __null
-# 5500 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5500 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                         :
-# 5500 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5500 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                         __null
-# 5500 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5500 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                         ));
                }
             } else
                return ((unsigned char *)(size_t) (stbi__err("bad BMP")?
-# 5503 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5503 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                      __null
-# 5503 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5503 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                      :
-# 5503 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5503 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                      __null
-# 5503 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5503 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                      ));
          }
       } else {
@@ -34455,13 +34455,13 @@ static void *stbi__bmp_parse_header(stbi__context *s, stbi__bmp_data *info)
          int i;
          if (hsz != 108 && hsz != 124)
             return ((unsigned char *)(size_t) (stbi__err("bad BMP")?
-# 5509 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5509 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                   __null
-# 5509 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5509 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                   :
-# 5509 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5509 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                   __null
-# 5509 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5509 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                   ));
          info->mr = stbi__get32le(s);
          info->mg = stbi__get32le(s);
@@ -34496,36 +34496,36 @@ static void *stbi__bmp_load(stbi__context *s, int *x, int *y, int *comp, int req
 
    info.all_a = 255;
    if (stbi__bmp_parse_header(s, &info) == 
-# 5542 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5542 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                           __null
-# 5542 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5542 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                               )
       return 
-# 5543 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5543 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
             __null
-# 5543 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5543 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                 ;
 
    flip_vertically = ((int) s->img_y) > 0;
    s->img_y = abs((int) s->img_y);
 
    if (s->img_y > (1 << 24)) return ((unsigned char *)(size_t) (stbi__err("too large")?
-# 5548 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5548 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                              __null
-# 5548 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5548 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                              :
-# 5548 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5548 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                              __null
-# 5548 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5548 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                              ));
    if (s->img_x > (1 << 24)) return ((unsigned char *)(size_t) (stbi__err("too large")?
-# 5549 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5549 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                              __null
-# 5549 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5549 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                              :
-# 5549 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5549 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                              __null
-# 5549 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5549 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                              ));
 
    mr = info.mr;
@@ -34549,13 +34549,13 @@ static void *stbi__bmp_load(stbi__context *s, int *x, int *y, int *comp, int req
       int extra_data_limit = 256*4;
       if (bytes_read_so_far <= 0 || bytes_read_so_far > header_limit) {
          return ((unsigned char *)(size_t) (stbi__err("bad header")?
-# 5571 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5571 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                __null
-# 5571 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5571 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                :
-# 5571 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5571 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                __null
-# 5571 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5571 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                ));
       }
 
@@ -34564,13 +34564,13 @@ static void *stbi__bmp_load(stbi__context *s, int *x, int *y, int *comp, int req
 
       if (info.offset < bytes_read_so_far || info.offset - bytes_read_so_far > extra_data_limit) {
          return ((unsigned char *)(size_t) (stbi__err("bad offset")?
-# 5578 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5578 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                __null
-# 5578 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5578 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                :
-# 5578 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5578 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                __null
-# 5578 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5578 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                ));
       } else {
          stbi__skip(s, info.offset - bytes_read_so_far);
@@ -34589,35 +34589,35 @@ static void *stbi__bmp_load(stbi__context *s, int *x, int *y, int *comp, int req
 
    if (!stbi__mad3sizes_valid(target, s->img_x, s->img_y, 0))
       return ((unsigned char *)(size_t) (stbi__err("too large")?
-# 5595 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5595 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
             __null
-# 5595 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5595 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
             :
-# 5595 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5595 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
             __null
-# 5595 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5595 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
             ));
 
    out = (stbi_uc *) stbi__malloc_mad3(target, s->img_x, s->img_y, 0);
    if (!out) return ((unsigned char *)(size_t) (stbi__err("outofmem")?
-# 5598 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5598 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                    __null
-# 5598 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5598 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                    :
-# 5598 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5598 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                    __null
-# 5598 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5598 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                    ));
    if (info.bpp < 16) {
       int z=0;
       if (psize == 0 || psize > 256) { free(out); return ((unsigned char *)(size_t) (stbi__err("invalid")?
-# 5601 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5601 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                              __null
-# 5601 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5601 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                              :
-# 5601 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5601 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                              __null
-# 5601 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5601 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                              )); }
       for (i=0; i < psize; ++i) {
          pal[i][2] = stbi__get8(s);
@@ -34631,13 +34631,13 @@ static void *stbi__bmp_load(stbi__context *s, int *x, int *y, int *comp, int req
       else if (info.bpp == 4) width = (s->img_x + 1) >> 1;
       else if (info.bpp == 8) width = s->img_x;
       else { free(out); return ((unsigned char *)(size_t) (stbi__err("bad bpp")?
-# 5613 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5613 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                    __null
-# 5613 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5613 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                    :
-# 5613 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5613 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                    __null
-# 5613 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5613 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                    )); }
       pad = (-width)&3;
       if (info.bpp == 1) {
@@ -34696,13 +34696,13 @@ static void *stbi__bmp_load(stbi__context *s, int *x, int *y, int *comp, int req
       }
       if (!easy) {
          if (!mr || !mg || !mb) { free(out); return ((unsigned char *)(size_t) (stbi__err("bad masks")?
-# 5670 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5670 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                         __null
-# 5670 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5670 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                         :
-# 5670 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5670 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                         __null
-# 5670 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5670 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                         )); }
 
          rshift = stbi__high_bit(mr)-7; rcount = stbi__bitcount(mr);
@@ -34710,13 +34710,13 @@ static void *stbi__bmp_load(stbi__context *s, int *x, int *y, int *comp, int req
          bshift = stbi__high_bit(mb)-7; bcount = stbi__bitcount(mb);
          ashift = stbi__high_bit(ma)-7; acount = stbi__bitcount(ma);
          if (rcount > 8 || gcount > 8 || bcount > 8 || acount > 8) { free(out); return ((unsigned char *)(size_t) (stbi__err("bad masks")?
-# 5676 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5676 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                                                            __null
-# 5676 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5676 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                                                            :
-# 5676 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5676 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                                                            __null
-# 5676 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5676 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                                                            )); }
       }
       for (j=0; j < (int) s->img_y; ++j) {
@@ -34767,9 +34767,9 @@ static void *stbi__bmp_load(stbi__context *s, int *x, int *y, int *comp, int req
    if (req_comp && req_comp != target) {
       out = stbi__convert_format(out, target, req_comp, s->img_x, s->img_y);
       if (out == 
-# 5725 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5725 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                 __null
-# 5725 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5725 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                     ) return out;
    }
 
@@ -34852,15 +34852,15 @@ static int stbi__tga_info(stbi__context *s, int *x, int *y, int *comp)
             return 0;
         }
         tga_comp = stbi__tga_get_comp(tga_colormap_bpp, 0, 
-# 5806 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5806 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                           __null
-# 5806 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5806 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                               );
     } else {
         tga_comp = stbi__tga_get_comp(tga_bits_per_pixel, (tga_image_type == 3) || (tga_image_type == 11), 
-# 5808 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5808 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                                                                           __null
-# 5808 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5808 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                                                                               );
     }
     if(!tga_comp) {
@@ -34945,9 +34945,9 @@ static void *stbi__tga_load(stbi__context *s, int *x, int *y, int *comp, int req
 
    unsigned char *tga_data;
    unsigned char *tga_palette = 
-# 5891 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5891 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                __null
-# 5891 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5891 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                    ;
    int i, j;
    unsigned char raw_data[4] = {0};
@@ -34959,22 +34959,22 @@ static void *stbi__tga_load(stbi__context *s, int *x, int *y, int *comp, int req
    (void)sizeof(tga_y_origin);
 
    if (tga_height > (1 << 24)) return ((unsigned char *)(size_t) (stbi__err("too large")?
-# 5901 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5901 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                __null
-# 5901 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5901 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                :
-# 5901 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5901 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                __null
-# 5901 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5901 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                ));
    if (tga_width > (1 << 24)) return ((unsigned char *)(size_t) (stbi__err("too large")?
-# 5902 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5902 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                               __null
-# 5902 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5902 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                               :
-# 5902 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5902 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                               __null
-# 5902 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5902 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                               ));
 
 
@@ -34991,13 +34991,13 @@ static void *stbi__tga_load(stbi__context *s, int *x, int *y, int *comp, int req
 
    if(!tga_comp)
       return ((unsigned char *)(size_t) (stbi__err("bad format")?
-# 5917 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5917 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
             __null
-# 5917 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5917 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
             :
-# 5917 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5917 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
             __null
-# 5917 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5917 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
             ));
 
 
@@ -35007,24 +35007,24 @@ static void *stbi__tga_load(stbi__context *s, int *x, int *y, int *comp, int req
 
    if (!stbi__mad3sizes_valid(tga_width, tga_height, tga_comp, 0))
       return ((unsigned char *)(size_t) (stbi__err("too large")?
-# 5925 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5925 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
             __null
-# 5925 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5925 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
             :
-# 5925 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5925 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
             __null
-# 5925 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5925 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
             ));
 
    tga_data = (unsigned char*)stbi__malloc_mad3(tga_width, tga_height, tga_comp, 0);
    if (!tga_data) return ((unsigned char *)(size_t) (stbi__err("outofmem")?
-# 5928 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5928 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                         __null
-# 5928 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5928 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                         :
-# 5928 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5928 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                         __null
-# 5928 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5928 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                         ));
 
 
@@ -35043,13 +35043,13 @@ static void *stbi__tga_load(stbi__context *s, int *x, int *y, int *comp, int req
          if (tga_palette_len == 0) {
             free(tga_data);
             return ((unsigned char *)(size_t) (stbi__err("bad palette")?
-# 5945 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5945 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                   __null
-# 5945 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5945 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                   :
-# 5945 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5945 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                   __null
-# 5945 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5945 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                   ));
          }
 
@@ -35060,21 +35060,21 @@ static void *stbi__tga_load(stbi__context *s, int *x, int *y, int *comp, int req
          if (!tga_palette) {
             free(tga_data);
             return ((unsigned char *)(size_t) (stbi__err("outofmem")?
-# 5954 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5954 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                   __null
-# 5954 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5954 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                   :
-# 5954 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5954 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                   __null
-# 5954 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5954 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                   ));
          }
          if (tga_rgb16) {
             stbi_uc *pal_entry = tga_palette;
             
-# 5958 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3
+# 5958 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3
            ((void)0)
-# 5958 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5958 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                             ;
             for (i=0; i < tga_palette_len; ++i) {
                stbi__tga_read_rgb16(s, pal_entry);
@@ -35084,13 +35084,13 @@ static void *stbi__tga_load(stbi__context *s, int *x, int *y, int *comp, int req
                free(tga_data);
                free(tga_palette);
                return ((unsigned char *)(size_t) (stbi__err("bad palette")?
-# 5966 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5966 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                      __null
-# 5966 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5966 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                      :
-# 5966 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 5966 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                      __null
-# 5966 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 5966 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                      ));
          }
       }
@@ -35133,9 +35133,9 @@ static void *stbi__tga_load(stbi__context *s, int *x, int *y, int *comp, int req
                }
             } else if(tga_rgb16) {
                
-# 6007 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3
+# 6007 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3
               ((void)0)
-# 6007 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6007 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                ;
                stbi__tga_read_rgb16(s, raw_data);
             } else {
@@ -35174,9 +35174,9 @@ static void *stbi__tga_load(stbi__context *s, int *x, int *y, int *comp, int req
       }
 
       if ( tga_palette != 
-# 6044 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6044 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                          __null 
-# 6044 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6044 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                               )
       {
          free(tga_palette);
@@ -35272,25 +35272,25 @@ static void *stbi__psd_load(stbi__context *s, int *x, int *y, int *comp, int req
 
    if (stbi__get32be(s) != 0x38425053)
       return ((unsigned char *)(size_t) (stbi__err("not PSD")?
-# 6138 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6138 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
             __null
-# 6138 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6138 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
             :
-# 6138 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6138 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
             __null
-# 6138 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6138 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
             ));
 
 
    if (stbi__get16be(s) != 1)
       return ((unsigned char *)(size_t) (stbi__err("wrong version")?
-# 6142 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6142 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
             __null
-# 6142 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6142 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
             :
-# 6142 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6142 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
             __null
-# 6142 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6142 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
             ));
 
 
@@ -35300,13 +35300,13 @@ static void *stbi__psd_load(stbi__context *s, int *x, int *y, int *comp, int req
    channelCount = stbi__get16be(s);
    if (channelCount < 0 || channelCount > 16)
       return ((unsigned char *)(size_t) (stbi__err("wrong channel count")?
-# 6150 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6150 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
             __null
-# 6150 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6150 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
             :
-# 6150 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6150 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
             __null
-# 6150 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6150 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
             ));
 
 
@@ -35314,46 +35314,46 @@ static void *stbi__psd_load(stbi__context *s, int *x, int *y, int *comp, int req
    w = stbi__get32be(s);
 
    if (h > (1 << 24)) return ((unsigned char *)(size_t) (stbi__err("too large")?
-# 6156 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6156 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                       __null
-# 6156 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6156 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                       :
-# 6156 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6156 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                       __null
-# 6156 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6156 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                       ));
    if (w > (1 << 24)) return ((unsigned char *)(size_t) (stbi__err("too large")?
-# 6157 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6157 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                       __null
-# 6157 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6157 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                       :
-# 6157 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6157 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                       __null
-# 6157 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6157 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                       ));
 
 
    bitdepth = stbi__get16be(s);
    if (bitdepth != 8 && bitdepth != 16)
       return ((unsigned char *)(size_t) (stbi__err("unsupported bit depth")?
-# 6162 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6162 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
             __null
-# 6162 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6162 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
             :
-# 6162 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6162 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
             __null
-# 6162 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6162 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
             ));
-# 6174 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6174 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
    if (stbi__get16be(s) != 3)
       return ((unsigned char *)(size_t) (stbi__err("wrong color format")?
-# 6175 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6175 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
             __null
-# 6175 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6175 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
             :
-# 6175 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6175 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
             __null
-# 6175 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6175 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
             ));
 
 
@@ -35372,25 +35372,25 @@ static void *stbi__psd_load(stbi__context *s, int *x, int *y, int *comp, int req
    compression = stbi__get16be(s);
    if (compression > 1)
       return ((unsigned char *)(size_t) (stbi__err("bad compression")?
-# 6192 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6192 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
             __null
-# 6192 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6192 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
             :
-# 6192 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6192 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
             __null
-# 6192 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6192 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
             ));
 
 
    if (!stbi__mad3sizes_valid(4, w, h, 0))
       return ((unsigned char *)(size_t) (stbi__err("too large")?
-# 6196 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6196 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
             __null
-# 6196 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6196 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
             :
-# 6196 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6196 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
             __null
-# 6196 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6196 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
             ));
 
 
@@ -35402,13 +35402,13 @@ static void *stbi__psd_load(stbi__context *s, int *x, int *y, int *comp, int req
       out = (stbi_uc *) stbi__malloc(4 * w*h);
 
    if (!out) return ((unsigned char *)(size_t) (stbi__err("outofmem")?
-# 6206 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6206 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                    __null
-# 6206 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6206 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                    :
-# 6206 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6206 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                    __null
-# 6206 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6206 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                    ));
    pixelCount = w*h;
 
@@ -35417,7 +35417,7 @@ static void *stbi__psd_load(stbi__context *s, int *x, int *y, int *comp, int req
 
 
    if (compression) {
-# 6224 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6224 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
       stbi__skip(s, h * channelCount * 2 );
 
 
@@ -35434,13 +35434,13 @@ static void *stbi__psd_load(stbi__context *s, int *x, int *y, int *comp, int req
             if (!stbi__psd_decode_rle(s, p, pixelCount)) {
                free(out);
                return ((unsigned char *)(size_t) (stbi__err("corrupt")?
-# 6239 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6239 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                      __null
-# 6239 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6239 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                      :
-# 6239 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6239 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                      __null
-# 6239 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6239 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                      ));
             }
          }
@@ -35520,9 +35520,9 @@ static void *stbi__psd_load(stbi__context *s, int *x, int *y, int *comp, int req
       else
          out = stbi__convert_format(out, 4, req_comp, w, h);
       if (out == 
-# 6317 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6317 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                 __null
-# 6317 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6317 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                     ) return out;
    }
 
@@ -35532,7 +35532,7 @@ static void *stbi__psd_load(stbi__context *s, int *x, int *y, int *comp, int req
 
    return out;
 }
-# 6336 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6336 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
 static int stbi__pic_is4(stbi__context *s,const char *str)
 {
    int i;
@@ -35571,13 +35571,13 @@ static stbi_uc *stbi__readval(stbi__context *s, int channel, stbi_uc *dest)
    for (i=0; i<4; ++i, mask>>=1) {
       if (channel & mask) {
          if (stbi__at_eof(s)) return ((unsigned char *)(size_t) (stbi__err("bad file")?
-# 6373 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6373 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                     __null
-# 6373 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6373 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                     :
-# 6373 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6373 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                     __null
-# 6373 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6373 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                     ));
          dest[i]=stbi__get8(s);
       }
@@ -35607,13 +35607,13 @@ static stbi_uc *stbi__pic_load_core(stbi__context *s,int width,int height,int *c
 
       if (num_packets==sizeof(packets)/sizeof(packets[0]))
          return ((unsigned char *)(size_t) (stbi__err("bad format")?
-# 6401 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6401 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                __null
-# 6401 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6401 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                :
-# 6401 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6401 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                __null
-# 6401 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6401 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                ));
 
       packet = &packets[num_packets++];
@@ -35626,22 +35626,22 @@ static stbi_uc *stbi__pic_load_core(stbi__context *s,int width,int height,int *c
       act_comp |= packet->channel;
 
       if (stbi__at_eof(s)) return ((unsigned char *)(size_t) (stbi__err("bad file")?
-# 6412 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6412 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                           __null
-# 6412 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6412 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                           :
-# 6412 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6412 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                           __null
-# 6412 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6412 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                           ));
       if (packet->size != 8) return ((unsigned char *)(size_t) (stbi__err("bad format")?
-# 6413 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6413 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                     __null
-# 6413 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6413 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                     :
-# 6413 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6413 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                     __null
-# 6413 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6413 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                     ));
    } while (chained);
 
@@ -35657,13 +35657,13 @@ static stbi_uc *stbi__pic_load_core(stbi__context *s,int width,int height,int *c
          switch (packet->type) {
             default:
                return ((unsigned char *)(size_t) (stbi__err("bad format")?
-# 6427 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6427 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                      __null
-# 6427 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6427 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                      :
-# 6427 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6427 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                      __null
-# 6427 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6427 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                      ));
 
             case 0: {
@@ -35684,13 +35684,13 @@ static stbi_uc *stbi__pic_load_core(stbi__context *s,int width,int height,int *c
 
                      count=stbi__get8(s);
                      if (stbi__at_eof(s)) return ((unsigned char *)(size_t) (stbi__err("bad file")?
-# 6446 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6446 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                   __null
-# 6446 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6446 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                   :
-# 6446 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6446 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                   __null
-# 6446 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6446 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                   ));
 
                      if (count > left)
@@ -35710,13 +35710,13 @@ static stbi_uc *stbi__pic_load_core(stbi__context *s,int width,int height,int *c
                while (left>0) {
                   int count = stbi__get8(s), i;
                   if (stbi__at_eof(s)) return ((unsigned char *)(size_t) (stbi__err("bad file")?
-# 6464 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6464 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                               __null
-# 6464 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6464 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                               :
-# 6464 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6464 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                               __null
-# 6464 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6464 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                               ));
 
                   if (count >= 128) {
@@ -35728,13 +35728,13 @@ static stbi_uc *stbi__pic_load_core(stbi__context *s,int width,int height,int *c
                         count -= 127;
                      if (count > left)
                         return ((unsigned char *)(size_t) (stbi__err("bad file")?
-# 6474 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6474 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                               __null
-# 6474 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6474 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                               :
-# 6474 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6474 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                               __null
-# 6474 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6474 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                               ));
 
                      if (!stbi__readval(s,packet->channel,value))
@@ -35745,13 +35745,13 @@ static stbi_uc *stbi__pic_load_core(stbi__context *s,int width,int height,int *c
                   } else {
                      ++count;
                      if (count>left) return ((unsigned char *)(size_t) (stbi__err("bad file")?
-# 6483 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6483 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                            __null
-# 6483 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6483 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                            :
-# 6483 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6483 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                            __null
-# 6483 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6483 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                            ));
 
                      for(i=0;i<count;++i, dest+=4)
@@ -35784,41 +35784,41 @@ static void *stbi__pic_load(stbi__context *s,int *px,int *py,int *comp,int req_c
    y = stbi__get16be(s);
 
    if (y > (1 << 24)) return ((unsigned char *)(size_t) (stbi__err("too large")?
-# 6514 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6514 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                       __null
-# 6514 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6514 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                       :
-# 6514 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6514 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                       __null
-# 6514 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6514 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                       ));
    if (x > (1 << 24)) return ((unsigned char *)(size_t) (stbi__err("too large")?
-# 6515 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6515 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                       __null
-# 6515 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6515 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                       :
-# 6515 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6515 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                       __null
-# 6515 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6515 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                       ));
 
    if (stbi__at_eof(s)) return ((unsigned char *)(size_t) (stbi__err("bad file")?
-# 6517 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6517 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                __null
-# 6517 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6517 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                :
-# 6517 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6517 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                __null
-# 6517 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6517 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                ));
    if (!stbi__mad3sizes_valid(x, y, 4, 0)) return ((unsigned char *)(size_t) (stbi__err("too large")?
-# 6518 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6518 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                  __null
-# 6518 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6518 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                  :
-# 6518 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6518 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                  __null
-# 6518 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6518 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                  ));
 
    stbi__get32be(s);
@@ -35828,13 +35828,13 @@ static void *stbi__pic_load(stbi__context *s,int *px,int *py,int *comp,int req_c
 
    result = (stbi_uc *) stbi__malloc_mad3(x, y, 4, 0);
    if (!result) return ((unsigned char *)(size_t) (stbi__err("outofmem")?
-# 6526 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6526 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                       __null
-# 6526 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6526 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                       :
-# 6526 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6526 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                       __null
-# 6526 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6526 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                       ));
    memset(result, 0xff, x*y*4);
 
@@ -36010,9 +36010,9 @@ static stbi_uc *stbi__process_gif_raster(stbi__context *s, stbi__gif *g)
 
    lzw_cs = stbi__get8(s);
    if (lzw_cs > 12) return 
-# 6700 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6700 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                           __null
-# 6700 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6700 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                               ;
    clear = 1 << lzw_cs;
    first = 1;
@@ -36060,13 +36060,13 @@ static stbi_uc *stbi__process_gif_raster(stbi__context *s, stbi__gif *g)
          } else if (code <= avail) {
             if (first) {
                return ((unsigned char *)(size_t) (stbi__err("no clear code")?
-# 6746 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6746 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                      __null
-# 6746 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6746 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                      :
-# 6746 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6746 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                      __null
-# 6746 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6746 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                      ));
             }
 
@@ -36074,13 +36074,13 @@ static stbi_uc *stbi__process_gif_raster(stbi__context *s, stbi__gif *g)
                p = &g->codes[avail++];
                if (avail > 8192) {
                   return ((unsigned char *)(size_t) (stbi__err("too many codes")?
-# 6752 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6752 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                         __null
-# 6752 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6752 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                         :
-# 6752 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6752 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                         __null
-# 6752 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6752 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                         ));
                }
 
@@ -36089,13 +36089,13 @@ static stbi_uc *stbi__process_gif_raster(stbi__context *s, stbi__gif *g)
                p->suffix = (code == avail) ? p->first : g->codes[code].first;
             } else if (code == avail)
                return ((unsigned char *)(size_t) (stbi__err("illegal code in raster")?
-# 6759 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6759 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                      __null
-# 6759 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6759 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                      :
-# 6759 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6759 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                      __null
-# 6759 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6759 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                      ));
 
             stbi__out_gif_code(g, (stbi__uint16) code);
@@ -36108,13 +36108,13 @@ static stbi_uc *stbi__process_gif_raster(stbi__context *s, stbi__gif *g)
             oldcode = code;
          } else {
             return ((unsigned char *)(size_t) (stbi__err("illegal code in raster")?
-# 6770 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6770 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                   __null
-# 6770 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6770 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                   :
-# 6770 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6770 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                   __null
-# 6770 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6770 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                   ));
          }
       }
@@ -36137,13 +36137,13 @@ static stbi_uc *stbi__gif_load_next(stbi__context *s, stbi__gif *g, int *comp, i
       if (!stbi__gif_header(s, g, comp,0)) return 0;
       if (!stbi__mad3sizes_valid(4, g->w, g->h, 0))
          return ((unsigned char *)(size_t) (stbi__err("too large")?
-# 6791 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6791 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                __null
-# 6791 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6791 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                :
-# 6791 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6791 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                __null
-# 6791 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6791 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                ));
       pcount = g->w * g->h;
       g->out = (stbi_uc *) stbi__malloc(4 * pcount);
@@ -36151,13 +36151,13 @@ static stbi_uc *stbi__gif_load_next(stbi__context *s, stbi__gif *g, int *comp, i
       g->history = (stbi_uc *) stbi__malloc(pcount);
       if (!g->out || !g->background || !g->history)
          return ((unsigned char *)(size_t) (stbi__err("outofmem")?
-# 6797 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6797 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                __null
-# 6797 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6797 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                :
-# 6797 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6797 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                __null
-# 6797 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6797 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                ));
 
 
@@ -36217,13 +36217,13 @@ static stbi_uc *stbi__gif_load_next(stbi__context *s, stbi__gif *g, int *comp, i
             h = stbi__get16le(s);
             if (((x + w) > (g->w)) || ((y + h) > (g->h)))
                return ((unsigned char *)(size_t) (stbi__err("bad Image Descriptor")?
-# 6855 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6855 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                      __null
-# 6855 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6855 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                      :
-# 6855 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6855 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                      __null
-# 6855 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6855 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                      ));
 
             g->line_size = g->w * 4;
@@ -36258,20 +36258,20 @@ static stbi_uc *stbi__gif_load_next(stbi__context *s, stbi__gif *g, int *comp, i
                g->color_table = (stbi_uc *) g->pal;
             } else
                return ((unsigned char *)(size_t) (stbi__err("missing color table")?
-# 6888 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6888 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                      __null
-# 6888 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6888 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                      :
-# 6888 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6888 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                      __null
-# 6888 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6888 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                      ));
 
             o = stbi__process_gif_raster(s, g);
             if (!o) return 
-# 6891 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6891 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                           __null
-# 6891 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6891 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                               ;
 
 
@@ -36329,13 +36329,13 @@ static stbi_uc *stbi__gif_load_next(stbi__context *s, stbi__gif *g, int *comp, i
 
          default:
             return ((unsigned char *)(size_t) (stbi__err("unknown code")?
-# 6947 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6947 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                   __null
-# 6947 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6947 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                   :
-# 6947 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6947 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                   __null
-# 6947 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6947 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                   ));
       }
    }
@@ -36350,13 +36350,13 @@ static void *stbi__load_gif_main_outofmem(stbi__gif *g, stbi_uc *out, int **dela
    if (out) free(out);
    if (delays && *delays) free(*delays);
    return ((unsigned char *)(size_t) (stbi__err("outofmem")?
-# 6960 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6960 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
          __null
-# 6960 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6960 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
          :
-# 6960 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 6960 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
          __null
-# 6960 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 6960 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
          ));
 }
 
@@ -36442,13 +36442,13 @@ static void *stbi__load_gif_main(stbi__context *s, int **delays, int *x, int *y,
       return out;
    } else {
       return ((unsigned char *)(size_t) (stbi__err("not GIF")?
-# 7044 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 7044 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
             __null
-# 7044 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7044 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
             :
-# 7044 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 7044 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
             __null
-# 7044 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7044 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
             ));
    }
 }
@@ -36581,13 +36581,13 @@ static float *stbi__hdr_load(stbi__context *s, int *x, int *y, int *comp, int re
    headerToken = stbi__hdr_gettoken(s,buffer);
    if (strcmp(headerToken, "#?RADIANCE") != 0 && strcmp(headerToken, "#?RGBE") != 0)
       return ((float *)(size_t) (stbi__err("not HDR")?
-# 7175 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 7175 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
             __null
-# 7175 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7175 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
             :
-# 7175 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 7175 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
             __null
-# 7175 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7175 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
             ));
 
 
@@ -36598,63 +36598,63 @@ static float *stbi__hdr_load(stbi__context *s, int *x, int *y, int *comp, int re
    }
 
    if (!valid) return ((float *)(size_t) (stbi__err("unsupported format")?
-# 7184 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 7184 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                         __null
-# 7184 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7184 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                         :
-# 7184 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 7184 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                         __null
-# 7184 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7184 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                         ));
 
 
 
    token = stbi__hdr_gettoken(s,buffer);
    if (strncmp(token, "-Y ", 3)) return ((float *)(size_t) (stbi__err("unsupported data layout")?
-# 7189 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 7189 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                         __null
-# 7189 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7189 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                         :
-# 7189 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 7189 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                         __null
-# 7189 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7189 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                         ));
    token += 3;
    height = (int) strtol(token, &token, 10);
    while (*token == ' ') ++token;
    if (strncmp(token, "+X ", 3)) return ((float *)(size_t) (stbi__err("unsupported data layout")?
-# 7193 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 7193 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                         __null
-# 7193 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7193 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                         :
-# 7193 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 7193 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                         __null
-# 7193 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7193 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                         ));
    token += 3;
    width = (int) strtol(token, 
-# 7195 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 7195 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                               __null
-# 7195 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7195 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                   , 10);
 
    if (height > (1 << 24)) return ((float *)(size_t) (stbi__err("too large")?
-# 7197 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 7197 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                            __null
-# 7197 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7197 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                            :
-# 7197 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 7197 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                            __null
-# 7197 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7197 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                            ));
    if (width > (1 << 24)) return ((float *)(size_t) (stbi__err("too large")?
-# 7198 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 7198 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                           __null
-# 7198 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7198 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                           :
-# 7198 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 7198 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                           __null
-# 7198 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7198 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                           ));
 
    *x = width;
@@ -36665,26 +36665,26 @@ static float *stbi__hdr_load(stbi__context *s, int *x, int *y, int *comp, int re
 
    if (!stbi__mad4sizes_valid(width, height, req_comp, sizeof(float), 0))
       return ((float *)(size_t) (stbi__err("too large")?
-# 7207 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 7207 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
             __null
-# 7207 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7207 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
             :
-# 7207 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 7207 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
             __null
-# 7207 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7207 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
             ));
 
 
    hdr_data = (float *) stbi__malloc_mad4(width, height, req_comp, sizeof(float), 0);
    if (!hdr_data)
       return ((float *)(size_t) (stbi__err("outofmem")?
-# 7212 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 7212 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
             __null
-# 7212 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7212 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
             :
-# 7212 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 7212 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
             __null
-# 7212 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7212 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
             ));
 
 
@@ -36702,9 +36702,9 @@ static float *stbi__hdr_load(stbi__context *s, int *x, int *y, int *comp, int re
    } else {
 
       scanline = 
-# 7228 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 7228 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                 __null
-# 7228 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7228 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                     ;
 
       for (j = 0; j < height; ++j) {
@@ -36728,30 +36728,30 @@ static float *stbi__hdr_load(stbi__context *s, int *x, int *y, int *comp, int re
          len <<= 8;
          len |= stbi__get8(s);
          if (len != width) { free(hdr_data); free(scanline); return ((float *)(size_t) (stbi__err("invalid decoded scanline length")?
-# 7250 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 7250 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                                              __null
-# 7250 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7250 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                                              :
-# 7250 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 7250 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                                              __null
-# 7250 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7250 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                                              )); }
          if (scanline == 
-# 7251 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 7251 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                         __null
-# 7251 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7251 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                             ) {
             scanline = (stbi_uc *) stbi__malloc_mad2(width, 4, 0);
             if (!scanline) {
                free(hdr_data);
                return ((float *)(size_t) (stbi__err("outofmem")?
-# 7255 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 7255 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                      __null
-# 7255 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7255 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                      :
-# 7255 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 7255 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                      __null
-# 7255 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7255 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                      ));
             }
          }
@@ -36766,26 +36766,26 @@ static float *stbi__hdr_load(stbi__context *s, int *x, int *y, int *comp, int re
                   value = stbi__get8(s);
                   count -= 128;
                   if ((count == 0) || (count > nleft)) { free(hdr_data); free(scanline); return ((float *)(size_t) (stbi__err("corrupt")?
-# 7268 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 7268 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                                                                          __null
-# 7268 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7268 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                                                                          :
-# 7268 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 7268 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                                                                          __null
-# 7268 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7268 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                                                                          )); }
                   for (z = 0; z < count; ++z)
                      scanline[i++ * 4 + k] = value;
                } else {
 
                   if ((count == 0) || (count > nleft)) { free(hdr_data); free(scanline); return ((float *)(size_t) (stbi__err("corrupt")?
-# 7273 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 7273 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                                                                          __null
-# 7273 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7273 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                                                                          :
-# 7273 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 7273 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                                                                                          __null
-# 7273 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7273 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                                                                                          )); }
                   for (z = 0; z < count; ++z)
                      scanline[i++ * 4 + k] = stbi__get8(s);
@@ -36842,9 +36842,9 @@ static int stbi__hdr_info(stbi__context *s, int *x, int *y, int *comp)
    }
    token += 3;
    *x = (int) strtol(token, 
-# 7328 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 7328 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                            __null
-# 7328 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7328 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                , 10);
    *comp = 3;
    return 1;
@@ -36860,9 +36860,9 @@ static int stbi__bmp_info(stbi__context *s, int *x, int *y, int *comp)
    info.all_a = 255;
    p = stbi__bmp_parse_header(s, &info);
    if (p == 
-# 7342 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 7342 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
            __null
-# 7342 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7342 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                ) {
       stbi__rewind( s );
       return 0;
@@ -37000,7 +37000,7 @@ static int stbi__pic_info(stbi__context *s, int *x, int *y, int *comp)
 
    return 1;
 }
-# 7494 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7494 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
 static int stbi__pnm_test(stbi__context *s)
 {
    char p, t;
@@ -37023,22 +37023,22 @@ static void *stbi__pnm_load(stbi__context *s, int *x, int *y, int *comp, int req
       return 0;
 
    if (s->img_y > (1 << 24)) return ((unsigned char *)(size_t) (stbi__err("too large")?
-# 7515 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 7515 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                              __null
-# 7515 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7515 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                              :
-# 7515 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 7515 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                              __null
-# 7515 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7515 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                              ));
    if (s->img_x > (1 << 24)) return ((unsigned char *)(size_t) (stbi__err("too large")?
-# 7516 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 7516 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                              __null
-# 7516 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7516 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                              :
-# 7516 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 7516 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                              __null
-# 7516 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7516 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                              ));
 
    *x = s->img_x;
@@ -37047,35 +37047,35 @@ static void *stbi__pnm_load(stbi__context *s, int *x, int *y, int *comp, int req
 
    if (!stbi__mad4sizes_valid(s->img_n, s->img_x, s->img_y, ri->bits_per_channel / 8, 0))
       return ((unsigned char *)(size_t) (stbi__err("too large")?
-# 7523 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 7523 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
             __null
-# 7523 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7523 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
             :
-# 7523 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 7523 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
             __null
-# 7523 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7523 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
             ));
 
    out = (stbi_uc *) stbi__malloc_mad4(s->img_n, s->img_x, s->img_y, ri->bits_per_channel / 8, 0);
    if (!out) return ((unsigned char *)(size_t) (stbi__err("outofmem")?
-# 7526 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 7526 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                    __null
-# 7526 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7526 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                    :
-# 7526 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 7526 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                    __null
-# 7526 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7526 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                    ));
    if (!stbi__getn(s, out, s->img_n * s->img_x * s->img_y * (ri->bits_per_channel / 8))) {
       free(out);
       return ((unsigned char *)(size_t) (stbi__err("bad PNM")?
-# 7529 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 7529 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
             __null
-# 7529 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7529 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
             :
-# 7529 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 7529 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
             __null
-# 7529 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7529 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
             ));
    }
 
@@ -37086,9 +37086,9 @@ static void *stbi__pnm_load(stbi__context *s, int *x, int *y, int *comp, int req
          out = stbi__convert_format(out, s->img_n, req_comp, s->img_x, s->img_y);
       }
       if (out == 
-# 7538 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 7538 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                 __null
-# 7538 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7538 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                     ) return out;
    }
    return out;
@@ -37178,17 +37178,17 @@ static int stbi__pnm_info(stbi__context *s, int *x, int *y, int *comp)
 static int stbi__pnm_is16(stbi__context *s)
 {
    if (stbi__pnm_info(s, 
-# 7626 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 7626 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                         __null
-# 7626 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7626 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                             , 
-# 7626 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 7626 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                               __null
-# 7626 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7626 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                   , 
-# 7626 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3 4
+# 7626 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3 4
                                     __null
-# 7626 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7626 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                                         ) == 16)
     return 1;
    return 0;
@@ -37272,9 +37272,9 @@ extern int stbi_info_from_file(FILE *f, int *x, int *y, int *comp)
    stbi__start_file(&s, f);
    r = stbi__info_main(&s,x,y,comp);
    fseek(f,pos,
-# 7708 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3
+# 7708 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3
               0
-# 7708 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7708 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                       );
    return r;
 }
@@ -37297,9 +37297,9 @@ extern int stbi_is_16_bit_from_file(FILE *f)
    stbi__start_file(&s, f);
    r = stbi__is_16_main(&s);
    fseek(f,pos,
-# 7729 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h" 3
+# 7729 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp" 3
               0
-# 7729 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.h"
+# 7729 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image.hpp"
                       );
    return r;
 }
@@ -37333,3 +37333,1469 @@ extern int stbi_is_16_bit_from_callbacks(stbi_io_callbacks const *c, void *user)
    return stbi__is_16_main(&s);
 }
 # 3 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/src/stb/stb_image.cpp" 2
+
+
+# 1 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp" 1
+# 154 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp"
+# 1 "D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/stdlib.h" 1 3
+# 155 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp" 2
+# 170 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp"
+extern "C" int stbi_write_tga_with_rle;
+extern "C" int stbi_write_png_compression_level;
+extern "C" int stbi_write_force_png_filter;
+
+
+
+extern "C" int stbi_write_png(char const *filename, int w, int h, int comp, const void *data, int stride_in_bytes);
+extern "C" int stbi_write_bmp(char const *filename, int w, int h, int comp, const void *data);
+extern "C" int stbi_write_tga(char const *filename, int w, int h, int comp, const void *data);
+extern "C" int stbi_write_hdr(char const *filename, int w, int h, int comp, const float *data);
+extern "C" int stbi_write_jpg(char const *filename, int x, int y, int comp, const void *data, int quality);
+
+
+
+
+
+
+typedef void stbi_write_func(void *context, void *data, int size);
+
+extern "C" int stbi_write_png_to_func(stbi_write_func *func, void *context, int w, int h, int comp, const void *data, int stride_in_bytes);
+extern "C" int stbi_write_bmp_to_func(stbi_write_func *func, void *context, int w, int h, int comp, const void *data);
+extern "C" int stbi_write_tga_to_func(stbi_write_func *func, void *context, int w, int h, int comp, const void *data);
+extern "C" int stbi_write_hdr_to_func(stbi_write_func *func, void *context, int w, int h, int comp, const float *data);
+extern "C" int stbi_write_jpg_to_func(stbi_write_func *func, void *context, int x, int y, int comp, const void *data, int quality);
+
+extern "C" void stbi_flip_vertically_on_write(int flip_boolean);
+# 214 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp"
+# 1 "D:/Enviroments/mingw64_msvcrt/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stdarg.h" 1 3 4
+# 1 "D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/stdarg.h" 1 3 4
+# 2 "D:/Enviroments/mingw64_msvcrt/lib/gcc/x86_64-w64-mingw32/14.2.0/include/stdarg.h" 2 3 4
+# 215 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp" 2
+# 1 "D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/stdlib.h" 1 3
+# 216 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp" 2
+
+# 1 "D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/math.h" 1 3
+# 218 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp" 2
+# 244 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp"
+# 1 "D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/assert.h" 1 3
+# 245 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp" 2
+# 255 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp"
+int stbi_write_png_compression_level = 8;
+int stbi_write_tga_with_rle = 1;
+int stbi_write_force_png_filter = -1;
+
+
+static int stbi__flip_vertically_on_write = 0;
+
+extern "C" void stbi_flip_vertically_on_write(int flag)
+{
+   stbi__flip_vertically_on_write = flag;
+}
+
+typedef struct
+{
+   stbi_write_func *func;
+   void *context;
+   unsigned char buffer[64];
+   int buf_used;
+} stbi__write_context;
+
+
+static void stbi__start_write_callbacks(stbi__write_context *s, stbi_write_func *c, void *context)
+{
+   s->func = c;
+   s->context = context;
+}
+
+
+
+static void stbi__stdio_write(void *context, void *data, int size)
+{
+   fwrite(data,1,size,(FILE*) context);
+}
+# 304 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp"
+static FILE *stbiw__fopen(char const *filename, char const *mode)
+{
+   FILE *f;
+# 327 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp"
+   f = fopen(filename, mode);
+
+   return f;
+}
+
+static int stbi__start_write_file(stbi__write_context *s, const char *filename)
+{
+   FILE *f = stbiw__fopen(filename, "wb");
+   stbi__start_write_callbacks(s, stbi__stdio_write, (void *) f);
+   return f != 
+# 336 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp" 3 4
+              __null
+# 336 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp"
+                  ;
+}
+
+static void stbi__end_write_file(stbi__write_context *s)
+{
+   fclose((FILE *)s->context);
+}
+
+
+
+typedef unsigned int stbiw_uint32;
+typedef int stb_image_write_test[sizeof(stbiw_uint32)==4 ? 1 : -1];
+
+static void stbiw__writefv(stbi__write_context *s, const char *fmt, va_list v)
+{
+   while (*fmt) {
+      switch (*fmt++) {
+         case ' ': break;
+         case '1': { unsigned char x = (unsigned char) ((
+# 354 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp" 3 4
+                                      __builtin_va_arg(
+# 354 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp"
+                                      v
+# 354 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp" 3 4
+                                      ,
+# 354 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp"
+                                      int
+# 354 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp" 3 4
+                                      )
+# 354 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp"
+                                      ) & 0xff);
+                     s->func(s->context,&x,1);
+                     break; }
+         case '2': { int x = 
+# 357 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp" 3 4
+                            __builtin_va_arg(
+# 357 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp"
+                            v
+# 357 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp" 3 4
+                            ,
+# 357 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp"
+                            int
+# 357 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp" 3 4
+                            )
+# 357 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp"
+                                         ;
+                     unsigned char b[2];
+                     b[0] = (unsigned char) ((x) & 0xff);
+                     b[1] = (unsigned char) ((x>>8) & 0xff);
+                     s->func(s->context,b,2);
+                     break; }
+         case '4': { stbiw_uint32 x = 
+# 363 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp" 3 4
+                                     __builtin_va_arg(
+# 363 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp"
+                                     v
+# 363 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp" 3 4
+                                     ,
+# 363 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp"
+                                     int
+# 363 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp" 3 4
+                                     )
+# 363 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp"
+                                                  ;
+                     unsigned char b[4];
+                     b[0]=(unsigned char) ((x) & 0xff);
+                     b[1]=(unsigned char) ((x>>8) & 0xff);
+                     b[2]=(unsigned char) ((x>>16) & 0xff);
+                     b[3]=(unsigned char) ((x>>24) & 0xff);
+                     s->func(s->context,b,4);
+                     break; }
+         default:
+            
+# 372 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp" 3
+           ((void)0)
+# 372 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp"
+                          ;
+            return;
+      }
+   }
+}
+
+static void stbiw__writef(stbi__write_context *s, const char *fmt, ...)
+{
+   va_list v;
+   
+# 381 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp" 3 4
+  __builtin_va_start(
+# 381 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp"
+  v
+# 381 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp" 3 4
+  ,
+# 381 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp"
+  fmt
+# 381 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp" 3 4
+  )
+# 381 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp"
+                  ;
+   stbiw__writefv(s, fmt, v);
+   
+# 383 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp" 3 4
+  __builtin_va_end(
+# 383 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp"
+  v
+# 383 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp" 3 4
+  )
+# 383 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp"
+           ;
+}
+
+static void stbiw__write_flush(stbi__write_context *s)
+{
+   if (s->buf_used) {
+      s->func(s->context, &s->buffer, s->buf_used);
+      s->buf_used = 0;
+   }
+}
+
+static void stbiw__putc(stbi__write_context *s, unsigned char c)
+{
+   s->func(s->context, &c, 1);
+}
+
+static void stbiw__write1(stbi__write_context *s, unsigned char a)
+{
+   if ((size_t)s->buf_used + 1 > sizeof(s->buffer))
+      stbiw__write_flush(s);
+   s->buffer[s->buf_used++] = a;
+}
+
+static void stbiw__write3(stbi__write_context *s, unsigned char a, unsigned char b, unsigned char c)
+{
+   int n;
+   if ((size_t)s->buf_used + 3 > sizeof(s->buffer))
+      stbiw__write_flush(s);
+   n = s->buf_used;
+   s->buf_used = n+3;
+   s->buffer[n+0] = a;
+   s->buffer[n+1] = b;
+   s->buffer[n+2] = c;
+}
+
+static void stbiw__write_pixel(stbi__write_context *s, int rgb_dir, int comp, int write_alpha, int expand_mono, unsigned char *d)
+{
+   unsigned char bg[3] = { 255, 0, 255}, px[3];
+   int k;
+
+   if (write_alpha < 0)
+      stbiw__write1(s, d[comp - 1]);
+
+   switch (comp) {
+      case 2:
+      case 1:
+         if (expand_mono)
+            stbiw__write3(s, d[0], d[0], d[0]);
+         else
+            stbiw__write1(s, d[0]);
+         break;
+      case 4:
+         if (!write_alpha) {
+
+            for (k = 0; k < 3; ++k)
+               px[k] = bg[k] + ((d[k] - bg[k]) * d[3]) / 255;
+            stbiw__write3(s, px[1 - rgb_dir], px[1], px[1 + rgb_dir]);
+            break;
+         }
+
+      case 3:
+         stbiw__write3(s, d[1 - rgb_dir], d[1], d[1 + rgb_dir]);
+         break;
+   }
+   if (write_alpha > 0)
+      stbiw__write1(s, d[comp - 1]);
+}
+
+static void stbiw__write_pixels(stbi__write_context *s, int rgb_dir, int vdir, int x, int y, int comp, void *data, int write_alpha, int scanline_pad, int expand_mono)
+{
+   stbiw_uint32 zero = 0;
+   int i,j, j_end;
+
+   if (y <= 0)
+      return;
+
+   if (stbi__flip_vertically_on_write)
+      vdir *= -1;
+
+   if (vdir < 0) {
+      j_end = -1; j = y-1;
+   } else {
+      j_end = y; j = 0;
+   }
+
+   for (; j != j_end; j += vdir) {
+      for (i=0; i < x; ++i) {
+         unsigned char *d = (unsigned char *) data + (j*x+i)*comp;
+         stbiw__write_pixel(s, rgb_dir, comp, write_alpha, expand_mono, d);
+      }
+      stbiw__write_flush(s);
+      s->func(s->context, &zero, scanline_pad);
+   }
+}
+
+static int stbiw__outfile(stbi__write_context *s, int rgb_dir, int vdir, int x, int y, int comp, int expand_mono, void *data, int alpha, int pad, const char *fmt, ...)
+{
+   if (y < 0 || x < 0) {
+      return 0;
+   } else {
+      va_list v;
+      
+# 484 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp" 3 4
+     __builtin_va_start(
+# 484 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp"
+     v
+# 484 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp" 3 4
+     ,
+# 484 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp"
+     fmt
+# 484 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp" 3 4
+     )
+# 484 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp"
+                     ;
+      stbiw__writefv(s, fmt, v);
+      
+# 486 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp" 3 4
+     __builtin_va_end(
+# 486 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp"
+     v
+# 486 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp" 3 4
+     )
+# 486 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp"
+              ;
+      stbiw__write_pixels(s,rgb_dir,vdir,x,y,comp,data,alpha,pad, expand_mono);
+      return 1;
+   }
+}
+
+static int stbi_write_bmp_core(stbi__write_context *s, int x, int y, int comp, const void *data)
+{
+   if (comp != 4) {
+
+      int pad = (-x*3) & 3;
+      return stbiw__outfile(s,-1,-1,x,y,comp,1,(void *) data,0,pad,
+              "11 4 22 4" "4 44 22 444444",
+              'B', 'M', 14+40+(x*3+pad)*y, 0,0, 14+40,
+               40, x,y, 1,24, 0,0,0,0,0,0);
+   } else {
+
+
+
+      return stbiw__outfile(s,-1,-1,x,y,comp,1,(void *)data,1,0,
+         "11 4 22 4" "4 44 22 444444 4444 4 444 444 444 444",
+         'B', 'M', 14+108+x*y*4, 0, 0, 14+108,
+         108, x,y, 1,32, 3,0,0,0,0,0, 0xff0000,0xff00,0xff,0xff000000u, 0, 0,0,0, 0,0,0, 0,0,0, 0,0,0);
+   }
+}
+
+extern "C" int stbi_write_bmp_to_func(stbi_write_func *func, void *context, int x, int y, int comp, const void *data)
+{
+   stbi__write_context s = { 0 };
+   stbi__start_write_callbacks(&s, func, context);
+   return stbi_write_bmp_core(&s, x, y, comp, data);
+}
+
+
+extern "C" int stbi_write_bmp(char const *filename, int x, int y, int comp, const void *data)
+{
+   stbi__write_context s = { 0 };
+   if (stbi__start_write_file(&s,filename)) {
+      int r = stbi_write_bmp_core(&s, x, y, comp, data);
+      stbi__end_write_file(&s);
+      return r;
+   } else
+      return 0;
+}
+
+
+static int stbi_write_tga_core(stbi__write_context *s, int x, int y, int comp, void *data)
+{
+   int has_alpha = (comp == 2 || comp == 4);
+   int colorbytes = has_alpha ? comp-1 : comp;
+   int format = colorbytes < 2 ? 3 : 2;
+
+   if (y < 0 || x < 0)
+      return 0;
+
+   if (!stbi_write_tga_with_rle) {
+      return stbiw__outfile(s, -1, -1, x, y, comp, 0, (void *) data, has_alpha, 0,
+         "111 221 2222 11", 0, 0, format, 0, 0, 0, 0, 0, x, y, (colorbytes + has_alpha) * 8, has_alpha * 8);
+   } else {
+      int i,j,k;
+      int jend, jdir;
+
+      stbiw__writef(s, "111 221 2222 11", 0,0,format+8, 0,0,0, 0,0,x,y, (colorbytes + has_alpha) * 8, has_alpha * 8);
+
+      if (stbi__flip_vertically_on_write) {
+         j = 0;
+         jend = y;
+         jdir = 1;
+      } else {
+         j = y-1;
+         jend = -1;
+         jdir = -1;
+      }
+      for (; j != jend; j += jdir) {
+         unsigned char *row = (unsigned char *) data + j * x * comp;
+         int len;
+
+         for (i = 0; i < x; i += len) {
+            unsigned char *begin = row + i * comp;
+            int diff = 1;
+            len = 1;
+
+            if (i < x - 1) {
+               ++len;
+               diff = memcmp(begin, row + (i + 1) * comp, comp);
+               if (diff) {
+                  const unsigned char *prev = begin;
+                  for (k = i + 2; k < x && len < 128; ++k) {
+                     if (memcmp(prev, row + k * comp, comp)) {
+                        prev += comp;
+                        ++len;
+                     } else {
+                        --len;
+                        break;
+                     }
+                  }
+               } else {
+                  for (k = i + 2; k < x && len < 128; ++k) {
+                     if (!memcmp(begin, row + k * comp, comp)) {
+                        ++len;
+                     } else {
+                        break;
+                     }
+                  }
+               }
+            }
+
+            if (diff) {
+               unsigned char header = (unsigned char) ((len - 1) & 0xff);
+               stbiw__write1(s, header);
+               for (k = 0; k < len; ++k) {
+                  stbiw__write_pixel(s, -1, comp, has_alpha, 0, begin + k * comp);
+               }
+            } else {
+               unsigned char header = (unsigned char) ((len - 129) & 0xff);
+               stbiw__write1(s, header);
+               stbiw__write_pixel(s, -1, comp, has_alpha, 0, begin);
+            }
+         }
+      }
+      stbiw__write_flush(s);
+   }
+   return 1;
+}
+
+extern "C" int stbi_write_tga_to_func(stbi_write_func *func, void *context, int x, int y, int comp, const void *data)
+{
+   stbi__write_context s = { 0 };
+   stbi__start_write_callbacks(&s, func, context);
+   return stbi_write_tga_core(&s, x, y, comp, (void *) data);
+}
+
+
+extern "C" int stbi_write_tga(char const *filename, int x, int y, int comp, const void *data)
+{
+   stbi__write_context s = { 0 };
+   if (stbi__start_write_file(&s,filename)) {
+      int r = stbi_write_tga_core(&s, x, y, comp, (void *) data);
+      stbi__end_write_file(&s);
+      return r;
+   } else
+      return 0;
+}
+# 639 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp"
+static void stbiw__linear_to_rgbe(unsigned char *rgbe, float *linear)
+{
+   int exponent;
+   float maxcomp = ((linear[0]) > (((linear[1]) > (linear[2]) ? (linear[1]) : (linear[2]))) ? (linear[0]) : (((linear[1]) > (linear[2]) ? (linear[1]) : (linear[2]))));
+
+   if (maxcomp < 1e-32f) {
+      rgbe[0] = rgbe[1] = rgbe[2] = rgbe[3] = 0;
+   } else {
+      float normalize = (float) frexp(maxcomp, &exponent) * 256.0f/maxcomp;
+
+      rgbe[0] = (unsigned char)(linear[0] * normalize);
+      rgbe[1] = (unsigned char)(linear[1] * normalize);
+      rgbe[2] = (unsigned char)(linear[2] * normalize);
+      rgbe[3] = (unsigned char)(exponent + 128);
+   }
+}
+
+static void stbiw__write_run_data(stbi__write_context *s, int length, unsigned char databyte)
+{
+   unsigned char lengthbyte = (unsigned char) ((length+128) & 0xff);
+   
+# 659 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp" 3
+  ((void)0)
+# 659 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp"
+                                 ;
+   s->func(s->context, &lengthbyte, 1);
+   s->func(s->context, &databyte, 1);
+}
+
+static void stbiw__write_dump_data(stbi__write_context *s, int length, unsigned char *data)
+{
+   unsigned char lengthbyte = (unsigned char) ((length) & 0xff);
+   
+# 667 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp" 3
+  ((void)0)
+# 667 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp"
+                             ;
+   s->func(s->context, &lengthbyte, 1);
+   s->func(s->context, data, length);
+}
+
+static void stbiw__write_hdr_scanline(stbi__write_context *s, int width, int ncomp, unsigned char *scratch, float *scanline)
+{
+   unsigned char scanlineheader[4] = { 2, 2, 0, 0 };
+   unsigned char rgbe[4];
+   float linear[3];
+   int x;
+
+   scanlineheader[2] = (width&0xff00)>>8;
+   scanlineheader[3] = (width&0x00ff);
+
+
+   if (width < 8 || width >= 32768) {
+      for (x=0; x < width; x++) {
+         switch (ncomp) {
+            case 4:
+            case 3: linear[2] = scanline[x*ncomp + 2];
+                    linear[1] = scanline[x*ncomp + 1];
+                    linear[0] = scanline[x*ncomp + 0];
+                    break;
+            default:
+                    linear[0] = linear[1] = linear[2] = scanline[x*ncomp + 0];
+                    break;
+         }
+         stbiw__linear_to_rgbe(rgbe, linear);
+         s->func(s->context, rgbe, 4);
+      }
+   } else {
+      int c,r;
+
+      for (x=0; x < width; x++) {
+         switch(ncomp) {
+            case 4:
+            case 3: linear[2] = scanline[x*ncomp + 2];
+                    linear[1] = scanline[x*ncomp + 1];
+                    linear[0] = scanline[x*ncomp + 0];
+                    break;
+            default:
+                    linear[0] = linear[1] = linear[2] = scanline[x*ncomp + 0];
+                    break;
+         }
+         stbiw__linear_to_rgbe(rgbe, linear);
+         scratch[x + width*0] = rgbe[0];
+         scratch[x + width*1] = rgbe[1];
+         scratch[x + width*2] = rgbe[2];
+         scratch[x + width*3] = rgbe[3];
+      }
+
+      s->func(s->context, scanlineheader, 4);
+
+
+      for (c=0; c < 4; c++) {
+         unsigned char *comp = &scratch[width*c];
+
+         x = 0;
+         while (x < width) {
+
+            r = x;
+            while (r+2 < width) {
+               if (comp[r] == comp[r+1] && comp[r] == comp[r+2])
+                  break;
+               ++r;
+            }
+            if (r+2 >= width)
+               r = width;
+
+            while (x < r) {
+               int len = r-x;
+               if (len > 128) len = 128;
+               stbiw__write_dump_data(s, len, &comp[x]);
+               x += len;
+            }
+
+            if (r+2 < width) {
+
+               while (r < width && comp[r] == comp[x])
+                  ++r;
+
+               while (x < r) {
+                  int len = r-x;
+                  if (len > 127) len = 127;
+                  stbiw__write_run_data(s, len, comp[x]);
+                  x += len;
+               }
+            }
+         }
+      }
+   }
+}
+
+static int stbi_write_hdr_core(stbi__write_context *s, int x, int y, int comp, float *data)
+{
+   if (y <= 0 || x <= 0 || data == 
+# 763 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp" 3 4
+                                  __null
+# 763 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp"
+                                      )
+      return 0;
+   else {
+
+      unsigned char *scratch = (unsigned char *) malloc(x*4);
+      int i, len;
+      char buffer[128];
+      char header[] = "#?RADIANCE\n# Written by stb_image_write.h\nFORMAT=32-bit_rle_rgbe\n";
+      s->func(s->context, header, sizeof(header)-1);
+
+
+
+
+      len = sprintf(buffer, "EXPOSURE=          1.0000000000000\n\n-Y %d +X %d\n", y, x);
+
+      s->func(s->context, buffer, len);
+
+      for(i=0; i < y; i++)
+         stbiw__write_hdr_scanline(s, x, comp, scratch, data + comp*x*(stbi__flip_vertically_on_write ? y-1-i : i));
+      free(scratch);
+      return 1;
+   }
+}
+
+extern "C" int stbi_write_hdr_to_func(stbi_write_func *func, void *context, int x, int y, int comp, const float *data)
+{
+   stbi__write_context s = { 0 };
+   stbi__start_write_callbacks(&s, func, context);
+   return stbi_write_hdr_core(&s, x, y, comp, (float *) data);
+}
+
+extern "C" int stbi_write_hdr(char const *filename, int x, int y, int comp, const float *data)
+{
+   stbi__write_context s = { 0 };
+   if (stbi__start_write_file(&s,filename)) {
+      int r = stbi_write_hdr_core(&s, x, y, comp, (float *) data);
+      stbi__end_write_file(&s);
+      return r;
+   } else
+      return 0;
+}
+# 826 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp"
+static void *stbiw__sbgrowf(void **arr, int increment, int itemsize)
+{
+   int m = *arr ? 2*((int *) (void *) (*arr) - 2)[0]+increment : increment+1;
+   void *p = realloc(*arr ? ((int *) (void *) (*arr) - 2) : 0,itemsize * m + sizeof(int)*2);
+   
+# 830 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp" 3
+  ((void)0)
+# 830 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp"
+                 ;
+   if (p) {
+      if (!*arr) ((int *) p)[1] = 0;
+      *arr = (void *) ((int *) p + 2);
+      ((int *) (void *) (*arr) - 2)[0] = m;
+   }
+   return *arr;
+}
+
+static unsigned char *stbiw__zlib_flushf(unsigned char *data, unsigned int *bitbuffer, int *bitcount)
+{
+   while (*bitcount >= 8) {
+      ((((data)==0 || ((int *) (void *) (data) - 2)[1]+(1) >= ((int *) (void *) (data) - 2)[0]) ? stbiw__sbgrowf((void **) &(data), (1), sizeof(*(data))) : 0), (data)[((int *) (void *) (data) - 2)[1]++] = ((unsigned char) ((*bitbuffer) & 0xff)));
+      *bitbuffer >>= 8;
+      *bitcount -= 8;
+   }
+   return data;
+}
+
+static int stbiw__zlib_bitrev(int code, int codebits)
+{
+   int res=0;
+   while (codebits--) {
+      res = (res << 1) | (code & 1);
+      code >>= 1;
+   }
+   return res;
+}
+
+static unsigned int stbiw__zlib_countm(unsigned char *a, unsigned char *b, int limit)
+{
+   int i;
+   for (i=0; i < limit && i < 258; ++i)
+      if (a[i] != b[i]) break;
+   return i;
+}
+
+static unsigned int stbiw__zhash(unsigned char *data)
+{
+   stbiw_uint32 hash = data[0] + (data[1] << 8) + (data[2] << 16);
+   hash ^= hash << 3;
+   hash += hash >> 5;
+   hash ^= hash << 4;
+   hash += hash >> 17;
+   hash ^= hash << 25;
+   hash += hash >> 6;
+   return hash;
+}
+# 895 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp"
+extern "C" unsigned char * stbi_zlib_compress(unsigned char *data, int data_len, int *out_len, int quality)
+{
+
+
+
+
+   static unsigned short lengthc[] = { 3,4,5,6,7,8,9,10,11,13,15,17,19,23,27,31,35,43,51,59,67,83,99,115,131,163,195,227,258, 259 };
+   static unsigned char lengtheb[]= { 0,0,0,0,0,0,0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 0 };
+   static unsigned short distc[] = { 1,2,3,4,5,7,9,13,17,25,33,49,65,97,129,193,257,385,513,769,1025,1537,2049,3073,4097,6145,8193,12289,16385,24577, 32768 };
+   static unsigned char disteb[] = { 0,0,0,0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,10,10,11,11,12,12,13,13 };
+   unsigned int bitbuf=0;
+   int i,j, bitcount=0;
+   unsigned char *out = 
+# 907 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp" 3 4
+                       __null
+# 907 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp"
+                           ;
+   unsigned char ***hash_table = (unsigned char***) malloc(16384 * sizeof(unsigned char**));
+   if (hash_table == 
+# 909 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp" 3 4
+                    __null
+# 909 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp"
+                        )
+      return 
+# 910 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp" 3 4
+            __null
+# 910 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp"
+                ;
+   if (quality < 5) quality = 5;
+
+   ((((out)==0 || ((int *) (void *) (out) - 2)[1]+(1) >= ((int *) (void *) (out) - 2)[0]) ? stbiw__sbgrowf((void **) &(out), (1), sizeof(*(out))) : 0), (out)[((int *) (void *) (out) - 2)[1]++] = (0x78));
+   ((((out)==0 || ((int *) (void *) (out) - 2)[1]+(1) >= ((int *) (void *) (out) - 2)[0]) ? stbiw__sbgrowf((void **) &(out), (1), sizeof(*(out))) : 0), (out)[((int *) (void *) (out) - 2)[1]++] = (0x5e));
+   (bitbuf |= (1) << bitcount, bitcount += (1), (out = stbiw__zlib_flushf(out, &bitbuf, &bitcount)));
+   (bitbuf |= (1) << bitcount, bitcount += (2), (out = stbiw__zlib_flushf(out, &bitbuf, &bitcount)));
+
+   for (i=0; i < 16384; ++i)
+      hash_table[i] = 
+# 919 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp" 3 4
+                     __null
+# 919 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp"
+                         ;
+
+   i=0;
+   while (i < data_len-3) {
+
+      int h = stbiw__zhash(data+i)&(16384 -1), best=3;
+      unsigned char *bestloc = 0;
+      unsigned char **hlist = hash_table[h];
+      int n = ((hlist) ? ((int *) (void *) (hlist) - 2)[1] : 0);
+      for (j=0; j < n; ++j) {
+         if (hlist[j]-data > i-32768) {
+            int d = stbiw__zlib_countm(hlist[j], data+i, data_len-i);
+            if (d >= best) { best=d; bestloc=hlist[j]; }
+         }
+      }
+
+      if (hash_table[h] && ((int *) (void *) (hash_table[h]) - 2)[1] == 2*quality) {
+         memmove(hash_table[h],hash_table[h]+quality,sizeof(hash_table[h][0])*quality);
+         ((int *) (void *) (hash_table[h]) - 2)[1] = quality;
+      }
+      ((((hash_table[h])==0 || ((int *) (void *) (hash_table[h]) - 2)[1]+(1) >= ((int *) (void *) (hash_table[h]) - 2)[0]) ? stbiw__sbgrowf((void **) &(hash_table[h]), (1), sizeof(*(hash_table[h]))) : 0), (hash_table[h])[((int *) (void *) (hash_table[h]) - 2)[1]++] = (data+i));
+
+      if (bestloc) {
+
+         h = stbiw__zhash(data+i+1)&(16384 -1);
+         hlist = hash_table[h];
+         n = ((hlist) ? ((int *) (void *) (hlist) - 2)[1] : 0);
+         for (j=0; j < n; ++j) {
+            if (hlist[j]-data > i-32767) {
+               int e = stbiw__zlib_countm(hlist[j], data+i+1, data_len-i-1);
+               if (e > best) {
+                  bestloc = 
+# 950 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp" 3 4
+                           __null
+# 950 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp"
+                               ;
+                  break;
+               }
+            }
+         }
+      }
+
+      if (bestloc) {
+         int d = (int) (data+i - bestloc);
+         
+# 959 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp" 3
+        ((void)0)
+# 959 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp"
+                                               ;
+         for (j=0; best > lengthc[j+1]-1; ++j);
+         ((j+257) <= 143 ? (bitbuf |= (stbiw__zlib_bitrev(0x30 + (j+257),8)) << bitcount, bitcount += (8), (out = stbiw__zlib_flushf(out, &bitbuf, &bitcount))) : (j+257) <= 255 ? (bitbuf |= (stbiw__zlib_bitrev(0x190 + (j+257)-144,9)) << bitcount, bitcount += (9), (out = stbiw__zlib_flushf(out, &bitbuf, &bitcount))) : (j+257) <= 279 ? (bitbuf |= (stbiw__zlib_bitrev(0 + (j+257)-256,7)) << bitcount, bitcount += (7), (out = stbiw__zlib_flushf(out, &bitbuf, &bitcount))) : (bitbuf |= (stbiw__zlib_bitrev(0xc0 + (j+257)-280,8)) << bitcount, bitcount += (8), (out = stbiw__zlib_flushf(out, &bitbuf, &bitcount))));
+         if (lengtheb[j]) (bitbuf |= (best - lengthc[j]) << bitcount, bitcount += (lengtheb[j]), (out = stbiw__zlib_flushf(out, &bitbuf, &bitcount)));
+         for (j=0; d > distc[j+1]-1; ++j);
+         (bitbuf |= (stbiw__zlib_bitrev(j,5)) << bitcount, bitcount += (5), (out = stbiw__zlib_flushf(out, &bitbuf, &bitcount)));
+         if (disteb[j]) (bitbuf |= (d - distc[j]) << bitcount, bitcount += (disteb[j]), (out = stbiw__zlib_flushf(out, &bitbuf, &bitcount)));
+         i += best;
+      } else {
+         ((data[i]) <= 143 ? (bitbuf |= (stbiw__zlib_bitrev(0x30 + (data[i]),8)) << bitcount, bitcount += (8), (out = stbiw__zlib_flushf(out, &bitbuf, &bitcount))) : (bitbuf |= (stbiw__zlib_bitrev(0x190 + (data[i])-144,9)) << bitcount, bitcount += (9), (out = stbiw__zlib_flushf(out, &bitbuf, &bitcount))));
+         ++i;
+      }
+   }
+
+   for (;i < data_len; ++i)
+      ((data[i]) <= 143 ? (bitbuf |= (stbiw__zlib_bitrev(0x30 + (data[i]),8)) << bitcount, bitcount += (8), (out = stbiw__zlib_flushf(out, &bitbuf, &bitcount))) : (bitbuf |= (stbiw__zlib_bitrev(0x190 + (data[i])-144,9)) << bitcount, bitcount += (9), (out = stbiw__zlib_flushf(out, &bitbuf, &bitcount))));
+   ((256) <= 143 ? (bitbuf |= (stbiw__zlib_bitrev(0x30 + (256),8)) << bitcount, bitcount += (8), (out = stbiw__zlib_flushf(out, &bitbuf, &bitcount))) : (256) <= 255 ? (bitbuf |= (stbiw__zlib_bitrev(0x190 + (256)-144,9)) << bitcount, bitcount += (9), (out = stbiw__zlib_flushf(out, &bitbuf, &bitcount))) : (256) <= 279 ? (bitbuf |= (stbiw__zlib_bitrev(0 + (256)-256,7)) << bitcount, bitcount += (7), (out = stbiw__zlib_flushf(out, &bitbuf, &bitcount))) : (bitbuf |= (stbiw__zlib_bitrev(0xc0 + (256)-280,8)) << bitcount, bitcount += (8), (out = stbiw__zlib_flushf(out, &bitbuf, &bitcount))));
+
+   while (bitcount)
+      (bitbuf |= (0) << bitcount, bitcount += (1), (out = stbiw__zlib_flushf(out, &bitbuf, &bitcount)));
+
+   for (i=0; i < 16384; ++i)
+      (void) ((hash_table[i]) ? free(((int *) (void *) (hash_table[i]) - 2)),0 : 0);
+   free(hash_table);
+
+
+   if (((int *) (void *) (out) - 2)[1] > data_len + 2 + ((data_len+32766)/32767)*5) {
+      ((int *) (void *) (out) - 2)[1] = 2;
+      for (j = 0; j < data_len;) {
+         int blocklen = data_len - j;
+         if (blocklen > 32767) blocklen = 32767;
+         ((((out)==0 || ((int *) (void *) (out) - 2)[1]+(1) >= ((int *) (void *) (out) - 2)[0]) ? stbiw__sbgrowf((void **) &(out), (1), sizeof(*(out))) : 0), (out)[((int *) (void *) (out) - 2)[1]++] = (data_len - j == blocklen));
+         ((((out)==0 || ((int *) (void *) (out) - 2)[1]+(1) >= ((int *) (void *) (out) - 2)[0]) ? stbiw__sbgrowf((void **) &(out), (1), sizeof(*(out))) : 0), (out)[((int *) (void *) (out) - 2)[1]++] = ((unsigned char) ((blocklen) & 0xff)));
+         ((((out)==0 || ((int *) (void *) (out) - 2)[1]+(1) >= ((int *) (void *) (out) - 2)[0]) ? stbiw__sbgrowf((void **) &(out), (1), sizeof(*(out))) : 0), (out)[((int *) (void *) (out) - 2)[1]++] = ((unsigned char) ((blocklen >> 8) & 0xff)));
+         ((((out)==0 || ((int *) (void *) (out) - 2)[1]+(1) >= ((int *) (void *) (out) - 2)[0]) ? stbiw__sbgrowf((void **) &(out), (1), sizeof(*(out))) : 0), (out)[((int *) (void *) (out) - 2)[1]++] = ((unsigned char) ((~blocklen) & 0xff)));
+         ((((out)==0 || ((int *) (void *) (out) - 2)[1]+(1) >= ((int *) (void *) (out) - 2)[0]) ? stbiw__sbgrowf((void **) &(out), (1), sizeof(*(out))) : 0), (out)[((int *) (void *) (out) - 2)[1]++] = ((unsigned char) ((~blocklen >> 8) & 0xff)));
+         memcpy(out+((int *) (void *) (out) - 2)[1], data+j, blocklen);
+         ((int *) (void *) (out) - 2)[1] += blocklen;
+         j += blocklen;
+      }
+   }
+
+   {
+
+      unsigned int s1=1, s2=0;
+      int blocklen = (int) (data_len % 5552);
+      j=0;
+      while (j < data_len) {
+         for (i=0; i < blocklen; ++i) { s1 += data[j+i]; s2 += s1; }
+         s1 %= 65521; s2 %= 65521;
+         j += blocklen;
+         blocklen = 5552;
+      }
+      ((((out)==0 || ((int *) (void *) (out) - 2)[1]+(1) >= ((int *) (void *) (out) - 2)[0]) ? stbiw__sbgrowf((void **) &(out), (1), sizeof(*(out))) : 0), (out)[((int *) (void *) (out) - 2)[1]++] = ((unsigned char) ((s2 >> 8) & 0xff)));
+      ((((out)==0 || ((int *) (void *) (out) - 2)[1]+(1) >= ((int *) (void *) (out) - 2)[0]) ? stbiw__sbgrowf((void **) &(out), (1), sizeof(*(out))) : 0), (out)[((int *) (void *) (out) - 2)[1]++] = ((unsigned char) ((s2) & 0xff)));
+      ((((out)==0 || ((int *) (void *) (out) - 2)[1]+(1) >= ((int *) (void *) (out) - 2)[0]) ? stbiw__sbgrowf((void **) &(out), (1), sizeof(*(out))) : 0), (out)[((int *) (void *) (out) - 2)[1]++] = ((unsigned char) ((s1 >> 8) & 0xff)));
+      ((((out)==0 || ((int *) (void *) (out) - 2)[1]+(1) >= ((int *) (void *) (out) - 2)[0]) ? stbiw__sbgrowf((void **) &(out), (1), sizeof(*(out))) : 0), (out)[((int *) (void *) (out) - 2)[1]++] = ((unsigned char) ((s1) & 0xff)));
+   }
+   *out_len = ((int *) (void *) (out) - 2)[1];
+
+   memmove(((int *) (void *) (out) - 2),out,*out_len);
+   return (unsigned char *) ((int *) (void *) (out) - 2);
+
+}
+
+static unsigned int stbiw__crc32(unsigned char *buffer, int len)
+{
+
+
+
+   static unsigned int crc_table[256] =
+   {
+      0x00000000, 0x77073096, 0xEE0E612C, 0x990951BA, 0x076DC419, 0x706AF48F, 0xE963A535, 0x9E6495A3,
+      0x0eDB8832, 0x79DCB8A4, 0xE0D5E91E, 0x97D2D988, 0x09B64C2B, 0x7EB17CBD, 0xE7B82D07, 0x90BF1D91,
+      0x1DB71064, 0x6AB020F2, 0xF3B97148, 0x84BE41DE, 0x1ADAD47D, 0x6DDDE4EB, 0xF4D4B551, 0x83D385C7,
+      0x136C9856, 0x646BA8C0, 0xFD62F97A, 0x8A65C9EC, 0x14015C4F, 0x63066CD9, 0xFA0F3D63, 0x8D080DF5,
+      0x3B6E20C8, 0x4C69105E, 0xD56041E4, 0xA2677172, 0x3C03E4D1, 0x4B04D447, 0xD20D85FD, 0xA50AB56B,
+      0x35B5A8FA, 0x42B2986C, 0xDBBBC9D6, 0xACBCF940, 0x32D86CE3, 0x45DF5C75, 0xDCD60DCF, 0xABD13D59,
+      0x26D930AC, 0x51DE003A, 0xC8D75180, 0xBFD06116, 0x21B4F4B5, 0x56B3C423, 0xCFBA9599, 0xB8BDA50F,
+      0x2802B89E, 0x5F058808, 0xC60CD9B2, 0xB10BE924, 0x2F6F7C87, 0x58684C11, 0xC1611DAB, 0xB6662D3D,
+      0x76DC4190, 0x01DB7106, 0x98D220BC, 0xEFD5102A, 0x71B18589, 0x06B6B51F, 0x9FBFE4A5, 0xE8B8D433,
+      0x7807C9A2, 0x0F00F934, 0x9609A88E, 0xE10E9818, 0x7F6A0DBB, 0x086D3D2D, 0x91646C97, 0xE6635C01,
+      0x6B6B51F4, 0x1C6C6162, 0x856530D8, 0xF262004E, 0x6C0695ED, 0x1B01A57B, 0x8208F4C1, 0xF50FC457,
+      0x65B0D9C6, 0x12B7E950, 0x8BBEB8EA, 0xFCB9887C, 0x62DD1DDF, 0x15DA2D49, 0x8CD37CF3, 0xFBD44C65,
+      0x4DB26158, 0x3AB551CE, 0xA3BC0074, 0xD4BB30E2, 0x4ADFA541, 0x3DD895D7, 0xA4D1C46D, 0xD3D6F4FB,
+      0x4369E96A, 0x346ED9FC, 0xAD678846, 0xDA60B8D0, 0x44042D73, 0x33031DE5, 0xAA0A4C5F, 0xDD0D7CC9,
+      0x5005713C, 0x270241AA, 0xBE0B1010, 0xC90C2086, 0x5768B525, 0x206F85B3, 0xB966D409, 0xCE61E49F,
+      0x5EDEF90E, 0x29D9C998, 0xB0D09822, 0xC7D7A8B4, 0x59B33D17, 0x2EB40D81, 0xB7BD5C3B, 0xC0BA6CAD,
+      0xEDB88320, 0x9ABFB3B6, 0x03B6E20C, 0x74B1D29A, 0xEAD54739, 0x9DD277AF, 0x04DB2615, 0x73DC1683,
+      0xE3630B12, 0x94643B84, 0x0D6D6A3E, 0x7A6A5AA8, 0xE40ECF0B, 0x9309FF9D, 0x0A00AE27, 0x7D079EB1,
+      0xF00F9344, 0x8708A3D2, 0x1E01F268, 0x6906C2FE, 0xF762575D, 0x806567CB, 0x196C3671, 0x6E6B06E7,
+      0xFED41B76, 0x89D32BE0, 0x10DA7A5A, 0x67DD4ACC, 0xF9B9DF6F, 0x8EBEEFF9, 0x17B7BE43, 0x60B08ED5,
+      0xD6D6A3E8, 0xA1D1937E, 0x38D8C2C4, 0x4FDFF252, 0xD1BB67F1, 0xA6BC5767, 0x3FB506DD, 0x48B2364B,
+      0xD80D2BDA, 0xAF0A1B4C, 0x36034AF6, 0x41047A60, 0xDF60EFC3, 0xA867DF55, 0x316E8EEF, 0x4669BE79,
+      0xCB61B38C, 0xBC66831A, 0x256FD2A0, 0x5268E236, 0xCC0C7795, 0xBB0B4703, 0x220216B9, 0x5505262F,
+      0xC5BA3BBE, 0xB2BD0B28, 0x2BB45A92, 0x5CB36A04, 0xC2D7FFA7, 0xB5D0CF31, 0x2CD99E8B, 0x5BDEAE1D,
+      0x9B64C2B0, 0xEC63F226, 0x756AA39C, 0x026D930A, 0x9C0906A9, 0xEB0E363F, 0x72076785, 0x05005713,
+      0x95BF4A82, 0xE2B87A14, 0x7BB12BAE, 0x0CB61B38, 0x92D28E9B, 0xE5D5BE0D, 0x7CDCEFB7, 0x0BDBDF21,
+      0x86D3D2D4, 0xF1D4E242, 0x68DDB3F8, 0x1FDA836E, 0x81BE16CD, 0xF6B9265B, 0x6FB077E1, 0x18B74777,
+      0x88085AE6, 0xFF0F6A70, 0x66063BCA, 0x11010B5C, 0x8F659EFF, 0xF862AE69, 0x616BFFD3, 0x166CCF45,
+      0xA00AE278, 0xD70DD2EE, 0x4E048354, 0x3903B3C2, 0xA7672661, 0xD06016F7, 0x4969474D, 0x3E6E77DB,
+      0xAED16A4A, 0xD9D65ADC, 0x40DF0B66, 0x37D83BF0, 0xA9BCAE53, 0xDEBB9EC5, 0x47B2CF7F, 0x30B5FFE9,
+      0xBDBDF21C, 0xCABAC28A, 0x53B39330, 0x24B4A3A6, 0xBAD03605, 0xCDD70693, 0x54DE5729, 0x23D967BF,
+      0xB3667A2E, 0xC4614AB8, 0x5D681B02, 0x2A6F2B94, 0xB40BBE37, 0xC30C8EA1, 0x5A05DF1B, 0x2D02EF8D
+   };
+
+   unsigned int crc = ~0u;
+   int i;
+   for (i=0; i < len; ++i)
+      crc = (crc >> 8) ^ crc_table[buffer[i] ^ (crc & 0xff)];
+   return ~crc;
+
+}
+
+
+
+
+
+static void stbiw__wpcrc(unsigned char **data, int len)
+{
+   unsigned int crc = stbiw__crc32(*data - len - 4, len+4);
+   ((*data)[0]=(unsigned char) (((crc)>>24) & 0xff),(*data)[1]=(unsigned char) (((crc)>>16) & 0xff),(*data)[2]=(unsigned char) (((crc)>>8) & 0xff),(*data)[3]=(unsigned char) (((crc)) & 0xff),(*data)+=4);;
+}
+
+static unsigned char stbiw__paeth(int a, int b, int c)
+{
+   int p = a + b - c, pa = abs(p-a), pb = abs(p-b), pc = abs(p-c);
+   if (pa <= pb && pa <= pc) return (unsigned char) ((a) & 0xff);
+   if (pb <= pc) return (unsigned char) ((b) & 0xff);
+   return (unsigned char) ((c) & 0xff);
+}
+
+
+static void stbiw__encode_png_line(unsigned char *pixels, int stride_bytes, int width, int height, int y, int n, int filter_type, signed char *line_buffer)
+{
+   static int mapping[] = { 0,1,2,3,4 };
+   static int firstmap[] = { 0,1,0,5,6 };
+   int *mymap = (y != 0) ? mapping : firstmap;
+   int i;
+   int type = mymap[filter_type];
+   unsigned char *z = pixels + stride_bytes * (stbi__flip_vertically_on_write ? height-1-y : y);
+   int signed_stride = stbi__flip_vertically_on_write ? -stride_bytes : stride_bytes;
+
+   if (type==0) {
+      memcpy(line_buffer, z, width*n);
+      return;
+   }
+
+
+   for (i = 0; i < n; ++i) {
+      switch (type) {
+         case 1: line_buffer[i] = z[i]; break;
+         case 2: line_buffer[i] = z[i] - z[i-signed_stride]; break;
+         case 3: line_buffer[i] = z[i] - (z[i-signed_stride]>>1); break;
+         case 4: line_buffer[i] = (signed char) (z[i] - stbiw__paeth(0,z[i-signed_stride],0)); break;
+         case 5: line_buffer[i] = z[i]; break;
+         case 6: line_buffer[i] = z[i]; break;
+      }
+   }
+   switch (type) {
+      case 1: for (i=n; i < width*n; ++i) line_buffer[i] = z[i] - z[i-n]; break;
+      case 2: for (i=n; i < width*n; ++i) line_buffer[i] = z[i] - z[i-signed_stride]; break;
+      case 3: for (i=n; i < width*n; ++i) line_buffer[i] = z[i] - ((z[i-n] + z[i-signed_stride])>>1); break;
+      case 4: for (i=n; i < width*n; ++i) line_buffer[i] = z[i] - stbiw__paeth(z[i-n], z[i-signed_stride], z[i-signed_stride-n]); break;
+      case 5: for (i=n; i < width*n; ++i) line_buffer[i] = z[i] - (z[i-n]>>1); break;
+      case 6: for (i=n; i < width*n; ++i) line_buffer[i] = z[i] - stbiw__paeth(z[i-n], 0,0); break;
+   }
+}
+
+extern "C" unsigned char *stbi_write_png_to_mem(const unsigned char *pixels, int stride_bytes, int x, int y, int n, int *out_len)
+{
+   int force_filter = stbi_write_force_png_filter;
+   int ctype[5] = { -1, 0, 4, 2, 6 };
+   unsigned char sig[8] = { 137,80,78,71,13,10,26,10 };
+   unsigned char *out,*o, *filt, *zlib;
+   signed char *line_buffer;
+   int j,zlen;
+
+   if (stride_bytes == 0)
+      stride_bytes = x * n;
+
+   if (force_filter >= 5) {
+      force_filter = -1;
+   }
+
+   filt = (unsigned char *) malloc((x*n+1) * y); if (!filt) return 0;
+   line_buffer = (signed char *) malloc(x * n); if (!line_buffer) { free(filt); return 0; }
+   for (j=0; j < y; ++j) {
+      int filter_type;
+      if (force_filter > -1) {
+         filter_type = force_filter;
+         stbiw__encode_png_line((unsigned char*)(pixels), stride_bytes, x, y, j, n, force_filter, line_buffer);
+      } else {
+         int best_filter = 0, best_filter_val = 0x7fffffff, est, i;
+         for (filter_type = 0; filter_type < 5; filter_type++) {
+            stbiw__encode_png_line((unsigned char*)(pixels), stride_bytes, x, y, j, n, filter_type, line_buffer);
+
+
+            est = 0;
+            for (i = 0; i < x*n; ++i) {
+               est += abs((signed char) line_buffer[i]);
+            }
+            if (est < best_filter_val) {
+               best_filter_val = est;
+               best_filter = filter_type;
+            }
+         }
+         if (filter_type != best_filter) {
+            stbiw__encode_png_line((unsigned char*)(pixels), stride_bytes, x, y, j, n, best_filter, line_buffer);
+            filter_type = best_filter;
+         }
+      }
+
+      filt[j*(x*n+1)] = (unsigned char) filter_type;
+      memmove(filt+j*(x*n+1)+1,line_buffer,x*n);
+   }
+   free(line_buffer);
+   zlib = stbi_zlib_compress(filt, y*( x*n+1), &zlen, stbi_write_png_compression_level);
+   free(filt);
+   if (!zlib) return 0;
+
+
+   out = (unsigned char *) malloc(8 + 12+13 + 12+zlen + 12);
+   if (!out) return 0;
+   *out_len = 8 + 12+13 + 12+zlen + 12;
+
+   o=out;
+   memmove(o,sig,8); o+= 8;
+   ((o)[0]=(unsigned char) (((13)>>24) & 0xff),(o)[1]=(unsigned char) (((13)>>16) & 0xff),(o)[2]=(unsigned char) (((13)>>8) & 0xff),(o)[3]=(unsigned char) (((13)) & 0xff),(o)+=4);;
+   ((o)[0]=(unsigned char) (("IHDR"[0]) & 0xff),(o)[1]=(unsigned char) (("IHDR"[1]) & 0xff),(o)[2]=(unsigned char) (("IHDR"[2]) & 0xff),(o)[3]=(unsigned char) (("IHDR"[3]) & 0xff),(o)+=4);
+   ((o)[0]=(unsigned char) (((x)>>24) & 0xff),(o)[1]=(unsigned char) (((x)>>16) & 0xff),(o)[2]=(unsigned char) (((x)>>8) & 0xff),(o)[3]=(unsigned char) (((x)) & 0xff),(o)+=4);;
+   ((o)[0]=(unsigned char) (((y)>>24) & 0xff),(o)[1]=(unsigned char) (((y)>>16) & 0xff),(o)[2]=(unsigned char) (((y)>>8) & 0xff),(o)[3]=(unsigned char) (((y)) & 0xff),(o)+=4);;
+   *o++ = 8;
+   *o++ = (unsigned char) ((ctype[n]) & 0xff);
+   *o++ = 0;
+   *o++ = 0;
+   *o++ = 0;
+   stbiw__wpcrc(&o,13);
+
+   ((o)[0]=(unsigned char) (((zlen)>>24) & 0xff),(o)[1]=(unsigned char) (((zlen)>>16) & 0xff),(o)[2]=(unsigned char) (((zlen)>>8) & 0xff),(o)[3]=(unsigned char) (((zlen)) & 0xff),(o)+=4);;
+   ((o)[0]=(unsigned char) (("IDAT"[0]) & 0xff),(o)[1]=(unsigned char) (("IDAT"[1]) & 0xff),(o)[2]=(unsigned char) (("IDAT"[2]) & 0xff),(o)[3]=(unsigned char) (("IDAT"[3]) & 0xff),(o)+=4);
+   memmove(o,zlib,zlen);
+   o += zlen;
+   free(zlib);
+   stbiw__wpcrc(&o, zlen);
+
+   ((o)[0]=(unsigned char) (((0)>>24) & 0xff),(o)[1]=(unsigned char) (((0)>>16) & 0xff),(o)[2]=(unsigned char) (((0)>>8) & 0xff),(o)[3]=(unsigned char) (((0)) & 0xff),(o)+=4);;
+   ((o)[0]=(unsigned char) (("IEND"[0]) & 0xff),(o)[1]=(unsigned char) (("IEND"[1]) & 0xff),(o)[2]=(unsigned char) (("IEND"[2]) & 0xff),(o)[3]=(unsigned char) (("IEND"[3]) & 0xff),(o)+=4);
+   stbiw__wpcrc(&o,0);
+
+   
+# 1209 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp" 3
+  ((void)0)
+# 1209 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp"
+                                   ;
+
+   return out;
+}
+
+
+extern "C" int stbi_write_png(char const *filename, int x, int y, int comp, const void *data, int stride_bytes)
+{
+   FILE *f;
+   int len;
+   unsigned char *png = stbi_write_png_to_mem((const unsigned char *) data, stride_bytes, x, y, comp, &len);
+   if (png == 
+# 1220 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp" 3 4
+             __null
+# 1220 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp"
+                 ) return 0;
+
+   f = stbiw__fopen(filename, "wb");
+   if (!f) { free(png); return 0; }
+   fwrite(png, 1, len, f);
+   fclose(f);
+   free(png);
+   return 1;
+}
+
+
+extern "C" int stbi_write_png_to_func(stbi_write_func *func, void *context, int x, int y, int comp, const void *data, int stride_bytes)
+{
+   int len;
+   unsigned char *png = stbi_write_png_to_mem((const unsigned char *) data, stride_bytes, x, y, comp, &len);
+   if (png == 
+# 1235 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp" 3 4
+             __null
+# 1235 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp"
+                 ) return 0;
+   func(context, png, len);
+   free(png);
+   return 1;
+}
+# 1250 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/stb/stb_image_write.hpp"
+static const unsigned char stbiw__jpg_ZigZag[] = { 0,1,5,6,14,15,27,28,2,4,7,13,16,26,29,42,3,8,12,17,25,30,41,43,9,11,18,
+      24,31,40,44,53,10,19,23,32,39,45,52,54,20,22,33,38,46,51,55,60,21,34,37,47,50,56,59,61,35,36,48,49,57,58,62,63 };
+
+static void stbiw__jpg_writeBits(stbi__write_context *s, int *bitBufP, int *bitCntP, const unsigned short *bs) {
+   int bitBuf = *bitBufP, bitCnt = *bitCntP;
+   bitCnt += bs[1];
+   bitBuf |= bs[0] << (24 - bitCnt);
+   while(bitCnt >= 8) {
+      unsigned char c = (bitBuf >> 16) & 255;
+      stbiw__putc(s, c);
+      if(c == 255) {
+         stbiw__putc(s, 0);
+      }
+      bitBuf <<= 8;
+      bitCnt -= 8;
+   }
+   *bitBufP = bitBuf;
+   *bitCntP = bitCnt;
+}
+
+static void stbiw__jpg_DCT(float *d0p, float *d1p, float *d2p, float *d3p, float *d4p, float *d5p, float *d6p, float *d7p) {
+   float d0 = *d0p, d1 = *d1p, d2 = *d2p, d3 = *d3p, d4 = *d4p, d5 = *d5p, d6 = *d6p, d7 = *d7p;
+   float z1, z2, z3, z4, z5, z11, z13;
+
+   float tmp0 = d0 + d7;
+   float tmp7 = d0 - d7;
+   float tmp1 = d1 + d6;
+   float tmp6 = d1 - d6;
+   float tmp2 = d2 + d5;
+   float tmp5 = d2 - d5;
+   float tmp3 = d3 + d4;
+   float tmp4 = d3 - d4;
+
+
+   float tmp10 = tmp0 + tmp3;
+   float tmp13 = tmp0 - tmp3;
+   float tmp11 = tmp1 + tmp2;
+   float tmp12 = tmp1 - tmp2;
+
+   d0 = tmp10 + tmp11;
+   d4 = tmp10 - tmp11;
+
+   z1 = (tmp12 + tmp13) * 0.707106781f;
+   d2 = tmp13 + z1;
+   d6 = tmp13 - z1;
+
+
+   tmp10 = tmp4 + tmp5;
+   tmp11 = tmp5 + tmp6;
+   tmp12 = tmp6 + tmp7;
+
+
+   z5 = (tmp10 - tmp12) * 0.382683433f;
+   z2 = tmp10 * 0.541196100f + z5;
+   z4 = tmp12 * 1.306562965f + z5;
+   z3 = tmp11 * 0.707106781f;
+
+   z11 = tmp7 + z3;
+   z13 = tmp7 - z3;
+
+   *d5p = z13 + z2;
+   *d3p = z13 - z2;
+   *d1p = z11 + z4;
+   *d7p = z11 - z4;
+
+   *d0p = d0; *d2p = d2; *d4p = d4; *d6p = d6;
+}
+
+static void stbiw__jpg_calcBits(int val, unsigned short bits[2]) {
+   int tmp1 = val < 0 ? -val : val;
+   val = val < 0 ? val-1 : val;
+   bits[1] = 1;
+   while(tmp1 >>= 1) {
+      ++bits[1];
+   }
+   bits[0] = val & ((1<<bits[1])-1);
+}
+
+static int stbiw__jpg_processDU(stbi__write_context *s, int *bitBuf, int *bitCnt, float *CDU, int du_stride, float *fdtbl, int DC, const unsigned short HTDC[256][2], const unsigned short HTAC[256][2]) {
+   const unsigned short EOB[2] = { HTAC[0x00][0], HTAC[0x00][1] };
+   const unsigned short M16zeroes[2] = { HTAC[0xF0][0], HTAC[0xF0][1] };
+   int dataOff, i, j, n, diff, end0pos, x, y;
+   int DU[64];
+
+
+   for(dataOff=0, n=du_stride*8; dataOff<n; dataOff+=du_stride) {
+      stbiw__jpg_DCT(&CDU[dataOff], &CDU[dataOff+1], &CDU[dataOff+2], &CDU[dataOff+3], &CDU[dataOff+4], &CDU[dataOff+5], &CDU[dataOff+6], &CDU[dataOff+7]);
+   }
+
+   for(dataOff=0; dataOff<8; ++dataOff) {
+      stbiw__jpg_DCT(&CDU[dataOff], &CDU[dataOff+du_stride], &CDU[dataOff+du_stride*2], &CDU[dataOff+du_stride*3], &CDU[dataOff+du_stride*4],
+                     &CDU[dataOff+du_stride*5], &CDU[dataOff+du_stride*6], &CDU[dataOff+du_stride*7]);
+   }
+
+   for(y = 0, j=0; y < 8; ++y) {
+      for(x = 0; x < 8; ++x,++j) {
+         float v;
+         i = y*du_stride+x;
+         v = CDU[i]*fdtbl[j];
+
+
+         DU[stbiw__jpg_ZigZag[j]] = (int)(v < 0 ? v - 0.5f : v + 0.5f);
+      }
+   }
+
+
+   diff = DU[0] - DC;
+   if (diff == 0) {
+      stbiw__jpg_writeBits(s, bitBuf, bitCnt, HTDC[0]);
+   } else {
+      unsigned short bits[2];
+      stbiw__jpg_calcBits(diff, bits);
+      stbiw__jpg_writeBits(s, bitBuf, bitCnt, HTDC[bits[1]]);
+      stbiw__jpg_writeBits(s, bitBuf, bitCnt, bits);
+   }
+
+   end0pos = 63;
+   for(; (end0pos>0)&&(DU[end0pos]==0); --end0pos) {
+   }
+
+   if(end0pos == 0) {
+      stbiw__jpg_writeBits(s, bitBuf, bitCnt, EOB);
+      return DU[0];
+   }
+   for(i = 1; i <= end0pos; ++i) {
+      int startpos = i;
+      int nrzeroes;
+      unsigned short bits[2];
+      for (; DU[i]==0 && i<=end0pos; ++i) {
+      }
+      nrzeroes = i-startpos;
+      if ( nrzeroes >= 16 ) {
+         int lng = nrzeroes>>4;
+         int nrmarker;
+         for (nrmarker=1; nrmarker <= lng; ++nrmarker)
+            stbiw__jpg_writeBits(s, bitBuf, bitCnt, M16zeroes);
+         nrzeroes &= 15;
+      }
+      stbiw__jpg_calcBits(DU[i], bits);
+      stbiw__jpg_writeBits(s, bitBuf, bitCnt, HTAC[(nrzeroes<<4)+bits[1]]);
+      stbiw__jpg_writeBits(s, bitBuf, bitCnt, bits);
+   }
+   if(end0pos != 63) {
+      stbiw__jpg_writeBits(s, bitBuf, bitCnt, EOB);
+   }
+   return DU[0];
+}
+
+static int stbi_write_jpg_core(stbi__write_context *s, int width, int height, int comp, const void* data, int quality) {
+
+   static const unsigned char std_dc_luminance_nrcodes[] = {0,0,1,5,1,1,1,1,1,1,0,0,0,0,0,0,0};
+   static const unsigned char std_dc_luminance_values[] = {0,1,2,3,4,5,6,7,8,9,10,11};
+   static const unsigned char std_ac_luminance_nrcodes[] = {0,0,2,1,3,3,2,4,3,5,5,4,4,0,0,1,0x7d};
+   static const unsigned char std_ac_luminance_values[] = {
+      0x01,0x02,0x03,0x00,0x04,0x11,0x05,0x12,0x21,0x31,0x41,0x06,0x13,0x51,0x61,0x07,0x22,0x71,0x14,0x32,0x81,0x91,0xa1,0x08,
+      0x23,0x42,0xb1,0xc1,0x15,0x52,0xd1,0xf0,0x24,0x33,0x62,0x72,0x82,0x09,0x0a,0x16,0x17,0x18,0x19,0x1a,0x25,0x26,0x27,0x28,
+      0x29,0x2a,0x34,0x35,0x36,0x37,0x38,0x39,0x3a,0x43,0x44,0x45,0x46,0x47,0x48,0x49,0x4a,0x53,0x54,0x55,0x56,0x57,0x58,0x59,
+      0x5a,0x63,0x64,0x65,0x66,0x67,0x68,0x69,0x6a,0x73,0x74,0x75,0x76,0x77,0x78,0x79,0x7a,0x83,0x84,0x85,0x86,0x87,0x88,0x89,
+      0x8a,0x92,0x93,0x94,0x95,0x96,0x97,0x98,0x99,0x9a,0xa2,0xa3,0xa4,0xa5,0xa6,0xa7,0xa8,0xa9,0xaa,0xb2,0xb3,0xb4,0xb5,0xb6,
+      0xb7,0xb8,0xb9,0xba,0xc2,0xc3,0xc4,0xc5,0xc6,0xc7,0xc8,0xc9,0xca,0xd2,0xd3,0xd4,0xd5,0xd6,0xd7,0xd8,0xd9,0xda,0xe1,0xe2,
+      0xe3,0xe4,0xe5,0xe6,0xe7,0xe8,0xe9,0xea,0xf1,0xf2,0xf3,0xf4,0xf5,0xf6,0xf7,0xf8,0xf9,0xfa
+   };
+   static const unsigned char std_dc_chrominance_nrcodes[] = {0,0,3,1,1,1,1,1,1,1,1,1,0,0,0,0,0};
+   static const unsigned char std_dc_chrominance_values[] = {0,1,2,3,4,5,6,7,8,9,10,11};
+   static const unsigned char std_ac_chrominance_nrcodes[] = {0,0,2,1,2,4,4,3,4,7,5,4,4,0,1,2,0x77};
+   static const unsigned char std_ac_chrominance_values[] = {
+      0x00,0x01,0x02,0x03,0x11,0x04,0x05,0x21,0x31,0x06,0x12,0x41,0x51,0x07,0x61,0x71,0x13,0x22,0x32,0x81,0x08,0x14,0x42,0x91,
+      0xa1,0xb1,0xc1,0x09,0x23,0x33,0x52,0xf0,0x15,0x62,0x72,0xd1,0x0a,0x16,0x24,0x34,0xe1,0x25,0xf1,0x17,0x18,0x19,0x1a,0x26,
+      0x27,0x28,0x29,0x2a,0x35,0x36,0x37,0x38,0x39,0x3a,0x43,0x44,0x45,0x46,0x47,0x48,0x49,0x4a,0x53,0x54,0x55,0x56,0x57,0x58,
+      0x59,0x5a,0x63,0x64,0x65,0x66,0x67,0x68,0x69,0x6a,0x73,0x74,0x75,0x76,0x77,0x78,0x79,0x7a,0x82,0x83,0x84,0x85,0x86,0x87,
+      0x88,0x89,0x8a,0x92,0x93,0x94,0x95,0x96,0x97,0x98,0x99,0x9a,0xa2,0xa3,0xa4,0xa5,0xa6,0xa7,0xa8,0xa9,0xaa,0xb2,0xb3,0xb4,
+      0xb5,0xb6,0xb7,0xb8,0xb9,0xba,0xc2,0xc3,0xc4,0xc5,0xc6,0xc7,0xc8,0xc9,0xca,0xd2,0xd3,0xd4,0xd5,0xd6,0xd7,0xd8,0xd9,0xda,
+      0xe2,0xe3,0xe4,0xe5,0xe6,0xe7,0xe8,0xe9,0xea,0xf2,0xf3,0xf4,0xf5,0xf6,0xf7,0xf8,0xf9,0xfa
+   };
+
+   static const unsigned short YDC_HT[256][2] = { {0,2},{2,3},{3,3},{4,3},{5,3},{6,3},{14,4},{30,5},{62,6},{126,7},{254,8},{510,9}};
+   static const unsigned short UVDC_HT[256][2] = { {0,2},{1,2},{2,2},{6,3},{14,4},{30,5},{62,6},{126,7},{254,8},{510,9},{1022,10},{2046,11}};
+   static const unsigned short YAC_HT[256][2] = {
+      {10,4},{0,2},{1,2},{4,3},{11,4},{26,5},{120,7},{248,8},{1014,10},{65410,16},{65411,16},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},
+      {12,4},{27,5},{121,7},{502,9},{2038,11},{65412,16},{65413,16},{65414,16},{65415,16},{65416,16},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},
+      {28,5},{249,8},{1015,10},{4084,12},{65417,16},{65418,16},{65419,16},{65420,16},{65421,16},{65422,16},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},
+      {58,6},{503,9},{4085,12},{65423,16},{65424,16},{65425,16},{65426,16},{65427,16},{65428,16},{65429,16},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},
+      {59,6},{1016,10},{65430,16},{65431,16},{65432,16},{65433,16},{65434,16},{65435,16},{65436,16},{65437,16},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},
+      {122,7},{2039,11},{65438,16},{65439,16},{65440,16},{65441,16},{65442,16},{65443,16},{65444,16},{65445,16},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},
+      {123,7},{4086,12},{65446,16},{65447,16},{65448,16},{65449,16},{65450,16},{65451,16},{65452,16},{65453,16},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},
+      {250,8},{4087,12},{65454,16},{65455,16},{65456,16},{65457,16},{65458,16},{65459,16},{65460,16},{65461,16},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},
+      {504,9},{32704,15},{65462,16},{65463,16},{65464,16},{65465,16},{65466,16},{65467,16},{65468,16},{65469,16},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},
+      {505,9},{65470,16},{65471,16},{65472,16},{65473,16},{65474,16},{65475,16},{65476,16},{65477,16},{65478,16},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},
+      {506,9},{65479,16},{65480,16},{65481,16},{65482,16},{65483,16},{65484,16},{65485,16},{65486,16},{65487,16},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},
+      {1017,10},{65488,16},{65489,16},{65490,16},{65491,16},{65492,16},{65493,16},{65494,16},{65495,16},{65496,16},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},
+      {1018,10},{65497,16},{65498,16},{65499,16},{65500,16},{65501,16},{65502,16},{65503,16},{65504,16},{65505,16},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},
+      {2040,11},{65506,16},{65507,16},{65508,16},{65509,16},{65510,16},{65511,16},{65512,16},{65513,16},{65514,16},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},
+      {65515,16},{65516,16},{65517,16},{65518,16},{65519,16},{65520,16},{65521,16},{65522,16},{65523,16},{65524,16},{0,0},{0,0},{0,0},{0,0},{0,0},
+      {2041,11},{65525,16},{65526,16},{65527,16},{65528,16},{65529,16},{65530,16},{65531,16},{65532,16},{65533,16},{65534,16},{0,0},{0,0},{0,0},{0,0},{0,0}
+   };
+   static const unsigned short UVAC_HT[256][2] = {
+      {0,2},{1,2},{4,3},{10,4},{24,5},{25,5},{56,6},{120,7},{500,9},{1014,10},{4084,12},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},
+      {11,4},{57,6},{246,8},{501,9},{2038,11},{4085,12},{65416,16},{65417,16},{65418,16},{65419,16},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},
+      {26,5},{247,8},{1015,10},{4086,12},{32706,15},{65420,16},{65421,16},{65422,16},{65423,16},{65424,16},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},
+      {27,5},{248,8},{1016,10},{4087,12},{65425,16},{65426,16},{65427,16},{65428,16},{65429,16},{65430,16},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},
+      {58,6},{502,9},{65431,16},{65432,16},{65433,16},{65434,16},{65435,16},{65436,16},{65437,16},{65438,16},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},
+      {59,6},{1017,10},{65439,16},{65440,16},{65441,16},{65442,16},{65443,16},{65444,16},{65445,16},{65446,16},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},
+      {121,7},{2039,11},{65447,16},{65448,16},{65449,16},{65450,16},{65451,16},{65452,16},{65453,16},{65454,16},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},
+      {122,7},{2040,11},{65455,16},{65456,16},{65457,16},{65458,16},{65459,16},{65460,16},{65461,16},{65462,16},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},
+      {249,8},{65463,16},{65464,16},{65465,16},{65466,16},{65467,16},{65468,16},{65469,16},{65470,16},{65471,16},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},
+      {503,9},{65472,16},{65473,16},{65474,16},{65475,16},{65476,16},{65477,16},{65478,16},{65479,16},{65480,16},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},
+      {504,9},{65481,16},{65482,16},{65483,16},{65484,16},{65485,16},{65486,16},{65487,16},{65488,16},{65489,16},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},
+      {505,9},{65490,16},{65491,16},{65492,16},{65493,16},{65494,16},{65495,16},{65496,16},{65497,16},{65498,16},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},
+      {506,9},{65499,16},{65500,16},{65501,16},{65502,16},{65503,16},{65504,16},{65505,16},{65506,16},{65507,16},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},
+      {2041,11},{65508,16},{65509,16},{65510,16},{65511,16},{65512,16},{65513,16},{65514,16},{65515,16},{65516,16},{0,0},{0,0},{0,0},{0,0},{0,0},{0,0},
+      {16352,14},{65517,16},{65518,16},{65519,16},{65520,16},{65521,16},{65522,16},{65523,16},{65524,16},{65525,16},{0,0},{0,0},{0,0},{0,0},{0,0},
+      {1018,10},{32707,15},{65526,16},{65527,16},{65528,16},{65529,16},{65530,16},{65531,16},{65532,16},{65533,16},{65534,16},{0,0},{0,0},{0,0},{0,0},{0,0}
+   };
+   static const int YQT[] = {16,11,10,16,24,40,51,61,12,12,14,19,26,58,60,55,14,13,16,24,40,57,69,56,14,17,22,29,51,87,80,62,18,22,
+                             37,56,68,109,103,77,24,35,55,64,81,104,113,92,49,64,78,87,103,121,120,101,72,92,95,98,112,100,103,99};
+   static const int UVQT[] = {17,18,24,47,99,99,99,99,18,21,26,66,99,99,99,99,24,26,56,99,99,99,99,99,47,66,99,99,99,99,99,99,
+                              99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99,99};
+   static const float aasf[] = { 1.0f * 2.828427125f, 1.387039845f * 2.828427125f, 1.306562965f * 2.828427125f, 1.175875602f * 2.828427125f,
+                                 1.0f * 2.828427125f, 0.785694958f * 2.828427125f, 0.541196100f * 2.828427125f, 0.275899379f * 2.828427125f };
+
+   int row, col, i, k, subsample;
+   float fdtbl_Y[64], fdtbl_UV[64];
+   unsigned char YTable[64], UVTable[64];
+
+   if(!data || !width || !height || comp > 4 || comp < 1) {
+      return 0;
+   }
+
+   quality = quality ? quality : 90;
+   subsample = quality <= 90 ? 1 : 0;
+   quality = quality < 1 ? 1 : quality > 100 ? 100 : quality;
+   quality = quality < 50 ? 5000 / quality : 200 - quality * 2;
+
+   for(i = 0; i < 64; ++i) {
+      int uvti, yti = (YQT[i]*quality+50)/100;
+      YTable[stbiw__jpg_ZigZag[i]] = (unsigned char) (yti < 1 ? 1 : yti > 255 ? 255 : yti);
+      uvti = (UVQT[i]*quality+50)/100;
+      UVTable[stbiw__jpg_ZigZag[i]] = (unsigned char) (uvti < 1 ? 1 : uvti > 255 ? 255 : uvti);
+   }
+
+   for(row = 0, k = 0; row < 8; ++row) {
+      for(col = 0; col < 8; ++col, ++k) {
+         fdtbl_Y[k] = 1 / (YTable [stbiw__jpg_ZigZag[k]] * aasf[row] * aasf[col]);
+         fdtbl_UV[k] = 1 / (UVTable[stbiw__jpg_ZigZag[k]] * aasf[row] * aasf[col]);
+      }
+   }
+
+
+   {
+      static const unsigned char head0[] = { 0xFF,0xD8,0xFF,0xE0,0,0x10,'J','F','I','F',0,1,1,0,0,1,0,1,0,0,0xFF,0xDB,0,0x84,0 };
+      static const unsigned char head2[] = { 0xFF,0xDA,0,0xC,3,1,0,2,0x11,3,0x11,0,0x3F,0 };
+      const unsigned char head1[] = { 0xFF,0xC0,0,0x11,8,(unsigned char)(height>>8),(unsigned char) ((height) & 0xff),(unsigned char)(width>>8),(unsigned char) ((width) & 0xff),
+                                      3,1,(unsigned char)(subsample?0x22:0x11),0,2,0x11,1,3,0x11,1,0xFF,0xC4,0x01,0xA2,0 };
+      s->func(s->context, (void*)head0, sizeof(head0));
+      s->func(s->context, (void*)YTable, sizeof(YTable));
+      stbiw__putc(s, 1);
+      s->func(s->context, UVTable, sizeof(UVTable));
+      s->func(s->context, (void*)head1, sizeof(head1));
+      s->func(s->context, (void*)(std_dc_luminance_nrcodes+1), sizeof(std_dc_luminance_nrcodes)-1);
+      s->func(s->context, (void*)std_dc_luminance_values, sizeof(std_dc_luminance_values));
+      stbiw__putc(s, 0x10);
+      s->func(s->context, (void*)(std_ac_luminance_nrcodes+1), sizeof(std_ac_luminance_nrcodes)-1);
+      s->func(s->context, (void*)std_ac_luminance_values, sizeof(std_ac_luminance_values));
+      stbiw__putc(s, 1);
+      s->func(s->context, (void*)(std_dc_chrominance_nrcodes+1), sizeof(std_dc_chrominance_nrcodes)-1);
+      s->func(s->context, (void*)std_dc_chrominance_values, sizeof(std_dc_chrominance_values));
+      stbiw__putc(s, 0x11);
+      s->func(s->context, (void*)(std_ac_chrominance_nrcodes+1), sizeof(std_ac_chrominance_nrcodes)-1);
+      s->func(s->context, (void*)std_ac_chrominance_values, sizeof(std_ac_chrominance_values));
+      s->func(s->context, (void*)head2, sizeof(head2));
+   }
+
+
+   {
+      static const unsigned short fillBits[] = {0x7F, 7};
+      int DCY=0, DCU=0, DCV=0;
+      int bitBuf=0, bitCnt=0;
+
+      int ofsG = comp > 2 ? 1 : 0, ofsB = comp > 2 ? 2 : 0;
+      const unsigned char *dataR = (const unsigned char *)data;
+      const unsigned char *dataG = dataR + ofsG;
+      const unsigned char *dataB = dataR + ofsB;
+      int x, y, pos;
+      if(subsample) {
+         for(y = 0; y < height; y += 16) {
+            for(x = 0; x < width; x += 16) {
+               float Y[256], U[256], V[256];
+               for(row = y, pos = 0; row < y+16; ++row) {
+
+                  int clamped_row = (row < height) ? row : height - 1;
+                  int base_p = (stbi__flip_vertically_on_write ? (height-1-clamped_row) : clamped_row)*width*comp;
+                  for(col = x; col < x+16; ++col, ++pos) {
+
+                     int p = base_p + ((col < width) ? col : (width-1))*comp;
+                     float r = dataR[p], g = dataG[p], b = dataB[p];
+                     Y[pos]= +0.29900f*r + 0.58700f*g + 0.11400f*b - 128;
+                     U[pos]= -0.16874f*r - 0.33126f*g + 0.50000f*b;
+                     V[pos]= +0.50000f*r - 0.41869f*g - 0.08131f*b;
+                  }
+               }
+               DCY = stbiw__jpg_processDU(s, &bitBuf, &bitCnt, Y+0, 16, fdtbl_Y, DCY, YDC_HT, YAC_HT);
+               DCY = stbiw__jpg_processDU(s, &bitBuf, &bitCnt, Y+8, 16, fdtbl_Y, DCY, YDC_HT, YAC_HT);
+               DCY = stbiw__jpg_processDU(s, &bitBuf, &bitCnt, Y+128, 16, fdtbl_Y, DCY, YDC_HT, YAC_HT);
+               DCY = stbiw__jpg_processDU(s, &bitBuf, &bitCnt, Y+136, 16, fdtbl_Y, DCY, YDC_HT, YAC_HT);
+
+
+               {
+                  float subU[64], subV[64];
+                  int yy, xx;
+                  for(yy = 0, pos = 0; yy < 8; ++yy) {
+                     for(xx = 0; xx < 8; ++xx, ++pos) {
+                        int j = yy*32+xx*2;
+                        subU[pos] = (U[j+0] + U[j+1] + U[j+16] + U[j+17]) * 0.25f;
+                        subV[pos] = (V[j+0] + V[j+1] + V[j+16] + V[j+17]) * 0.25f;
+                     }
+                  }
+                  DCU = stbiw__jpg_processDU(s, &bitBuf, &bitCnt, subU, 8, fdtbl_UV, DCU, UVDC_HT, UVAC_HT);
+                  DCV = stbiw__jpg_processDU(s, &bitBuf, &bitCnt, subV, 8, fdtbl_UV, DCV, UVDC_HT, UVAC_HT);
+               }
+            }
+         }
+      } else {
+         for(y = 0; y < height; y += 8) {
+            for(x = 0; x < width; x += 8) {
+               float Y[64], U[64], V[64];
+               for(row = y, pos = 0; row < y+8; ++row) {
+
+                  int clamped_row = (row < height) ? row : height - 1;
+                  int base_p = (stbi__flip_vertically_on_write ? (height-1-clamped_row) : clamped_row)*width*comp;
+                  for(col = x; col < x+8; ++col, ++pos) {
+
+                     int p = base_p + ((col < width) ? col : (width-1))*comp;
+                     float r = dataR[p], g = dataG[p], b = dataB[p];
+                     Y[pos]= +0.29900f*r + 0.58700f*g + 0.11400f*b - 128;
+                     U[pos]= -0.16874f*r - 0.33126f*g + 0.50000f*b;
+                     V[pos]= +0.50000f*r - 0.41869f*g - 0.08131f*b;
+                  }
+               }
+
+               DCY = stbiw__jpg_processDU(s, &bitBuf, &bitCnt, Y, 8, fdtbl_Y, DCY, YDC_HT, YAC_HT);
+               DCU = stbiw__jpg_processDU(s, &bitBuf, &bitCnt, U, 8, fdtbl_UV, DCU, UVDC_HT, UVAC_HT);
+               DCV = stbiw__jpg_processDU(s, &bitBuf, &bitCnt, V, 8, fdtbl_UV, DCV, UVDC_HT, UVAC_HT);
+            }
+         }
+      }
+
+
+      stbiw__jpg_writeBits(s, &bitBuf, &bitCnt, fillBits);
+   }
+
+
+   stbiw__putc(s, 0xFF);
+   stbiw__putc(s, 0xD9);
+
+   return 1;
+}
+
+extern "C" int stbi_write_jpg_to_func(stbi_write_func *func, void *context, int x, int y, int comp, const void *data, int quality)
+{
+   stbi__write_context s = { 0 };
+   stbi__start_write_callbacks(&s, func, context);
+   return stbi_write_jpg_core(&s, x, y, comp, (void *) data, quality);
+}
+
+
+
+extern "C" int stbi_write_jpg(char const *filename, int x, int y, int comp, const void *data, int quality)
+{
+   stbi__write_context s = { 0 };
+   if (stbi__start_write_file(&s,filename)) {
+      int r = stbi_write_jpg_core(&s, x, y, comp, data, quality);
+      stbi__end_write_file(&s);
+      return r;
+   } else
+      return 0;
+}
+# 6 "D:/Code/VSCode/C++/Vulkan/SelfLearn1/src/stb/stb_image.cpp" 2

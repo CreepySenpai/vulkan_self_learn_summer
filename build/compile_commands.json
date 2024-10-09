@@ -97,6 +97,12 @@
 },
 {
   "directory": "D:/Code/VSCode/C++/Vulkan/SelfLearn1/build",
+  "command": "D:\\Enviroments\\mingw64_msvcrt\\bin\\c++.exe -DGLM_ENABLE_EXPERIMENTAL -DVULKAN_HPP_NO_EXCEPTIONS -ID:/Code/VSCode/C++/Vulkan/SelfLearn1/include -ID:/Enviroments/vulkan/Include -O3 -DNDEBUG -std=gnu++26 -fmodules-ts -fmodule-mapper=CMakeFiles\\SelfLearn1.dir\\src\\Creepy\\VulkanUtils.cpp.obj.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles\\SelfLearn1.dir\\src\\Creepy\\VulkanUtils.cpp.obj -c D:\\Code\\VSCode\\C++\\Vulkan\\SelfLearn1\\src\\Creepy\\VulkanUtils.cpp",
+  "file": "D:\\Code\\VSCode\\C++\\Vulkan\\SelfLearn1\\src\\Creepy\\VulkanUtils.cpp",
+  "output": "CMakeFiles\\SelfLearn1.dir\\src\\Creepy\\VulkanUtils.cpp.obj"
+},
+{
+  "directory": "D:/Code/VSCode/C++/Vulkan/SelfLearn1/build",
   "command": "D:\\Enviroments\\mingw64_msvcrt\\bin\\c++.exe -DGLM_ENABLE_EXPERIMENTAL -DVULKAN_HPP_NO_EXCEPTIONS -ID:/Code/VSCode/C++/Vulkan/SelfLearn1/include -ID:/Enviroments/vulkan/Include -O3 -DNDEBUG -std=gnu++26 -fmodules-ts -fmodule-mapper=CMakeFiles\\SelfLearn1.dir\\src\\stb\\stb_image.cpp.obj.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles\\SelfLearn1.dir\\src\\stb\\stb_image.cpp.obj -c D:\\Code\\VSCode\\C++\\Vulkan\\SelfLearn1\\src\\stb\\stb_image.cpp",
   "file": "D:\\Code\\VSCode\\C++\\Vulkan\\SelfLearn1\\src\\stb\\stb_image.cpp",
   "output": "CMakeFiles\\SelfLearn1.dir\\src\\stb\\stb_image.cpp.obj"

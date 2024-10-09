@@ -1,7 +1,7 @@
 #include <Creepy/Texture.hpp>
 #include <Creepy/VulkanUtils.hpp>
 #include <Creepy/VulkanBuffer.hpp>
-#include <stb/stb_image.h>
+#include <stb/stb_image.hpp>
 
 namespace Creepy{
 
