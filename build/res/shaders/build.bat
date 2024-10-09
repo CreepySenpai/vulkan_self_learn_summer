@@ -6,3 +6,7 @@ glslc skybox.frag -O --target-env=vulkan1.3 --target-spv=spv1.6 -o skyBoxFrag.sp
 
 glslc quadShader.vert -O --target-env=vulkan1.3 --target-spv=spv1.6 -o quadShaderVert.spv
 glslc quadShader.frag -O --target-env=vulkan1.3 --target-spv=spv1.6 -o quadShaderFrag.spv
+
+
+glslc gridShader.vert -O --target-env=vulkan1.3 --target-spv=spv1.6 -o gridShaderVert.spv
+glslc gridShader.frag -O --target-env=vulkan1.3 --target-spv=spv1.6 -o gridShaderFrag.spv

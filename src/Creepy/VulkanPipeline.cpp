@@ -93,19 +93,6 @@ namespace Creepy{
     }
 
     void PipelineState::InitColorBlendState(std::span<const vk::PipelineColorBlendAttachmentState> colorBlendAttachments) {
-        
-        // m_colorAttachment.colorWriteMask = vk::ColorComponentFlagBits::eR | vk::ColorComponentFlagBits::eG | vk::ColorComponentFlagBits::eB | vk::ColorComponentFlagBits::eA;
-        // m_colorAttachment.blendEnable = vk::True;
-        // m_colorAttachment.srcColorBlendFactor = vk::BlendFactor::eOneMinusDstAlpha;
-        // m_colorAttachment.dstColorBlendFactor = vk::BlendFactor::eDstAlpha;
-        
-        // m_colorAttachment.srcAlphaBlendFactor = vk::BlendFactor::eOne;
-        // m_colorAttachment.dstAlphaBlendFactor = vk::BlendFactor::eZero;
-
-        // m_colorAttachment.colorBlendOp = vk::BlendOp::eAdd;
-        // m_colorAttachment.alphaBlendOp = vk::BlendOp::eAdd;
-
-
         m_colorBlendState.flags = vk::PipelineColorBlendStateCreateFlags{};
         m_colorBlendState.logicOpEnable = vk::False;
         m_colorBlendState.logicOp = vk::LogicOp::eCopy;

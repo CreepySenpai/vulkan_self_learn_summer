@@ -1,5 +1,11 @@
 #version 460 core
 
+layout(set = 0, binding = 0) uniform _uniformData{
+    mat4 viewMatrix;
+    mat4 projectionMatrix;
+    vec4 cameraPosition;
+} UniformData;
+
 layout(location = 0) in vec3 inPosition;
 layout(location = 1) in vec2 inTexCoord;
 

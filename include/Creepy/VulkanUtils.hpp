@@ -161,4 +161,8 @@ namespace Creepy{
     }
 
     void SaveImageToFile(const void* data, const uint32_t width, const uint32_t height);
+
+    vk::PipelineColorBlendAttachmentState GetAlphaBlending();
+
+    vk::PipelineColorBlendAttachmentState GetAdditiveBlending();
 }

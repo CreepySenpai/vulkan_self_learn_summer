@@ -141007,7 +141007,7 @@ typedef struct GLFWallocator
 
 
 
-extern GLFWwindow* nativeWindow;
+extern constinit GLFWwindow* g_nativeWindow;
 
 namespace Creepy {
 
@@ -141041,14 +141041,14 @@ namespace Creepy {
         }
 
         if(Mouse::IsMouseHold(MouseButton::RIGHT)){
-            glfwSetInputMode(nativeWindow, 0x00033001, 0x00034003);
+            glfwSetInputMode(g_nativeWindow, 0x00033001, 0x00034003);
             const auto deltaMouse = Mouse::GetDeltaMousePosition();
             m_rotation.x += deltaMouse.y * static_cast<float>(deltaTime);
             m_rotation.x = std::clamp(m_rotation.x, -90.0f, 90.0f);
             m_rotation.y += deltaMouse.x * static_cast<float>(deltaTime);
         }
         else{
-            glfwSetInputMode(nativeWindow, 0x00033001, 0x00034001);
+            glfwSetInputMode(g_nativeWindow, 0x00033001, 0x00034001);
         }
 
         this->updateViewMatrix();

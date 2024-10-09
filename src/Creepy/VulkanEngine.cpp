@@ -1,4 +1,5 @@
 #include <utility>
+#include <thread>
 #include <Creepy/VulkanEngine.hpp>
 #include <Creepy/VulkanUtils.hpp>
 #include <Creepy/VulkanAllocator.hpp>
@@ -13,10 +14,9 @@
 #include <imgui/imgui_impl_vulkan.hpp>
 
 #include <glm/glm.hpp>
-#include <thread>
 
 // Global Var
-GLFWwindow* nativeWindow{nullptr};
+constinit GLFWwindow* g_nativeWindow{nullptr};
 
 namespace Creepy {
 
@@ -80,7 +80,7 @@ namespace Creepy {
     void VulkanEngine::createWindow() {
         m_window = glfwCreateWindow(m_windowWidth, m_windowHeight, "Creepy", nullptr, nullptr);
 
-        nativeWindow = m_window;
+        g_nativeWindow = m_window;
         
         // Enable V-sync
         glfwSwapInterval(1);
@@ -91,7 +91,7 @@ namespace Creepy {
         m_clearner.AddJob([this]{
             glfwDestroyWindow(m_window);
             m_window = nullptr;
-            nativeWindow = nullptr;
+            g_nativeWindow = nullptr;
         });
     }
 
@@ -450,7 +450,6 @@ namespace Creepy {
         };
 
         vk::DescriptorPoolCreateInfo descInfo{};
-        // descInfo.flags = vk::DescriptorPoolCreateFlagBits::eFreeDescriptorSet;
         descInfo.flags = vk::DescriptorPoolCreateFlagBits::eFreeDescriptorSet | vk::DescriptorPoolCreateFlagBits::eUpdateAfterBind;
         descInfo.maxSets = maxSets;
         descInfo.poolSizeCount = static_cast<uint32_t>(descSizes.size());
@@ -583,7 +582,6 @@ namespace Creepy {
         
         const Shader fragmentShader{m_logicalDevice, readShaderSPVFile("./res/shaders/modelFragmentShader.spv"), vk::ShaderStageFlagBits::eFragment};
 
-        // TODO: ADD Texture DescriptorSetLayout
         const std::array descriptorSetLayouts{
             m_uniformBufferDescriptorSet.DescriptorSetLayout,
             m_descriptorIndexingDescriptorSet.DescriptorSetLayout,
@@ -604,8 +602,7 @@ namespace Creepy {
         };
 
         std::array<vk::PipelineColorBlendAttachmentState, 2> blendAttachments;
-        blendAttachments[0].colorWriteMask = vk::ColorComponentFlagBits::eR | vk::ColorComponentFlagBits::eG | vk::ColorComponentFlagBits::eB | vk::ColorComponentFlagBits::eA;
-        blendAttachments[0].blendEnable = vk::False;
+        blendAttachments[0] = GetAlphaBlending();
         blendAttachments[1].colorWriteMask = vk::ColorComponentFlagBits::eR;
         blendAttachments[1].blendEnable = vk::False;
 
@@ -662,10 +659,46 @@ namespace Creepy {
         pipelineState.Clear();
 
         //////////////////////////////////////////////////////////////////////
+
+        {
+            const Shader gridVertexShader{m_logicalDevice, readShaderSPVFile("./res/shaders/gridShaderVert.spv"), vk::ShaderStageFlagBits::eVertex};
+            const Shader gridFragmentShader{m_logicalDevice, readShaderSPVFile("./res/shaders/gridShaderFrag.spv"), vk::ShaderStageFlagBits::eFragment};
+            
+            const std::array gridDescriptorSetLayout{
+                m_uniformBufferDescriptorSet.DescriptorSetLayout
+            };
+
+            const std::array gridColorAttachmentFormats{
+                m_swapchain.GetSwapchainImageFormat()
+            };
+
+            const std::array gridBlendAttachments{
+                blendAttachments[0]
+            };
+
+            pipelineState.InitVertexInputState({}, {});
+            pipelineState.InitPipelineLayout(gridDescriptorSetLayout, pushConstants);
+            pipelineState.InitShaderStates(gridVertexShader.GetShaderModule(), gridFragmentShader.GetShaderModule());
+            
+            std::println("Create Grid");
+            pipelineState.InitRenderingInfo(gridColorAttachmentFormats, m_depthImage.GetImageFormat());
+
+            pipelineState.InitColorBlendState(gridBlendAttachments);
+
+            m_pipelines["Grid"].Build(m_logicalDevice, pipelineState);
+
+            gridVertexShader.Destroy(m_logicalDevice);
+            gridFragmentShader.Destroy(m_logicalDevice);
+
+            pipelineState.Clear();
+        }
+        std::println("Done Grid");
+        //////////////////////////////////////////////////////////////////////
+        
         const Shader skyBoxVertexShader{m_logicalDevice, readShaderSPVFile("./res/shaders/skyBoxVert.spv"), vk::ShaderStageFlagBits::eVertex};
         const Shader skyBoxFragmentShader{m_logicalDevice, readShaderSPVFile("./res/shaders/skyBoxFrag.spv"), vk::ShaderStageFlagBits::eFragment};
         
-        const std::array descriptorSetLayouts2{
+        const std::array skyBoxDescriptorSetLayout{
             m_uniformBufferDescriptorSet.DescriptorSetLayout,
             m_skyBoxDescriptorSet.DescriptorSetLayout
         };
@@ -681,7 +714,7 @@ namespace Creepy {
         };
 
         pipelineState.InitVertexInputState(skyBoxVertexBindings, skyBoxVertexAttributes);
-        pipelineState.InitPipelineLayout(descriptorSetLayouts2, {});
+        pipelineState.InitPipelineLayout(skyBoxDescriptorSetLayout, {});
         pipelineState.InitShaderStates(skyBoxVertexShader.GetShaderModule(), skyBoxFragmentShader.GetShaderModule());
         
         const std::array skyBoxColorAttachmentFormats{
@@ -1098,7 +1131,6 @@ namespace Creepy {
         colorAttachmentInfo.imageView = colorImageView;
         colorAttachmentInfo.imageLayout = vk::ImageLayout::eColorAttachmentOptimal;
         
-        
         vk::RenderingInfo dynamicRenderInfo{};
         dynamicRenderInfo.flags = vk::RenderingFlags{};
         dynamicRenderInfo.layerCount = 1;
@@ -1108,6 +1140,19 @@ namespace Creepy {
 
         currentCommandBuffer.beginRendering(dynamicRenderInfo);
 
+        {   // Draw Infinity Grid
+
+            currentCommandBuffer.bindPipeline(vk::PipelineBindPoint::eGraphics, m_pipelines["Grid"].GetPipeline());
+        
+            const std::array gridDescriptorSets{
+                m_uniformBufferDescriptorSet.DescriptorSet
+            };
+
+            currentCommandBuffer.bindDescriptorSets(vk::PipelineBindPoint::eGraphics, m_pipelines["Grid"].GetPipelineLayout(), 0, gridDescriptorSets, nullptr);
+            // We use data already in shader
+            currentCommandBuffer.draw(6, 1, 0, 0);
+        }
+        
         ImGui_ImplVulkan_RenderDrawData(ImGui::GetDrawData(), currentCommandBuffer);
 
         currentCommandBuffer.endRendering();
@@ -1145,7 +1190,20 @@ namespace Creepy {
         };
 
         m_models["SkyBox"].Draw(currentCommandBuffer, m_pipelines["SkyBox"].GetPipelineLayout(), descriptorSets);
-    
+
+        // {   // Draw Infinity Grid
+
+        //     currentCommandBuffer.bindPipeline(vk::PipelineBindPoint::eGraphics, m_pipelines["Grid"].GetPipeline());
+        
+        //     const std::array gridDescriptorSets{
+        //         m_uniformBufferDescriptorSet.DescriptorSet
+        //     };
+
+        //     currentCommandBuffer.bindDescriptorSets(vk::PipelineBindPoint::eGraphics, m_pipelines["Grid"].GetPipelineLayout(), 0, gridDescriptorSets, nullptr);
+        //     // We use data already in shader
+        //     currentCommandBuffer.draw(6, 1, 0, 0);
+        // }
+        
         currentCommandBuffer.endRendering();
     }
 

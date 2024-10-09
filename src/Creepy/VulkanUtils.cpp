@@ -12,4 +12,32 @@ namespace Creepy {
         }
     }
 
+
+    vk::PipelineColorBlendAttachmentState GetAlphaBlending() {
+        vk::PipelineColorBlendAttachmentState blending{};
+        blending.blendEnable = vk::True;
+        blending.colorWriteMask = vk::ColorComponentFlagBits::eR | vk::ColorComponentFlagBits::eG | vk::ColorComponentFlagBits::eB | vk::ColorComponentFlagBits::eA;
+        blending.srcColorBlendFactor = vk::BlendFactor::eSrcAlpha;
+        blending.dstColorBlendFactor = vk::BlendFactor::eOneMinusSrcAlpha;
+        blending.colorBlendOp = vk::BlendOp::eAdd;
+        blending.srcAlphaBlendFactor = vk::BlendFactor::eOne;
+        blending.dstAlphaBlendFactor = vk::BlendFactor::eZero;
+        blending.alphaBlendOp = vk::BlendOp::eAdd;
+
+        return blending;
+    }
+
+    vk::PipelineColorBlendAttachmentState GetAdditiveBlending() {
+        vk::PipelineColorBlendAttachmentState blending{};
+        blending.blendEnable = vk::True;
+        blending.colorWriteMask = vk::ColorComponentFlagBits::eR | vk::ColorComponentFlagBits::eG | vk::ColorComponentFlagBits::eB | vk::ColorComponentFlagBits::eA;
+        blending.srcColorBlendFactor = vk::BlendFactor::eSrcAlpha;
+        blending.dstColorBlendFactor = vk::BlendFactor::eOne;
+        blending.colorBlendOp = vk::BlendOp::eAdd;
+        blending.srcAlphaBlendFactor = vk::BlendFactor::eOne;
+        blending.dstAlphaBlendFactor = vk::BlendFactor::eZero;
+        blending.alphaBlendOp = vk::BlendOp::eAdd;
+
+        return blending;
+    }
 }
