@@ -203,6 +203,9 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanEngine.cpp.obj.ddi: \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/node_handle.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/erase_if.h \
  D:/Enviroments/vulkan/Include/vulkan/vulkan.hpp \
+ D:/Enviroments/vulkan/Include/vulkan/vulkan_hpp_macros.hpp \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/version \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/expected \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/algorithm \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/ranges_algo.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/pstl/glue_algorithm_defs.h \
@@ -224,9 +227,6 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\VulkanEngine.cpp.obj.ddi: \
  D:/Enviroments/vulkan/Include/vk_video/vulkan_video_codec_av1std.h \
  D:/Enviroments/vulkan/Include/vk_video/vulkan_video_codec_av1std_decode.h \
  D:/Enviroments/vulkan/Include/vk_video/vulkan_video_codec_av1std.h \
- D:/Enviroments/vulkan/Include/vulkan/vulkan_hpp_macros.hpp \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/version \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/expected \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/vector \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/stl_uninitialized.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/stl_vector.h \

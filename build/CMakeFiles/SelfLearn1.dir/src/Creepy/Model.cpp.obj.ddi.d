@@ -674,6 +674,9 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\Model.cpp.obj.ddi: \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/Texture.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/Creepy/VulkanImage.hpp \
  D:/Enviroments/vulkan/Include/vulkan/vulkan.hpp \
+ D:/Enviroments/vulkan/Include/vulkan/vulkan_hpp_macros.hpp \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/version \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/expected \
  D:/Enviroments/vulkan/Include/vulkan/vulkan.h \
  D:/Enviroments/vulkan/Include/vulkan/vk_platform.h \
  D:/Enviroments/vulkan/Include/vulkan/vulkan_core.h \
@@ -689,9 +692,6 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\Model.cpp.obj.ddi: \
  D:/Enviroments/vulkan/Include/vk_video/vulkan_video_codec_av1std.h \
  D:/Enviroments/vulkan/Include/vk_video/vulkan_video_codec_av1std_decode.h \
  D:/Enviroments/vulkan/Include/vk_video/vulkan_video_codec_av1std.h \
- D:/Enviroments/vulkan/Include/vulkan/vulkan_hpp_macros.hpp \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/version \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/expected \
  D:/Enviroments/vulkan/Include/vulkan/vulkan_enums.hpp \
  D:/Enviroments/vulkan/Include/vulkan/vulkan_to_string.hpp \
  D:/Enviroments/vulkan/Include/vulkan/vulkan_handles.hpp \

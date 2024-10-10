@@ -247,8 +247,8 @@ CMAKE_STRIP:FILEPATH=D:/Enviroments/mingw64_msvcrt/bin/strip.exe
 //Path to a program.
 CMAKE_TAPI:FILEPATH=CMAKE_TAPI-NOTFOUND
 
-//No help, variable specified on the command line.
-CMAKE_TOOLCHAIN_FILE:STRING=D:/Libraries/C++/vcpkg/scripts/buildsystems/vcpkg.cmake
+//The CMake toolchain file
+CMAKE_TOOLCHAIN_FILE:FILEPATH=D:/Libraries/C++/vcpkg/scripts/buildsystems/vcpkg.cmake
 
 //If this value is on, makefiles will be generated without the
 // .SILENT directive, and all commands will be echoed to the console
@@ -491,7 +491,7 @@ CMAKE_TOOLCHAIN_FILE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_VERBOSE_MAKEFILE
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 //Details about finding Vulkan
-FIND_PACKAGE_MESSAGE_DETAILS_Vulkan:INTERNAL=[D:/Enviroments/vulkan/Lib/vulkan-1.lib][D:/Enviroments/vulkan/Include][cfound components: glslc glslangValidator ][v1.3.290()]
+FIND_PACKAGE_MESSAGE_DETAILS_Vulkan:INTERNAL=[D:/Enviroments/vulkan/Lib/vulkan-1.lib][D:/Enviroments/vulkan/Include][cfound components: glslc glslangValidator ][v1.3.296()]
 //Install the dependencies listed in your manifest:
 //\n    If this is off, you will have to manually install your dependencies.
 //\n    See https://github.com/microsoft/vcpkg/tree/master/docs/specifications/manifests.md

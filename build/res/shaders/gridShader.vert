@@ -14,13 +14,14 @@ const vec3 gridVertices[4] = vec3[4](
 );
 
 const uint gridIndices[6] = uint[6](0, 2, 1, 2, 0, 3);
+const float GridSize = 100.0;
 
 layout(location = 0) out vec3 outPosition;  // Position In World Space
 
 void main() {
     const uint currentVertex = gridIndices[gl_VertexIndex];
 
-    vec3 currentVertexPosition = gridVertices[currentVertex];
+    vec3 currentVertexPosition = gridVertices[currentVertex] * GridSize;
     
     // Offset By Camera Position
     currentVertexPosition.x += UniformData.cameraPosition.x;

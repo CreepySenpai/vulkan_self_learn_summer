@@ -181,12 +181,17 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\Debug.cpp.obj.ddi: \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/node_handle.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/erase_if.h \
  D:/Enviroments/vulkan/Include/vulkan/vulkan.hpp \
+ D:/Enviroments/vulkan/Include/vulkan/vulkan_hpp_macros.hpp \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/version \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/expected \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/algorithm \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/ranges_algo.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/pstl/glue_algorithm_defs.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/pstl/execution_defs.h \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/string.h \
  D:/Enviroments/mingw64_msvcrt/x86_64-w64-mingw32/include/sec_api/string_s.h \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/utility \
+ D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/stl_relops.h \
  D:/Enviroments/vulkan/Include/vulkan/vulkan.h \
  D:/Enviroments/vulkan/Include/vulkan/vk_platform.h \
  D:/Enviroments/vulkan/Include/vulkan/vulkan_core.h \
@@ -202,9 +207,6 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\Debug.cpp.obj.ddi: \
  D:/Enviroments/vulkan/Include/vk_video/vulkan_video_codec_av1std.h \
  D:/Enviroments/vulkan/Include/vk_video/vulkan_video_codec_av1std_decode.h \
  D:/Enviroments/vulkan/Include/vk_video/vulkan_video_codec_av1std.h \
- D:/Enviroments/vulkan/Include/vulkan/vulkan_hpp_macros.hpp \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/version \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/expected \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/vector \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/stl_uninitialized.h \
  D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/stl_vector.h \
@@ -600,8 +602,6 @@ CMakeFiles\SelfLearn1.dir\src\Creepy\Debug.cpp.obj.ddi: \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/norm.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/norm.inl \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/quaternion.inl \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/utility \
- D:/Enviroments/mingw64_msvcrt/include/c++/14.2.0/bits/stl_relops.h \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/io.inl \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/type_trait.hpp \
  D:/Code/VSCode/C++/Vulkan/SelfLearn1/include/glm/gtx/type_trait.inl \

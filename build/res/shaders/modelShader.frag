@@ -86,6 +86,35 @@ vec3 toonShader(in vec3 vertexPosition, in vec3 normal, in vec3 lightVec){
     return ambient + (FragmentPushConstantData.lightBuffer.lightIntensity.xyz * diffuse);
 }
 
+vec3 La = vec3(0.3686, 0.3647, 0.3647); // ambient light colour
+vec3 Ld = vec3(1.0, 1.0, 1.0); // diffuse light colour
+vec3 Ls = vec3(1.0, 1.0, 1.0); // specular light colour
+
+vec3 spotLight(in vec3 vertexPosition, in vec3 normal, in vec3 lightVec){
+
+    const vec3 ambient = vec3(FragmentPushConstantData.lightBuffer.lightAmbientColor * FragmentPushConstantData.materialBuffer.materialAmbient);
+
+    const vec3 spotLightDir = vec3(0.0, 0.0, -1.0);
+
+    const float spotArc = 0.906;
+    const float spotDot = dot(spotLightDir, lightVec);
+
+    float spotFactor = (spotDot - spotArc) / (1.0 - spotArc);
+    spotFactor = clamp(spotFactor, 0.0, 1.0);
+
+    const float lambertian = max(dot(lightVec, normal), 0.0);
+
+    const vec3 diffuse = Ld * lambertian * spotFactor;
+
+    const vec3 halfVec = normalize(normalize(-vertexPosition) + lightVec);
+
+    const float specularFactor = pow(max(dot(halfVec, normal), 0.0), specularExponent);
+
+    const vec3 specular = Ls * specularFactor * spotFactor;
+
+    return La + diffuse + specular;
+}
+
 void main(){
     const vec4 texMap = texture(myTextures[FragmentPushConstantData.diffuseTextureID], inTexCoord);
     const vec3 lightInEyeSpace = (UniformData.viewMatrix * vec4(FragmentPushConstantData.lightBuffer.lightPosition.xyz, 1.0)).xyz;
@@ -93,11 +122,15 @@ void main(){
 
     // const vec3 lightInCome = phongLightModel(inPosition, normalize(inNormal),lightVec);
 
-    const vec3 lightInCome = blindPhongLighModel(inPosition, normalize(inNormal), lightVec);
+    // const vec3 lightInCome = blindPhongLighModel(inPosition, normalize(inNormal), lightVec);
 
     // const vec3 lightInCome = toonShader(inPosition, normalize(inNormal), lightVec);
 
-    finalColor = texMap * vec4(lightInCome, 1.0);
+    // const vec3 lightInCome = spotLight(inPosition, normalize(inNormal), lightVec);
+
+    // finalColor = texMap * vec4(lightInCome, 1.0);
+
+    finalColor = texMap * vec4(spotLight(inPosition, normalize(inNormal), lightVec), 1.0);
 
     finalEntityID = inEntityID;
 }
