@@ -160,6 +160,8 @@ namespace Creepy{
         commandBuffer.copyImageToBuffer(srcImage, vk::ImageLayout::eTransferSrcOptimal, dstBuffer, copyInfo);
     }
 
+    void CopyImageToImage(const vk::CommandBuffer commandBuffer, const vk::Image srcImage, const vk::Image dstImage, uint32_t width, uint32_t height);
+
     void SaveImageToFile(const void* data, const uint32_t width, const uint32_t height);
 
     vk::PipelineColorBlendAttachmentState GetAlphaBlending();

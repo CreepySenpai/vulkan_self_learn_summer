@@ -679,8 +679,7 @@ namespace Creepy {
             pipelineState.InitVertexInputState({}, {});
             pipelineState.InitPipelineLayout(gridDescriptorSetLayout, pushConstants);
             pipelineState.InitShaderStates(gridVertexShader.GetShaderModule(), gridFragmentShader.GetShaderModule());
-            
-            std::println("Create Grid");
+
             pipelineState.InitRenderingInfo(gridColorAttachmentFormats, m_depthImage.GetImageFormat());
 
             pipelineState.InitColorBlendState(gridBlendAttachments);
@@ -692,7 +691,48 @@ namespace Creepy {
 
             pipelineState.Clear();
         }
-        std::println("Done Grid");
+
+        {   // Primitive Pipeline Dont Have Texture
+            const Shader primitiveVertexShader{m_logicalDevice, readShaderSPVFile("./res/shaders/primitiveShaderVert.spv"), vk::ShaderStageFlagBits::eVertex};
+            const Shader primitiveFragmentShader{m_logicalDevice, readShaderSPVFile("./res/shaders/primitiveShaderFrag.spv"), vk::ShaderStageFlagBits::eFragment};
+            
+            const std::array primitiveDescriptorSetLayout{
+                m_uniformBufferDescriptorSet.DescriptorSetLayout,
+                m_skyBoxDescriptorSet.DescriptorSetLayout
+            };
+
+            const std::array primitiveColorAttachmentFormats{
+                m_swapchain.GetSwapchainImageFormat(),
+                m_entityImage.GetImageFormat()
+            };
+
+            constexpr std::array primitiveVertexBindings{
+                vk::VertexInputBindingDescription{0, sizeof(VertexInterLeave), vk::VertexInputRate::eVertex},
+            };
+
+            constexpr std::array primitiveVertexAttributes{
+                vk::VertexInputAttributeDescription{0, primitiveVertexBindings.at(0).binding, vk::Format::eR32G32B32Sfloat, 0},
+                vk::VertexInputAttributeDescription{1, primitiveVertexBindings.at(0).binding, vk::Format::eR32G32B32Sfloat, sizeof(glm::vec3)},
+                vk::VertexInputAttributeDescription{2, primitiveVertexBindings.at(0).binding, vk::Format::eR32G32Sfloat, sizeof(glm::vec3) * 2},
+                vk::VertexInputAttributeDescription{3, primitiveVertexBindings.at(0).binding, vk::Format::eR32Uint, sizeof(glm::vec3) * 2 + sizeof(glm::vec2)},
+            };
+
+            pipelineState.InitVertexInputState(primitiveVertexBindings, primitiveVertexAttributes);
+            pipelineState.InitPipelineLayout(primitiveDescriptorSetLayout, pushConstants);
+            pipelineState.InitShaderStates(primitiveVertexShader.GetShaderModule(), primitiveFragmentShader.GetShaderModule());
+
+            pipelineState.InitRenderingInfo(primitiveColorAttachmentFormats, m_depthImage.GetImageFormat());
+
+            pipelineState.InitColorBlendState(blendAttachments);
+
+            m_pipelines["Primitive"].Build(m_logicalDevice, pipelineState);
+
+            primitiveVertexShader.Destroy(m_logicalDevice);
+            primitiveFragmentShader.Destroy(m_logicalDevice);
+
+            pipelineState.Clear();
+        }
+
         //////////////////////////////////////////////////////////////////////
         
         const Shader skyBoxVertexShader{m_logicalDevice, readShaderSPVFile("./res/shaders/skyBoxVert.spv"), vk::ShaderStageFlagBits::eVertex};
@@ -711,7 +751,7 @@ namespace Creepy {
             vk::VertexInputAttributeDescription{0, skyBoxVertexBindings.at(0).binding, vk::Format::eR32G32B32Sfloat, 0},
             vk::VertexInputAttributeDescription{1, skyBoxVertexBindings.at(0).binding, vk::Format::eR32G32B32Sfloat, sizeof(glm::vec3)},
             vk::VertexInputAttributeDescription{2, skyBoxVertexBindings.at(0).binding, vk::Format::eR32G32Sfloat, sizeof(glm::vec3) * 2},
-        };
+        };        
 
         pipelineState.InitVertexInputState(skyBoxVertexBindings, skyBoxVertexAttributes);
         pipelineState.InitPipelineLayout(skyBoxDescriptorSetLayout, {});
@@ -735,7 +775,6 @@ namespace Creepy {
             for(auto&& [_, pipeline] : m_pipelines){
                 pipeline.Destroy(m_logicalDevice);
             }
-
         });
 
         skyBoxVertexShader.Destroy(m_logicalDevice);
@@ -807,25 +846,6 @@ namespace Creepy {
 
     // Note(Creepy): All device local buffer must be upload data in begin()/end() command buffer block -> recording state
     void VulkanEngine::createBufferResources() {
-        // const std::array vertices{
-        //     Vertex{.Position = glm::vec3{-0.5f, -0.5f, 0.0f}, .Normal = glm::vec3{1.0f, 0.0f, 0.0f}, .TexCoord = glm::vec2{0.0f, 0.0f}},
-        //     Vertex{.Position = glm::vec3{0.5f, 0.5f, 0.0f}, .Normal = glm::vec3{0.0f, 1.0f, 0.0f}, .TexCoord = glm::vec2{1.0f, 1.0f}},
-        //     Vertex{.Position = glm::vec3{-0.5f, 0.5f, 0.0f}, .Normal = glm::vec3{0.0f, 0.0f, 1.0f}, .TexCoord = glm::vec2{0.0f, 1.0f}},
-        //     Vertex{.Position = glm::vec3{0.5f, -0.5f, 0.0f}, .Normal = glm::vec3{1.0f, 0.0f, 0.0f}, .TexCoord = glm::vec2{1.0f, 0.0f}},
-        // };
-
-        // m_triangleVertexBuffer = VertexBuffer{m_logicalDevice, vertices.size() * sizeof(VertexInterLeave)};
-
-        // m_triangleVertexBuffer.UploadData(m_logicalDevice, m_cmdPool, m_graphicQueue, vertices);
-
-        // const std::array indices{0u, 2u, 1u, 0u, 3u, 1u};
-
-        // m_triangleIndexBuffer = IndexBuffer{m_logicalDevice, indices.size() * sizeof(uint32_t)};
-
-        // m_triangleIndexBuffer.UploadData(m_logicalDevice, m_cmdPool, m_graphicQueue, indices);
-
-        // std::println("Index COunt: {}", m_triangleIndexBuffer.GetBufferCount());
-
         m_objectsPickingBuffer = Buffer<BufferType::HOST_COHERENT>{m_logicalDevice, m_windowWidth * m_windowHeight * sizeof(uint32_t), vk::Format::eR32Uint, vk::BufferUsageFlagBits::eTransferDst};
 
         m_screenShotBuffer = Buffer<BufferType::HOST_COHERENT>{m_logicalDevice, m_windowWidth * m_windowHeight * 4, vk::Format::eR32G32B32A32Sfloat, vk::BufferUsageFlagBits::eTransferDst};
@@ -848,29 +868,63 @@ namespace Creepy {
 
     void VulkanEngine::loadModels() {
         
-        m_models["SkyBox"].LoadModel("./res/models/cube.gltf", m_logicalDevice, m_cmdPool, m_graphicQueue);
+        {
+            m_models["SkyBox"].LoadModel("./res/models/cube.gltf", m_logicalDevice, m_cmdPool, m_graphicQueue);
 
-        m_models["Shiba"].LoadModel("./res/models/shiba.gltf", m_logicalDevice, m_cmdPool, m_graphicQueue);
+            std::array<std::filesystem::path, 6> cubePaths{
+                "./res/textures/skybox/right.jpg",
+                "./res/textures/skybox/left.jpg",
+                "./res/textures/skybox/top.jpg",
+                "./res/textures/skybox/bottom.jpg",
+                "./res/textures/skybox/front.jpg",
+                "./res/textures/skybox/back.jpg",
+            };
 
-        m_models["Shiba"].SetMaterialIndex(MaterialManager::AddMaterial(m_logicalDevice));
+            m_skyBoxTexture.LoadTextureCubeMap(cubePaths, m_logicalDevice, m_cmdPool, m_graphicQueue);
+        }
 
-        m_models["Waifu"].LoadModel("./res/models/waifu.gltf", m_logicalDevice, m_cmdPool, m_graphicQueue);
+        {   // Models
+            m_models["Shiba"].LoadModel("./res/models/shiba.gltf", m_logicalDevice, m_cmdPool, m_graphicQueue);
 
-        m_models["Waifu"].SetMaterialIndex(MaterialManager::AddMaterial(m_logicalDevice));
+            m_models["Shiba"].SetMaterialIndex(MaterialManager::AddMaterial(m_logicalDevice));
 
-        std::array<std::filesystem::path, 6> cubePaths{
-            "./res/textures/skybox/right.jpg",
-            "./res/textures/skybox/left.jpg",
-            "./res/textures/skybox/top.jpg",
-            "./res/textures/skybox/bottom.jpg",
-            "./res/textures/skybox/front.jpg",
-            "./res/textures/skybox/back.jpg",
-        };
+            m_models["Waifu"].LoadModel("./res/models/waifu.gltf", m_logicalDevice, m_cmdPool, m_graphicQueue);
 
-        m_skyBoxTexture.LoadTextureCubeMap(cubePaths, m_logicalDevice, m_cmdPool, m_graphicQueue);
+            m_models["Waifu"].SetMaterialIndex(MaterialManager::AddMaterial(m_logicalDevice));
+        }
         
+        {   // Primitive Models
+            m_primitiveModels["Sphere0"].LoadModel("./res/models/sphere.obj", m_logicalDevice, m_cmdPool, m_graphicQueue);
+
+            m_primitiveModels["Sphere0"].SetMaterialIndex(MaterialManager::AddMaterial(m_logicalDevice));
+
+            m_primitiveModels["Sphere1"].LoadModel("./res/models/sphere.obj", m_logicalDevice, m_cmdPool, m_graphicQueue);
+
+            m_primitiveModels["Sphere1"].SetMaterialIndex(MaterialManager::AddMaterial(m_logicalDevice));
+
+            m_primitiveModels["Sphere2"].LoadModel("./res/models/sphere.obj", m_logicalDevice, m_cmdPool, m_graphicQueue);
+
+            m_primitiveModels["Sphere2"].SetMaterialIndex(MaterialManager::AddMaterial(m_logicalDevice));
+
+            m_primitiveModels["Sphere3"].LoadModel("./res/models/sphere.obj", m_logicalDevice, m_cmdPool, m_graphicQueue);
+
+            m_primitiveModels["Sphere3"].SetMaterialIndex(MaterialManager::AddMaterial(m_logicalDevice));
+
+            m_primitiveModels["Sphere4"].LoadModel("./res/models/sphere.obj", m_logicalDevice, m_cmdPool, m_graphicQueue);
+
+            m_primitiveModels["Sphere4"].SetMaterialIndex(MaterialManager::AddMaterial(m_logicalDevice));
+
+            m_primitiveModels["Sphere5"].LoadModel("./res/models/sphere.obj", m_logicalDevice, m_cmdPool, m_graphicQueue);
+
+            m_primitiveModels["Sphere5"].SetMaterialIndex(MaterialManager::AddMaterial(m_logicalDevice));
+        }
+
         m_clearner.AddJob([this]{
             for(auto&& [_, model] : m_models){
+                model.Destroy(m_logicalDevice);
+            }
+
+            for(auto&& [_, model] : m_primitiveModels){
                 model.Destroy(m_logicalDevice);
             }
 
@@ -902,6 +956,7 @@ namespace Creepy {
         
         Debug::DrawLightData(m_lightData);
         Debug::DrawModelInfo(m_models);
+        Debug::DrawPrimitiveModelInfo(m_primitiveModels);
         
         Debug::EndFrame();
 
@@ -979,9 +1034,7 @@ namespace Creepy {
             vk::ImageAspectFlagBits::eColor, vk::ImageLayout::eTransferSrcOptimal, vk::ImageLayout::ePresentSrcKHR, 
             vk::AccessFlagBits2::eMemoryRead, vk::AccessFlagBits2::eMemoryRead | vk::AccessFlagBits2::eMemoryWrite,
             vk::PipelineStageFlagBits2::eTransfer, vk::PipelineStageFlagBits2::eBottomOfPipe);
-
         }
-
         else{
             imageLayoutTransition(currentCommandBuffer, currentSwapchainImage, 
             vk::ImageAspectFlagBits::eColor, vk::ImageLayout::eColorAttachmentOptimal, vk::ImageLayout::ePresentSrcKHR, 
@@ -1099,26 +1152,46 @@ namespace Creepy {
 
         // Draw Call
 
-        currentCommandBuffer.bindPipeline(vk::PipelineBindPoint::eGraphics,  m_pipelines["Interleaved"].GetPipeline());
+        {   // Models
+            currentCommandBuffer.bindPipeline(vk::PipelineBindPoint::eGraphics,  m_pipelines["Interleaved"].GetPipeline());
 
-        const std::array descriptorSets2{
-            m_uniformBufferDescriptorSet.DescriptorSet,
-            m_descriptorIndexingDescriptorSet.DescriptorSet
-        };
-
-        currentCommandBuffer.bindDescriptorSets(vk::PipelineBindPoint::eGraphics, m_pipelines["Interleaved"].GetPipelineLayout(), 0, descriptorSets2, nullptr);
-
-        for(auto& [name, model] : m_models){
-            if(name == "SkyBox"){
-                continue;
-            }
-
-            FragmentPushConstantData fragmentPushConstantData{
-                .lightBufferPtr = m_uniformBuffer.lightBufferAddress,
-                .materialBufferPtr = MaterialManager::GetBufferAddress(model.GetMaterialIndex()),
+            const std::array descriptorSets2{
+                m_uniformBufferDescriptorSet.DescriptorSet,
+                m_descriptorIndexingDescriptorSet.DescriptorSet
             };
 
-            model.Draw(currentCommandBuffer, m_pipelines["Interleaved"].GetPipelineLayout(), fragmentPushConstantData);
+            currentCommandBuffer.bindDescriptorSets(vk::PipelineBindPoint::eGraphics, m_pipelines["Interleaved"].GetPipelineLayout(), 0, descriptorSets2, nullptr);
+
+            for(auto modelPipelineLayout = m_pipelines["Interleaved"].GetPipelineLayout(); auto&& [name, model] : m_models){
+                if(name == "SkyBox"){
+                    continue;
+                }
+
+                FragmentPushConstantData fragmentPushConstantData{
+                    .lightBufferPtr = m_uniformBuffer.lightBufferAddress,
+                    .materialBufferPtr = MaterialManager::GetBufferAddress(model.GetMaterialIndex()),
+                };
+
+                model.Draw(currentCommandBuffer, modelPipelineLayout, fragmentPushConstantData);
+            }
+        }
+
+        {   // Primitive Models
+            const std::array descriptorSets{
+                m_uniformBufferDescriptorSet.DescriptorSet,
+                m_skyBoxDescriptorSet.DescriptorSet
+            };
+
+            currentCommandBuffer.bindPipeline(vk::PipelineBindPoint::eGraphics, m_pipelines["Primitive"].GetPipeline());
+            
+            for(auto primitivePipelineLayout = m_pipelines["Primitive"].GetPipelineLayout(); auto&& [_, primitiveModel] : m_primitiveModels){
+                FragmentPushConstantData fragmentPushConstantData{
+                    .lightBufferPtr = m_uniformBuffer.lightBufferAddress,
+                    .materialBufferPtr = MaterialManager::GetBufferAddress(primitiveModel.GetMaterialIndex()),
+                };
+
+                primitiveModel.Draw(currentCommandBuffer, primitivePipelineLayout, descriptorSets, fragmentPushConstantData);
+            }
         }
 
         currentCommandBuffer.endRendering();
@@ -1139,19 +1212,6 @@ namespace Creepy {
         dynamicRenderInfo.renderArea = vk::Rect2D{{0u, 0u}, {static_cast<uint32_t>(m_windowWidth), static_cast<uint32_t>(m_windowHeight)}};
 
         currentCommandBuffer.beginRendering(dynamicRenderInfo);
-
-        {   // Draw Infinity Grid
-
-            currentCommandBuffer.bindPipeline(vk::PipelineBindPoint::eGraphics, m_pipelines["Grid"].GetPipeline());
-        
-            const std::array gridDescriptorSets{
-                m_uniformBufferDescriptorSet.DescriptorSet
-            };
-
-            currentCommandBuffer.bindDescriptorSets(vk::PipelineBindPoint::eGraphics, m_pipelines["Grid"].GetPipelineLayout(), 0, gridDescriptorSets, nullptr);
-            // We use data already in shader
-            currentCommandBuffer.draw(6, 1, 0, 0);
-        }
         
         ImGui_ImplVulkan_RenderDrawData(ImGui::GetDrawData(), currentCommandBuffer);
 
@@ -1191,18 +1251,18 @@ namespace Creepy {
 
         m_models["SkyBox"].Draw(currentCommandBuffer, m_pipelines["SkyBox"].GetPipelineLayout(), descriptorSets);
 
-        // {   // Draw Infinity Grid
+        {   // Draw Infinity Grid
 
-        //     currentCommandBuffer.bindPipeline(vk::PipelineBindPoint::eGraphics, m_pipelines["Grid"].GetPipeline());
+            currentCommandBuffer.bindPipeline(vk::PipelineBindPoint::eGraphics, m_pipelines["Grid"].GetPipeline());
         
-        //     const std::array gridDescriptorSets{
-        //         m_uniformBufferDescriptorSet.DescriptorSet
-        //     };
+            const std::array gridDescriptorSets{
+                m_uniformBufferDescriptorSet.DescriptorSet
+            };
 
-        //     currentCommandBuffer.bindDescriptorSets(vk::PipelineBindPoint::eGraphics, m_pipelines["Grid"].GetPipelineLayout(), 0, gridDescriptorSets, nullptr);
-        //     // We use data already in shader
-        //     currentCommandBuffer.draw(6, 1, 0, 0);
-        // }
+            currentCommandBuffer.bindDescriptorSets(vk::PipelineBindPoint::eGraphics, m_pipelines["Grid"].GetPipelineLayout(), 0, gridDescriptorSets, nullptr);
+            // We use data already in shader
+            currentCommandBuffer.draw(6, 1, 0, 0);
+        }
         
         currentCommandBuffer.endRendering();
     }

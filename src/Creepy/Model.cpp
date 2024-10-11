@@ -48,9 +48,9 @@ namespace Creepy{
     void Model::Draw(const vk::CommandBuffer commandBuffer, const vk::PipelineLayout pipelineLayout, std::span<const vk::DescriptorSet> descriptorSets) {
         for(auto& mesh : m_meshes){
             mesh.Draw(commandBuffer, pipelineLayout, descriptorSets);
-            // mesh.Draw(commandBuffer, pipelineLayout, descriptorSets, this->getTransformMatrix());
         }
     }
+
 
     void Model::Draw(const vk::CommandBuffer commandBuffer, const vk::PipelineLayout pipelineLayout, std::span<const vk::DescriptorSet> descriptorSets, FragmentPushConstantData fragmentPushConstantData) {
         for(auto& mesh : m_meshes){

@@ -19,6 +19,8 @@ namespace Creepy{
 
         static void DrawModelInfo(std::unordered_map<std::string, Model>& models);
 
+        static void DrawPrimitiveModelInfo(std::unordered_map<std::string, Model>& models);
+
         static void EndFrame();
     };
     

@@ -63,12 +63,19 @@ vec3 enviromentRefract(in vec3 position, in vec3 normal){
     return refractVec;
 }
 
-void main(){
-    // outColor = texture(cubeMap, enviromentRefract(normalize(inPosition), normalize(inNormal)));
+vec4 gammaCorrection(in vec4 currentFragColor){
+    const vec3 correctNess = pow(currentFragColor.rgb, vec3(1.0 / 2.2, 1.0 / 2.2, 1.0 / 2.2));
+    return vec4(correctNess, 1.0);
+}
 
-    outColor = texture(cubeMap, enviromentReflect(normalize(inPosition), normalize(inNormal)));
+void main(){
+    outColor = texture(cubeMap, enviromentRefract(normalize(inPosition), normalize(inNormal)));
+
+    // outColor = texture(cubeMap, enviromentReflect(normalize(inPosition), normalize(inNormal)));
 
     outColor = frogxyProxy(outColor.xyz, inPosition);
+
+    // outColor = gammaCorrection(outColor);
 
     outEntityID = inEntityID;
 }

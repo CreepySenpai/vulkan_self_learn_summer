@@ -66,6 +66,7 @@ namespace Creepy {
             void drawModels(const vk::CommandBuffer currentCommandBuffer, const vk::ImageView colorImageView, const vk::ImageView depthImageView);
             void drawImGui(const vk::CommandBuffer currentCommandBuffer, const vk::ImageView colorImageView);
             void drawSkyBox(const vk::CommandBuffer currentCommandBuffer, const vk::ImageView colorImageView);
+
             uint32_t getEntityAtPixel(uint32_t x, uint32_t y);
 
         private:
@@ -106,13 +107,16 @@ namespace Creepy {
 
             vma::Allocator m_allocator;
             VulkanJobSystem m_clearner;
-            VulkanCommandBufferSubmitData m_submitter;
+            
+            // TODO: Impl
+            // VulkanCommandBufferSubmitData m_submitter;
 
             UniformBuffer m_uniformBuffer;
             TransformData m_transformData;
             LightData m_lightData;
 
             std::unordered_map<std::string, Model> m_models;
+            std::unordered_map<std::string, Model> m_primitiveModels;
             
             Camera m_camera{};
             //TODO: Use atomic

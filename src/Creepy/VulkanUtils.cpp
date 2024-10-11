@@ -4,10 +4,26 @@
 
 namespace Creepy {
 
+    // Only Use For Image Have Same Size
+    void CopyImageToImage(const vk::CommandBuffer commandBuffer, const vk::Image srcImage, const vk::Image dstImage, uint32_t width, uint32_t height){
+        vk::ImageCopy copyInfo{};
+        copyInfo.extent = vk::Extent3D{width, height, 1};
+        copyInfo.dstOffset = vk::Offset3D{0, 0, 0};
+        copyInfo.srcOffset = vk::Offset3D{0, 0, 0};
+        copyInfo.srcSubresource.aspectMask = vk::ImageAspectFlagBits::eColor;
+        copyInfo.srcSubresource.layerCount = 1;
+        copyInfo.dstSubresource.aspectMask = vk::ImageAspectFlagBits::eColor;
+        copyInfo.dstSubresource.layerCount = 1;
+        commandBuffer.copyImage(srcImage, vk::ImageLayout::eTransferSrcOptimal,
+         dstImage, vk::ImageLayout::eTransferDstOptimal, copyInfo);
+    }
+
     constexpr int totalChannel{4};
+    static constinit uint32_t imageCaptureID{};
 
     void SaveImageToFile(const void* data, const uint32_t width, const uint32_t height) {
-        if(!stbi_write_png("./res/textures/captures/suck.png", width, height, totalChannel, data, 0)){
+        auto saveImageFile = std::format("./res/textures/captures/capture_n{}.png", imageCaptureID++);
+        if(!stbi_write_png(saveImageFile.c_str(), width, height, totalChannel, data, 0)){
             std::println("Failed to capture image");
         }
     }
